@@ -1,14 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-more',
   templateUrl: './more.component.html',
   styleUrls: ['./more.component.scss'],
 })
-export class MoreComponent implements OnInit {
+export class MoreComponent {
 
-  constructor() { }
+  constructor(
+    public modalController: ModalController
+  ) {}
 
-  ngOnInit() {}
-
+  close() {
+    this.modalController.dismiss();
+  }
 }
