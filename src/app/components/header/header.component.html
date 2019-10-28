@@ -1,3 +1,26 @@
-<p>
-  header works!
-</p>
+<ion-toolbar color="primary" mode="md">
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-buttons slot="end" mode="ios">
+    <ion-button icon-only>
+      <ion-badge color="danger">  </ion-badge>
+      <ion-icon name="md-chatbubbles"></ion-icon>
+    </ion-button>
+
+    <ion-button icon-only>
+      <ion-badge color="success"> 25 </ion-badge>
+      <ion-icon name="md-trophy"></ion-icon>
+    </ion-button>
+
+    <ion-button icon-only>
+      <ion-icon name="ios-list-box"></ion-icon>
+    </ion-button>
+
+    <ion-button icon-only (click)="showMore($event)">
+      <ion-icon name="md-more"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <ion-title> Header </ion-title>
+</ion-toolbar>

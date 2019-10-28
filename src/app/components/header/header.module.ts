@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { HeaderComponent } from './header.component';
+import { MoreComponent } from './more/more.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
+    MoreComponent,
   ],
   imports: [
     CommonModule,
@@ -16,6 +18,9 @@ import { HeaderComponent } from './header.component';
   ],
   exports: [
     HeaderComponent,
+  ],
+  entryComponents: [
+    MoreComponent,
   ]
 })
 export class HeaderModule { }
