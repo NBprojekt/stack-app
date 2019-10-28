@@ -21,6 +21,6 @@ jobs:
     - name: Lint
       run: npx ng lint
     - name: Build
-      run: npx ionic build -- --prod
+      run: npx ionic build --prod
     - name: Test
-      run: npx ng test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+      run: npx ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
