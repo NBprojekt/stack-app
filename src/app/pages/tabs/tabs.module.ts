@@ -9,9 +9,15 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: '',
-    component: TabsPage
-  }
+    path: 'tabs',
+    component: TabsPage,
+    children:  [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule) },
+      { path: 'search', loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule) },
+    ],
+  },
+  { path: '', redirectTo: 'tabs/home', pathMatch: 'full'}
 ];
 
 @NgModule({

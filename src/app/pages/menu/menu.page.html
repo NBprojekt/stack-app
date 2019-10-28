@@ -1,9 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>menu</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-split-pane contentId="menu-content">
+  <!--  our side menu  -->
+  <ion-menu contentId="menu-content">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
 
-<ion-content>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle *ngFor="let page of pages" auto-hide="false">
+          <ion-item [routerLink]="page.url" routerDirection="root" [class.active]="selectedUrl.startsWith(page.url)">
+            {{page.title}}
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
 
-</ion-content>
+  <!-- the main content -->
+  <ion-router-outlet id="menu-content" main></ion-router-outlet>
+</ion-split-pane>
