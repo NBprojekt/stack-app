@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Router, RouterEvent, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { filter } from 'rxjs/operators';
 
@@ -33,7 +33,7 @@ export class MenuPage implements OnInit {
     this.selectedUrl = '';
 
     this.router.events.pipe(
-        filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
       ).subscribe((event: NavigationEnd) => {
         this.selectedUrl = event.url;
       });
