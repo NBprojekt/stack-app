@@ -19,8 +19,8 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Lint
-      run: npm run lint
+      run: npx ng lint
     - name: Build
-      run: npx ionic build --prod
+      run: npx ionic build -- --prod
     - name: Test
-      run: npx ng test
+      run: npx ng test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
