@@ -1,11 +1,12 @@
 {
   "name": "stackoverflow-app",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Norbert Bartko",
+  "homepage": "",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "emulate": "ionic cordova emulate android --livereload --consolelogs",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
