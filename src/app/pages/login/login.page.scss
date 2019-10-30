@@ -1,0 +1,29 @@
+.skip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.swiper-slide {
+  display: block;
+}
+ion-slides {
+  height: 100%;
+
+  ion-slide {
+    > p {
+      margin-top: 1.8em;
+      padding: 0 20px;
+    }
+    > h2 {
+      padding: 0 20px;
+    }
+    > img {
+      min-height: 50%;
+      max-height: 50%;
+      max-width: 95%;
+      margin: 36px 0 10px;
+    }
+  }
+}
