@@ -1,5 +1,7 @@
 {
   "name": "stackoverflow-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
