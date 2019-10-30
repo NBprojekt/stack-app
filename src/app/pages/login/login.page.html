@@ -1,9 +1,54 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content fullscreen scroll-y="false" >
+  <div class="skip" *ngIf="!reachedEnd">
+    <ion-button fill="clear" (click)="skip()"> Skip <ion-icon slot="end" name="ios-arrow-forward"></ion-icon></ion-button>
+  </div>
 
-<ion-content>
+  <ion-slides #slides pager="true">
+    <ion-slide>
+      <img src="./assets/image/slide-1.gif"/>
+      <h2> Welcome to the  <br> Stackoverflow App </h2>
+      <p>
+        Thank you for choosing and downloading the Stackoverflow app. This is a small personal project and any help is welcome, if you would like to contribute, visit us at Github.
+      </p>
+    </ion-slide>
 
+    <ion-slide>
+      <img src="./assets/image/slide-2.svg"/>
+      <h2> Write the script of the future </h2>
+      <p>
+        Get your coding questions answered to learn, build, and level up whether you’re beginning with JavaScript or a React professional.
+      </p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="./assets/image/slide-3.svg"/>
+      <h2> Support open source </h2>
+      <p>
+        Reach users of your project by following tags, answering newcomer questions, and empowering experts in the community. Read the curl project creator’s story.
+      </p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="./assets/image/slide-4.svg"/>
+      <h2> Acquire and share knowledge </h2>
+      <p>
+        Answer questions and gain insights from an audience of developers using your technology on Stack Overflow.
+      </p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="./assets/image/slide-5.svg"/>
+      <h2> Find career opportunities </h2>
+      <p>
+        Create a profile that shows off your expertise and credentials to help you make your next move. Start your Developer Story.
+      </p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="./assets/image/slide-6.svg"/>
+      <h2> Are you ready to take off? </h2>
+      <ion-button fill="clear" (click)="logIn()"> Continue <ion-icon slot="end" name="ios-arrow-forward"></ion-icon></ion-button>
+    </ion-slide>
+
+  </ion-slides>
 </ion-content>
