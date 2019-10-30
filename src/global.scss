@@ -39,3 +39,9 @@ ion-popover{
     }
   }
 }
+
+ion-slides {
+  .swiper-pagination-bullet, .swiper-pagination-bullet-active {
+    background: var(--ion-color-secondary);
+  }
+}
