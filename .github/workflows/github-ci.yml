@@ -6,10 +6,8 @@ on:
     - 'master'
 
 jobs:
-  build:
-
+  Lint:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js 12.x
@@ -20,7 +18,27 @@ jobs:
       run: npm ci
     - name: Lint
       run: npx ng lint
-    - name: Build
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Install dependencies
+      run: npm ci
+    - name: Build production
       run: npx ionic build --prod
-    - name: Test
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Install dependencies
+      run: npm ci
+    - name: Unit tests
       run: npx ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
