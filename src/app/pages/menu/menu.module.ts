@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MenuPage } from './menu.page';
+import { SharedDirectivesModule } from 'src/app/directives/shared-directives.module';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedDirectivesModule,
   ],
   declarations: [MenuPage]
 })
