@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+
 import { MoreComponent } from './more/more.component';
+
+import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -10,11 +13,13 @@ import { NavigationEnd, Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   public title: string;
   public inbox: number;
   public achievements: number;
   public reviwQueues: boolean;
+
+  private routerSubscribtion$: Subscription;
 
   constructor(
     private router: Router,
@@ -22,17 +27,22 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.router.events
+    this.routerSubscribtion$ = this.router.events
       .pipe(
         filter((event): event is NavigationEnd => event instanceof NavigationEnd),
       ).subscribe((event: NavigationEnd) => {
-        const url = event.url;
-        this.title = this.firstToUpper(url.split('/').pop());
+        const url = this.router.url;
+        console.log(url)
+        this.title = this.firstToUpper(url.split('/').pop()) || 'Undefined';
       });
 
     this.inbox = 5;
     this.achievements = 120;
     this.reviwQueues = true;
+  }
+
+  ngOnDestroy() {
+    this.routerSubscribtion$.unsubscribe();
   }
 
   public async showMore(event: any) {
