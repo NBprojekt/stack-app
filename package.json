@@ -7,6 +7,8 @@
     "ng": "ng",
     "start": "ng serve",
     "emulate": "ionic cordova emulate android --livereload --consolelogs",
+    "android": "ionic cordova run android --device --livereload --consolelogs",
+    "ios": "ionic cordova run ios --device --livereload --consolelogs",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -66,7 +68,7 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "Stackoverflow App",
+  "description": "An awesome mobile app for stack overflow.",
   "cordova": {
     "plugins": {
       "cordova-plugin-inappbrowser": {},
