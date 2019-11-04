@@ -1,17 +1,19 @@
 import { Injectable, NgZone } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
-
-import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser/ngx';
-import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+
+import { InAppBrowser, InAppBrowserEvent, InAppBrowserObject } from '@ionic-native/in-app-browser/ngx';
+
+import { environment } from 'src/environments/environment';
+
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private readonly oAuthUrl = `https://stackoverflow.com/oauth?client_id=${environment.oAuth.clientId}&redirect_uri=${environment.oAuth.redirectUrl}&scope=${environment.oAuth.scope}`;
-  private token: string = 'test';
+  private token: string;
 
   constructor(
     private ngZone: NgZone,
@@ -21,15 +23,18 @@ export class AuthService {
   ) { }
 
   public openLogin(): void {
-    const browser = this.inAppBrowser.create(this.oAuthUrl, '_blank', 'location=yes');
+    const browser: InAppBrowserObject = this.inAppBrowser.create(this.oAuthUrl, '_blank', 'location=yes');
 
-    browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
+    const sunscribtion: Subscription = browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
       const url = event.url.split('//')[1];
 
       if (url.startsWith('localhost')) {
-        this.token = url.split('code')[1];
         browser.close();
+
+        this.token = url.split('code')[1];
         this.ngZone.run(() => this.router.navigateByUrl('/menu'));
+
+        sunscribtion.unsubscribe();
       }
     });
   }
