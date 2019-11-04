@@ -1,16 +1,30 @@
 ion-button {
   position: relative;
+  overflow: visible;
+
   ion-badge {
     position: absolute;
     top: 0px;
-    left: 15px;
+    left: 14px;
     z-index: 5;
-    padding-top: 2.5px;
-    padding-bottom: 2.5px;
-    padding-left: 5px;
-    padding-right: 5px;
 
-    & ~ ion-icon {
+    overflow: inherit;
+    border: solid 1.5px var(--ion-color-primary);
+
+
+    &.ios {
+      padding: 2.5px 5.5px;
+    }
+    &.md {
+      padding: 2px 4px;
+    }
+
+    &.circle {
+      width: 20px;
+      height: 20px;;
+    }
+
+    &~ ion-icon {
       margin-top: 2px;
       margin-right: 16px;
     }
