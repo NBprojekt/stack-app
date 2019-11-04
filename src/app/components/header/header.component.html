@@ -4,16 +4,17 @@
   </ion-buttons>
   <ion-buttons slot="end" mode="ios">
     <ion-button icon-only>
-      <ion-badge color="danger">  </ion-badge>
+      <ion-badge color="danger"> {{inbox}} </ion-badge>
       <ion-icon name="md-chatbubbles"></ion-icon>
     </ion-button>
 
     <ion-button icon-only>
-      <ion-badge color="success"> 25 </ion-badge>
+      <ion-badge color="success"> {{achievements}} </ion-badge>
       <ion-icon name="md-trophy"></ion-icon>
     </ion-button>
 
-    <ion-button icon-only>
+    <ion-button>
+      <ion-badge *ngIf="reviwQueues" color="danger" mode="ios" class="circle"> &nbsp;&nbsp; </ion-badge>
       <ion-icon name="ios-list-box"></ion-icon>
     </ion-button>
 
@@ -22,5 +23,5 @@
     </ion-button>
   </ion-buttons>
 
-  <ion-title> Header </ion-title>
+  <ion-title> {{ title }} </ion-title>
 </ion-toolbar>
