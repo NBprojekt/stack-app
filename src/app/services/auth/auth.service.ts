@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -11,9 +11,10 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private readonly oAuthUrl = `https://stackoverflow.com/oauth?client_id=${environment.oAuth.clientId}&redirect_uri=${environment.oAuth.redirectUrl}&scope=${environment.oAuth.scope}`;
-  private token: string;
+  private token: string = 'test';
 
   constructor(
+    private ngZone: NgZone,
     private http: HttpClient,
     private inAppBrowser: InAppBrowser,
     private router: Router,
@@ -28,7 +29,7 @@ export class AuthService {
       if (url.startsWith('localhost')) {
         this.token = url.split('code')[1];
         browser.close();
-        this.router.navigateByUrl('/menu');
+        this.ngZone.run(() => this.router.navigateByUrl('/menu'));
       }
     });
   }
