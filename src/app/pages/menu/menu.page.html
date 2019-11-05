@@ -1,7 +1,7 @@
 <ion-split-pane contentId="menu-content">
   <ion-menu contentId="menu-content">
     <ion-header>
-      <ion-toolbar color="primary">
+      <ion-toolbar color="primary" mode="md">
         <ion-title>Menu</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -9,8 +9,9 @@
     <ion-content>
       <ion-list>
         <ion-menu-toggle *ngFor="let page of pages" auto-hide="false">
-          <ion-item [routerLink]="page.url" routerDirection="root" [class.active]="selectedUrl.startsWith(page.url)">
-            {{page.title}}
+          <ion-item [routerLink]="page.url" [lines]="page.lines" routerDirection="root" [class.active]="selectedUrl.startsWith(page.url)">
+            <ion-icon [name]="page.icon" slot="start"></ion-icon>
+            <ion-label> {{page.title}} </ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
