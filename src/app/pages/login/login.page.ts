@@ -1,18 +1,23 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { IonSlides } from '@ionic/angular';
 
 import { AuthService } from 'src/app/services/auth/auth.service';
 
-import {IonSlides} from '@ionic/angular';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
-  @ViewChild('slides', {static: true}) slides: IonSlides;
+export class LoginPage implements OnInit, OnDestroy {
   public slidesLength: number;
   public reachedEnd: boolean;
+
+  private unsubscribe$ = new Subject<void>();
+
+  @ViewChild('slides', {static: true}) slides: IonSlides;
 
   constructor(
     private authService: AuthService,
@@ -21,8 +26,17 @@ export class LoginPage implements OnInit {
   async ngOnInit() {
     this.slidesLength = await this.slides.length();
 
-    this.slides.ionSlidePrevEnd.subscribe(() => this.reachedEnd = false);
-    this.slides.ionSlideReachEnd.subscribe(reachedEnd => this.reachedEnd = reachedEnd);
+    this.slides.ionSlidePrevEnd
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(() => this.reachedEnd = false);
+    this.slides.ionSlideReachEnd
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((reachedEnd: any) => this.reachedEnd = reachedEnd);
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   logIn() {
