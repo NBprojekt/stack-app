@@ -32,7 +32,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         filter((event): event is NavigationEnd => event instanceof NavigationEnd),
       ).subscribe((event: NavigationEnd) => {
         const url = this.router.url;
-        console.log(url)
         this.title = this.firstToUpper(url.split('/').pop()) || 'Undefined';
       });
 
