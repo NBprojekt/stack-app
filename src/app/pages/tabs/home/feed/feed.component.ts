@@ -12,4 +12,6 @@ export class FeedComponent implements OnInit {
 
   ngOnInit() {}
 
+  public fill = (times: number) => new Array<number>(times).fill(1);
+
 }
