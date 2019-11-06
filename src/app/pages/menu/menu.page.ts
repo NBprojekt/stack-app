@@ -4,7 +4,6 @@ import { Router, NavigationEnd } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-menu',
@@ -19,13 +18,38 @@ export class MenuPage implements OnInit, OnDestroy {
   public pages = [
     {
         title: 'Home',
-        url: './tabs/home',
+        url: '/menu/pages/tabs/home',
         icon: 'home',
+        routerDirection: 'root',
+        lines: 'none',
     },
     {
         title: 'Search',
-        url: './tabs/search',
+        url: '/menu/pages/tabs/search',
         icon: 'search',
+        routerDirection: 'root',
+        lines: 'none',
+    },
+    {
+        title: 'Jobs',
+        url: '/menu/pages/tabs/jobs',
+        icon: 'business',
+        routerDirection: 'root',
+        lines: 'full',
+    },
+    {
+        title: 'Setting',
+        url: '/menu/settings',
+        icon: 'settings',
+        routerDirection: 'forward',
+        lines: 'none',
+    },
+    {
+        title: 'About',
+        url: './tabs/home',
+        icon: 'information-circle',
+        routerDirection: 'root',
+        lines: 'none',
     },
   ];
 
