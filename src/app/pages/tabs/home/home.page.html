@@ -13,4 +13,14 @@
       <ion-fab-button title="Ask question"><ion-icon name="ios-chatbubbles"></ion-icon></ion-fab-button>
     </ion-fab-list>
   </ion-fab>
+
+  <!-- Refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="refresh"
+      refreshingSpinner="circular"
+      pullMin="65"
+      pullMax="80">
+    </ion-refresher-content>
+  </ion-refresher>
 </ion-content>
