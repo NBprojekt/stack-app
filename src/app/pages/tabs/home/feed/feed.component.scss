@@ -1,27 +1,42 @@
-ion-list-header ion-skeleton-text {
-  width: 35%;
-  height: 10px;
-}
 
-ion-thumbnail, ion-skeleton-text {
-  height: 70px;
-}
-
-h2 ion-skeleton-text {
-  width: 85%;
-  height: 15px;
-}
-h3 ion-skeleton-text {
-  width: 20%;
-  height: 19px;
-  margin: 7px 10px 0 0;
-}
-p ion-skeleton-text {
-  width: 55%;
-  height: 11px;
-}
 
 .wrap-text {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.skeleton-list {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+
+  ion-list-header  {
+    ion-skeleton-text {
+      height: 13px;
+    }
+    ion-label:nth-child(1) ion-skeleton-text{
+      width: 150px;
+    }
+    ion-label:nth-child(2) ion-skeleton-text{
+      width: 80px;
+    }
+  }
+
+  ion-thumbnail ion-skeleton-text {
+    height: 70px;
+  }
+
+  h2 ion-skeleton-text {
+    width: 85%;
+    height: 15px;
+  }
+  h3 ion-skeleton-text {
+    width: 20%;
+    height: 19px;
+    margin: 7px 10px 0 0;
+  }
+  p ion-skeleton-text {
+    width: 55%;
+    height: 11px;
+  }
 }
