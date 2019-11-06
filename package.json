@@ -9,13 +9,14 @@
     "emulate": "ionic cordova emulate android --livereload --consolelogs",
     "android": "ionic cordova run android --list && ionic cordova run android --device --livereload --consolelogs",
     "ios": "ionic cordova run ios --list && ionic cordova run ios --device --livereload --consolelogs",
-    "build": "ng build",
+    "build": "ionic cordova build android --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^8.2.13",
     "@angular/common": "~8.1.2",
     "@angular/compiler": "~8.1.2",
     "@angular/core": "~8.1.2",
