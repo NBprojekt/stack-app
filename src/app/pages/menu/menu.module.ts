@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MenuPage } from './menu.page';
+import { SettingsComponent } from './settings/settings.component';
 import { SharedDirectivesModule } from 'src/app/directives/shared-directives.module';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: '', loadChildren: () => import('../tabs/tabs.module').then( m => m.TabsPageModule) },
     ],
   },
+  { path: 'settings', component: SettingsComponent },
   { path: '', redirectTo: 'pages', pathMatch: 'full'}
 ];
 
@@ -28,7 +30,10 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedDirectivesModule,
   ],
-  declarations: [MenuPage]
+  declarations: [
+    MenuPage,
+    SettingsComponent,
+  ],
 })
 export class MenuPageModule {
 }
