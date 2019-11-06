@@ -1,3 +1,16 @@
 <ion-content>
 
+  <!-- Fab -->
+  <div *ngIf="backdrop" class="fab-backdrop blur"></div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="backdrop=!backdrop">
+      <ion-icon name="ios-arrow-up"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-list (click)="backdrop=!backdrop" side="top">
+      <ion-fab-button title="Manage Tags"><ion-icon name="pricetags"></ion-icon></ion-fab-button>
+      <ion-fab-button title="Custom filter"><ion-icon name="funnel"></ion-icon></ion-fab-button>
+      <ion-fab-button title="Ask question"><ion-icon name="ios-chatbubbles"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>
