@@ -17,7 +17,7 @@
   </ion-fab>
 
   <!-- Refresher -->
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" [disabled]="!questions?.length">
     <ion-refresher-content
       pullingIcon="refresh"
       refreshingSpinner="circular"
