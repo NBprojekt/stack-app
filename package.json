@@ -5,14 +5,9 @@
   "homepage": "",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "emulate": "ionic cordova emulate android --livereload --consolelogs",
-    "android": "ionic cordova run android --list && ionic cordova run android --device --livereload --consolelogs",
-    "ios": "ionic cordova run ios --list && ionic cordova run ios --device --livereload --consolelogs",
-    "build": "ionic cordova build android --prod",
+    "start": "ionic serve",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
