@@ -1,4 +1,4 @@
-<ion-list *ngIf="data; else skeleton">
+<ion-list *ngIf="questions; else skeleton">
   <ion-list-header>
     <ion-label>
       Top Questions
@@ -14,14 +14,16 @@
     </ion-select>
   </ion-list-header>
 
-  <ion-item>
+  <ion-item *ngFor="let question of questions">
     <ion-thumbnail slot="start">
 
     </ion-thumbnail>
     <ion-label>
-      <h2 class="wrap-text"> How do i use ngStyle with Interpolation </h2>
-      <h3> Angular </h3>
-      <p> asked 4 mins ago TestUser 123 </p>
+      <h2 class="wrap-text"> {{question.title}} </h2>
+      <h3>
+        <span *ngFor="let tag of question.tags"> {{tag}} </span>
+      </h3>
+      <p> by {{question.owner.display_name}} </p>
     </ion-label>
   </ion-item>
 </ion-list>
