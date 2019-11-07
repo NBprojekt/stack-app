@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionsService } from 'src/app/services/questions/questions.service';
+import { IQuestionPreview } from 'src/app/interfaces/question-preview';
 
 @Component({
   selector: 'app-home',
@@ -7,21 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
   public backdrop = false;
-  public questions: Array<any>;
+  public questions: Array<IQuestionPreview>;
 
-  constructor() { }
+  constructor(
+    private questionsService: QuestionsService,
+  ) { }
 
   ngOnInit() {
     this.doRefresh();
   }
 
-  doRefresh(event?): void {
-
-    setTimeout(() => {
-      this.questions = [1, 2, 3, 4];
-      if (event) {
-        event.target.complete();
-      }
-    }, 1000);
+  doRefresh(event?: any): void {
+    this.questionsService.getQuestions().subscribe((questions: any) => {
+      this.questions = questions.items as Array<IQuestionPreview>;
+      console.log(this.questions)
+      if (event) { event.target.complete(); }
+    });
   }
 }
