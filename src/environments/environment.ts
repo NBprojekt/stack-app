@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  api: {
+    url: 'https://api.stackexchange.com/',
+    version: '2.2/',
+  },
   oAuth: {
     clientId: 16531,
     redirectUrl: 'http://localhost/',
