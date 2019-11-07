@@ -1,12 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { IQuestionPreview } from 'src/app/interfaces/question-preview';
+
 @Component({
   selector: 'home-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
 })
 export class FeedComponent implements OnInit {
-  @Input() data: string;
+  @Input() questions: Array<IQuestionPreview>;
 
   constructor() { }
 
