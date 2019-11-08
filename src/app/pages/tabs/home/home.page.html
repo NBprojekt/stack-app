@@ -1,6 +1,6 @@
 <ion-content class="ion-padding">
   <!-- Feed -->
-  <home-feed [questions]="questions"></home-feed>
+  <home-feed [questions]="questions" (questionFilter)="updateFilter($event)"></home-feed>
 
   <!-- Fab -->
   <div *ngIf="backdrop" class="fab-backdrop blur"></div>
@@ -22,8 +22,7 @@
     <ion-refresher-content
       pullingIcon="refresh"
       refreshingSpinner="circular"
-      pullMin="65"
-      pullMax="80">
+      pullMin="65" pullMax="120">
     </ion-refresher-content>
   </ion-refresher>
 </ion-content>
