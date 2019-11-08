@@ -5,8 +5,9 @@ import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
-import { IQuestionPreview } from 'src/app/interfaces/question-preview';
+import { IQuestion } from 'src/app/interfaces/question';
 import { IQuestionFilter } from 'src/app/interfaces/question-filter';
+import { IResponse } from 'src/app/interfaces/response';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class QuestionsService {
     private http: HttpClient,
   ) { }
 
-  public getQuestions(filter?: IQuestionFilter): Observable<Array<IQuestionPreview>> {
+  public getQuestions(filter?: IQuestionFilter): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -27,6 +28,17 @@ export class QuestionsService {
       .set('order', filter && filter.order || 'desc')
       .set('sort', filter && filter.sort || 'activity');
 
-    return this.http.get<Array<IQuestionPreview>>(`${this.url}questions${filter && filter.featured ? '/featured' : '/'}`, {headers, params});
+    return this.http.get<IResponse>(`${this.url}questions${filter && filter.featured ? '/featured' : '/'}`, {headers, params});
+  }
+
+  public getQuestion(id: number, site?: string): Observable<IResponse> {
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
+
+    const params = new HttpParams()
+      .set('site', site || 'stackoverflow')
+      .set('filter', 'withbody');
+
+    return this.http.get<IResponse>(`${this.url}questions/${id}`, {headers, params});
   }
 }
