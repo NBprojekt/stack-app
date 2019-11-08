@@ -50,3 +50,31 @@ ion-slides {
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
 }
+
+.tag {
+  background: rgba($color: #eb9100, $alpha: .3);
+  padding: 2px 6px;
+  margin-right: 3px;
+  border-radius: 4px;
+}
+
+.post {
+  pre {
+    background: rgba($color: #000000, $alpha: .1);
+    border-radius: 3px;
+    padding: 10px;
+    code {
+      background: none;
+    }
+  }
+  code {
+    background: rgba($color: #000000, $alpha: .1);
+    padding: 0 6px;
+    border-radius: 4px;
+  }
+  p {
+    text-align: justify;
+    margin:2px 0 5px;
+    line-height: 1.05em;
+  }
+}
