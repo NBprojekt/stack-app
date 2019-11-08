@@ -5,16 +5,19 @@
     </ion-label>
 
     <ion-select interface="action-sheet" [interfaceOptions]="{header: 'Show'}"
-                cancelText="Cancel">
-      <ion-select-option value="1" selected> Interesting </ion-select-option>
-      <ion-select-option value="2"> <ion-badge color="primary"> 300 </ion-badge> Bountied </ion-select-option>
-      <ion-select-option value="3"> Hot </ion-select-option>
-      <ion-select-option value="4"> Week </ion-select-option>
-      <ion-select-option value="5"> Month </ion-select-option>
+                cancelText="Cancel" (ionChange)="filterChange()"
+                [(ngModel)]="filter">
+      <ion-select-option value="interesting"> Interesting </ion-select-option>
+      <ion-select-option value="bountied"> Bountied </ion-select-option>
+      <ion-select-option value="hot"> Hot </ion-select-option>
+      <ion-select-option value="week"> Week </ion-select-option>
+      <ion-select-option value="month"> Month </ion-select-option>
     </ion-select>
   </ion-list-header>
 
-  <ion-item *ngFor="let question of questions">
+  <ion-item *ngFor="let question of questions"
+            (click)="openQuestion(question.question_id)"
+            button>
     <ion-thumbnail slot="start">
 
     </ion-thumbnail>
