@@ -1,6 +1,8 @@
+import { SafeHtml } from '@angular/platform-browser';
+
 export interface IQuestion {
   anwser_count: number;
-  body?: string;
+  body?: string | SafeHtml;
   creation_date: number;
   is_answered: boolean;
   last_activity_date: number;
