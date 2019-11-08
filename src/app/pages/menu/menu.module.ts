@@ -16,6 +16,7 @@ const routes: Routes = [
     component: MenuPage,
     children:  [
       { path: '', loadChildren: () => import('../tabs/tabs.module').then( m => m.TabsPageModule) },
+      { path: 'question/:id', loadChildren: () => import('../question/question.module').then( m => m.QuestionPageModule) },
     ],
   },
   { path: 'settings', component: SettingsComponent },
