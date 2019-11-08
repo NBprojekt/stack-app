@@ -15,9 +15,9 @@
     </ion-select>
   </ion-list-header>
 
-  <ion-item *ngFor="let question of questions"
-            (click)="openQuestion(question.question_id)"
-            button>
+  <ion-item *ngFor="let question of questions" button
+            [routerLink]="['/menu/pages/question', question.question_id]"
+            routerDirection="forward">
     <ion-thumbnail slot="start">
       <div class="text-right">
         {{question.score | shortenNumber}}
