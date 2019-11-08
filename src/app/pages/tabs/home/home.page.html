@@ -2,11 +2,20 @@
   <!-- Feed -->
   <home-feed [questions]="questions" (questionFilter)="updateFilter($event)"></home-feed>
 
+  <ion-button *ngIf="questions?.length" expand="block" (click)="loadMore()">
+    <div *ngIf="!loading; else load">
+      Load more
+    </div>
+    <ng-template #load>
+      <ion-spinner name="crescent"></ion-spinner>
+    </ng-template>
+  </ion-button>
+
   <!-- Fab -->
   <div *ngIf="backdrop" class="fab-backdrop blur"></div>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="backdrop=!backdrop">
-      <ion-icon name="ios-arrow-up"></ion-icon>
+      <ion-icon name="add"></ion-icon>
     </ion-fab-button>
 
     <ion-fab-list (click)="backdrop=!backdrop" side="top">
