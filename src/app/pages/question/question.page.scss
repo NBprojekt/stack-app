@@ -1,0 +1,20 @@
+.vertical-spacer {
+  margin: 20px;
+}
+.horizontal-spacer {
+  flex: 1 1 auto;
+}
+
+ion-card-subtitle {
+  display: flex;
+  flex-direction: row;
+
+  &:nth-child(-n+2) span {
+    font-weight: bolder;
+    margin: 0 10px 0 5px;
+  }
+}
+
+ion-card-title {
+  text-align: justify;
+}
