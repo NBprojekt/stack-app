@@ -7,7 +7,11 @@
     "ng": "ng",
     "start": "ionic serve",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "build": "bash ./scripts/build.sh",
+    "emulate": "bash ./scripts/emulate.sh",
+    "run": "bash ./scripts/run.sh",
+    "sign": "bash ./scripts/sign.sh"
   },
   "private": true,
   "dependencies": {
