@@ -8,6 +8,8 @@ import { IonicModule } from '@ionic/angular';
 import { HomePage } from './home.page';
 import { FeedComponent } from './feed/feed.component';
 
+import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +23,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
+    CommonPipesModule
   ],
   declarations: [
     HomePage,
