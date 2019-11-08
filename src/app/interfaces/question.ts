@@ -1,5 +1,6 @@
-export interface IQuestionPreview {
+export interface IQuestion {
   anwser_count: number;
+  body?: string;
   creation_date: number;
   is_answered: boolean;
   last_activity_date: number;
