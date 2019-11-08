@@ -43,6 +43,9 @@ export class AuthService {
     // TODO: Implement validation token function
     return !!this.token;
   }
+  public getToken(): string {
+    return this.token;
+  }
 
   private validateToken() {}
 }
