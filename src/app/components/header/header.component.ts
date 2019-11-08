@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
 
     this.inbox = 5;
-    this.achievements = 120;
+    this.achievements = 2649;
     this.reviwQueues = true;
   }
 
