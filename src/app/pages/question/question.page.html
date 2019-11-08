@@ -6,6 +6,26 @@
     <ion-title> Question </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content fullscreen class="ion-padding">
-  Question workz
+<ion-content fullscreen>
+  <div class="vertical-spacer"></div>
+  <div *ngIf="question; else skeleton">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>
+          Asked <span>{{question.creation_date}}</span>
+          Viewed <span>{{question.view_count}} {{question.view_count === 1 ? 'time' : 'times'}}</span>
+          <span class="horizontal-spacer"></span>
+          <i class="fas fa-link"></i>
+        </ion-card-subtitle>
+        <ion-card-title> {{question.title}} </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content class="post" [innerHTML]="question.body"></ion-card-content>
+    </ion-card>
+  </div>
+
+  <ng-template #skeleton>
+    <!-- TODO: Add skeleton -->
+    Loading...
+  </ng-template>
 </ion-content>

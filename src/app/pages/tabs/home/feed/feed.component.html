@@ -35,7 +35,7 @@
     <ion-label>
       <h2 class="wrap-text"> {{question.title}} </h2>
       <h3>
-        <span *ngFor="let tag of question.tags"> {{tag}} </span>
+        <span *ngFor="let tag of question.tags" class="tag"> {{tag}} </span>
       </h3>
       <p> by {{question.owner.display_name}} </p>
     </ion-label>
