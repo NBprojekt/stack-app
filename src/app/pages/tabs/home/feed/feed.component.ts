@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { IQuestionPreview } from 'src/app/interfaces/question-preview';
+import { IQuestion } from 'src/app/interfaces/question';
 import { IQuestionFilter } from 'src/app/interfaces/question-filter';
 
 @Component({
@@ -9,7 +9,7 @@ import { IQuestionFilter } from 'src/app/interfaces/question-filter';
   styleUrls: ['./feed.component.scss'],
 })
 export class FeedComponent implements OnInit {
-  @Input() questions: Array<IQuestionPreview>;
+  @Input() questions: Array<IQuestion>;
   @Output() questionFilter = new EventEmitter<IQuestionFilter>();
 
   public filter: string;
@@ -43,10 +43,5 @@ export class FeedComponent implements OnInit {
         this.questionFilter.emit(null);
         return;
     }
-  }
-
-  // TODO: Implement this method
-  public openQuestion(id: number): void {
-    console.log('Open question ' + id);
   }
 }
