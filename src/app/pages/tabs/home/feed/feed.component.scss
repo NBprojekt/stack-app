@@ -22,8 +22,10 @@
     }
   }
 
-  ion-thumbnail ion-skeleton-text {
-    height: 70px;
+  ion-thumbnail{
+    ion-skeleton-text {
+      height: 70px;
+    }
   }
 
   h2 ion-skeleton-text {
@@ -39,4 +41,9 @@
     width: 55%;
     height: 11px;
   }
+}
+
+.text-right {
+  text-align: right;
+  font-size: .95em;
 }
