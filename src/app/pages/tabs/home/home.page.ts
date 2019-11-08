@@ -14,8 +14,10 @@ import { IResponse } from 'src/app/interfaces/response';
 export class HomePage implements OnInit {
   public backdrop = false;
   public questions: Array<IQuestion>;
+  public loading: boolean;
 
   private filter: IQuestionFilter;
+  private page: number;
 
   constructor(
     private questionsService: QuestionsService,
@@ -26,9 +28,24 @@ export class HomePage implements OnInit {
   }
 
   doRefresh(event?: any): void {
+    this.page = 1;
     this.questionsService.getQuestions(this.filter).subscribe((response: IResponse) => {
       this.questions = response.items as Array<IQuestion>;
       if (event) { event.target.complete(); }
+      console.log(response)
+    });
+  }
+
+  loadMore(): void {
+    if (this.loading) { return; }
+
+    this.loading = true;
+    this.page++;
+
+    this.questionsService.getQuestions(this.filter, this.page).subscribe((response: IResponse) => {
+      this.questions = this.questions.concat(response.items as Array<IQuestion>);
+      this.loading = false;
+      console.log(this.questions)
     });
   }
 
