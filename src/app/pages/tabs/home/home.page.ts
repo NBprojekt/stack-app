@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { QuestionsService } from 'src/app/services/questions/questions.service';
 
-import { IQuestionPreview } from 'src/app/interfaces/question-preview';
+import { IQuestion } from 'src/app/interfaces/question';
 import { IQuestionFilter } from 'src/app/interfaces/question-filter';
+import { IResponse } from 'src/app/interfaces/response';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { IQuestionFilter } from 'src/app/interfaces/question-filter';
 })
 export class HomePage implements OnInit {
   public backdrop = false;
-  public questions: Array<IQuestionPreview>;
+  public questions: Array<IQuestion>;
 
   private filter: IQuestionFilter;
 
@@ -25,8 +26,8 @@ export class HomePage implements OnInit {
   }
 
   doRefresh(event?: any): void {
-    this.questionsService.getQuestions().subscribe((questions: any) => {
-      this.questions = questions.items as Array<IQuestionPreview>;
+    this.questionsService.getQuestions(this.filter).subscribe((response: IResponse) => {
+      this.questions = response.items as Array<IQuestion>;
       if (event) { event.target.complete(); }
     });
   }
