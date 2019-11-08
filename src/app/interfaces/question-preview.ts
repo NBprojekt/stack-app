@@ -11,4 +11,6 @@ export interface IQuestionPreview {
   tags: Array<string>;
   title: string;
   view_count: number;
+  closed_date?: number;
+  closed_reason?: string;
 }
