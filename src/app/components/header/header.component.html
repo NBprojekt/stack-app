@@ -4,12 +4,12 @@
   </ion-buttons>
   <ion-buttons slot="end" mode="ios">
     <ion-button icon-only>
-      <ion-badge color="danger"> {{inbox}} </ion-badge>
+      <ion-badge color="danger"> {{inbox | shortenNumber}} </ion-badge>
       <ion-icon name="md-chatbubbles"></ion-icon>
     </ion-button>
 
     <ion-button icon-only>
-      <ion-badge color="success"> {{achievements}} </ion-badge>
+      <ion-badge color="success"> {{achievements | shortenNumber}} </ion-badge>
       <ion-icon name="md-trophy"></ion-icon>
     </ion-button>
 

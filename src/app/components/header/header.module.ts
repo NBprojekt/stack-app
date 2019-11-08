@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 import { HeaderComponent } from './header.component';
 import { MoreComponent } from './more/more.component';
 
+import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -15,6 +17,7 @@ import { MoreComponent } from './more/more.component';
     CommonModule,
     FormsModule,
     IonicModule,
+    CommonPipesModule,
   ],
   exports: [
     HeaderComponent,
