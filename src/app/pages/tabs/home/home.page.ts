@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionsService } from 'src/app/services/questions/questions.service';
 
 import { IQuestion } from 'src/app/interfaces/question';
-import { IQuestionFilter } from 'src/app/interfaces/question-filter';
+import { IQuestionOptions } from 'src/app/interfaces/question-options';
 import { IResponse } from 'src/app/interfaces/response';
 
 @Component({
@@ -16,23 +16,22 @@ export class HomePage implements OnInit {
   public questions: Array<IQuestion>;
   public loading: boolean;
 
-  private filter: IQuestionFilter;
-  private page: number;
+  private options: IQuestionOptions;
 
   constructor(
     private questionsService: QuestionsService,
   ) { }
 
   ngOnInit() {
+    this.options = {};
     this.doRefresh();
   }
 
   doRefresh(event?: any): void {
-    this.page = 1;
-    this.questionsService.getQuestions(this.filter).subscribe((response: IResponse) => {
+    this.options.page = 1;
+    this.questionsService.getQuestions(this.options).subscribe((response: IResponse) => {
       this.questions = response.items as Array<IQuestion>;
       if (event) { event.target.complete(); }
-      console.log(response)
     });
   }
 
@@ -40,18 +39,17 @@ export class HomePage implements OnInit {
     if (this.loading) { return; }
 
     this.loading = true;
-    this.page++;
+    this.options.page++;
 
-    this.questionsService.getQuestions(this.filter, this.page).subscribe((response: IResponse) => {
+    this.questionsService.getQuestions(this.options).subscribe((response: IResponse) => {
       this.questions = this.questions.concat(response.items as Array<IQuestion>);
       this.loading = false;
-      console.log(this.questions)
     });
   }
 
-  updateFilter(filter: IQuestionFilter): void {
+  updateFilter(options: IQuestionOptions): void {
     this.questions = null;
-    this.filter = filter;
+    this.options = options;
     this.doRefresh();
   }
 }
