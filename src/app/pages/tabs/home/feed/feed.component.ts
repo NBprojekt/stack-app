@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { IQuestion } from 'src/app/interfaces/question';
-import { IQuestionFilter } from 'src/app/interfaces/question-filter';
+import { IQuestionOptions } from 'src/app/interfaces/question-options';
 
 @Component({
   selector: 'home-feed',
@@ -10,7 +10,7 @@ import { IQuestionFilter } from 'src/app/interfaces/question-filter';
 })
 export class FeedComponent implements OnInit {
   @Input() questions: Array<IQuestion>;
-  @Output() questionFilter = new EventEmitter<IQuestionFilter>();
+  @Output() options = new EventEmitter<IQuestionOptions>();
 
   public filter: string;
 
@@ -25,22 +25,22 @@ export class FeedComponent implements OnInit {
   public filterChange(): void {
     switch (this.filter) {
       case 'interesting':
-        this.questionFilter.emit(null);
+        this.options.emit({});
         return;
       case 'bountied':
-        this.questionFilter.emit({featured: true});
+        this.options.emit({featured: true});
         return;
       case 'hot':
-        this.questionFilter.emit({sort: 'hot'});
+        this.options.emit({sort: 'hot'});
         return;
       case 'week':
-        this.questionFilter.emit({sort: 'week'});
+        this.options.emit({sort: 'week'});
         return;
       case 'month':
-        this.questionFilter.emit({sort: 'month'});
+        this.options.emit({sort: 'month'});
         return;
       default:
-        this.questionFilter.emit(null);
+        this.options.emit({});
         return;
     }
   }

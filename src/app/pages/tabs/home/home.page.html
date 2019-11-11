@@ -1,6 +1,6 @@
 <ion-content class="ion-padding">
   <!-- Feed -->
-  <home-feed [questions]="questions" (questionFilter)="updateFilter($event)"></home-feed>
+  <home-feed [questions]="questions" (options)="updateFilter($event)"></home-feed>
 
   <ion-button *ngIf="questions?.length" expand="block" (click)="loadMore()">
     <div *ngIf="!loading; else load">
