@@ -26,8 +26,8 @@ export class TimePassedPipe implements PipeTransform {
       case (diffInWeeks > 2): return `${diffInWeeks} weeks ago`;
       case (diffInDays > 1): return `${diffInDays} days ago`;
       case (diffInDays === 1): return `yesterday`;
-      case (diffInHours > 20): return `today`;
-      case (diffInHours >= 1): return `${diffInMonths} months ago`;
+      case (diffInHours > 11): return `today`;
+      case (diffInHours >= 1): return `${diffInHours} hours ago`;
       case (diffInMinutes >= 1): return `${diffInMinutes} min ago`;
       case (diffInSeconds >= 0): return `${diffInSeconds} secs ago`;
     }
