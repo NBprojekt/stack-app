@@ -2,14 +2,11 @@
   <!-- Feed -->
   <home-feed [questions]="questions" (options)="updateFilter($event)"></home-feed>
 
-  <ion-button *ngIf="questions?.length" expand="block" (click)="loadMore()">
-    <div *ngIf="!loading; else load">
-      Load more
-    </div>
-    <ng-template #load>
-      <ion-spinner name="crescent"></ion-spinner>
-    </ng-template>
-  </ion-button>
+  <!-- Infinite scoll -->
+  <ion-infinite-scroll threshold="2125px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
   <!-- Fab -->
   <div *ngIf="backdrop" class="fab-backdrop blur"></div>

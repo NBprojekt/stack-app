@@ -14,7 +14,6 @@ import { IResponse } from 'src/app/interfaces/response';
 export class HomePage implements OnInit {
   public backdrop = false;
   public questions: Array<IQuestion>;
-  public loading: boolean;
 
   private options: IQuestionOptions;
 
@@ -35,15 +34,16 @@ export class HomePage implements OnInit {
     });
   }
 
-  loadMore(): void {
-    if (this.loading) { return; }
-
-    this.loading = true;
+  loadMore(event?: any): void {
     this.options.page++;
 
     this.questionsService.getQuestions(this.options).subscribe((response: IResponse) => {
       this.questions = this.questions.concat(response.items as Array<IQuestion>);
-      this.loading = false;
+
+      if (event) {
+        event.target.complete();
+        if (!response.has_more) { event.target.disabled = true; }
+      }
     });
   }
 
