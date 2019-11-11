@@ -1,5 +1,5 @@
 {
-  "name": "stackoverflow-app",
+  "name": "stack-app",
   "version": "0.0.1",
   "author": "Norbert Bartko",
   "homepage": "",
@@ -70,7 +70,7 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An awesome mobile app for stack overflow.",
+  "description": "An awesome mobile app for stackoverflow.",
   "cordova": {
     "plugins": {
       "cordova-plugin-inappbrowser": {},
