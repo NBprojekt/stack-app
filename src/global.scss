@@ -46,6 +46,13 @@ ion-slides {
   }
 }
 
+a {
+  color: var(--ion-color-secondary);
+  &:hover {
+    color: var(--ion-color-secondary-shade);
+  }
+}
+
 .blur {
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
