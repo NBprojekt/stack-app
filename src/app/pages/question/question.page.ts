@@ -23,7 +23,6 @@ export class QuestionPage implements OnInit {
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
-    console.log(this.id)
     this.doRefresh(this.id);
   }
 
@@ -32,7 +31,6 @@ export class QuestionPage implements OnInit {
       this.question = response.items[0] as IQuestion;
       this.question.body = this.sanitizer.bypassSecurityTrustHtml(this.question.body as string);
       if (event) { event.target.complete(); }
-      console.log(response)
     });
   }
 }
