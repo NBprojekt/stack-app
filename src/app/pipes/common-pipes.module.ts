@@ -8,10 +8,11 @@ import { TimePassedPipe } from './time-passed/time-passed.pipe';
   imports: [CommonModule],
   declarations: [
     ShortenNumberPipe,
-    TimePassedPipe
+    TimePassedPipe,
   ],
   exports: [
-    ShortenNumberPipe
+    ShortenNumberPipe,
+    TimePassedPipe,
   ]
 })
 export class CommonPipesModule { }
