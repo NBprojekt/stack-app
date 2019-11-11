@@ -33,7 +33,12 @@
       </div>
     </ion-thumbnail>
     <ion-label>
-      <h2 class="wrap-text"> {{question.title}} </h2>
+      <h2>
+        <div class="badge" *ngIf="question.bounty_amount"> +{{question?.bounty_amount}} </div>
+        <div class="wrap-text">
+            {{question.title}}
+        </div>
+      </h2>
       <h3>
         <span *ngFor="let tag of question.tags" class="tag"> {{tag}} </span>
       </h3>
