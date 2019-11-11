@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { IQuestion } from 'src/app/interfaces/question';
-import { IQuestionFilter } from 'src/app/interfaces/question-filter';
+import { IQuestionOptions } from 'src/app/interfaces/question-options';
 import { IResponse } from 'src/app/interfaces/response';
 import { AuthService } from '../auth/auth.service';
 
@@ -22,29 +22,29 @@ export class QuestionsService {
     private authService: AuthService,
   ) { }
 
-  public getQuestions(filter?: IQuestionFilter, page?: number): Observable<IResponse> {
+  public getQuestions(options?: IQuestionOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
     const params = new HttpParams()
       .set('key', this.authService.getToken())
-      .set('page', page ? page.toString() : '1')
+      .set('page', options.page ? options.page.toString() : '1')
       .set('pagesize', this.pagesize.toString())
-      .set('site', filter && filter.site || 'stackoverflow')
-      .set('order', filter && filter.order || 'desc')
-      .set('sort', filter && filter.sort || 'activity');
+      .set('site', options && options.site || 'stackoverflow')
+      .set('order', options && options.order || 'desc')
+      .set('sort', options && options.sort || 'activity');
 
-    return this.http.get<IResponse>(`${this.url}questions${filter && filter.featured ? '/featured' : '/'}`, {headers, params});
+    return this.http.get<IResponse>(`${this.url}questions${options && options.featured ? '/featured' : '/'}`, {headers, params});
   }
 
-  public getQuestion(id: number, site?: string): Observable<IResponse> {
+  public getQuestion(id: number, options?: IQuestionOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
     const params = new HttpParams()
       .set('key', this.authService.getToken())
-      .set('site', site || 'stackoverflow')
-      .set('filter', 'withbody');
+      .set('site', options && options.site || 'stackoverflow')
+      .set('filter', options && options.filter || 'withbody');
 
     return this.http.get<IResponse>(`${this.url}questions/${id}`, {headers, params});
   }
