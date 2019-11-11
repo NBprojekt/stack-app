@@ -3,7 +3,7 @@
   <home-feed [questions]="questions" (options)="updateFilter($event)"></home-feed>
 
   <!-- Infinite scoll -->
-  <ion-infinite-scroll threshold="2125px" (ionInfinite)="loadMore($event)">
+  <ion-infinite-scroll threshold="10%" (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content loadingSpinner="crescent">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
