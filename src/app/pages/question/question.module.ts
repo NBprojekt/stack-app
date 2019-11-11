@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { QuestionPage } from './question.page';
+import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    CommonPipesModule,
   ],
   declarations: [QuestionPage]
 })
