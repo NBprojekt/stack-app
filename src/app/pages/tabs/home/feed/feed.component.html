@@ -42,7 +42,13 @@
       <h3>
         <span *ngFor="let tag of question.tags" class="tag"> {{tag}} </span>
       </h3>
-      <p> by {{question.owner.display_name}} </p>
+      <p>
+        asked {{question.creation_date | timePassed}}
+        <a [routerLink]="['/', question.owner.reputation]">
+          {{question.owner.display_name}}
+        </a>
+        {{question.owner.reputation | shortenNumber}}
+      </p>
     </ion-label>
   </ion-item>
 </ion-list>
