@@ -15,7 +15,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class QuestionsService {
   private readonly url = environment.api.url + environment.api.version;
-  private readonly pagesize = 25;
+  private readonly pagesize = 10;
 
   constructor(
     private http: HttpClient,
@@ -37,7 +37,7 @@ export class QuestionsService {
     return this.http.get<IResponse>(`${this.url}questions${options && options.featured ? '/featured' : '/'}`, {headers, params});
   }
 
-  public getQuestion(id: number, options?: IQuestionOptions): Observable<IResponse> {
+  public getQuestion(id: number | Array<number>, options?: IQuestionOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -46,6 +46,30 @@ export class QuestionsService {
       .set('site', options && options.site || 'stackoverflow')
       .set('filter', options && options.filter || 'withbody');
 
+    if (Array.isArray(id)) {
+      let ids = '';
+      id.forEach((value) => ids += `${value};`);
+      return this.http.get<IResponse>(`${this.url}questions/${ids}`, {headers, params});
+    }
+
     return this.http.get<IResponse>(`${this.url}questions/${id}`, {headers, params});
+  }
+
+  public getAnswers(id: number | Array<number>, options?: IQuestionOptions): Observable<IResponse> {
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
+
+    const params = new HttpParams()
+      .set('key', this.authService.getToken())
+      .set('site', options && options.site || 'stackoverflow')
+      .set('filter', options && options.filter || 'withbody');
+
+    if (Array.isArray(id)) {
+      let ids = '';
+      id.forEach((value) => ids += `${value};`);
+      return this.http.get<IResponse>(`${this.url}questions/${ids}/answers`, {headers, params});
+    }
+
+    return this.http.get<IResponse>(`${this.url}questions/${id}/answers`, {headers, params});
   }
 }
