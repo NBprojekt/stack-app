@@ -15,7 +15,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class QuestionsService {
   private readonly url = environment.api.url + environment.api.version;
-  private readonly pagesize = 10;
+  private readonly pagesize = 20;
 
   constructor(
     private http: HttpClient,
@@ -62,6 +62,8 @@ export class QuestionsService {
     const params = new HttpParams()
       .set('key', this.authService.getToken())
       .set('site', options && options.site || 'stackoverflow')
+      .set('order', options && options.order || 'desc')
+      .set('sort', options && options.sort || 'votes')
       .set('filter', options && options.filter || 'withbody');
 
     if (Array.isArray(id)) {
