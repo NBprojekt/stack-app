@@ -20,4 +20,5 @@ export interface IQuestion {
   bounty_amount?: number;
   bounty_closes_date?: number;
   body?: string | SafeHtml;
+  locked_date?: number;
 }
