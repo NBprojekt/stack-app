@@ -1,0 +1,19 @@
+.voting {
+  position: relative;
+  float: left;
+  left: -10px;
+  width: 40px;
+  min-height: 100px;
+
+  .text-wrapper {
+    width: 100%;
+    text-align: center;
+  }
+
+  .fa-caret-up, .fa-caret-down {
+    font-size: 3.5em;
+  }
+  .counter {
+    font-size: 1.3em;;
+  }
+}
