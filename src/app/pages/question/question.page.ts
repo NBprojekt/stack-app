@@ -5,6 +5,7 @@ import { QuestionsService } from 'src/app/services/questions/questions.service';
 import { IQuestion } from 'src/app/interfaces/question';
 import { IResponse } from 'src/app/interfaces/response';
 import { DomSanitizer } from '@angular/platform-browser';
+import { IAnswer } from 'src/app/interfaces/answer';
 
 @Component({
   selector: 'app-question',
@@ -14,6 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class QuestionPage implements OnInit {
   private id: number;
   public question: IQuestion;
+  public answers: Array<IAnswer>;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,14 +25,24 @@ export class QuestionPage implements OnInit {
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.doRefresh(this.id);
+
+    this.getQuestion(this.id);
+    this.getAnswers(this.id);
   }
 
-  doRefresh(id: number, event?: any): void {
+  private getQuestion(id: number, event?: any): void {
     this.questionsService.getQuestion(id).subscribe((response: IResponse) => {
       this.question = response.items[0] as IQuestion;
       this.question.body = this.sanitizer.bypassSecurityTrustHtml(this.question.body as string);
-      if (event) { event.target.complete(); }
+      console.log(response)
+    });
+  }
+
+  private getAnswers(id: number): void {
+    this.questionsService.getAnswers(id).subscribe((response: IResponse) => {
+      this.answers = response.items as Array<IAnswer>;
+      this.answers.map((answer: IAnswer) => answer.body = this.sanitizer.bypassSecurityTrustHtml(answer.body as string));
+      console.warn(response)
     });
   }
 }

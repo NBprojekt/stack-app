@@ -23,6 +23,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonPipesModule,
   ],
-  declarations: [QuestionPage]
+  declarations: [
+    QuestionPage,
+  ]
 })
 export class QuestionPageModule {}

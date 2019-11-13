@@ -8,7 +8,7 @@
 </ion-header>
 <ion-content fullscreen>
   <div class="vertical-spacer"></div>
-  <div *ngIf="question; else skeleton">
+  <div *ngIf="question; else questionSkeleton">
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>
@@ -27,7 +27,25 @@
     </ion-card>
   </div>
 
-  <ng-template #skeleton>
+  <ng-template #questionSkeleton>
+    <!-- TODO: Add skeleton -->
+    Loading...
+  </ng-template>
+
+
+  <div *ngIf="answers; else answerSkeleton">
+    <ion-list>
+      <ion-list-header>
+        {{answers?.length || 0}} Answers
+      </ion-list-header>
+
+      <ion-card *ngFor="let answer of answers">
+        <ion-card-content class="post" [innerHTML]="answer.body"></ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
+
+  <ng-template #answerSkeleton>
     <!-- TODO: Add skeleton -->
     Loading...
   </ng-template>
