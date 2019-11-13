@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { QuestionPage } from './question.page';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
+import { VotingModule } from 'src/app/components/voting/voting.module';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     CommonPipesModule,
+    VotingModule
   ],
   declarations: [
     QuestionPage,
