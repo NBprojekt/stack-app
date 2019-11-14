@@ -18,7 +18,7 @@
   <ion-item *ngFor="let question of questions" button
             [routerLink]="['/menu/pages/question', question.question_id]"
             routerDirection="forward">
-    <ion-thumbnail [class.anwsered]="question.is_answered" slot="start">
+    <ion-thumbnail class="question-statistics" [class.anwsered]="question.is_answered" slot="start">
       <div class="text-right">
         {{question.score | shortenNumber}}
         <i class="fas fa-caret-up fa-lg grey"></i>
@@ -38,6 +38,8 @@
         <div class="wrap-text">
             {{question.title}}
         </div>
+
+        <i *ngIf="questionIsHot()" class="fab fa-hotjar hot"></i>
       </h2>
       <h3>
         <span *ngFor="let tag of question.tags" class="tag"> {{tag}} </span>
