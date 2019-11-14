@@ -23,7 +23,8 @@ ion-label h2 {
   text-overflow: ellipsis;
 }
 
-ion-thumbnail{
+.question-statistics {
+  position: relative;
   padding: 2px 3px 0 0 ;
   width: 60px;
   height: 60px;
@@ -33,6 +34,20 @@ ion-thumbnail{
     background: rgba($color: var(--ion-color-success-rgb), $alpha: .05);
     border-radius: 4px;
   }
+
+  .grey {
+    color: var(--ion-color-medium);
+  }
+}
+.hot {
+  position: absolute;
+  top: 8px;
+  right: 0;
+
+  font-size: 1.2em;;
+  background-image: linear-gradient(18deg,red, orange);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .skeleton-list {
@@ -70,8 +85,4 @@ ion-thumbnail{
 .text-right {
   text-align: right;
   font-size: .95em;
-}
-
-.grey {
-  color: var(--ion-color-medium);
 }
