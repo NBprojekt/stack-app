@@ -34,7 +34,6 @@ export class QuestionPage implements OnInit {
     this.questionsService.getQuestion(id).subscribe((response: IResponse) => {
       this.question = response.items[0] as IQuestion;
       this.question.body = this.sanitizer.bypassSecurityTrustHtml(this.question.body as string);
-      console.log(response)
     });
   }
 
@@ -42,7 +41,6 @@ export class QuestionPage implements OnInit {
     this.questionsService.getAnswers(id).subscribe((response: IResponse) => {
       this.answers = response.items as Array<IAnswer>;
       this.answers.map((answer: IAnswer) => answer.body = this.sanitizer.bypassSecurityTrustHtml(answer.body as string));
-      console.warn(response)
     });
   }
 }
