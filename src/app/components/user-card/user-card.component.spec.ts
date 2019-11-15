@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserCardComponent } from './user-card.component';
+import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 
 describe('UserCardComponent', () => {
   let component: UserCardComponent;
@@ -11,6 +12,9 @@ describe('UserCardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ UserCardComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [
+        CommonPipesModule,
+      ]
     })
     .compileComponents();
   }));
@@ -21,7 +25,7 @@ describe('UserCardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Should create', () => {
     expect(component).toBeTruthy();
   });
 });
