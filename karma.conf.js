@@ -20,10 +20,10 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true,
       thresholds: {
-        statements: 80,
-        lines: 80,
-        branches: 80,
-        functions: 80
+        statements: 60,
+        lines: 60,
+        branches: 45,
+        functions: 60
       }
     },
     reporters: ['progress', 'kjhtml'],
