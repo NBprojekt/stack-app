@@ -5,9 +5,6 @@ import * as moment from 'moment';
 import { IQuestion } from 'src/app/interfaces/question';
 import { IQuestionOptions } from 'src/app/interfaces/question-options';
 import { QuestionsService } from 'src/app/services/questions/questions.service';
-import { map } from 'rxjs/operators';
-import { IResponse } from 'src/app/interfaces/response';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'home-feed',
@@ -19,10 +16,6 @@ export class FeedComponent implements OnInit {
   @Output() options = new EventEmitter<IQuestionOptions>();
 
   public filter: string;
-
-  constructor(
-    private questionsService: QuestionsService,
-  ) { }
 
   ngOnInit() {
     this.filter =  'interesting';
