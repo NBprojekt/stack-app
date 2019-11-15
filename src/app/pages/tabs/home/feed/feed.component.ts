@@ -53,18 +53,18 @@ export class FeedComponent implements OnInit {
     }
   }
 
-  public questionIsHot(): boolean {
-    if (this.filter === 'hot') { return true; }
-    return false;
+  public questionIsHot(question: IQuestion): boolean {
+    if (!question.answers) { return false; }
 
-    /* TODO: Implement the formula for hot questions
+    let summAnswerScore = 0;
+    question.answers.map(answer => summAnswerScore += answer.score);
+
     return (((Math.log(question.view_count) * 4) + ((question.answer_count * question.score) / 5) + summAnswerScore) /
             Math.pow(((this.unixTimestampToHours(question.creation_date) + 1) -
                      ((this.unixTimestampToHours(question.creation_date) - this.unixTimestampToHours(question.last_activity_date))
                      / 2))
-                    , 1.5))
-            > 0;
-    */
+                    , 1.5)
+            ) > 0;
   }
 
   private unixTimestampToHours(unixTimestamp: number): number {

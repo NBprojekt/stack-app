@@ -39,7 +39,7 @@
             {{question.title}}
         </div>
 
-        <i *ngIf="questionIsHot()" class="fab fa-hotjar hot"></i>
+        <i *ngIf="questionIsHot(question)" class="fab fa-hotjar hot"></i>
       </h2>
       <h3>
         <span *ngFor="let tag of question.tags" class="tag"> {{tag}} </span>
