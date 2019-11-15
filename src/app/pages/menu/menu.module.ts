@@ -8,7 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MenuPage } from './menu.page';
 import { SettingsComponent } from './settings/settings.component';
-import { SharedDirectivesModule } from 'src/app/directives/shared-directives.module';
+import { CommonDirectivesModule } from 'src/app/directives/common-directives.module';
 
 const routes: Routes = [
   {
@@ -29,7 +29,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    SharedDirectivesModule,
+    CommonDirectivesModule,
   ],
   declarations: [
     MenuPage,

@@ -14,4 +14,4 @@ import { ErrorImageDirective } from './error-image/error-image.directive';
     ErrorImageDirective
   ]
 })
-export class SharedDirectivesModule {}
+export class CommonDirectivesModule {}
