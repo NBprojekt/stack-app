@@ -2,6 +2,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VotingComponent } from './voting.component';
+import { CommonModule } from '@angular/common';
+import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 
 describe('VotingComponent', () => {
   let component: VotingComponent;
@@ -10,6 +12,9 @@ describe('VotingComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ VotingComponent ],
+      imports: [
+        CommonPipesModule,
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
@@ -21,7 +26,7 @@ describe('VotingComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Should create', () => {
     expect(component).toBeTruthy();
   });
 });

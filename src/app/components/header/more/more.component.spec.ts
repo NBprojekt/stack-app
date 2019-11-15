@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MoreComponent } from './more.component';
+import { IonicModule } from '@ionic/angular';
 
 describe('MoreComponent', () => {
   let component: MoreComponent;
@@ -9,7 +10,12 @@ describe('MoreComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MoreComponent ],
+      imports: [
+        IonicModule,
+      ],
+      declarations: [
+        MoreComponent,
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
@@ -21,7 +27,7 @@ describe('MoreComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Should create', () => {
     expect(component).toBeTruthy();
   });
 });
