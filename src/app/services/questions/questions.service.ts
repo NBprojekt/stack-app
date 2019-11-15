@@ -32,6 +32,7 @@ export class QuestionsService {
       .set('pagesize', this.pagesize.toString())
       .set('site', options && options.site || 'stackoverflow')
       .set('order', options && options.order || 'desc')
+      .set('filter', options && options.filter || '!-.3J6_-dxUCh')
       .set('sort', options && options.sort || 'activity');
 
     return this.http.get<IResponse>(`${this.url}questions${options && options.featured ? '/featured' : '/'}`, {headers, params});
