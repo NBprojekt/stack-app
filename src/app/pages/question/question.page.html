@@ -25,6 +25,15 @@
       </ion-card-header>
 
       <ion-card-content class="post" [innerHTML]="question.body"></ion-card-content>
+
+      <ion-row class="margin-bottom">
+        <ion-col size="6">
+          <user-card [user]="question.owner" action="asked" [timestamp]="question.creation_date" highlight="true"></user-card>
+        </ion-col>
+        <ion-col *ngIf="question?.last_editor && question.owner.user_id != question.last_editor.user_id" size="6">
+          <user-card [user]="question.last_editor" action="adited" [timestamp]="question.last_edit_date"></user-card>
+        </ion-col>
+      </ion-row>
     </ion-card>
   </div>
 
