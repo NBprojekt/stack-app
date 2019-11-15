@@ -32,4 +32,14 @@ describe('HeaderComponent', () => {
   it('Should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Should init', () => {
+    component.ngOnInit();
+
+    // TODO: Test title
+    // expect(component.title).toBeDefined();
+    expect(component.inbox).toBeDefined();
+    expect(component.achievements).toBeDefined();
+    expect(component.reviwQueues).toBeDefined();
+  });
 });
