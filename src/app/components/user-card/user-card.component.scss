@@ -1,0 +1,57 @@
+.user-card {
+  max-width: 190px;
+
+  .item-label {
+    border-radius: 4px;
+  }
+
+  img {
+    margin-left: 5px;
+  }
+
+  &.highlight {
+    ion-item {
+      --ion-background-color: #d2e0f6;
+    }
+    .name {
+      color: var(--ion-color-secondary-shade);
+    }
+  }
+
+  .timestamp {
+    font-size: .75em;
+    color: var(--ion-color-medium-shade);
+  }
+  .name {
+    font-size: .85em;
+    color: var(--ion-color-secondary);
+  }
+  .achievements {
+    width: 100%;
+    font-size: .7em;
+    color: var(--ion-color-medium);
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center!important;
+
+    div {
+      float: left;
+
+      .fa-circle {
+        margin-left: 4px;
+        font-size: .75em;
+      }
+
+      &.gold .fa-circle{
+        color: rgb(255, 215, 0)
+      }
+      &.silver .fa-circle{
+        color: rgb(170, 165, 165)
+      }
+      &.bronze .fa-circle{
+        color: rgb(180, 106, 33);
+      }
+    }
+  }
+}
