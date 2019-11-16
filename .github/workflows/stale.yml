@@ -12,8 +12,12 @@ jobs:
     steps:
     - uses: actions/stale@v1
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'Stale issue message'
-        stale-pr-message: 'Stale pull request message'
-        stale-issue-label: 'no-issue-activity'
-        stale-pr-label: 'no-pr-activity'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}        
+        stale-issue-message: 'This issue is stale because it has been open 30 days with no activity. Remove stale label or this will be closed in 5 days'
+        stale-pr-message: 'This pull request is stale because it has been open 30 days with no activity. Remove stale label or this will be closed in 5 days'
+        days-before-stale: 30
+        days-before-close: 5
+        exempt-issue-label: 'assigned''help wanted'
+        exempt-pr-label: 'awaiting approval'
+        stale-issue-label: 'inactive'
+        stale-pr-label: 'inactive'
