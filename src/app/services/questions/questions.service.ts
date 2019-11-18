@@ -45,7 +45,7 @@ export class QuestionsService {
     const params = new HttpParams()
       .set('key', this.authService.getToken())
       .set('site', options && options.site || 'stackoverflow')
-      .set('filter', options && options.filter || '!b1MMEAHFHSxpMa');
+      .set('filter', options && options.filter || '!3ykawH3kTy7wgDbgm');
 
     if (Array.isArray(id)) {
       let ids = '';
