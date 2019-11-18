@@ -3,7 +3,7 @@
   float: left;
   left: -10px;
   width: 40px;
-  min-height: 100px;
+  min-height: 120px;
 
   .text-wrapper {
     width: 100%;
@@ -15,5 +15,22 @@
   }
   .counter {
     font-size: 1.3em;;
+  }
+
+  .fa-star, .fa-check {
+    color: #a3a3a3;
+  }
+
+  .fa-star {
+    &.isFavorite {
+      color: #ffce00
+    }
+  }
+  .fa-check {
+    font-size: 1.5em;
+
+    &.isAccepted {
+      color: #10dc60;
+    }
   }
 }
