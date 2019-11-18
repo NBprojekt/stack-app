@@ -27,7 +27,8 @@ export class QuestionsService {
       .set('Accept', '*/*');
 
     const params = new HttpParams()
-      .set('key', this.authService.getToken())
+      .set('key', environment.api.key)
+      .set('access_token', this.authService.getToken())
       .set('page', options.page ? options.page.toString() : '1')
       .set('pagesize', this.pagesize.toString())
       .set('site', options && options.site || 'stackoverflow')
@@ -43,7 +44,8 @@ export class QuestionsService {
       .set('Accept', '*/*');
 
     const params = new HttpParams()
-      .set('key', this.authService.getToken())
+      .set('key', environment.api.key)
+      .set('access_token', this.authService.getToken())
       .set('site', options && options.site || 'stackoverflow')
       .set('filter', options && options.filter || '!3ykawH3kTy7wgDbgm');
 
@@ -61,7 +63,8 @@ export class QuestionsService {
       .set('Accept', '*/*');
 
     const params = new HttpParams()
-      .set('key', this.authService.getToken())
+      .set('key', environment.api.key)
+      .set('access_token', this.authService.getToken())
       .set('site', options && options.site || 'stackoverflow')
       .set('order', options && options.order || 'desc')
       .set('sort', options && options.sort || 'votes')

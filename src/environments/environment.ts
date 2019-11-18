@@ -7,6 +7,7 @@ export const environment = {
   api: {
     url: 'https://api.stackexchange.com/',
     version: '2.2/',
+    key: 'jWSRC3OcNKkruEKS7lLZkQ((',
   },
   oAuth: {
     clientId: 16531,

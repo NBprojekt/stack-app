@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly oAuthUrl = `https://stackoverflow.com/oauth?client_id=${environment.oAuth.clientId}&redirect_uri=${environment.oAuth.redirectUrl}&scope=${environment.oAuth.scope}`;
+  private readonly oAuthUrl = `https://stackoverflow.com/oauth/dialog?client_id=${environment.oAuth.clientId}&redirect_uri=${environment.oAuth.redirectUrl}&scope=${environment.oAuth.scope}`;
   private token: string;
 
   constructor(
@@ -31,7 +31,11 @@ export class AuthService {
       if (url.startsWith('localhost')) {
         browser.close();
 
-        this.token = url.split('code')[1];
+        this.token = url.substring(
+          url.indexOf('=') + 1,
+          url.lastIndexOf('&')
+        );
+
         this.ngZone.run(() => this.router.navigateByUrl('/menu'));
 
         sunscribtion.unsubscribe();
