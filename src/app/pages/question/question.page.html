@@ -26,7 +26,7 @@
 
       <ion-card-content class="post" [innerHTML]="question.body"></ion-card-content>
 
-      <ion-row class="margin-bottom">
+      <ion-row class="card-footer">
         <ion-col size="6">
           <user-card [user]="question.owner" action="asked" [timestamp]="question.creation_date" highlight="true"></user-card>
         </ion-col>
@@ -50,7 +50,19 @@
       </ion-list-header>
 
       <ion-card *ngFor="let answer of answers">
-        <ion-card-content class="post" [innerHTML]="answer.body"></ion-card-content>
+        <ion-card-content>
+          <voting [score]="answer.score" [isAccepted]="answer.is_accepted"></voting>
+          <div class="post" [innerHTML]="answer.body"></div>
+        </ion-card-content>
+
+        <ion-row class="card-footer">
+          <ion-col size="6">
+            <user-card [user]="answer.owner" action="answered" [timestamp]="answer.creation_date" highlight="true"></user-card>
+          </ion-col>
+          <ion-col *ngIf="answer?.last_editor && answer.owner.user_id != answer.last_editor.user_id" size="6">
+            <user-card [user]="answer.last_editor" action="edited" [timestamp]="answer.last_edit_date"></user-card>
+          </ion-col>
+        </ion-row>
       </ion-card>
     </ion-list>
   </div>
