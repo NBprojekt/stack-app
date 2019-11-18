@@ -10,4 +10,19 @@
   <div class="text-wrapper">
     <i class="fas fa-caret-down"></i>
   </div>
+
+  <div *ngIf="showFavorites" class="favorites" [class.isFavorite]="isFavorite">
+    <div class="text-wrapper">
+      <i class="fas fa-star"></i>
+    </div>
+    <div class="text-wrapper">
+      {{countFavorites | shortenNumber}}
+    </div>
+  </div>
+
+  <div *ngIf="showAccepted" class="favorites" [class.isAccepted]="isAccepted">
+    <div class="text-wrapper">
+      <i class="fas fa-check"></i>
+    </div>
+  </div>
 </div>
