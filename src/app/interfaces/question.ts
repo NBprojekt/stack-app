@@ -24,4 +24,5 @@ export interface IQuestion {
   body?: string | SafeHtml;
   locked_date?: number;
   last_editor?: IUser;
+  favorite_count?: number;
 }
