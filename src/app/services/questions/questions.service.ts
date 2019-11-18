@@ -65,7 +65,7 @@ export class QuestionsService {
       .set('site', options && options.site || 'stackoverflow')
       .set('order', options && options.order || 'desc')
       .set('sort', options && options.sort || 'votes')
-      .set('filter', options && options.filter || 'withbody');
+      .set('filter', options && options.filter || '!b1MMEAHHjuzsNX');
 
     if (Array.isArray(id)) {
       let ids = '';
