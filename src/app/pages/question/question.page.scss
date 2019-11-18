@@ -5,6 +5,15 @@
   flex: 1 1 auto;
 }
 
+ion-card {
+  min-height: 120px;
+
+  .card-footer {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
 ion-card-subtitle {
   display: flex;
   flex-direction: row;
@@ -22,8 +31,4 @@ ion-card-subtitle {
 
 ion-card-title {
   text-align: justify;
-}
-
-.margin-bottom {
-  margin-bottom: 10px;
 }
