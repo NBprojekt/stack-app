@@ -2,7 +2,7 @@
   <div *ngIf="timestamp && action" class="timestamp"> {{action}} {{timestamp | timePassed}} </div>
   <ion-item class="ion-no-margin ion-no-padding" lines="none">
     <ion-avatar slot="start">
-      <img [src]="user?.profile_image">
+      <img [src]="user?.profile_image" default="./assets/images/placeholder/user.png">
     </ion-avatar>
     <ion-label>
       <div class="name"> {{user?.display_name}} </div>
