@@ -28,10 +28,12 @@
 
       <ion-row class="card-footer">
         <ion-col size="6">
-          <user-card [user]="question.owner" action="asked" [timestamp]="question.creation_date" highlight="true"></user-card>
+          <user-card *ngIf="question?.last_editor && question.owner.user_id != question.last_editor.user_id"
+                     [user]="question.last_editor" action="edited" [timestamp]="question.last_edit_date">
+          </user-card>
         </ion-col>
-        <ion-col *ngIf="question?.last_editor && question.owner.user_id != question.last_editor.user_id" size="6">
-          <user-card [user]="question.last_editor" action="edited" [timestamp]="question.last_edit_date"></user-card>
+        <ion-col size="6">
+          <user-card [user]="question.owner" action="asked" [timestamp]="question.creation_date" highlight="true"></user-card>
         </ion-col>
       </ion-row>
     </ion-card>
@@ -57,10 +59,12 @@
 
         <ion-row class="card-footer">
           <ion-col size="6">
-            <user-card [user]="answer.owner" action="answered" [timestamp]="answer.creation_date" highlight="true"></user-card>
+            <user-card *ngIf="answer?.last_editor && answer.owner.user_id != answer.last_editor.user_id"
+                       [user]="answer.last_editor" action="edited" [timestamp]="answer.last_edit_date">
+            </user-card>
           </ion-col>
-          <ion-col *ngIf="answer?.last_editor && answer.owner.user_id != answer.last_editor.user_id" size="6">
-            <user-card [user]="answer.last_editor" action="edited" [timestamp]="answer.last_edit_date"></user-card>
+          <ion-col size="6">
+            <user-card [user]="answer.owner" action="answered" [timestamp]="answer.creation_date"></user-card>
           </ion-col>
         </ion-row>
       </ion-card>
