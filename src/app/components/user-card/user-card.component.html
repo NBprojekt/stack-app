@@ -1,10 +1,10 @@
 <div class="user-card" [class.highlight]="highlight">
+  <div *ngIf="timestamp && action" class="timestamp"> {{action}} {{timestamp | timePassed}} </div>
   <ion-item class="ion-no-margin ion-no-padding" lines="none">
     <ion-avatar slot="start">
       <img [src]="user?.profile_image">
     </ion-avatar>
     <ion-label>
-      <div *ngIf="timestamp && action" class="timestamp"> {{action}} {{timestamp | timePassed}} </div>
       <div class="name"> {{user?.display_name}} </div>
       <div class="achievements">
         <div> {{user?.reputation | shortenNumber}} </div>
