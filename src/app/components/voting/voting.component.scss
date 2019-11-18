@@ -21,16 +21,14 @@
     color: #a3a3a3;
   }
 
-  .fa-star {
-    &.isFavorite {
-      color: #ffce00
-    }
-  }
   .fa-check {
     font-size: 1.5em;
+  }
 
-    &.isAccepted {
-      color: #10dc60;
-    }
+  .isFavorite * {
+    color: #ffce00
+  }
+  .isAccepted * {
+    color: #2ba55c;
   }
 }
