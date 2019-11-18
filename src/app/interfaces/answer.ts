@@ -10,4 +10,6 @@ export interface IAnswer {
   owner?: IUser;
   last_activity_date?: number;
   body?: string | SafeHtml;
+  last_editor?: IUser;
+  last_edit_date?: number;
 }
