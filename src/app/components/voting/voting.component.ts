@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'voting',
   templateUrl: './voting.component.html',
   styleUrls: ['./voting.component.scss'],
 })
-export class VotingComponent implements OnInit {
+export class VotingComponent {
   @Input() score: number;
 
   @Input() showFavorites?: boolean;
@@ -14,9 +14,4 @@ export class VotingComponent implements OnInit {
 
   @Input() showAccepted?: boolean;
   @Input() isAccepted?: boolean;
-
-  constructor() { }
-
-  ngOnInit() {}
-
 }
