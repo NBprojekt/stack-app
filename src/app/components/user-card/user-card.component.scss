@@ -1,5 +1,6 @@
 .user-card {
   max-width: 190px;
+  border-radius: 4px;
 
   .item-label {
     border-radius: 4px;
@@ -10,6 +11,7 @@
   }
 
   &.highlight {
+    background: #d2e0f6;
     ion-item {
       --ion-background-color: #d2e0f6;
     }
@@ -19,6 +21,7 @@
   }
 
   .timestamp {
+    padding: 5px 0 0 10px;
     font-size: .75em;
     color: var(--ion-color-medium-shade);
   }
