@@ -8,6 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class VotingComponent implements OnInit {
   @Input() score: number;
 
+  @Input() showFavorites?: boolean;
+  @Input() isFavorite?: boolean;
+  @Input() countFavorites?: number;
+
+  @Input() showAccepted?: boolean;
+  @Input() isAccepted?: boolean;
+
   constructor() { }
 
   ngOnInit() {}
