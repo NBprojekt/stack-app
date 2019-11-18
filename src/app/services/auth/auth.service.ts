@@ -7,6 +7,7 @@ import { InAppBrowser, InAppBrowserEvent, InAppBrowserObject } from '@ionic-nati
 import { environment } from 'src/environments/environment';
 
 import { Subscription } from 'rxjs';
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -14,32 +15,39 @@ import { Subscription } from 'rxjs';
 export class AuthService {
   private readonly oAuthUrl = `https://stackoverflow.com/oauth/dialog?client_id=${environment.oAuth.clientId}&redirect_uri=${environment.oAuth.redirectUrl}&scope=${environment.oAuth.scope}`;
   private token: string;
+  private allowBrowserClose: boolean;
 
   constructor(
     private ngZone: NgZone,
     private http: HttpClient,
     private inAppBrowser: InAppBrowser,
     private router: Router,
+    private toastController: ToastController,
   ) { }
 
   public openLogin(): void {
-    const browser: InAppBrowserObject = this.inAppBrowser.create(this.oAuthUrl, '_blank', 'location=yes');
+    const browser: InAppBrowserObject = this.inAppBrowser.create(this.oAuthUrl, '_blank', 'location=no,zoom=no');
+    this.allowBrowserClose = false;
 
-    const sunscribtion: Subscription = browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
+    const loadSubscribtion$: Subscription = browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
       const url = event.url.split('//')[1];
 
       if (url.startsWith('localhost')) {
+        this.allowBrowserClose = true;
         browser.close();
 
-        this.token = url.substring(
-          url.indexOf('=') + 1,
-          url.lastIndexOf('&')
-        );
+        this.successfulLogin(url);
 
-        this.ngZone.run(() => this.router.navigateByUrl('/menu'));
-
-        sunscribtion.unsubscribe();
+        loadSubscribtion$.unsubscribe();
       }
+    });
+
+    const exitSubscribtion$ = browser.on('exit').subscribe(() => {
+      if (!this.allowBrowserClose) {
+        this.showCanceledToast();
+      }
+
+      exitSubscribtion$.unsubscribe();
     });
   }
 
@@ -52,4 +60,26 @@ export class AuthService {
   }
 
   private validateToken() {}
+
+  private successfulLogin(url: string): void {
+    this.token = url.substring(
+      url.indexOf('=') + 1,
+      url.lastIndexOf('&')
+    );
+
+    this.ngZone.run(() => this.router.navigateByUrl('/menu'));
+  }
+
+  private async showCanceledToast(): Promise<any> {
+    const toast = await this.toastController.create({
+      header: 'Authentication failed',
+      message: 'You canceled the authentication please try again to gain access.',
+      position: 'bottom',
+      showCloseButton: true,
+      closeButtonText: 'OK',
+      duration: 5e4,
+    });
+
+    toast.present();
+  }
 }
