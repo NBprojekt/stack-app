@@ -1,12 +1,12 @@
 <div class="comments">
   <div *ngFor="let comment of comments">
-    <span class="post" [innerHTML]="comment.body"></span>
+    <span class="post" [innerHTML]="comment?.body"></span>
     -
-    <span class="color-blue username" [class.highlight]="comment.owner.display_name == questinOwner.display_name">
-      {{comment.owner.display_name}}
+    <span class="color-blue username" [class.highlight]="comment?.owner?.display_name == questinOwner?.display_name">
+      {{comment?.owner?.display_name}}
     </span>
     <span class="color-blue">
-      {{comment.creation_date | timePassed}}
+      {{comment?.creation_date | timePassed}}
     </span>
   </div>
 </div>

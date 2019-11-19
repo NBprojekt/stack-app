@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return await popover.present();
   }
 
-  private firstToUpper(s: string): string {
+  public firstToUpper(s: string): string {
     const first = s[0].toUpperCase();
     return first + s.slice(1, s.length);
   }

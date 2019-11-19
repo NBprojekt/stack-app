@@ -4,6 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { VotingComponent } from './voting.component';
 import { CommonModule } from '@angular/common';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
+import { IonicModule } from '@ionic/angular';
 
 describe('VotingComponent', () => {
   let component: VotingComponent;
@@ -14,6 +15,7 @@ describe('VotingComponent', () => {
       declarations: [ VotingComponent ],
       imports: [
         CommonPipesModule,
+        IonicModule,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
