@@ -12,6 +12,7 @@ import { QuestionCardComponent } from './question-card/question-card.component';
 
 import { VotingModule } from 'src/app/components/voting/voting.module';
 import { UserCardModule } from 'src/app/components/user-card/user-card.module';
+import { CommentModule } from 'src/app/components/comment/comment.module';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
     CommonPipesModule,
     VotingModule,
     UserCardModule,
+    CommentModule,
   ],
   exports: [
     QuestionCardComponent,
