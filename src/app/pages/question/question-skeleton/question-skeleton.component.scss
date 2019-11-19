@@ -1,0 +1,47 @@
+.questionSkeleton {
+  ion-card-subtitle {
+    margin-top: 10px;
+    margin-left: 45px;
+    margin-bottom: 5px;
+    ion-skeleton-text {
+      height: 12px;
+    }
+  }
+
+  ion-card-title {
+    margin-left: 45px;
+    ion-skeleton-text {
+      height: 30px;
+    }
+  }
+
+  ion-label {
+    width: 100%;
+    position: relative;
+    .ml-2 {
+      margin-left: 7px;
+    }
+    ion-skeleton-text {
+      float: left;
+      height: 15px;
+      width: 50px;
+    }
+  }
+
+  ion-card-content {
+    ion-skeleton-text {
+      height: 12px;
+    }
+    .w-70 {
+      width: 70%;
+    }
+    .w-80 {
+      width: 80%;
+    }
+    .img {
+      height: 150px;
+      width: 80%;
+      margin: 15px 10%;
+    }
+  }
+}
