@@ -3,7 +3,8 @@
   float: left;
   left: -10px;
   width: 40px;
-  min-height: 120px;
+  min-height: 100px;
+  top: -15px;
 
   .text-wrapper {
     width: 100%;
@@ -14,7 +15,11 @@
     font-size: 3.5em;
   }
   .counter {
+    margin-top: -10px;
     font-size: 1.3em;;
+  }
+  .fa-caret-down {
+    margin-top: -14px;
   }
 
   .fa-star, .fa-check {
@@ -24,6 +29,11 @@
   .fa-check {
     font-size: 1.5em;
   }
+
+  .favorites, .accepted {
+    margin-top: -7px;
+  }
+
 
   .isFavorite * {
     color: #ffce00
