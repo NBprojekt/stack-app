@@ -33,7 +33,30 @@ describe('HomePage', () => {
     fixture.detectChanges();
   });
 
-  it('shouShouldld create', () => {
+  it('Should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('Should update filters', () => {
+    const filter = {
+      site: 'stackoverflow',
+      page: 10,
+    };
+
+    spyOn(component, 'doRefresh');
+    component.updateFilter(filter);
+    expect(component.doRefresh).toHaveBeenCalled();
+  });
+
+  it('Should refresh', () => {
+    spyOn(component, 'doRefresh');
+    component.doRefresh();
+    expect(component.doRefresh).toHaveBeenCalled();
+  });
+
+  it('Should load more', () => {
+    spyOn(component, 'loadMore');
+    component.loadMore();
+    expect(component.loadMore).toHaveBeenCalled();
   });
 });

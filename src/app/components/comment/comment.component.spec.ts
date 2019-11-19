@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommentComponent } from './comment.component';
+import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 
 describe('CommentComponent', () => {
   let component: CommentComponent;
@@ -10,6 +11,10 @@ describe('CommentComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CommentComponent ],
+      imports: [
+        CommonPipesModule,
+
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
@@ -21,7 +26,7 @@ describe('CommentComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Should create', () => {
     expect(component).toBeTruthy();
   });
 });
