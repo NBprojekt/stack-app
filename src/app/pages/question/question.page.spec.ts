@@ -24,6 +24,7 @@ describe('QuestionPage', () => {
         RouterTestingModule,
         HttpClientModule,
         IonicModule,
+        VotingModule,
       ],
       providers: [
         InAppBrowser,
