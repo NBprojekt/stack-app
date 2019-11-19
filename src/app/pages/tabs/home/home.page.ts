@@ -21,12 +21,12 @@ export class HomePage implements OnInit {
     private questionsService: QuestionsService,
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.options = {};
     this.doRefresh();
   }
 
-  doRefresh(event?: any): void {
+  public doRefresh(event?: any): void {
     this.options.page = 1;
     this.questionsService.getQuestions(this.options).subscribe((response: IResponse) => {
       this.questions = response.items as Array<IQuestion>;
@@ -34,7 +34,7 @@ export class HomePage implements OnInit {
     });
   }
 
-  loadMore(event?: any): void {
+  public loadMore(event?: any): void {
     this.options.page++;
 
     this.questionsService.getQuestions(this.options).subscribe((response: IResponse) => {
@@ -47,7 +47,7 @@ export class HomePage implements OnInit {
     });
   }
 
-  updateFilter(options: IQuestionOptions): void {
+  public updateFilter(options: IQuestionOptions): void {
     this.questions = null;
     this.options = options;
     this.doRefresh();
