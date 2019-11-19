@@ -31,7 +31,7 @@ export class QuestionsService {
     const params = new HttpParams()
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
-      .set('page', options.page ? options.page.toString() : '1')
+      .set('page', options && options.page ? options.page.toString() : '1')
       .set('pagesize', this.pagesize.toString())
       .set('site', options && options.site || 'stackoverflow')
       .set('order', options && options.order || 'desc')
