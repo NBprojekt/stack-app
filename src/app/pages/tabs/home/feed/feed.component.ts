@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import * as moment from 'moment';
 
 import { IQuestion } from 'src/app/interfaces/question';
 import { IQuestionOptions } from 'src/app/interfaces/question-options';
@@ -17,11 +16,16 @@ export class FeedComponent implements OnInit {
 
   public filter: string;
 
+  constructor(
+    private questionService: QuestionsService,
+  ) {}
+
   ngOnInit() {
     this.filter =  'interesting';
   }
 
   public fill = (times: number) => new Array<number>(times).fill(1);
+  public questionIsHot = (question: IQuestion) => this.questionService.questionIsHot(question);
 
   public filterChange(): void {
     switch (this.filter) {
@@ -44,26 +48,5 @@ export class FeedComponent implements OnInit {
         this.options.emit({});
         return;
     }
-  }
-
-  public questionIsHot(question: IQuestion): boolean {
-    if (!question.answers) { return false; }
-
-    let summAnswerScore = 0;
-    question.answers.map(answer => summAnswerScore += answer.score);
-
-    return (((Math.log(question.view_count) * 4) + ((question.answer_count * question.score) / 5) + summAnswerScore) /
-            Math.pow(((this.unixTimestampToHours(question.creation_date) + 1) -
-                     ((this.unixTimestampToHours(question.creation_date) - this.unixTimestampToHours(question.last_activity_date))
-                     / 2))
-                    , 1.5)
-            ) > 0;
-  }
-
-  private unixTimestampToHours(unixTimestamp: number): number {
-    const start = moment.unix(unixTimestamp);
-    const end = moment();
-    const duration = moment.duration(end.diff(start));
-    return duration.asHours();
   }
 }

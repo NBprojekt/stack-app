@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import * as moment from 'moment';
 
 import { environment } from 'src/environments/environment';
 
 import { IQuestion } from 'src/app/interfaces/question';
 import { IQuestionOptions } from 'src/app/interfaces/question-options';
 import { IResponse } from 'src/app/interfaces/response';
+
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
@@ -56,6 +58,28 @@ export class QuestionsService {
     }
 
     return this.http.get<IResponse>(`${this.url}questions/${id}`, {headers, params});
+  }
+
+  public questionIsHot(question: IQuestion): boolean {
+    if (!question.answers) { return false; }
+
+    const summAnswerScore = question.answers
+      .map(answer => answer.score)
+      .reduce((accumulator, currentValue) => accumulator + currentValue);
+
+    return (((Math.log(question.view_count) * 4) + ((question.answer_count * question.score) / 5) + summAnswerScore) /
+            Math.pow(((this.unixTimestampToHours(question.creation_date) + 1) -
+                     ((this.unixTimestampToHours(question.creation_date) - this.unixTimestampToHours(question.last_activity_date))
+                     / 2))
+                    , 1.5)
+            ) > 0;
+  }
+
+  private unixTimestampToHours(unixTimestamp: number): number {
+    const start = moment.unix(unixTimestamp);
+    const end = moment();
+    const duration = moment.duration(end.diff(start));
+    return duration.asHours();
   }
 
   public getAnswers(id: number | Array<number>, options?: IQuestionOptions): Observable<IResponse> {
