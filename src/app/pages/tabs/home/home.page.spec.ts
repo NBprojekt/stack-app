@@ -37,6 +37,12 @@ describe('HomePage', () => {
     expect(component).toBeTruthy();
   });
 
+  it('Should on init refresh', () => {
+    spyOn(component, 'doRefresh');
+    component.ngOnInit();
+    expect(component.doRefresh).toHaveBeenCalled();
+  });
+
   it('Should update filters', () => {
     const filter = {
       site: 'stackoverflow',
