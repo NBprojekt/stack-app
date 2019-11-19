@@ -5,8 +5,10 @@
   width: 40px;
   min-height: 100px;
   top: -15px;
+  z-index: 10;
 
   .text-wrapper {
+    overflow: visible;
     width: 100%;
     text-align: center;
   }
@@ -34,11 +36,43 @@
     margin-top: -7px;
   }
 
+  .favorites {
+    overflow: visible;
 
-  .isFavorite * {
-    color: #ffce00
+    .text-wrapper {
+      height: 40px;
+    }
+
+    .heart {
+      height: 60px;
+      width: 60px;
+      margin-top: -30px;
+      margin-left: -10px;
+      overflow: visible;
+      z-index: 11;
+
+      background-image: url('/assets/sprites/heart.png');
+      background-position: left;
+      background-repeat: no-repeat;
+      background-size: 2900%;
+
+      &.isFavorite {
+        animation: heart-burst .8s steps(28) 1;
+        background-position: right;
+      }
+    }
   }
+
   .isAccepted * {
     color: #2ba55c;
+  }
+}
+
+@keyframes heart-burst {
+  from {
+    background-position:left;
+  }
+  to {
+    background-position:right;
   }
 }

@@ -29,4 +29,16 @@ describe('VotingComponent', () => {
   it('Should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Should toggle favorites', () => {
+    expect(component.isFavorite).toBeUndefined();
+    component.toggleFavorite();
+    expect(component.isFavorite).toBeTruthy();
+  });
+
+  it('Should toggle accepted', () => {
+    expect(component.isAccepted).toBeUndefined();
+    component.toggleAccepted();
+    expect(component.isAccepted).toBeTruthy();
+  });
 });
