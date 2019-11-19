@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title> Question </ion-title>
+    <ion-title> Question overview </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
@@ -40,10 +40,8 @@
   </div>
 
   <ng-template #questionSkeleton>
-    <!-- TODO: Add skeleton -->
-    Loading...
+      <question-skeleton></question-skeleton>
   </ng-template>
-
 
   <div *ngIf="answers; else answerSkeleton">
     <ion-list>
