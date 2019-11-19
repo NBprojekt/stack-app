@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { IComment } from 'src/app/interfaces/comment';
+import { IUser } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'comments',
@@ -6,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comment.component.scss'],
 })
 export class CommentComponent implements OnInit {
+  @Input() comments: Array<IComment>;
+  @Input() questinOwner: IUser;
 
   constructor() { }
 
