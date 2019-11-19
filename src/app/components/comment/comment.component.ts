@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { IComment } from 'src/app/interfaces/comment';
 import { IUser } from 'src/app/interfaces/user';
@@ -8,12 +8,7 @@ import { IUser } from 'src/app/interfaces/user';
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss'],
 })
-export class CommentComponent implements OnInit {
+export class CommentComponent  {
   @Input() comments: Array<IComment>;
   @Input() questinOwner: IUser;
-
-  constructor() { }
-
-  ngOnInit() {}
-
 }

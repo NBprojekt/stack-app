@@ -42,4 +42,8 @@ describe('HeaderComponent', () => {
     expect(component.achievements).toBeDefined();
     expect(component.reviwQueues).toBeDefined();
   });
+
+  it('Should tranform first letter to uppercase', () => {
+    expect(component.firstToUpper('test')).toBe('Test');
+  });
 });
