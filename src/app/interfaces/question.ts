@@ -1,6 +1,7 @@
 import { SafeHtml } from '@angular/platform-browser';
 import { IUser } from './user';
 import { IAnswer } from './answer';
+import { IComment } from './comment';
 
 export interface IQuestion {
   answer_count: number;
@@ -25,4 +26,5 @@ export interface IQuestion {
   locked_date?: number;
   last_editor?: IUser;
   favorite_count?: number;
+  comments?: Array<IComment>;
 }
