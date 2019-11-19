@@ -6,10 +6,12 @@ import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 import { CommonDirectivesModule } from 'src/app/directives/common-directives.module';
 
 import { UserCardComponent } from './user-card.component';
+import { UserCardSkeletonComponent } from './user-card-skeleton/user-card-skeleton.component';
 
 @NgModule({
   declarations: [
     UserCardComponent,
+    UserCardSkeletonComponent,
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { UserCardComponent } from './user-card.component';
     IonicModule,
   ],
   exports: [
-    UserCardComponent
+    UserCardComponent,
+    UserCardSkeletonComponent,
   ]
 })
 export class UserCardModule { }
