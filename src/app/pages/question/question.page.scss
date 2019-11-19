@@ -4,31 +4,3 @@
 .horizontal-spacer {
   flex: 1 1 auto;
 }
-
-ion-card {
-  min-height: 120px;
-
-  .card-footer {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-}
-
-ion-card-subtitle {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  &:nth-child(-n+2) span {
-    font-weight: bolder;
-    margin: 0 10px 0 5px;
-  }
-}
-
-.card-tags {
-  line-height: 1.7em;
-}
-
-ion-card-title {
-  text-align: justify;
-}
