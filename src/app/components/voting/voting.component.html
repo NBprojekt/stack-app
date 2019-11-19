@@ -11,9 +11,9 @@
     <i class="fas fa-caret-down"></i>
   </div>
 
-  <div *ngIf="showFavorites" class="favorites" [class.isFavorite]="isFavorite">
+  <div *ngIf="showFavorites" class="favorites" (click)="toggleFavorite()">
     <div class="text-wrapper">
-      <i class="fas fa-star"></i>
+      <div class="heart" [class.isFavorite]="isFavorite"></div>
     </div>
     <div class="text-wrapper">
       {{countFavorites | shortenNumber}}

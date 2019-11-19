@@ -14,4 +14,11 @@ export class VotingComponent {
 
   @Input() showAccepted?: boolean;
   @Input() isAccepted?: boolean;
+
+  public toggleFavorite(): void {
+    this.isFavorite = !this.isFavorite;
+  }
+  public toggleAccepted(): void {
+    this.isAccepted = !this.isAccepted;
+  }
 }
