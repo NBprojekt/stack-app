@@ -77,7 +77,7 @@ export class AuthService {
       position: 'bottom',
       showCloseButton: true,
       closeButtonText: 'OK',
-      duration: 5e4,
+      duration: 5e3,
     });
 
     toast.present();
