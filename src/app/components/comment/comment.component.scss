@@ -1,18 +1,23 @@
 .comments {
 
-  div:after {
-    content:"";
-    background: var(--ion-color-light);
-    position: absolute;
-    bottom: 0;
-    top:0;
-    left: 2%;
-    height: 1px;
-    width: 95%;
+  .comment {
+    position: relative;
+    padding: 3px 3px 3px 6px;
+    margin: 2px;
+
+    &:after {
+      content:"";
+      background: rgba($color: var(--ion-color-medium-rgb), $alpha: .5);
+      position: absolute;
+      top:0;
+      left: 0;
+      height: 1px;
+      width: 100%;
+    }
   }
 
   .username {
-    font-weight: bold;
+    font-weight: bolder;
   }
 
   .color-blue {
