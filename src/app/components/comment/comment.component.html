@@ -1,5 +1,5 @@
 <div class="comments">
-  <div *ngFor="let comment of comments">
+  <div *ngFor="let comment of comments" class="comment">
     <span class="post" [innerHTML]="comment?.body"></span>
     -
     <span class="color-blue username" [class.highlight]="comment?.owner?.display_name == questinOwner?.display_name">
