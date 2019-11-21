@@ -12,6 +12,6 @@ export const environment = {
   oAuth: {
     clientId: 16531,
     redirectUrl: 'http://localhost/',
-    scope: 'private_info',
+    scope: 'read_inbox,private_info,write_access',
   },
 };
