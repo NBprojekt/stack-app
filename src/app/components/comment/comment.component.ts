@@ -10,5 +10,5 @@ import { IUser } from 'src/app/interfaces/user';
 })
 export class CommentComponent  {
   @Input() comments: Array<IComment>;
-  @Input() questinOwner: IUser;
+  @Input() questionOwner: IUser;
 }
