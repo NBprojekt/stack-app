@@ -36,7 +36,7 @@ export class QuestionPage implements OnInit {
       this.question.body = this.sanitizer.bypassSecurityTrustHtml(this.question.body as string);
       if (this.question.comments) {
         this.question.comments.map(comment => comment.body = this.sanitizer.bypassSecurityTrustHtml(comment.body as string));
-      } 
+      }
     });
   }
 
