@@ -14,6 +14,7 @@ import { IAnswer } from 'src/app/interfaces/answer';
 })
 export class QuestionPage implements OnInit {
   private id: number;
+  public title: string;
   public question: IQuestion;
   public answers: Array<IAnswer>;
 
@@ -25,6 +26,7 @@ export class QuestionPage implements OnInit {
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
+    this.title = this.route.snapshot.paramMap.get('title');
 
     this.getQuestion(this.id);
     this.getAnswers(this.id);

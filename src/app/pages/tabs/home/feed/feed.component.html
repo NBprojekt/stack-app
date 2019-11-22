@@ -16,7 +16,7 @@
   </ion-list-header>
 
   <ion-item *ngFor="let question of questions" button
-            [routerLink]="['/menu/pages/question', question.question_id]"
+            [routerLink]="['/menu/pages/question', question.question_id, question.title]"
             routerDirection="forward">
     <ion-thumbnail class="question-statistics" [class.anwsered]="question.is_answered" slot="start">
       <div class="text-right">
