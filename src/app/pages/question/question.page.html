@@ -24,7 +24,7 @@
       </ion-list-header>
 
       <div  *ngFor="let answer of answers">
-        <answer-card [answer]="answer"></answer-card>
+        <answer-card [answer]="answer" [questionOwner]="question.owner"></answer-card>
       </div>
     </ion-list>
   </div>
