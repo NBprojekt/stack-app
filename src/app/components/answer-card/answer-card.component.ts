@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { IAnswer } from 'src/app/interfaces/answer';
+import { IUser } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'answer-card',
@@ -9,4 +10,5 @@ import { IAnswer } from 'src/app/interfaces/answer';
 })
 export class AnswerCardComponent {
   @Input() answer: IAnswer;
+  @Input() questionOwner: IUser;
 }
