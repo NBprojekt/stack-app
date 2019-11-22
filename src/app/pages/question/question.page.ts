@@ -44,6 +44,12 @@ export class QuestionPage implements OnInit {
     this.questionsService.getAnswers(id).subscribe((response: IResponse) => {
       this.answers = response.items as Array<IAnswer>;
       this.answers.map((answer: IAnswer) => answer.body = this.sanitizer.bypassSecurityTrustHtml(answer.body as string));
+
+      this.answers.forEach(answer => {
+        if (answer.comments) {
+          answer.comments.map(comment => comment.body = this.sanitizer.bypassSecurityTrustHtml(comment.body as string));
+        }
+      });
     });
   }
 }
