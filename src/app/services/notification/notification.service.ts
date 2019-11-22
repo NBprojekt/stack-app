@@ -6,7 +6,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 
 import { Observable } from 'rxjs/internal/Observable';
-import { switchMap, map, tap } from 'rxjs/operators';
 import { IResponse } from 'src/app/interfaces/response';
 
 @Injectable({
@@ -40,8 +39,9 @@ export class NotificationService {
 
     const params = new HttpParams()
       .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken());
+      .set('access_token', this.authService.getToken())
+      .set('site', 'stackoverflow');
 
-    return this.http.get<IResponse>(`${this.url}notifications/unread`, {headers, params});
+    return this.http.get<IResponse>(`${this.url}me/notifications/unread`, {headers, params});
   }
 }
