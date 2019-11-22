@@ -21,7 +21,7 @@ export class TimePassedPipe implements PipeTransform {
     const diffInYears = now.diff(date, 'years');
 
     switch (true) {
-      case (diffInMonths > 14): return `${diffInYears} years, ${diffInMonths - diffInYears * 12} months ago`;
+      case (diffInMonths > 14): return diffInMonths % 12 > 0 ? `${diffInYears} years, ${diffInMonths % 12} months ago` : `${diffInYears} years ago`;
       case (diffInMonths > 2): return `${diffInMonths} months ago`;
       case (diffInWeeks > 2): return `${diffInWeeks} weeks ago`;
       case (diffInDays > 1): return `${diffInDays} days ago`;
