@@ -32,7 +32,7 @@ export class AuthService {
     const loadSubscribtion$: Subscription = browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
       const url = event.url.split('//')[1];
 
-      if (url.startsWith('localhost')) {
+      if (url.startsWith('auth.stack.norbert-bartko.de')) {
         this.allowBrowserClose = true;
         browser.close();
 
