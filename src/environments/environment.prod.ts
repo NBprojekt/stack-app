@@ -3,11 +3,11 @@ export const environment = {
   api: {
     url: 'https://api.stackexchange.com/',
     version: '2.2/',
-    key: 'jWSRC3OcNKkruEKS7lLZkQ((',
+    key: 'tY6t1JhOUblLZKK7kLe1cA((',
   },
   oAuth: {
-    clientId: 16531,
-    redirectUrl: 'http://localhost/',
+    clientId: 16712,
+    redirectUrl: 'https://auth.stack.norbert-bartko.de/',
     scope: 'read_inbox,private_info,write_access,no_expiry',
   },
 };
