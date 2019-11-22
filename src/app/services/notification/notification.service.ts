@@ -14,7 +14,7 @@ import { IResponse } from 'src/app/interfaces/response';
 })
 export class NotificationService {
   public static readonly updateIntervall = 5 * 60 * 100;
-  
+
   private readonly url = environment.api.url + environment.api.version;
 
   constructor(
@@ -22,7 +22,7 @@ export class NotificationService {
     private authService: AuthService,
   ) {}
 
-  public getInboxUnread(): Observable<number> {
+  public getInboxUnread(): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -31,10 +31,10 @@ export class NotificationService {
       .set('access_token', this.authService.getToken())
       .set('site', 'stackoverflow');
 
-    return this.http.get<number>(`${this.url}me/inbox/unread`, {headers, params});
+    return this.http.get<IResponse>(`${this.url}me/inbox/unread`, {headers, params});
   }
 
-  public getAchievementsUnread(): Observable<number> {
+  public getAchievementsUnread(): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -42,6 +42,6 @@ export class NotificationService {
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken());
 
-    return this.http.get<number>(`${this.url}notifications/unread`, {headers, params});
+    return this.http.get<IResponse>(`${this.url}notifications/unread`, {headers, params});
   }
 }
