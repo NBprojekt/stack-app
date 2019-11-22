@@ -4,12 +4,16 @@
   </ion-buttons>
   <ion-buttons slot="end" mode="ios">
     <ion-button icon-only>
-      <ion-badge color="danger"> {{inbox | shortenNumber}} </ion-badge>
+      <ion-badge color="danger">
+        <span *ngIf="inbox >  0">{{inbox | shortenNumber}}</span>
+        </ion-badge>
       <ion-icon name="md-chatbubbles"></ion-icon>
     </ion-button>
 
     <ion-button icon-only>
-      <ion-badge color="success"> {{achievements | shortenNumber}} </ion-badge>
+      <ion-badge color="success">
+        <span *ngIf="achievements >  0">{{achievements | shortenNumber}}</span>
+      </ion-badge>
       <ion-icon name="md-trophy"></ion-icon>
     </ion-button>
 
