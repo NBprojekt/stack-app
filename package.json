@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "build": "bash ./scripts/build.sh",
     "emulate": "bash ./scripts/emulate.sh",
-    "run": "bash ./scripts/run.sh",
+    "debug": "bash ./scripts/debug.sh",
     "sign": "bash ./scripts/sign.sh"
   },
   "private": true,
