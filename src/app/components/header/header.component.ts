@@ -7,6 +7,10 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { NavigationEnd, Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification/notification.service';
+
+import { interval, forkJoin } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -15,15 +19,18 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   public title: string;
+  public reviwQueues: boolean;
+
   public inbox: number;
   public achievements: number;
-  public reviwQueues: boolean;
+  private notificationSubscribtion$: Subscription;
 
   private routerSubscribtion$: Subscription;
 
   constructor(
     private router: Router,
     private popoverController: PopoverController,
+    private notificatinoService: NotificationService,
   ) {}
 
   ngOnInit() {
@@ -35,13 +42,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.title = this.firstToUpper(url.split('/').pop()) || 'Undefined';
       });
 
-    this.inbox = 5;
-    this.achievements = 2649;
-    this.reviwQueues = true;
+    this.notificationSubscribtion$ = interval(NotificationService.updateIntervall).pipe(
+      startWith(() => forkJoin(
+          this.notificatinoService.getInboxUnread(),
+          this.notificatinoService.getAchievementsUnread(),
+        )
+      ),
+      switchMap(() => forkJoin(
+          this.notificatinoService.getInboxUnread(),
+          this.notificatinoService.getAchievementsUnread(),
+        )
+      ),
+    ).subscribe(([inboxUnread, achievementsUnread]) => {
+      this.inbox = inboxUnread.items.length;
+      this.achievements = achievementsUnread.items.length;
+    });
   }
 
   ngOnDestroy() {
     this.routerSubscribtion$.unsubscribe();
+    this.notificationSubscribtion$.unsubscribe();
   }
 
   public async showMore(event: any) {
