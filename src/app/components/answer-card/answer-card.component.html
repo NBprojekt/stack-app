@@ -13,5 +13,9 @@
                  [user]="answer?.last_editor" action="edited" [timestamp]="answer?.last_edit_date">
       </user-card>
     </ion-col>
+
+    <ion-col *ngIf="answer.comments" size="12">
+      <comments [comments]="answer?.comments" [questinOwner]="answer?.owner"></comments>
+    </ion-col>
   </ion-row>
 </ion-card>
