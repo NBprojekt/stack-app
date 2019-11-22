@@ -12,7 +12,7 @@ import { IResponse } from 'src/app/interfaces/response';
   providedIn: 'root'
 })
 export class NotificationService {
-  public static readonly updateIntervall = 5 * 60 * 100;
+  public static readonly updateIntervall = 3 * 60 * 1000;
 
   private readonly url = environment.api.url + environment.api.version;
 
