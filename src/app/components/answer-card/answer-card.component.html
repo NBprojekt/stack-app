@@ -6,7 +6,8 @@
 
   <ion-row class="card-footer">
     <ion-col size="6">
-      <user-card [user]="answer?.owner" action="answered" [timestamp]="answer?.creation_date"></user-card>
+      <user-card [user]="answer?.owner" action="answered" [timestamp]="answer?.creation_date"
+                 [highlight]="answer?.owner.display_name === questionOwner.display_name"></user-card>
     </ion-col>
     <ion-col size="6">
       <user-card *ngIf="answer?.last_editor && answer?.owner?.user_id != answer?.last_editor?.user_id"
