@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { HeaderComponent } from './header.component';
 import { MoreComponent } from './more/more.component';
+import { NotificationComponent } from './notification/notification.component';
 
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 
@@ -12,6 +13,7 @@ import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
   declarations: [
     HeaderComponent,
     MoreComponent,
+    NotificationComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
   ],
   entryComponents: [
     MoreComponent,
+    NotificationComponent,
   ]
 })
 export class HeaderModule { }
