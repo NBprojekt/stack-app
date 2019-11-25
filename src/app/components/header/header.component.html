@@ -5,14 +5,14 @@
   <ion-buttons slot="end" mode="ios">
     <ion-button icon-only>
       <ion-badge color="danger">
-        <span *ngIf="inbox >  0"> {{inbox | shortenNumber}} </span>
-        </ion-badge>
+        <span *ngIf="countUnread(inbox) !== 0"> {{countUnread(inbox) | shortenNumber}} </span>
+      </ion-badge>
       <ion-icon name="md-chatbubbles"></ion-icon>
     </ion-button>
 
     <ion-button icon-only>
       <ion-badge color="success">
-        <span *ngIf="achievements >  0"> {{achievements | shortenNumber}} </span>
+        <span *ngIf="countUnread(achievements) !== 0"> {{countUnread(achievements) | shortenNumber}} </span>
       </ion-badge>
       <ion-icon name="md-trophy"></ion-icon>
     </ion-button>
