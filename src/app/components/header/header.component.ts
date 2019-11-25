@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular';
 
 import { MoreComponent } from './more/more.component';
 
@@ -11,6 +11,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 
 import { interval, forkJoin } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
+import { NotificationComponent } from './notification/notification.component';
 
 @Component({
   selector: 'app-header',
@@ -30,7 +31,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private popoverController: PopoverController,
-    private notificatinoService: NotificationService,
+    private modalController: ModalController,
+    public notificatinoService: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         )
       ),
     ).subscribe(([inbox, achievements]) => {
+      console.log([inbox, achievements]);
       this.inbox = inbox.items;
       this.achievements = achievements.items;
     });
@@ -90,5 +93,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
           : 1
         : 0)
       .reduce((accumulator, currentValue) => accumulator + currentValue);
+  }
+
+  public async showNotifications(title: string, items: Array<any>, updateFunction: any): Promise<any> {
+    const modal = await this.modalController.create({
+      component: NotificationComponent,
+      componentProps: {
+        title,
+        items,
+        updateFunction,
+      }
+    });
+    return await modal.present();
   }
 }

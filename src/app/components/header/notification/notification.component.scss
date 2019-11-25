@@ -1,0 +1,50 @@
+ion-label h2 {
+  align-items: center!important;
+  display: flex;
+  margin-bottom: 5px;
+
+  .badge {
+    background: var(--ion-color-secondary);
+    color: var(--ion-color-secondary-contrast);
+    font-size: .9em;
+
+    border-radius: 4px;
+    display: block;
+    padding: 1px 5px;
+    margin-right: 5px;
+
+    &.green {
+      background: var(--ion-color-success);
+    }
+    &.red {
+      background: var(--ion-color-danger);
+    }
+  }
+
+  .new {
+    position: absolute;
+    top: 2px;
+    right: 0;
+
+    font-size: .9em;
+    color: #ffff;
+  }
+
+  .rank {
+    font-size: 1.1em;
+    margin-right: 10px;
+
+    &.gold .fa-circle{
+      color: rgb(255, 215, 0)
+    }
+    &.silver .fa-circle{
+      color: rgb(170, 165, 165)
+    }
+    &.bronze .fa-circle{
+      color: rgb(180, 106, 33);
+    }
+  }
+}
+
+
+
