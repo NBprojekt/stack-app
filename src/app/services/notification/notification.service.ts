@@ -15,33 +15,37 @@ export class NotificationService {
   public static readonly updateIntervall = 3 * 60 * 1000;
 
   private readonly url = environment.api.url + environment.api.version;
+  private readonly pageSize: number = 30;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService,
   ) {}
 
-  public getInboxUnread(): Observable<IResponse> {
+  public getInbox(): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
     const params = new HttpParams()
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
-      .set('site', 'stackoverflow');
+      .set('pageSize', this.pageSize.toString())
+      .set('filter', '*-t3H1VAnvpZbcZ');
 
-    return this.http.get<IResponse>(`${this.url}me/inbox/unread`, {headers, params});
+    return this.http.get<IResponse>(`${this.url}inbox`, {headers, params});
   }
 
-  public getAchievementsUnread(): Observable<IResponse> {
+  public getAchievements(): Observable<IResponse> {
+    const url = environment.api.url + '2.3/';
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
     const params = new HttpParams()
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
-      .set('site', 'stackoverflow');
+      .set('pageSize', this.pageSize.toString())
+      .set('filter', '*-t3H1VAnvpZbcZ');
 
-    return this.http.get<IResponse>(`${this.url}me/notifications/unread`, {headers, params});
+    return this.http.get<IResponse>(`${url}me/achievements`, {headers, params});
   }
 }
