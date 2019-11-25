@@ -7,6 +7,7 @@ import { AuthService } from '../auth/auth.service';
 
 import { Observable } from 'rxjs/internal/Observable';
 import { IResponse } from 'src/app/interfaces/response';
+import { IQuestionOptions } from 'src/app/interfaces/question-options';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class NotificationService {
     private authService: AuthService,
   ) {}
 
-  public getInbox(): Observable<IResponse> {
+  public getInbox(options?: IQuestionOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -30,12 +31,13 @@ export class NotificationService {
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
       .set('pageSize', this.pageSize.toString())
-      .set('filter', '*-t3H1VAnvpZbcZ');
+      .set('page', options && options.page ? options.page.toString() : '1')
+      .set('filter', options && options.filter || 'O5lYbEN2lExNfdp2Q');
 
     return this.http.get<IResponse>(`${this.url}inbox`, {headers, params});
   }
 
-  public getAchievements(): Observable<IResponse> {
+  public getAchievements(options?: IQuestionOptions): Observable<IResponse> {
     const url = environment.api.url + '2.3/';
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
@@ -44,7 +46,8 @@ export class NotificationService {
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
       .set('pageSize', this.pageSize.toString())
-      .set('filter', '*-t3H1VAnvpZbcZ');
+      .set('page', options && options.page ? options.page.toString() : '1')
+      .set('filter', options && options.filter || 'O5lYbEN2lExNfdp2Q');
 
     return this.http.get<IResponse>(`${url}me/achievements`, {headers, params});
   }
