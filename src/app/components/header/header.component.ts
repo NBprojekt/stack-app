@@ -21,8 +21,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public title: string;
   public reviwQueues: boolean;
 
-  public inbox: number;
-  public achievements: number;
+  public inbox: Array<any>;
+  public achievements: Array<any>;
   private notificationSubscribtion$: Subscription;
 
   private routerSubscribtion$: Subscription;
@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private notificatinoService: NotificationService,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.routerSubscribtion$ = this.router.events
       .pipe(
         filter((event): event is NavigationEnd => event instanceof NavigationEnd),
@@ -44,27 +44,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.notificationSubscribtion$ = interval(NotificationService.updateIntervall).pipe(
       startWith(() => forkJoin(
-          this.notificatinoService.getInboxUnread(),
-          this.notificatinoService.getAchievementsUnread(),
+          this.notificatinoService.getInbox(),
+          this.notificatinoService.getAchievements(),
         )
       ),
       switchMap(() => forkJoin(
-          this.notificatinoService.getInboxUnread(),
-          this.notificatinoService.getAchievementsUnread(),
+          this.notificatinoService.getInbox(),
+          this.notificatinoService.getAchievements(),
         )
       ),
-    ).subscribe(([inboxUnread, achievementsUnread]) => {
-      this.inbox = inboxUnread.items.length;
-      this.achievements = achievementsUnread.items.length;
+    ).subscribe(([inbox, achievements]) => {
+      this.inbox = inbox.items;
+      this.achievements = achievements.items;
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.routerSubscribtion$.unsubscribe();
     this.notificationSubscribtion$.unsubscribe();
   }
 
-  public async showMore(event: any) {
+  public async showMore(event: any): Promise<any> {
     const popover = await this.popoverController.create({
       component: MoreComponent,
       translucent: true,
@@ -76,5 +76,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public firstToUpper(s: string): string {
     const first = s[0].toUpperCase();
     return first + s.slice(1, s.length);
+  }
+
+  public countUnread(items: any) {
+    if (!items) {
+      return 0;
+    }
+
+    return items
+      .map(item => item.is_unread ?
+        item.reputation_change ?
+          item.reputation_change
+          : 1
+        : 0)
+      .reduce((accumulator, currentValue) => accumulator + currentValue);
   }
 }
