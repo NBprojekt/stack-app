@@ -100,3 +100,8 @@ a {
     line-height: 1.2em;
   }
 }
+
+.align-items-center {
+  display: flex;
+  align-items: center!important;
+}
