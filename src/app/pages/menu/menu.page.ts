@@ -46,7 +46,7 @@ export class MenuPage implements OnInit, OnDestroy {
     },
     {
         title: 'About',
-        url: './tabs/home',
+        url: '/menu/about',
         icon: 'information-circle',
         routerDirection: 'root',
         lines: 'none',
