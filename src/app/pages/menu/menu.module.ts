@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MenuPage } from './menu.page';
-import { SettingsComponent } from './settings/settings.component';
 import { CommonDirectivesModule } from 'src/app/directives/common-directives.module';
 
 const routes: Routes = [
@@ -19,7 +18,7 @@ const routes: Routes = [
       { path: 'question/:id/:title', loadChildren: () => import('../question/question.module').then( m => m.QuestionPageModule) },
     ],
   },
-  { path: 'settings', component: SettingsComponent },
+  { path: 'settings', loadChildren: () => import('../settings/settings.module').then( m => m.SettingsPageModule) },
   { path: '', redirectTo: 'pages', pathMatch: 'full'}
 ];
 
@@ -33,7 +32,6 @@ const routes: Routes = [
   ],
   declarations: [
     MenuPage,
-    SettingsComponent,
   ],
 })
 export class MenuPageModule {
