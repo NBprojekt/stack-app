@@ -14,7 +14,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class AuthService {
   private readonly oAuthUrl = `https://stackoverflow.com/oauth/dialog?client_id=${environment.oAuth.clientId}&redirect_uri=${environment.oAuth.redirectUrl}&scope=${environment.oAuth.scope}`;
-  private token: string;
+  private token;
   private allowBrowserClose: boolean;
 
   constructor(
@@ -62,10 +62,14 @@ export class AuthService {
   private validateToken() {}
 
   private successfulLogin(url: string): void {
-    this.token = url.substring(
-      url.indexOf('=') + 1,
-      url.lastIndexOf('&')
-    );
+    if (environment.production) {
+      this.token = url.split('=')[0];
+    } else {
+      this.token = url.substring(
+        url.indexOf('=') + 1,
+        url.lastIndexOf('&')
+      );
+    }
 
     this.ngZone.run(() => this.router.navigateByUrl('/menu'));
   }
