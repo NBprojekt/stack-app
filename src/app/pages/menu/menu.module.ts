@@ -19,6 +19,7 @@ const routes: Routes = [
     ],
   },
   { path: 'settings', loadChildren: () => import('../settings/settings.module').then( m => m.SettingsPageModule) },
+  { path: 'about', loadChildren: () => import('../about/about.module').then( m => m.AboutPageModule) },
   { path: '', redirectTo: 'pages', pathMatch: 'full'}
 ];
 
