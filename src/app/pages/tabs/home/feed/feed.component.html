@@ -16,41 +16,42 @@
   </ion-list-header>
 
   <ion-item *ngFor="let question of questions" button
-            [routerLink]="['/menu/pages/question', question.question_id, question.title]"
+            [routerLink]="['/menu/pages/question', question?.question_id, formatUrl(question?.title)]"
             routerDirection="forward">
-    <ion-thumbnail class="question-statistics" [class.anwsered]="question.is_answered" slot="start">
+    <ion-thumbnail class="question-statistics" [class.anwsered]="question?.is_answered" slot="start">
       <div class="text-right">
-        {{question.score | shortenNumber}}
+        {{question?.score | shortenNumber}}
         <i class="fas fa-caret-up fa-lg grey"></i>
       </div>
       <div class="text-right">
-        {{question.answer_count | shortenNumber}}
+        {{question?.answer_count | shortenNumber}}
         <i class="fas fa-comment-alt fa-flip-horizontal fa-sm grey"></i>
       </div>
       <div class="text-right">
-        {{question.view_count | shortenNumber}}
+        {{question?.view_count | shortenNumber}}
         <i class="far fa-eye fa-sm grey"></i>
       </div>
     </ion-thumbnail>
 
     <ion-label>
       <h2>
-        <div class="badge" *ngIf="question.bounty_amount"> +{{question?.bounty_amount}} </div>
-        <div class="wrap-text">
-            {{question.title}}
-        </div>
+        <div class="badge" *ngIf="question?.bounty_amount"> +{{question?.bounty_amount}} </div>
+
+        <div class="wrap-text" [innerHTML]="question?.title"></div>
 
         <i *ngIf="questionIsHot(question)" class="fab fa-hotjar hot"></i>
       </h2>
       <h3>
-        <span *ngFor="let tag of question.tags" class="tag"> {{tag}} </span>
+        <span *ngFor="let tag of question?.tags" class="tag"> {{tag}} </span>
       </h3>
       <p>
-        asked {{question.creation_date | timePassed}}
-        <a [routerLink]="['/', question.owner.reputation]">
-          {{question.owner.display_name}}
+        asked {{question?.creation_date | timePassed}}
+
+        <a [routerLink]="['/', question?.owner?.reputation]">
+          {{question?.owner?.display_name}}
         </a>
-        {{question.owner.reputation | shortenNumber}}
+
+        {{question?.owner?.reputation | shortenNumber}}
       </p>
     </ion-label>
   </ion-item>

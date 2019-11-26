@@ -6,7 +6,7 @@
       Viewed <span> {{question?.view_count | shortenNumber}} {{question?.view_count === 1 ? 'time' : 'times'}} </span>
     </ion-card-subtitle>
 
-    <ion-card-title> {{question?.title}} </ion-card-title>
+    <ion-card-title [innerHtml]="question?.title"></ion-card-title>
 
     <ion-label class="card-tags">
       <span *ngFor="let tag of question?.tags" class="tag"> {{tag}} </span>
