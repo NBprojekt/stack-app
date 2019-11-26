@@ -49,4 +49,8 @@ export class FeedComponent implements OnInit {
         return;
     }
   }
+
+  public formatUrl(url: string): string {
+    return url.replace(/[^\w\s]/gi, '').split(' ').join('-');
+  }
 }

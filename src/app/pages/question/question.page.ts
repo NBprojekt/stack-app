@@ -26,7 +26,7 @@ export class QuestionPage implements OnInit {
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.title = this.route.snapshot.paramMap.get('title');
+    this.title = this.route.snapshot.paramMap.get('title').split('-').join(' ');
 
     this.getQuestion(this.id);
     this.getAnswers(this.id);
@@ -36,6 +36,7 @@ export class QuestionPage implements OnInit {
     this.questionsService.getQuestion(id).subscribe((response: IResponse) => {
       this.question = response.items[0] as IQuestion;
       this.question.body = this.sanitizer.bypassSecurityTrustHtml(this.question.body as string);
+      this.title = this.question.title;
 
       if (this.question.comments) {
         this.question.comments.map(comment => comment.body = this.sanitizer.bypassSecurityTrustHtml(comment.body as string));
