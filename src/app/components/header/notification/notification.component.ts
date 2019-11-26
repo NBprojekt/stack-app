@@ -38,12 +38,9 @@ export class NotificationComponent implements OnInit {
 
   public loadMore(event?: any): void {
     this.options.page++;
-    console.log(this.options.page)
 
     this.notificatinoService.getInbox(this.options).subscribe((response: IResponse) => {
       this.items = this.items.concat(response.items as Array<any>);
-
-      console.log(response)
 
       if (event) {
         event.target.complete();
