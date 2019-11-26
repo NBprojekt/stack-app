@@ -36,24 +36,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.routerSubscribtion$ = this.router.events
-      .pipe(
-        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      ).subscribe((event: NavigationEnd) => {
-        const url = this.router.url;
-        this.title = this.firstToUpper(url.split('/').pop()) || 'Undefined';
-      });
+    this.loadPageTitle();
+    this.loadNotifications();
+  }
 
+  ngOnDestroy(): void {
+    this.routerSubscribtion$.unsubscribe();
+    this.notificationSubscribtion$.unsubscribe();
+  }
+
+  public loadNotifications(): void {
     this.notificationSubscribtion$ = interval(NotificationService.updateIntervall).pipe(
-      startWith(() => forkJoin(
+      startWith(() => forkJoin([
           this.notificatinoService.getInbox(),
           this.notificatinoService.getAchievements(),
-        )
+        ])
       ),
-      switchMap(() => forkJoin(
+      switchMap(() => forkJoin([
           this.notificatinoService.getInbox(),
           this.notificatinoService.getAchievements(),
-        )
+        ])
       ),
     ).subscribe(([inbox, achievements]) => {
       console.log([inbox, achievements]);
@@ -62,9 +64,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    this.routerSubscribtion$.unsubscribe();
-    this.notificationSubscribtion$.unsubscribe();
+  public loadPageTitle(): void {
+    this.routerSubscribtion$ = this.router.events
+    .pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+    ).subscribe((event: NavigationEnd) => {
+      const url = this.router.url;
+      this.title = this.firstToUpper(url.split('/').pop()) || 'Undefined';
+    });
   }
 
   public async showMore(event: any): Promise<any> {
