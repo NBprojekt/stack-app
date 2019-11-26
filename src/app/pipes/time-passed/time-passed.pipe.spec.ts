@@ -56,6 +56,11 @@ describe('TimePassedPipe', () => {
 
     it('years ago', () => {
       const unixTimestamp = moment().subtract(5, 'years').unix();
+      expect(pipe.transform(unixTimestamp)).toContain('years ago');
+    });
+
+    it('years with months ago', () => {
+      const unixTimestamp = moment().subtract(5, 'years').subtract(5, 'months').unix();
       expect(pipe.transform(unixTimestamp)).toContain('years,');
       expect(pipe.transform(unixTimestamp)).toContain('months ago');
     });

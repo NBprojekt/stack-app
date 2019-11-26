@@ -1,7 +1,7 @@
 <ion-card>
   <ion-card-content>
     <voting [score]="answer?.score" [isAccepted]="answer?.is_accepted"></voting>
-    <div class="post" [innerHTML]="answer.body"></div>
+    <div class="post" [innerHTML]="answer?.body"></div>
   </ion-card-content>
 
   <ion-row class="card-footer">
