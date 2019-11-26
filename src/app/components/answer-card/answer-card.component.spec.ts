@@ -1,8 +1,11 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
 
 import { AnswerCardComponent } from './answer-card.component';
-import { IonicModule } from '@ionic/angular';
+import { CommentModule } from '../comment/comment.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { VotingModule } from '../voting/voting.module';
 
 describe('AnswerCardComponent', () => {
   let component: AnswerCardComponent;
@@ -12,7 +15,10 @@ describe('AnswerCardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AnswerCardComponent ],
       imports: [
-        IonicModule
+        HttpClientTestingModule,
+        IonicModule,
+        CommentModule,
+        VotingModule,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })

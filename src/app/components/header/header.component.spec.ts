@@ -1,10 +1,13 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
+
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { HeaderComponent } from './header.component';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
-import { RouterTestingModule } from '@angular/router/testing';
-import { IonicModule } from '@ionic/angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -13,12 +16,16 @@ describe('HeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
         CommonPipesModule,
         RouterTestingModule,
         IonicModule,
-      ]
+        HttpClientTestingModule,
+      ],
+      providers: [
+        InAppBrowser
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
@@ -31,16 +38,6 @@ describe('HeaderComponent', () => {
 
   it('Should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('Should init', () => {
-    component.ngOnInit();
-
-    // TODO: Test title
-    // expect(component.title).toBeDefined();
-    expect(component.inbox).toBeDefined();
-    expect(component.achievements).toBeDefined();
-    expect(component.reviwQueues).toBeDefined();
   });
 
   it('Should tranform first letter to uppercase', () => {
