@@ -26,7 +26,7 @@ export class QuestionPage implements OnInit {
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.title = this.route.snapshot.paramMap.get('title').split('-').join(' ');
+    this.title = (this.route.snapshot.paramMap.get('title') || 'Question').split('-').join(' ') ;
 
     this.getQuestion(this.id);
     this.getAnswers(this.id);
