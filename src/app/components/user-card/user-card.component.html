@@ -1,5 +1,6 @@
-<div class="user-card" [class.highlight]="highlight">
+<div class="user-card ion-activatable" [class.highlight]="highlight">
   <div *ngIf="timestamp && action" class="timestamp"> {{action}} {{timestamp | timePassed}} </div>
+
   <ion-item class="ion-no-margin ion-no-padding" lines="none">
     <ion-avatar slot="start">
       <img [src]="user?.profile_image" default="./assets/images/placeholder/user.png">
@@ -20,4 +21,6 @@
       </div>
     </ion-label>
   </ion-item>
+
+  <ion-ripple-effect></ion-ripple-effect>
 </div>
