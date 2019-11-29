@@ -48,7 +48,7 @@ export class MenuPage implements OnInit, OnDestroy {
         title: 'About',
         url: '/menu/about',
         icon: 'information-circle',
-        routerDirection: 'root',
+        routerDirection: 'forward',
         lines: 'none',
     },
   ];
