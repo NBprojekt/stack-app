@@ -61,7 +61,7 @@ export class NotificationService {
       .get<IResponse>(`${url}me/achievements`, {headers, params})
       .pipe(
         map((response: IResponse) => {
-          response.items = response.items.splice((options.page * this.pageSize) - this.pageSize), (options.page * this.pageSize);
+          response.items = response.items.splice((options.page * this.pageSize) - this.pageSize, options.page * this.pageSize);
           return response;
         })
       );
