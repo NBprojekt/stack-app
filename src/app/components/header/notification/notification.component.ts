@@ -15,14 +15,12 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class NotificationComponent implements OnInit {
   @Input() title: string;
   @Input() items: any;
-  @Input() updateFunction: any;
 
   private options: IQuestionOptions;
 
   constructor(
     private modalController: ModalController,
     public notificatinoService: NotificationService,
-    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +37,10 @@ export class NotificationComponent implements OnInit {
   public loadMore(event?: any): void {
     this.options.page++;
 
-    this.notificatinoService.getInbox(this.options).subscribe((response: IResponse) => {
+    (this.title === 'Inbox' ?
+      this.notificatinoService.getInbox(this.options) :
+      this.notificatinoService.getAchievements(this.options)
+    ).subscribe((response: IResponse) => {
       this.items = this.items.concat(response.items as Array<any>);
 
       if (event) {
