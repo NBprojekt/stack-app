@@ -23,7 +23,7 @@ export class LoginPage implements OnInit, OnDestroy {
     private authService: AuthService,
   ) { }
 
-  async ngOnInit(): Promise<any> {
+  async ngOnInit(): Promise<void> {
     this.slidesLength = await this.slides.length();
 
     this.slides.ionSlidePrevEnd
@@ -43,7 +43,7 @@ export class LoginPage implements OnInit, OnDestroy {
     this.authService.openLogin();
   }
 
-  async skip(): Promise<any> {
+  async skip(): Promise<void> {
     this.slides.slideTo(this.slidesLength - 1);
   }
 }
