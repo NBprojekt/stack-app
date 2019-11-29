@@ -9,6 +9,8 @@ import { Observable } from 'rxjs/internal/Observable';
 import { IResponse } from 'src/app/interfaces/response';
 import { IQuestionOptions } from 'src/app/interfaces/question-options';
 
+import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -42,13 +44,26 @@ export class NotificationService {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
+    if (!(options && options.page)) {
+      options = {
+        page: 1,
+      };
+    }
+
     const params = new HttpParams()
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
-      .set('pageSize', this.pageSize.toString())
-      .set('page', options && options.page ? options.page.toString() : '1')
-      .set('filter', options && options.filter || 'O5lYbEN2lExNfdp2Q');
+      .set('pageSize', options.page ? (options.page * this.pageSize).toString() : this.pageSize.toString())
+      .set('page', '1')
+      .set('filter', options.filter || 'O5lYbEN2lExNfdp2Q');
 
-    return this.http.get<IResponse>(`${url}me/achievements`, {headers, params});
+    return this.http
+      .get<IResponse>(`${url}me/achievements`, {headers, params})
+      .pipe(
+        map((response: IResponse) => {
+          response.items = response.items.splice((options.page * this.pageSize) - this.pageSize), (options.page * this.pageSize);
+          return response;
+        })
+      );
   }
 }

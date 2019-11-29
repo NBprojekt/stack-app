@@ -3,14 +3,14 @@
     <ion-menu-button></ion-menu-button>
   </ion-buttons>
   <ion-buttons slot="end" mode="ios">
-    <ion-button icon-only (click)="showNotifications('Inbox', inbox, notificatinoService.getInbox)">
+    <ion-button icon-only (click)="showNotifications('Inbox', inbox)">
       <ion-badge color="danger">
         <span *ngIf="countUnread(inbox) !== 0"> {{countUnread(inbox) | shortenNumber}} </span>
       </ion-badge>
       <ion-icon name="md-chatbubbles"></ion-icon>
     </ion-button>
 
-    <ion-button icon-only (click)="showNotifications('Achievements', achievements, notificatinoService.getAchievements)">
+    <ion-button icon-only (click)="showNotifications('Achievements', achievements)">
       <ion-badge [color]="countUnread(achievements) >= 0 ? 'success' : 'danger'">
         <span *ngIf="countUnread(achievements) !== 0"> {{countUnread(achievements) | shortenNumber}} </span>
       </ion-badge>

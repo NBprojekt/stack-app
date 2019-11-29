@@ -74,7 +74,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  public async showMore(event: any): Promise<any> {
+  public async showMore(event: any): Promise<void> {
     const popover = await this.popoverController.create({
       component: MoreComponent,
       translucent: true,
@@ -88,7 +88,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return first + s.slice(1, s.length);
   }
 
-  public countUnread(items: any) {
+  public countUnread(items: any): number {
     if (!items) {
       return 0;
     }
@@ -102,13 +102,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .reduce((accumulator, currentValue) => accumulator + currentValue);
   }
 
-  public async showNotifications(title: string, items: Array<any>, updateFunction: any): Promise<any> {
+  public async showNotifications(title: string, items: Array<any>, updateFunction: any): Promise<void> {
     const modal = await this.modalController.create({
       component: NotificationComponent,
       componentProps: {
         title,
         items,
-        updateFunction,
       }
     });
     return await modal.present();
