@@ -27,16 +27,14 @@
             {{item?.reputation_change > 0? '+' + item?.reputation_change : item?.reputation_change}}
           </div>
 
-          {{item.title}}
+          <div [innerHTML]="item.title"></div>
 
           <div *ngIf="item?.is_unread" class="new">
             <div class="badge"> new </div>
           </div>
         </h2>
 
-        <p>
-          {{item.body}}
-        </p>
+        <p [innerHTML]="item.body"></p>
       </ion-label>
     </ion-item>
   </ion-list>
