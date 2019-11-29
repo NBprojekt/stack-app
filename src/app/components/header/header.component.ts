@@ -58,7 +58,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         ])
       ),
     ).subscribe(([inbox, achievements]) => {
-      console.log([inbox, achievements]);
       this.inbox = inbox.items;
       this.achievements = achievements.items;
     });
@@ -102,7 +101,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .reduce((accumulator, currentValue) => accumulator + currentValue);
   }
 
-  public async showNotifications(title: string, items: Array<any>, updateFunction: any): Promise<void> {
+  public async showNotifications(title: string, items: Array<any>): Promise<void> {
     const modal = await this.modalController.create({
       component: NotificationComponent,
       componentProps: {
