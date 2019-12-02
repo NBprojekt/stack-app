@@ -110,7 +110,6 @@ describe('QuestionsService', () => {
 
   it('Should return a reponse with answers', () => {
     const url = `${environment.api.url + environment.api.version}questions/1234/answers`;
-    console.log(url);
     const expectedResponse: IResponse = {
       has_more: 0,
       items: [{
