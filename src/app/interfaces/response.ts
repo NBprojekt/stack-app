@@ -6,3 +6,9 @@ export interface IResponse {
   quota_max: number;
   quota_remaining: number;
 }
+
+export interface IResponseError {
+  error_id: number;
+  error_message: string;
+  error_name: string;
+}
