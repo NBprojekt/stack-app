@@ -49,7 +49,7 @@ export class QuestionsService {
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
       .set('site', options && options.site || 'stackoverflow')
-      .set('filter', options && options.filter || '!LVBj2-me9DZTmoX6zp3pFg');
+      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
 
     if (Array.isArray(id)) {
       let ids = '';
