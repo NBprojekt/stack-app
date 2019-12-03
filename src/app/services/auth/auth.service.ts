@@ -16,6 +16,7 @@ import { IResponse } from 'src/app/interfaces/response';
 export class AuthService {
   private readonly oAuthUrl = `https://stackoverflow.com/oauth/dialog?client_id=${environment.oAuth.clientId}&redirect_uri=${environment.oAuth.redirectUrl}&scope=${environment.oAuth.scope}`;
   private readonly apiUrl = environment.api.url + environment.api.version;
+  private token: string;
   private allowBrowserClose: boolean;
 
   constructor(
