@@ -25,8 +25,8 @@ export class VotingComponent {
       this.score--;
     } else {
       this.upvoted = true;
+      this.downvoted ? this.score += 2 : this.score++;
       this.downvoted = false;
-      this.score++;
     }
   }
   public toggleDownvote(): void {
@@ -35,12 +35,13 @@ export class VotingComponent {
       this.score++;
     } else {
       this.downvoted = true;
+      this.upvoted ? this.score -= 2 : this.score--;
       this.upvoted = false;
-      this.score--;
     }
   }
 
   public toggleFavorite(): void {
+
     if (this.isFavorite) {
       this.isFavorite = false;
       this.countFavorites--;
