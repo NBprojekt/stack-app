@@ -77,6 +77,13 @@
       "app",
       "camelCase"
     ],
+    "variable-name": {
+      "options": [
+        "ban-keywords",
+        "check-format",
+        "allow-leading-underscore"
+      ]
+    },
     "component-selector": [
       true,
       "element",
