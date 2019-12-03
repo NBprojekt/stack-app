@@ -6,8 +6,8 @@ import { LoginGuard } from './guards/login/login.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'menu', pathMatch: 'full' },
-  { path: 'menu', loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuPageModule), canActivate: [AuthGuard] },
-  { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule), canActivate: [LoginGuard] },
+  { path: 'menu', loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuPageModule), canLoad: [AuthGuard] },
+  { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule), canLoad: [LoginGuard] },
 ];
 
 @NgModule({
