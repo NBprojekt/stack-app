@@ -63,7 +63,7 @@ export class AuthService {
 
   private successfulLogin(url: string): void {
     if (environment.production) {
-      this.token = url.split('=')[0];
+      this.token = url.split('=')[1];
     } else {
       this.token = url.substring(
         url.indexOf('=') + 1,
