@@ -16,7 +16,7 @@ import { IResponse } from 'src/app/interfaces/response';
 export class AuthService {
   private readonly oAuthUrl = `https://stackoverflow.com/oauth/dialog?client_id=${environment.oAuth.clientId}&redirect_uri=${environment.oAuth.redirectUrl}&scope=${environment.oAuth.scope}`;
   private readonly apiUrl = environment.api.url + environment.api.version;
-  private token: string;
+  private token: string = '(uqhzHaC1OyQmHnOUE*maA))';
   private allowBrowserClose: boolean;
 
   constructor(
@@ -56,7 +56,13 @@ export class AuthService {
   public async isAuthenticated(): Promise<boolean> {
     return new Promise((resolve) => {
       this.validateToken(this.getToken()).subscribe((response: IResponse) => {
-        resolve(response && response.items.length > 0);
+        const authenticated = response && response.items.length > 0;
+
+        if (!authenticated) {
+          this.token = null;
+        }
+
+        resolve(authenticated);
       });
     });
   }
