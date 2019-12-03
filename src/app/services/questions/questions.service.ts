@@ -24,6 +24,7 @@ export class QuestionsService {
     private authService: AuthService,
   ) { }
 
+  // Getter
   public getQuestions(options?: IQuestionOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
@@ -40,7 +41,6 @@ export class QuestionsService {
 
     return this.http.get<IResponse>(`${this.url}questions${options && options.featured ? '/featured' : '/'}`, {headers, params});
   }
-
   public getQuestion(id: number | Array<number>, options?: IQuestionOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
@@ -59,7 +59,28 @@ export class QuestionsService {
 
     return this.http.get<IResponse>(`${this.url}questions/${id}`, {headers, params});
   }
+  public getAnswers(id: number | Array<number>, options?: IQuestionOptions): Observable<IResponse> {
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
 
+    const params = new HttpParams()
+      .set('key', environment.api.key)
+      .set('access_token', this.authService.getToken())
+      .set('site', options && options.site || 'stackoverflow')
+      .set('order', options && options.order || 'desc')
+      .set('sort', options && options.sort || 'votes')
+      .set('filter', options && options.filter || '!)rFTNOmY7xxwmJcETs5e');
+
+    if (Array.isArray(id)) {
+      let ids = '';
+      id.forEach((value) => ids += `${value};`);
+      return this.http.get<IResponse>(`${this.url}questions/${ids}/answers`, {headers, params});
+    }
+
+    return this.http.get<IResponse>(`${this.url}questions/${id}/answers`, {headers, params});
+  }
+
+  // Voting
   public upvoteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
@@ -112,6 +133,8 @@ export class QuestionsService {
 
     return this.http.get<IResponse>(`${this.url}questions/${id}/downvote/undo`, {headers, params});
   }
+
+  // Vavorites
   public favoriteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
@@ -138,6 +161,8 @@ export class QuestionsService {
 
     return this.http.get<IResponse>(`${this.url}questions/${id}/favorite/undo`, {headers, params});
   }
+
+  // Helper
   public questionIsHot(question: IQuestion): boolean {
     if (!question.answers) { return false; }
 
@@ -152,32 +177,10 @@ export class QuestionsService {
                     , 1.5)
             ) > 0;
   }
-
   private unixTimestampToHours(unixTimestamp: number): number {
     const start = moment.unix(unixTimestamp);
     const end = moment();
     const duration = moment.duration(end.diff(start));
     return duration.asHours();
-  }
-
-  public getAnswers(id: number | Array<number>, options?: IQuestionOptions): Observable<IResponse> {
-    const headers = new HttpHeaders()
-      .set('Accept', '*/*');
-
-    const params = new HttpParams()
-      .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
-      .set('order', options && options.order || 'desc')
-      .set('sort', options && options.sort || 'votes')
-      .set('filter', options && options.filter || '!)rFTNOmY7xxwmJcETs5e');
-
-    if (Array.isArray(id)) {
-      let ids = '';
-      id.forEach((value) => ids += `${value};`);
-      return this.http.get<IResponse>(`${this.url}questions/${ids}/answers`, {headers, params});
-    }
-
-    return this.http.get<IResponse>(`${this.url}questions/${id}/answers`, {headers, params});
   }
 }
