@@ -1,6 +1,10 @@
 <ion-card>
   <ion-card-header>
-    <voting [score]="question?.score" showFavorites="true" [countFavorites]="question?.favorite_count"></voting>
+    <voting [score]="question?.score" [questionId]="question?.question_id"
+            [upvoted]="question?.upvoted" [downvoted]="question?.downvoted"
+            showFavorites="true" [isFavorite]="question?.favorited"
+            [countFavorites]="question?.favorite_count">
+    </voting>
     <ion-card-subtitle>
       Asked <span> {{question?.creation_date | timePassed}} </span>
       Viewed <span> {{question?.view_count | shortenNumber}} {{question?.view_count === 1 ? 'time' : 'times'}} </span>
@@ -29,7 +33,7 @@
     </ion-col>
     <ion-col size="6">
       <user-card *ngIf="question?.last_editor && question?.owner.user_id != question?.last_editor.user_id"
-                  [user]="question?.last_editor" action="edited" [timestamp]="question?.last_edit_date">
+                 [user]="question?.last_editor" action="edited" [timestamp]="question?.last_edit_date">
       </user-card>
     </ion-col>
 
