@@ -112,6 +112,32 @@ export class QuestionsService {
 
     return this.http.get<IResponse>(`${this.url}questions/${id}/downvote/undo`, {headers, params});
   }
+  public favoriteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse> {
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
+
+    const params = new HttpParams()
+      .set('key', environment.api.key)
+      .set('access_token', this.authService.getToken())
+      .set('site', options && options.site || 'stackoverflow')
+      .set('preview', environment.production ? 'false' : 'true')
+      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+
+    return this.http.get<IResponse>(`${this.url}questions/${id}/favorite`, {headers, params});
+  }
+  public favoriteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse> {
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
+
+    const params = new HttpParams()
+      .set('key', environment.api.key)
+      .set('access_token', this.authService.getToken())
+      .set('site', options && options.site || 'stackoverflow')
+      .set('preview', environment.production ? 'false' : 'true')
+      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+
+    return this.http.get<IResponse>(`${this.url}questions/${id}/favorite/undo`, {headers, params});
+  }
   public questionIsHot(question: IQuestion): boolean {
     if (!question.answers) { return false; }
 
