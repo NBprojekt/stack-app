@@ -1,3 +1,8 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <div [hidden]="!loading" class="loader">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+  <div [hidden]="loading">
+   <ion-router-outlet></ion-router-outlet>
+  </div>
 </ion-app>
