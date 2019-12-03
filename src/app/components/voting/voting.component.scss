@@ -27,6 +27,9 @@
   .fa-star, .fa-check, .fa-caret-up, .fa-caret-down {
     color: #a3a3a3;
   }
+  .voted {
+    color: var(--ion-color-primary);
+  }
 
   .fa-check {
     font-size: 1.5em;
