@@ -1,6 +1,6 @@
 <div class="voting">
   <div class="text-wrapper">
-    <i class="fas fa-caret-up"></i>
+    <i class="fas fa-caret-up" [class.voted]="upvoted" (click)="toggleUpvote()"></i>
   </div>
   <div class="text-wrapper">
     <div class="counter">
@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="text-wrapper">
-    <i class="fas fa-caret-down"></i>
+    <i class="fas fa-caret-down" [class.voted]="downvoted" (click)="toggleDownvote()"></i>
   </div>
 
   <div *ngIf="showFavorites" class="favorites" (click)="toggleFavorite()">

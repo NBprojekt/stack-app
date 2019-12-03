@@ -6,7 +6,11 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./voting.component.scss'],
 })
 export class VotingComponent {
+  @Input() questionId: number;
   @Input() score: number;
+
+  @Input() upvoted?: boolean;
+  @Input() downvoted?: boolean;
 
   @Input() showFavorites?: boolean;
   @Input() isFavorite?: boolean;
@@ -15,8 +19,35 @@ export class VotingComponent {
   @Input() showAccepted?: boolean;
   @Input() isAccepted?: boolean;
 
+  public toggleUpvote(): void {
+    if (this.upvoted) {
+      this.upvoted = false;
+      this.score--;
+    } else {
+      this.upvoted = true;
+      this.downvoted = false;
+      this.score++;
+    }
+  }
+  public toggleDownvote(): void {
+    if (this.downvoted) {
+      this.downvoted = false;
+      this.score++;
+    } else {
+      this.downvoted = true;
+      this.upvoted = false;
+      this.score--;
+    }
+  }
+
   public toggleFavorite(): void {
-    this.isFavorite = !this.isFavorite;
+    if (this.isFavorite) {
+      this.isFavorite = false;
+      this.countFavorites--;
+    } else {
+      this.isFavorite = true;
+      this.countFavorites++;
+    }
   }
   public toggleAccepted(): void {
     this.isAccepted = !this.isAccepted;
