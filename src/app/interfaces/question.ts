@@ -25,6 +25,10 @@ export interface IQuestion {
   body?: string | SafeHtml;
   locked_date?: number;
   last_editor?: IUser;
-  favorite_count?: number;
   comments?: Array<IComment>;
+
+  favorited?: boolean;
+  favorite_count?: number;
+  downvoted?: boolean;
+  upvoted?: boolean;
 }
