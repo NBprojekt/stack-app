@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 
 import { IQuestion } from 'src/app/interfaces/question';
 import { IQuestionOptions } from 'src/app/interfaces/question-options';
-import { IResponse } from 'src/app/interfaces/response';
+import { IResponse, IResponseError } from 'src/app/interfaces/response';
 
 import { AuthService } from '../auth/auth.service';
 
@@ -81,7 +81,7 @@ export class QuestionsService {
   }
 
   // Voting
-  public upvoteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse> {
+  public upvoteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -92,9 +92,9 @@ export class QuestionsService {
       .set('preview', environment.production ? 'false' : 'true')
       .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
 
-    return this.http.get<IResponse>(`${this.url}questions/${id}/upvote`, {headers, params});
+    return this.http.get<IResponse | IResponseError>(`${this.url}questions/${id}/upvote`, {headers, params});
   }
-  public upvoteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse> {
+  public upvoteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -105,9 +105,9 @@ export class QuestionsService {
       .set('preview', environment.production ? 'false' : 'true')
       .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
 
-    return this.http.get<IResponse>(`${this.url}questions/${id}/upvote/undo`, {headers, params});
+    return this.http.get<IResponse | IResponseError>(`${this.url}questions/${id}/upvote/undo`, {headers, params});
   }
-  public downvoteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse> {
+  public downvoteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -118,9 +118,9 @@ export class QuestionsService {
       .set('preview', environment.production ? 'false' : 'true')
       .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
 
-    return this.http.get<IResponse>(`${this.url}questions/${id}/downvote`, {headers, params});
+    return this.http.get<IResponse | IResponseError>(`${this.url}questions/${id}/downvote`, {headers, params});
   }
-  public downvoteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse> {
+  public downvoteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -131,7 +131,7 @@ export class QuestionsService {
       .set('preview', environment.production ? 'false' : 'true')
       .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
 
-    return this.http.get<IResponse>(`${this.url}questions/${id}/downvote/undo`, {headers, params});
+    return this.http.get<IResponse | IResponseError>(`${this.url}questions/${id}/downvote/undo`, {headers, params});
   }
 
   // Vavorites
