@@ -55,6 +55,11 @@ export class AuthService {
 
   public async isAuthenticated(): Promise<boolean> {
     return new Promise((resolve) => {
+      if (!this.token) {
+        resolve(false);
+        return;
+      }
+
       this.validateToken(this.getToken()).subscribe((response: IResponse) => {
         const authenticated = response && response.items.length > 0;
 
