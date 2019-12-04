@@ -39,11 +39,11 @@ export class LoginPage implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  logIn() {
+  public logIn(): void {
     this.authService.openLogin();
   }
 
-  async skip(): Promise<void> {
+  public async skip(): Promise<void> {
     this.slides.slideTo(this.slidesLength - 1);
   }
 }
