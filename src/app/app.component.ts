@@ -1,9 +1,11 @@
 import { Component, AfterViewInit } from '@angular/core';
 
+import { GuardsCheckStart, Router, NavigationEnd, NavigationCancel, RouterEvent } from '@angular/router';
+
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { GuardsCheckStart, Router, NavigationEnd, NavigationCancel, RouterEvent } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +19,7 @@ export class AppComponent implements AfterViewInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
+    private store: Storage,
     private router: Router,
   ) {
     this.initializeApp();
@@ -34,10 +37,15 @@ export class AppComponent implements AfterViewInit {
       });
 }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
+  private async initializeApp() {
+    await Promise.all([
+      this.platform.ready(),
+      this.store.ready(),
+    ]).then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+    }).catch(error => {
+      console.error('Cann not initialize the App', error);
     });
   }
 }
