@@ -79,9 +79,9 @@
     ],
     "variable-name": {
       "options": [
+        "allow-leading-underscore",
         "ban-keywords",
-        "check-format",
-        "allow-leading-underscore"
+        "check-format"
       ]
     },
     "component-selector": [
