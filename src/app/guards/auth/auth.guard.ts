@@ -37,6 +37,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     const isAuthenticated = await this.authService.isAuthenticated();
     return isAuthenticated ? true : this.router.parseUrl('/login');
   }
+
   public async canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
     const isAuthenticated = await this.authService.isAuthenticated();
     return isAuthenticated ? true : this.router.parseUrl('/login');
