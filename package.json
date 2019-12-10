@@ -11,7 +11,8 @@
     "build": "bash ./scripts/build.sh",
     "emulate": "bash ./scripts/emulate.sh",
     "debug": "bash ./scripts/debug.sh",
-    "sign": "bash ./scripts/sign.sh"
+    "sign": "bash ./scripts/sign.sh",
+    "installation": "bash ./scripts/install.sh"
   },
   "private": true,
   "dependencies": {
