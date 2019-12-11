@@ -24,7 +24,9 @@ jobs:
           node-version: 12.x
 
       - name: Install dependencies
-        run: npm ci && npm i -g ionic && npm i -g cordova   
+        run: npm ci 
+      - name: Install global packages
+        run: i -g ionic cordova   
       - name: Add android platform
         run: ionic cordova resources && ionic cordova platform add android
 
