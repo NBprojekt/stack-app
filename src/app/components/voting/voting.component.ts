@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'voting',
@@ -12,14 +12,21 @@ export class VotingComponent {
   @Input() upvoted?: boolean;
   @Input() downvoted?: boolean;
 
+  @Output() upvote = new EventEmitter();
+  @Output() downvote = new EventEmitter();
+
   @Input() showFavorites?: boolean;
   @Input() isFavorite?: boolean;
   @Input() countFavorites?: number;
+  @Output() favorite = new EventEmitter();
 
   @Input() showAccepted?: boolean;
   @Input() isAccepted?: boolean;
+  @Output() accept = new EventEmitter();
 
   public toggleUpvote(): void {
+    this.upvote.emit();
+
     if (this.upvoted) {
       this.upvoted = false;
       this.score--;
@@ -30,6 +37,8 @@ export class VotingComponent {
     }
   }
   public toggleDownvote(): void {
+    this.downvote.emit();
+
     if (this.downvoted) {
       this.downvoted = false;
       this.score++;
@@ -41,6 +50,7 @@ export class VotingComponent {
   }
 
   public toggleFavorite(): void {
+    this.favorite.emit();
 
     if (this.isFavorite) {
       this.isFavorite = false;
@@ -50,7 +60,9 @@ export class VotingComponent {
       this.countFavorites++;
     }
   }
+
   public toggleAccepted(): void {
+    this.accept.emit();
     this.isAccepted = !this.isAccepted;
   }
 }
