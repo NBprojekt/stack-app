@@ -16,10 +16,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: set up JDK 1.8
+        
+      - name: Use Java 8.x
         uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: 8.x
 
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
@@ -29,12 +30,14 @@ jobs:
       - name: Install dependencies
         run: npm ci 
       - name: Install global packages
-        run: npm i -g ionic cordova   
+        run: npm i -g ionic cordova  
+         
       - name: Add android platform
         run: ionic cordova resources && ionic cordova platform add android
 
       - name: Build APK
         run: ionic cordova build android --prod 
+
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
