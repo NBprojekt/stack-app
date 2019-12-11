@@ -36,7 +36,6 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     steps:
-    - continue-on-error: true
     - uses: actions/checkout@v1
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
@@ -46,3 +45,4 @@ jobs:
       run: npm ci
     - name: Unit tests
       run: npx ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
+      continue-on-error: true
