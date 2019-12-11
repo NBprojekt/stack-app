@@ -1,28 +1,35 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'voting',
   templateUrl: './voting.component.html',
   styleUrls: ['./voting.component.scss'],
 })
-export class VotingComponent {
+export class VotingComponent implements OnInit {
   @Input() questionId: number;
   @Input() score: number;
 
   @Input() upvoted?: boolean;
   @Input() downvoted?: boolean;
 
-  @Output() upvote = new EventEmitter();
-  @Output() downvote = new EventEmitter();
+  @Output() upvote: EventEmitter<void>;
+  @Output() downvote: EventEmitter<void>;
 
   @Input() showFavorites?: boolean;
   @Input() isFavorite?: boolean;
   @Input() countFavorites?: number;
-  @Output() favorite = new EventEmitter();
+  @Output() favorite: EventEmitter<void>;
 
   @Input() showAccepted?: boolean;
   @Input() isAccepted?: boolean;
-  @Output() accept = new EventEmitter();
+  @Output() accept: EventEmitter<void>;
+
+  public ngOnInit(): void {
+    this.upvote = new EventEmitter();
+    this.downvote = new EventEmitter();
+    this.favorite = new EventEmitter();
+    this.accept = new EventEmitter();
+  }
 
   public toggleUpvote(): void {
     this.upvote.emit();
