@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: npm ci 
       - name: Install global packages
-        run: i -g ionic cordova   
+        run: npm i -g ionic cordova   
       - name: Add android platform
         run: ionic cordova resources && ionic cordova platform add android
 
