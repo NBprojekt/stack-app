@@ -1,6 +1,6 @@
 <ion-card>
   <ion-card-header>
-    <voting [score]="question?.score" [questionId]="question?.question_id"
+    <voting [score]="question?.score" [id]="question?.question_id" mode="question"
             [upvoted]="question?.upvoted" [downvoted]="question?.downvoted"
             showFavorites="true" [isFavorite]="question?.favorited"
             [countFavorites]="question?.favorite_count">
