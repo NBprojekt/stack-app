@@ -126,9 +126,17 @@ export class VotingComponent {
     if (this.isFavorite) {
       this.isFavorite = false;
       this.countFavorites--;
+
+      this.questionService
+        .favoriteQuestionUndo(this.questionId)
+        .subscribe(() => {});
     } else {
       this.isFavorite = true;
       this.countFavorites++;
+
+      this.questionService
+        .favoriteQuestion(this.questionId)
+        .subscribe(() => {});
     }
   }
 
