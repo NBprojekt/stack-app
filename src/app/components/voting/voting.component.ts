@@ -1,38 +1,26 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'voting',
   templateUrl: './voting.component.html',
   styleUrls: ['./voting.component.scss'],
 })
-export class VotingComponent implements OnInit {
+export class VotingComponent {
   @Input() questionId: number;
   @Input() score: number;
 
   @Input() upvoted?: boolean;
   @Input() downvoted?: boolean;
 
-  @Output() upvote: EventEmitter<void>;
-  @Output() downvote: EventEmitter<void>;
-
   @Input() showFavorites?: boolean;
   @Input() isFavorite?: boolean;
   @Input() countFavorites?: number;
-  @Output() favorite: EventEmitter<void>;
 
   @Input() showAccepted?: boolean;
   @Input() isAccepted?: boolean;
-  @Output() accept: EventEmitter<void>;
 
-  public ngOnInit(): void {
-    this.upvote = new EventEmitter();
-    this.downvote = new EventEmitter();
-    this.favorite = new EventEmitter();
-    this.accept = new EventEmitter();
-  }
 
   public toggleUpvote(): void {
-    this.upvote.emit();
 
     if (this.upvoted) {
       this.upvoted = false;
@@ -44,7 +32,6 @@ export class VotingComponent implements OnInit {
     }
   }
   public toggleDownvote(): void {
-    this.downvote.emit();
 
     if (this.downvoted) {
       this.downvoted = false;
@@ -57,7 +44,6 @@ export class VotingComponent implements OnInit {
   }
 
   public toggleFavorite(): void {
-    this.favorite.emit();
 
     if (this.isFavorite) {
       this.isFavorite = false;
@@ -69,7 +55,6 @@ export class VotingComponent implements OnInit {
   }
 
   public toggleAccepted(): void {
-    this.accept.emit();
     this.isAccepted = !this.isAccepted;
   }
 }
