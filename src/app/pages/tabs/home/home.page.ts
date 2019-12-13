@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionsService } from 'src/app/services/questions/questions.service';
 
 import { IQuestion } from 'src/app/interfaces/question';
-import { IQuestionOptions } from 'src/app/interfaces/question-options';
+import { IRequestOptions } from 'src/app/interfaces/request-options';
 import { IResponse } from 'src/app/interfaces/response';
 
 @Component({
@@ -15,7 +15,7 @@ export class HomePage implements OnInit {
   public backdrop = false;
   public questions: Array<IQuestion>;
 
-  private options: IQuestionOptions;
+  private options: IRequestOptions;
 
   constructor(
     private questionsService: QuestionsService,
@@ -47,7 +47,7 @@ export class HomePage implements OnInit {
     });
   }
 
-  public updateFilter(options: IQuestionOptions): void {
+  public updateFilter(options: IRequestOptions): void {
     this.questions = null;
     this.options = options;
     this.doRefresh();

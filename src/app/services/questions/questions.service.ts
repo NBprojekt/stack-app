@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 
 import { IQuestion } from 'src/app/interfaces/question';
-import { IQuestionOptions } from 'src/app/interfaces/question-options';
+import { IRequestOptions } from 'src/app/interfaces/request-options';
 import { IResponse, IResponseError } from 'src/app/interfaces/response';
 
 import { AuthService } from '../auth/auth.service';
@@ -25,7 +25,7 @@ export class QuestionsService {
   ) { }
 
   // Getter
-  public getQuestions(options?: IQuestionOptions): Observable<IResponse> {
+  public getQuestions(options?: IRequestOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -41,7 +41,7 @@ export class QuestionsService {
 
     return this.http.get<IResponse>(`${this.url}questions${options && options.featured ? '/featured' : '/'}`, {headers, params});
   }
-  public getQuestion(id: number | Array<number>, options?: IQuestionOptions): Observable<IResponse> {
+  public getQuestion(id: number | Array<number>, options?: IRequestOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -59,7 +59,7 @@ export class QuestionsService {
 
     return this.http.get<IResponse>(`${this.url}questions/${id}`, {headers, params});
   }
-  public getAnswers(id: number | Array<number>, options?: IQuestionOptions): Observable<IResponse> {
+  public getAnswers(id: number | Array<number>, options?: IRequestOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -81,7 +81,7 @@ export class QuestionsService {
   }
 
   // Voting
-  public upvoteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
+  public upvoteQuestion(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
     .set('Accept', '*/*')
       .set('Content-Type', 'application/x-www-form-urlencoded');
@@ -100,7 +100,7 @@ export class QuestionsService {
       { headers }
     );
   }
-  public upvoteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
+  public upvoteQuestionUndo(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*')
       .set('Content-Type', 'application/x-www-form-urlencoded');
@@ -119,7 +119,7 @@ export class QuestionsService {
       { headers }
     );
   }
-  public downvoteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
+  public downvoteQuestion(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*')
       .set('Content-Type', 'application/x-www-form-urlencoded');
@@ -138,7 +138,7 @@ export class QuestionsService {
       { headers }
     );
   }
-  public downvoteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
+  public downvoteQuestionUndo(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*')
       .set('Content-Type', 'application/x-www-form-urlencoded');
@@ -159,8 +159,7 @@ export class QuestionsService {
   }
 
   // Vavorites
-
-  public favoriteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
+  public favoriteQuestion(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*')
       .set('Content-Type', 'application/x-www-form-urlencoded');
@@ -179,7 +178,7 @@ export class QuestionsService {
       { headers }
     );
   }
-  public favoriteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
+  public favoriteQuestionUndo(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*')
       .set('Content-Type', 'application/x-www-form-urlencoded');

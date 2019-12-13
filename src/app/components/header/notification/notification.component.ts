@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
-import { IQuestionOptions } from 'src/app/interfaces/question-options';
+import { IRequestOptions } from 'src/app/interfaces/request-options';
 import { IResponse } from 'src/app/interfaces/response';
 
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -16,7 +16,7 @@ export class NotificationComponent implements OnInit {
   @Input() title: string;
   @Input() items: any;
 
-  private options: IQuestionOptions;
+  private options: IRequestOptions;
 
   constructor(
     private modalController: ModalController,

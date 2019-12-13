@@ -7,7 +7,7 @@ import { AuthService } from '../auth/auth.service';
 
 import { Observable } from 'rxjs/internal/Observable';
 import { IResponse } from 'src/app/interfaces/response';
-import { IQuestionOptions } from 'src/app/interfaces/question-options';
+import { IRequestOptions } from 'src/app/interfaces/request-options';
 
 import { map } from 'rxjs/operators';
 
@@ -25,7 +25,7 @@ export class NotificationService {
     private authService: AuthService,
   ) {}
 
-  public getInbox(options?: IQuestionOptions): Observable<IResponse> {
+  public getInbox(options?: IRequestOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -39,7 +39,7 @@ export class NotificationService {
     return this.http.get<IResponse>(`${this.url}inbox`, {headers, params});
   }
 
-  public getAchievements(options?: IQuestionOptions): Observable<IResponse> {
+  public getAchievements(options?: IRequestOptions): Observable<IResponse> {
     const url = environment.api.url + '2.3/';
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
