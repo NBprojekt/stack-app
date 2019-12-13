@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 
 import { IQuestion } from 'src/app/interfaces/question';
-import { IQuestionOptions } from 'src/app/interfaces/question-options';
+import { IRequestOptions } from 'src/app/interfaces/request-options';
 import { QuestionsService } from 'src/app/services/questions/questions.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { QuestionsService } from 'src/app/services/questions/questions.service';
 })
 export class FeedComponent implements OnInit {
   @Input() questions: Array<IQuestion>;
-  @Output() options = new EventEmitter<IQuestionOptions>();
+  @Output() options = new EventEmitter<IRequestOptions>();
 
   public filter: string;
 
