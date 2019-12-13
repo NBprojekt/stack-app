@@ -83,55 +83,79 @@ export class QuestionsService {
   // Voting
   public upvoteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
-      .set('Accept', '*/*');
+    .set('Accept', '*/*')
+      .set('Content-Type', 'application/x-www-form-urlencoded');
 
-    const params = new HttpParams()
-      .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
-      .set('preview', environment.production ? 'false' : 'true')
-      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+    const body = {
+      key: environment.api.key,
+      access_token: this.authService.getToken(),
+      site: options && options.site || 'stackoverflow',
+      preview: !environment.production,
+      filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
+    };
 
-    return this.http.get<IResponse | IResponseError>(`${this.url}questions/${id}/upvote`, {headers, params});
+    return this.http.post<IResponse | IResponseError>(
+      `${this.url}questions/${id}/upvote`,
+      this.bodyToFormBody(body),
+      { headers }
+    );
   }
   public upvoteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
-      .set('Accept', '*/*');
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/x-www-form-urlencoded');
 
-    const params = new HttpParams()
-      .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
-      .set('preview', environment.production ? 'false' : 'true')
-      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+    const body = {
+      key: environment.api.key,
+      access_token: this.authService.getToken(),
+      site: options && options.site || 'stackoverflow',
+      preview: !environment.production,
+      filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
+    };
 
-    return this.http.get<IResponse | IResponseError>(`${this.url}questions/${id}/upvote/undo`, {headers, params});
+    return this.http.post<IResponse | IResponseError>(
+      `${this.url}questions/${id}/upvote/undo`,
+      this.bodyToFormBody(body),
+      { headers }
+    );
   }
   public downvoteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
-      .set('Accept', '*/*');
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/x-www-form-urlencoded');
 
-    const params = new HttpParams()
-      .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
-      .set('preview', environment.production ? 'false' : 'true')
-      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+    const body = {
+      key: environment.api.key,
+      access_token: this.authService.getToken(),
+      site: options && options.site || 'stackoverflow',
+      preview: !environment.production,
+      filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
+    };
 
-    return this.http.get<IResponse | IResponseError>(`${this.url}questions/${id}/downvote`, {headers, params});
+    return this.http.post<IResponse | IResponseError>(
+      `${this.url}questions/${id}/downvote`,
+      this.bodyToFormBody(body),
+      { headers }
+    );
   }
   public downvoteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
-      .set('Accept', '*/*');
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/x-www-form-urlencoded');
 
-    const params = new HttpParams()
-      .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
-      .set('preview', environment.production ? 'false' : 'true')
-      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+    const body = {
+      key: environment.api.key,
+      access_token: this.authService.getToken(),
+      site: options && options.site || 'stackoverflow',
+      preview: !environment.production,
+      filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
+    };
 
-    return this.http.get<IResponse | IResponseError>(`${this.url}questions/${id}/downvote/undo`, {headers, params});
+    return this.http.post<IResponse | IResponseError>(
+      `${this.url}questions/${id}/downvote/undo`,
+      this.bodyToFormBody(body),
+      { headers }
+    );
   }
 
   // Vavorites
@@ -176,6 +200,17 @@ export class QuestionsService {
                      / 2))
                     , 1.5)
             ) > 0;
+  }
+  private bodyToFormBody(obj: any): string {
+    const formBody = [];
+    for (const property in obj) {
+      if (obj.hasOwnProperty(property)) {
+        const encodedKey = encodeURIComponent(property);
+        const encodedValue = encodeURIComponent(obj[property]);
+        formBody.push(`${encodedKey}=${encodedValue}`);
+      }
+    }
+    return formBody.join('&');
   }
   private unixTimestampToHours(unixTimestamp: number): number {
     const start = moment.unix(unixTimestamp);
