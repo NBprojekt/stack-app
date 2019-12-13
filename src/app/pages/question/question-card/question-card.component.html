@@ -3,9 +3,7 @@
     <voting [score]="question?.score" [questionId]="question?.question_id"
             [upvoted]="question?.upvoted" [downvoted]="question?.downvoted"
             showFavorites="true" [isFavorite]="question?.favorited"
-            [countFavorites]="question?.favorite_count"
-            (upvote)="upvote.emit()" (downvote)="downvote.emit()"
-            (favorite)="favorite.emit()" (accept)="accept.emit()">
+            [countFavorites]="question?.favorite_count">
     </voting>
     <ion-card-subtitle>
       Asked <span> {{question?.creation_date | timePassed}} </span>
