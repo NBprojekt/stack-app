@@ -159,31 +159,44 @@ export class QuestionsService {
   }
 
   // Vavorites
-  public favoriteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse> {
+
+  public favoriteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
-      .set('Accept', '*/*');
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/x-www-form-urlencoded');
 
-    const params = new HttpParams()
-      .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
-      .set('preview', environment.production ? 'false' : 'true')
-      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+    const body = {
+      key: environment.api.key,
+      access_token: this.authService.getToken(),
+      site: options && options.site || 'stackoverflow',
+      preview: !environment.production,
+      filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
+    };
 
-    return this.http.get<IResponse>(`${this.url}questions/${id}/favorite`, {headers, params});
+    return this.http.post<IResponse | IResponseError>(
+      `${this.url}questions/${id}/favorite`,
+      this.bodyToFormBody(body),
+      { headers }
+    );
   }
-  public favoriteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse> {
+  public favoriteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
-      .set('Accept', '*/*');
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/x-www-form-urlencoded');
 
-    const params = new HttpParams()
-      .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
-      .set('preview', environment.production ? 'false' : 'true')
-      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+    const body = {
+      key: environment.api.key,
+      access_token: this.authService.getToken(),
+      site: options && options.site || 'stackoverflow',
+      preview: !environment.production,
+      filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
+    };
 
-    return this.http.get<IResponse>(`${this.url}questions/${id}/favorite/undo`, {headers, params});
+    return this.http.post<IResponse | IResponseError>(
+      `${this.url}questions/${id}/favorite/undo`,
+      this.bodyToFormBody(body),
+      { headers }
+    );
   }
 
   // Helper
