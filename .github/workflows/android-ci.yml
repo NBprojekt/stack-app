@@ -37,9 +37,12 @@ jobs:
 
       - name: Build APK
         run: ionic cordova build android --prod 
-
+        
+      - name: Rename APK
+        run: mv platforms/android/app/build/outputs/apk/debug/app-debug.apk ${{secrets.APP_NAME}}.apk
+        
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
           name: stack-app
-          path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+          path: ${{secrets.APP_NAME}}.apk
