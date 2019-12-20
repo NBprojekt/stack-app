@@ -4,8 +4,8 @@ ion-button {
 
   ion-badge {
     position: absolute;
-    top: 0px;
-    left: 14px;
+    top: -2px;
+    right: 4px;
     z-index: 5;
 
     overflow: inherit;
@@ -22,6 +22,17 @@ ion-button {
     &.circle {
       width: 20px;
       height: 20px;;
+    }
+
+    span {
+      padding-left: 8px;
+    }
+
+    .fas, .far {
+      position: absolute;
+      left: 3px;
+      top: 5px;
+      font-size: .6em;
     }
 
     &~ ion-icon {
