@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { AlertController } from '@ionic/angular';
 
@@ -12,7 +12,7 @@ import { AnswerService } from 'src/app/services/answer/answer.service';
   templateUrl: './voting.component.html',
   styleUrls: ['./voting.component.scss'],
 })
-export class VotingComponent implements OnInit {
+export class VotingComponent {
   @Input() id: number;
   @Input() mode: 'question' | 'answer';
   @Input() score: number;
@@ -32,10 +32,6 @@ export class VotingComponent implements OnInit {
     private answerService: AnswerService,
     private alertController: AlertController,
   ) {}
-
-  public ngOnInit(): void {
-    console.log([this.id, this.mode]);
-  }
 
   /**
    * TODO: Refactor this shitty code
