@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+
 import { QuestionOptionsComponent } from '../question-options/question-options.component';
+
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'question-header',
@@ -13,11 +16,17 @@ export class QuestionHeaderComponent implements OnInit {
 
   constructor(
     private popoverController: PopoverController,
+    private socialSharing: SocialSharing,
   ) { }
 
   ngOnInit() {}
 
   public async shareQuestion(): Promise<void> {
+    this.socialSharing.shareWithOptions({
+      message: this.title,
+      subject: this.title,
+      url: this.link,
+    });
     return null;
   }
 
