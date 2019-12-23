@@ -15,7 +15,9 @@
         <img [src]="item?.site?.high_resolution_icon_url || item?.on_site?.high_resolution_icon_url">
       </ion-avatar>
       <ion-label>
-        <h3 color="medium"> {{item?.item_type || item?.achievement_type}} </h3>
+        <h3 color="medium">
+          {{item?.item_type || item?.achievement_type | snakeToHuman}}
+        </h3>
 
         <h2 class="align-items-center">
           <div *ngIf="item?.achievement_type === 'badge'" [class]="'rank ' + item?.badge_rank">
