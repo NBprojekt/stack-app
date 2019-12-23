@@ -26,6 +26,9 @@ export class QuestionHeaderComponent implements OnInit {
       component: QuestionOptionsComponent,
       translucent: true,
       event,
+      componentProps: {
+        link: this.link,
+      }
     });
     return await popover.present();
   }
