@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-question-options',
@@ -6,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./question-options.component.scss'],
 })
 export class QuestionOptionsComponent implements OnInit {
+  private link: string;
 
-  constructor() { }
+  constructor(
+    private navParams: NavParams,
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.link = this.navParams.data.link;
+  }
 
+  public openInBrowser(): void {
+    window.open(this.link, '_blank').focus();
+  }
 }
