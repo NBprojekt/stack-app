@@ -59,6 +59,12 @@ If not, use our templates for [bugs reports][2] and [feature requests][3]. <br>
 You will be asked some questions and requested to provide some information, please read them CAREFULLY and answer honestly.
 
 ## Development
+This project requires [NodeJs][6] to run.
+
+Now clone the project `https://github.com/NBprojekt/stack-app.git` and run `npm run installation`, the rest in done by the script.
+
+If you want to learn more about the scripts in this project check out the [script readme][8].
+> If you use windows make sure you are able to run bash scripts. You can simply install [gitbash][7].
 
 ## Contributing
 Thanks for your interest in contributing! Read up on our guidelines for [contributing][4] and then look through our issues with a [help wanted][5] label.
@@ -67,8 +73,13 @@ Thanks for your interest in contributing! Read up on our guidelines for [contrib
 
 ## License
 
+[//]: # (Links)
+
 [1]: https://github.com/nbprojekt/stack-app/issues
 [2]: https://github.com/NBprojekt/stack-app/issues/new?assignees=&labels=bug&template=bug-report.md&title=
 [3]: https://github.com/NBprojekt/stack-app/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=
 [4]: https://github.com/NBprojekt/stack-app/blob/master/.github/CONTRIBUTING.md
 [5]: https://github.com/NBprojekt/stack-app/labels/help%20wanted
+[6]: https://nodejs.org/en/
+[7]: https://gitforwindows.org/
+[8]: https://github.com/NBprojekt/stack-app/blob/Feature-create-readme/scripts/README.md
