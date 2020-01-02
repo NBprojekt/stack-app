@@ -11,6 +11,7 @@ import { IRequestOptions } from 'src/app/interfaces/request-options';
 import { IResponse, IResponseError } from 'src/app/interfaces/response';
 
 import { AuthService } from '../auth/auth.service';
+import { SitesService } from '../sites/sites.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class QuestionsService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
+    private siteService: SitesService,
   ) { }
 
   // Getter
@@ -34,7 +36,7 @@ export class QuestionsService {
       .set('access_token', this.authService.getToken())
       .set('page', options && options.page ? options.page.toString() : '1')
       .set('pagesize', this.pagesize.toString())
-      .set('site', options && options.site || 'stackoverflow')
+      .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
       .set('order', options && options.order || 'desc')
       .set('filter', options && options.filter || '!-.3J6_-dxUCh')
       .set('sort', options && options.sort || 'activity');
@@ -48,7 +50,7 @@ export class QuestionsService {
     const params = new HttpParams()
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
+      .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
       .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
 
     if (Array.isArray(id)) {
@@ -66,7 +68,7 @@ export class QuestionsService {
     const params = new HttpParams()
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
+      .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
       .set('order', options && options.order || 'desc')
       .set('sort', options && options.sort || 'votes')
       .set('filter', options && options.filter || '!)rFTNOmY7xxwmJcETs5e');
@@ -89,7 +91,7 @@ export class QuestionsService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
     };
@@ -108,7 +110,7 @@ export class QuestionsService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
     };
@@ -127,7 +129,7 @@ export class QuestionsService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
     };
@@ -146,7 +148,7 @@ export class QuestionsService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
     };
@@ -167,7 +169,7 @@ export class QuestionsService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
     };
@@ -186,7 +188,7 @@ export class QuestionsService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
     };
