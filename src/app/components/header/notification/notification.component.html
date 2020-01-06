@@ -10,7 +10,7 @@
 <ion-content fullscreen>
 
   <ion-list>
-    <ion-item *ngFor="let item of items">
+    <ion-item *ngFor="let item of items" (click)="forwardInternally(item);">
       <ion-avatar slot="start">
         <img [src]="item?.site?.high_resolution_icon_url || item?.on_site?.high_resolution_icon_url">
       </ion-avatar>
