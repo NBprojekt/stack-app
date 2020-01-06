@@ -34,7 +34,7 @@ export class NotificationService {
       .set('access_token', this.authService.getToken())
       .set('pageSize', this.pageSize.toString())
       .set('page', options && options.page ? options.page.toString() : '1')
-      .set('filter', options && options.filter || 'O5lYbEN2lExNfdp2Q');
+      .set('filter', options && options.filter || 'O5S*m-)1)Zf-pNVNM');
 
     return this.http.get<IResponse>(`${this.url}inbox`, {headers, params});
   }
@@ -55,7 +55,7 @@ export class NotificationService {
       .set('access_token', this.authService.getToken())
       .set('pageSize', options.page ? (options.page * this.pageSize).toString() : this.pageSize.toString())
       .set('page', '1')
-      .set('filter', options.filter || 'O5lYbEN2lExNfdp2Q');
+      .set('filter', options.filter || 'O5S*m-)1)Zf-pNVNM');
 
     return this.http
       .get<IResponse>(`${url}me/achievements`, {headers, params})
