@@ -1,26 +1,32 @@
 import { Injectable } from '@angular/core';
 
+import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+
+import { ISite } from 'src/app/interfaces/site';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SitesService {
-  private site: any;
+  private site: ISite;
 
   constructor(
     private storage: Storage,
+    private toastController: ToastController,
   ) {}
 
   public getCurrentSite(): any | Promise<any> {
     return this.site ? this.site : this.storage.get('current_site');
   }
 
-  public async setCurrentSite(site: any): Promise<void> {
+  public async setCurrentSite(site: ISite): Promise<void> {
     return new Promise(async (resolve) => {
-      this.site = site;
-      await this.storage.set('current_site', site);
-      console.log(`New Site is now ${site.name}`)
+      if (this.site.api_site_parameter !== site.api_site_parameter) {
+        this.site = site;
+        await this.storage.set('current_site', site);
+        this.showSiteChanged(this.site);
+      }
       resolve();
     });
 
@@ -31,5 +37,20 @@ export class SitesService {
       this.site = await this.storage.get('current_site');
       resolve();
     });
+  }
+
+  private async showSiteChanged(site: ISite): Promise<void> {
+    const toast = await this.toastController.create({
+      message: `Site changed to ${site.name}`,
+      position: 'bottom',
+      duration: 0,
+      cssClass: 'icon-toast',
+      buttons: [{
+        text: 'OK',
+        role: 'cancel',
+      }],
+    });
+
+    toast.present();
   }
 }
