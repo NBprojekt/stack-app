@@ -5,6 +5,8 @@ import { QuestionsService } from 'src/app/services/questions/questions.service';
 import { IQuestion } from 'src/app/interfaces/question';
 import { IRequestOptions } from 'src/app/interfaces/request-options';
 import { IResponse } from 'src/app/interfaces/response';
+import { RouterEvent, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -19,11 +21,15 @@ export class HomePage implements OnInit {
 
   constructor(
     private questionsService: QuestionsService,
+    private router: Router,
   ) { }
 
   public ngOnInit(): void {
     this.options = {};
-    this.doRefresh();
+
+    this.router.events
+      .pipe(filter((event: RouterEvent) => event instanceof NavigationEnd))
+      .subscribe(() => this.doRefresh());
   }
 
   public doRefresh(event?: any): void {
