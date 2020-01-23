@@ -1,9 +1,9 @@
-name: Ionic CI
+name: Github CI
 
 on: 
   push:
     branches:    
-    - 'master'
+      - 'master'
   pull_request:
     branches:
       - master
