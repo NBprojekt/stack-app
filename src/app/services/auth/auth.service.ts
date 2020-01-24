@@ -89,8 +89,9 @@ export class AuthService {
   public async logOut(): Promise<void> {
     return new Promise(async (resolve) => {
       await this.storage.clear();
-      // TODO: Invalidate access token
-      resolve();
+
+      this.http.get<IResponse>(`${this.apiUrl}access-tokens/${this.token}/invalidate`)
+        .subscribe(() => resolve());
     });
   }
 

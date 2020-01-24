@@ -22,12 +22,12 @@ export class QuestionHeaderComponent implements OnInit {
   ngOnInit() {}
 
   public async shareQuestion(): Promise<void> {
-    this.socialSharing.shareWithOptions({
+    const site = 'Stack Overflow';
+    return this.socialSharing.shareWithOptions({
       message: this.title,
-      subject: this.title,
+      subject: `Check out this ${site} question`,
       url: this.link,
     });
-    return null;
   }
 
   public async showQuestionOptions(event: any): Promise<void> {

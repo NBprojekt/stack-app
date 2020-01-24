@@ -18,6 +18,6 @@ export class QuestionOptionsComponent implements OnInit {
   }
 
   public openInBrowser(): void {
-    window.open(this.link, '_blank').focus();
+    window.open(this.link, '_system').focus();
   }
 }

@@ -4,7 +4,7 @@ echo "> Installing dependencies"
 npm i
 
 echo "> Installing global packages"
-npm i -g ionic cordova
+npm i -g angular ionic cordova
 
 echo "> Restoring resources"
 ionic cordova resources

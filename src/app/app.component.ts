@@ -6,6 +6,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
+import { SitesService } from './services/sites/sites.service';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ export class AppComponent implements AfterViewInit {
     private statusBar: StatusBar,
     private store: Storage,
     private router: Router,
+    private siteService: SitesService,
   ) {
     this.initializeApp();
     this.loading = true;
@@ -41,6 +43,7 @@ export class AppComponent implements AfterViewInit {
     await Promise.all([
       this.platform.ready(),
       this.store.ready(),
+      this.siteService.ready(),
     ]).then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
