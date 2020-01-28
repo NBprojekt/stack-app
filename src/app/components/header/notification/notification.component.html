@@ -29,7 +29,7 @@
             {{item?.reputation_change > 0? '+' + item?.reputation_change : item?.reputation_change}}
           </div>
 
-          <div [innerHTML]="item.title"></div>
+          <div  class="wrap-text" [innerHTML]="item.title"></div>
 
           <div *ngIf="item?.is_unread" class="new">
             <div class="badge"> new </div>
