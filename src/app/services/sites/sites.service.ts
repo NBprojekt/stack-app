@@ -42,8 +42,8 @@ export class SitesService {
   private async showSiteChanged(site: ISite): Promise<void> {
     const toast = await this.toastController.create({
       message: `Site changed to ${site.name}`,
-      position: 'bottom',
-      duration: 0,
+      position: 'top',
+      duration: 2000,
       cssClass: 'icon-toast',
       buttons: [{
         text: 'OK',
