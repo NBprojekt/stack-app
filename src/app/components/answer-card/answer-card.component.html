@@ -1,4 +1,4 @@
-<ion-card>
+<ion-card [class.highlighted-by-link]="answer?.answer_id == highlight && type == 'answer'">
   <ion-card-content>
     <voting [id]="answer?.answer_id" mode="answer"
             [score]="answer?.score" [isAccepted]="answer?.is_accepted">
@@ -19,7 +19,7 @@
     </ion-col>
 
     <ion-col size="12">
-      <comments [comments]="answer?.comments" [questionOwner]="questionOwner"></comments>
+      <comments [comments]="answer?.comments" [type]="type" [questionOwner]="questionOwner"></comments>
     </ion-col>
   </ion-row>
 </ion-card>
