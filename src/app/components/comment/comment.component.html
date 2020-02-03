@@ -1,5 +1,5 @@
 <div class="comments">
-  <div *ngFor="let comment of comments" class="comment">
+  <div *ngFor="let comment of comments" class="comment"  [class.highlighted-by-link]="comment?.comment_id == highlight && type == 'comment'">
     <span class="post" [innerHTML]="comment?.body"></span>
     -
     <span class="color-blue username" [innerHTML]="comment?.owner?.display_name"
