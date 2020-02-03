@@ -9,4 +9,6 @@ import { IQuestion } from 'src/app/interfaces/question';
 })
 export class QuestionCardComponent {
   @Input() question: IQuestion;
+  @Input() highlight: number;
+  @Input() type: string;
 }
