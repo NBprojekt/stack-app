@@ -1,12 +1,14 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { IonicModule } from '@ionic/angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { Storage } from '@ionic/storage';
 
 import { FeedComponent } from './feed.component';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
-import { IonicModule } from '@ionic/angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { IQuestion } from 'src/app/interfaces/question';
 
 describe('FeedComponent', () => {
@@ -19,11 +21,16 @@ describe('FeedComponent', () => {
       imports: [
         CommonPipesModule,
         RouterTestingModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         IonicModule,
       ],
       providers: [
-        InAppBrowser
+        InAppBrowser,
+        {
+          provide: Storage, useValue: {
+            get: () => new Promise<any>((resolve, reject) => resolve('test')),
+          }
+        },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })

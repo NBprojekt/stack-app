@@ -41,7 +41,7 @@ describe('AnswerCardComponent', () => {
 
   beforeEach(async(() => {
     storageIonicMock = {
-      get: () => new Promise<any>((resolve, reject) => resolve('As2342fAfgsdr')),
+      get: () => new Promise<any>((resolve, reject) => resolve('test')),
     };
 
     TestBed.configureTestingModule({

@@ -1,19 +1,26 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+
+import { IonicModule } from '@ionic/angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { Storage } from '@ionic/storage';
 
 import { QuestionPage } from './question.page';
 import { VotingModule } from 'src/app/components/voting/voting.module';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
-import { IonicModule } from '@ionic/angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 describe('QuestionPage', () => {
   let component: QuestionPage;
   let fixture: ComponentFixture<QuestionPage>;
+  let storageIonicMock;
 
   beforeEach(async(() => {
+    storageIonicMock = {
+      get: () => new Promise<any>((resolve, reject) => resolve('test')),
+    };
+
     TestBed.configureTestingModule({
       declarations: [
         QuestionPage,
@@ -27,6 +34,7 @@ describe('QuestionPage', () => {
       ],
       providers: [
         InAppBrowser,
+        { provide: Storage, useValue: storageIonicMock },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })

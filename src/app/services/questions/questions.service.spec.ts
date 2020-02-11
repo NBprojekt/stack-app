@@ -1,11 +1,10 @@
-import { TestBed, getTestBed } from '@angular/core/testing';
-
-import { IonicModule } from '@ionic/angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-
+import { async, TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { IonicModule } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { QuestionsService } from './questions.service';
 
 import { IQuestion } from 'src/app/interfaces/question';
@@ -18,7 +17,7 @@ describe('QuestionsService', () => {
   let service: QuestionsService;
   let httpMock: HttpTestingController;
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
@@ -27,10 +26,16 @@ describe('QuestionsService', () => {
       ],
       providers: [
         InAppBrowser,
-        QuestionsService,
+        {
+          provide: Storage, useValue: {
+            get: () => new Promise<any>((resolve, reject) => resolve('test')),
+          }
+        },
       ]
     });
+  }));
 
+  beforeEach(() => {
     injector = getTestBed();
     service = injector.get(QuestionsService);
     httpMock = injector.get(HttpTestingController);
