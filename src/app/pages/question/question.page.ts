@@ -71,7 +71,7 @@ export class QuestionPage implements OnInit {
   private highLight(): void {
     setTimeout(() => {
       const classElement = document.getElementsByClassName('highlighted-by-link');
-      if(classElement.length > 0){
+      if (classElement.length > 0) {
         classElement[0].scrollIntoView();
       }
     }, 100);
