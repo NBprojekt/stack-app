@@ -1,11 +1,13 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { IonicModule } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 import { LoginPage } from './login.page';
-import { HttpClientModule } from '@angular/common/http';
-import { IonicModule } from '@ionic/angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 describe('LoginPage', () => {
   let component: LoginPage;
@@ -16,12 +18,17 @@ describe('LoginPage', () => {
       declarations: [ LoginPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
-        HttpClientModule,
+        HttpClientTestingModule,
         IonicModule,
         RouterTestingModule,
       ],
       providers: [
-        InAppBrowser
+        InAppBrowser,
+        {
+          provide: Storage, useValue: {
+            get: () => new Promise<any>((resolve, reject) => resolve('test')),
+          }
+        },
       ]
     })
     .compileComponents();
