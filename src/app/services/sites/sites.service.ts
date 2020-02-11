@@ -35,6 +35,17 @@ export class SitesService {
   public async ready(): Promise<void> {
     return new Promise(async (resolve) => {
       this.site = await this.storage.get('current_site');
+
+      // TODO: Load a site from the user profile. This is just assuming that the user use stack overflow.
+      if (!this.site) {
+        this.site = {
+          api_site_parameter: 'stackoverflow',
+          high_resolution_icon_url: null,
+          name: 'Stack Overflow',
+          styling: null
+        };
+      }
+
       resolve();
     });
   }
