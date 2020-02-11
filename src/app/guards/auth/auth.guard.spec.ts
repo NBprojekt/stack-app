@@ -1,22 +1,31 @@
 import { TestBed, async, inject } from '@angular/core/testing';
-
-import { AuthGuard } from './auth.guard';
 import { HttpClientModule } from '@angular/common/http';
-import { IonicModule } from '@ionic/angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { IonicModule } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+
+import { AuthGuard } from './auth.guard';
+
 describe('AuthGuard', () => {
+  let storageIonicMock;
+
+  storageIonicMock = {
+    get: () => new Promise<any>((resolve, reject) => resolve('As2342fAfgsdr')),
+  };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientModule,
         IonicModule,
+        HttpClientModule,
         RouterTestingModule,
       ],
       providers: [
-        InAppBrowser,
         AuthGuard,
+        { provide: Storage, useValue: storageIonicMock },
+        InAppBrowser,
       ]
     });
   });
