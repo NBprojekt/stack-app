@@ -103,7 +103,7 @@ export class AnswerService {
     );
   }
 
-  // Vavorites
+  // Accept
   public acceptAnswer(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*')
