@@ -37,7 +37,7 @@ export class AppComponent implements AfterViewInit {
           this.loading = false;
         }
       });
-}
+  }
 
   private async initializeApp() {
     await Promise.all([

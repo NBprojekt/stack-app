@@ -15,13 +15,14 @@ describe('AppComponent', () => {
   let statusBarSpy;
   let splashScreenSpy;
 
-  let platformReadySpy;
+  let platformReadySpy: Promise<void>;
   let platformSpy;
 
-  let siteServiceReadySpy;
+  let siteServiceReadySpy: Promise<void>;
   let siteServiceSpy;
 
-  let storageIonicMock;
+  let storageReadySpy: Promise<void>;
+  let storageSpy;
 
   beforeEach(async(() => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
@@ -30,9 +31,8 @@ describe('AppComponent', () => {
     platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
     siteServiceReadySpy = Promise.resolve();
     siteServiceSpy = jasmine.createSpyObj('SitesService', { ready: platformReadySpy });
-    storageIonicMock = {
-      get: () => new Promise<any>((resolve, reject) => resolve('As2342fAfgsdr')),
-    };
+    storageReadySpy = Promise.resolve();
+    storageSpy = jasmine.createSpyObj('SitesService', { ready: storageReadySpy });
 
     TestBed.configureTestingModule({
       declarations: [AppComponent],
@@ -44,22 +44,23 @@ describe('AppComponent', () => {
         { provide: StatusBar, useValue: statusBarSpy },
         { provide: SplashScreen, useValue: splashScreenSpy },
         { provide: Platform, useValue: platformSpy },
-        { provide: Storage, useValue: storageIonicMock },
-        SitesService,
+        { provide: Storage, useValue: storageSpy },
+        { provide: SitesService, useValue: siteServiceSpy },
       ],
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
+  it('Should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it('should initialize the app', async () => {
+  it('Should initialize the app', async () => {
     TestBed.createComponent(AppComponent);
     expect(platformSpy.ready).toHaveBeenCalled();
     expect(siteServiceSpy.ready).toHaveBeenCalled();
+    expect(storageSpy.ready).toHaveBeenCalled();
 
     await platformReadySpy;
     await siteServiceReadySpy;
