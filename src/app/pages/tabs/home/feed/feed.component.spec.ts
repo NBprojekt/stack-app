@@ -73,4 +73,21 @@ describe('FeedComponent', () => {
 
     expect(component.questionIsHot(hotQuestion)).toBeTruthy();
   });
+
+  it('Should format the url', () => {
+    const url = 'This is my question title';
+
+    expect(component.formatUrl(url)).toBe('This-is-my-question-title');
+  });
+
+  it('Should emit options', () => {
+    let emitedValue: any;
+
+    component.options.subscribe((value) => emitedValue = value);
+
+    component.filter = 'bountied';
+    component.filterChange();
+
+    expect(emitedValue).toEqual({featured: true});
+  });
 });
