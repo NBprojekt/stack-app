@@ -24,13 +24,18 @@ describe('AppComponent', () => {
   let storageReadySpy: Promise<void>;
   let storageSpy;
 
+  let afterInitSpy;
+
   beforeEach(async(() => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
     splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
+
     platformReadySpy = Promise.resolve();
     platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
+
     siteServiceReadySpy = Promise.resolve();
     siteServiceSpy = jasmine.createSpyObj('SitesService', { ready: platformReadySpy });
+
     storageReadySpy = Promise.resolve();
     storageSpy = jasmine.createSpyObj('SitesService', { ready: storageReadySpy });
 
@@ -69,6 +74,10 @@ describe('AppComponent', () => {
     expect(splashScreenSpy.hide).toHaveBeenCalled();
   });
 
-  // TODO: add more tests!
+  it('Should load the app', async () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
 
+    expect(app.loading).toBeTruthy();
+  });
 });
