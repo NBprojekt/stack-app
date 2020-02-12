@@ -160,7 +160,7 @@ export class QuestionsService {
     );
   }
 
-  // Vavorites
+  // Favorites
   public favoriteQuestion(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*')
