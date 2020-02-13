@@ -8,6 +8,7 @@
 <h2 align="center"> <b> Stack App </b> </h2>
 <h4 align="center"> A lightweight frontend for all Stack Exchange sited for Android and iOS. </h4>
 
+[//]: # (Store links)
 <p align="center">
   <a href="PLACEHOLDER">
     <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200">
@@ -17,18 +18,20 @@
   </a>
 </p> 
 
+[//]: # (Pipes)
 <p align="center">
-  <a href="https://github.com/NBprojekt/stack-app/actions?query=workflow%3A%22Ionic+CI%22" alt="Ionic CI Status">
-    <img src="https://github.com/nbprojekt/stack-app/workflows/Ionic%20CI/badge.svg">
+  <a href="https://github.com/NBprojekt/stack-app/actions?query=workflow%3A%22Github+CI%22" alt="Ionic CI Status">
+    <img src="https://github.com/nbprojekt/stack-app/workflows/Github%20CI/badge.svg">
   </a>
   
-  <a href="https://github.com/NBprojekt/stack-app/actions?query=workflow%3A%22Android+CI%22" alt="Android CI Status">
-    <img src="https://github.com/nbprojekt/stack-app/workflows/Android%20CI/badge.svg">
+  <a href="https://github.com/NBprojekt/stack-app/actions?query=workflow%3A%22Android+Build%22" alt="Android Build Status">
+    <img src="https://github.com/nbprojekt/stack-app/workflows/Android%20Build/badge.svg">
   </a>
 </p>
 
 <hr>
 
+[//]: # ()
 <p align="center">
   <a href="#description"> Description </a> &bull;
   <a href="#screenshots"> Screenshots </a> &bull;
@@ -74,12 +77,11 @@ Thanks for your interest in contributing! Read up on our guidelines for [contrib
 ## License
 
 [//]: # (Links)
-
-[1]: https://github.com/nbprojekt/stack-app/issues
-[2]: https://github.com/NBprojekt/stack-app/issues/new?assignees=&labels=bug&template=bug-report.md&title=
-[3]: https://github.com/NBprojekt/stack-app/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=
-[4]: https://github.com/NBprojekt/stack-app/blob/master/.github/CONTRIBUTING.md
-[5]: https://github.com/NBprojekt/stack-app/labels/help%20wanted
-[6]: https://nodejs.org/en/
-[7]: https://gitforwindows.org/
-[8]: https://github.com/NBprojekt/stack-app/blob/Feature-create-readme/scripts/README.md
+  [1]: https://github.com/nbprojekt/stack-app/issues
+  [2]: https://github.com/NBprojekt/stack-app/issues/new?assignees=&labels=bug&template=bug-report.md&title=
+  [3]: https://github.com/NBprojekt/stack-app/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=
+  [4]: https://github.com/NBprojekt/stack-app/blob/master/.github/CONTRIBUTING.md
+  [5]: https://github.com/NBprojekt/stack-app/labels/help%20wanted
+  [6]: https://nodejs.org/en/
+  [7]: https://gitforwindows.org/
+  [8]: https://github.com/NBprojekt/stack-app/blob/Feature-create-readme/scripts/README.md
