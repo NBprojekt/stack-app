@@ -1,12 +1,13 @@
+import { SitesService } from './../../services/sites/sites.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PopoverController, ModalController } from '@ionic/angular';
 
 import { MoreComponent } from './more/more.component';
 
-import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Subscription, Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
 import { interval, forkJoin } from 'rxjs';
@@ -20,18 +21,19 @@ import { NotificationComponent } from './notification/notification.component';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   public title: string;
+  public icon: string;
   public reviwQueues: boolean;
 
   public inbox: Array<any>;
   public achievements: Array<any>;
-  private notificationSubscribtion$: Subscription;
-
-  private routerSubscribtion$: Subscription;
+  
+  private destroy = new Subject<any>();
 
   constructor(
     private router: Router,
     private popoverController: PopoverController,
     private modalController: ModalController,
+    private sitesService: SitesService,
     public notificatinoService: NotificationService,
   ) {}
 
@@ -41,12 +43,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.routerSubscribtion$.unsubscribe();
-    this.notificationSubscribtion$.unsubscribe();
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   public loadNotifications(): void {
-    this.notificationSubscribtion$ = interval(NotificationService.updateIntervall).pipe(
+    interval(NotificationService.updateIntervall).pipe(
       startWith(() => forkJoin([
           this.notificatinoService.getInbox(),
           this.notificatinoService.getAchievements(),
@@ -57,6 +59,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.notificatinoService.getAchievements(),
         ])
       ),
+      takeUntil(this.destroy)
     ).subscribe(([inbox, achievements]) => {
       this.inbox = inbox.items;
       this.achievements = achievements.items;
@@ -64,13 +67,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public loadPageTitle(): void {
-    this.routerSubscribtion$ = this.router.events
-    .pipe(
-      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-    ).subscribe((event: NavigationEnd) => {
-      const url = this.router.url;
-      this.title = this.firstToUpper(url.split('/').pop()) || 'Undefined';
-    });
+    this.router.events
+      .pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+        takeUntil(this.destroy)
+      ).subscribe((event: NavigationEnd) => {
+        const url = this.router.url;
+        this.title = this.firstToUpper(url.split('/').pop()) || 'Undefined';
+        this.icon = this.sitesService.getCurrentSite().high_resolution_icon_url;
+      });
   }
 
   public async showMore(event: any): Promise<void> {
