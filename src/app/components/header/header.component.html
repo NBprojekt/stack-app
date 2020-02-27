@@ -2,6 +2,7 @@
   <ion-buttons slot="start">
     <ion-menu-button></ion-menu-button>
   </ion-buttons>
+
   <ion-buttons slot="end" mode="ios">
     <ion-button icon-only (click)="showNotifications('Inbox', inbox)">
       <ion-badge color="danger">
@@ -29,6 +30,10 @@
       <ion-icon name="md-more"></ion-icon>
     </ion-button>
   </ion-buttons>
+
+  <div slot="start">
+    <img [src]="icon" class="icon"> 
+  </div>
 
   <ion-title> {{ title }} </ion-title>
 </ion-toolbar>
