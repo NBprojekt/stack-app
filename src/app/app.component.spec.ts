@@ -24,8 +24,6 @@ describe('AppComponent', () => {
   let storageReadySpy: Promise<void>;
   let storageSpy;
 
-  let afterInitSpy;
-
   beforeEach(async(() => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
     splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
