@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
@@ -18,7 +18,7 @@ describe('NotificationComponent', () => {
 
   beforeEach(async(() => {
     storageIonicMock = {
-      get: () => new Promise<any>((resolve, reject) => resolve('As2342fAfgsdr')),
+      get: () => new Promise<any>(resolve => resolve('test')),
     };
 
     TestBed.configureTestingModule({
@@ -44,7 +44,11 @@ describe('NotificationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('Should load more notifications', () => {
     expect(component).toBeTruthy();
   });
 });
