@@ -40,9 +40,13 @@ export class SitesService {
       if (!this.site) {
         this.site = {
           api_site_parameter: 'stackoverflow',
-          high_resolution_icon_url: null,
+          high_resolution_icon_url: 'https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png',
           name: 'Stack Overflow',
-          styling: null
+          styling: {
+            tag_background_color: '#E0EAF1',
+            tag_foreground_color: '#3E6D8E',
+            link_color: '#0077CC'
+          }
         };
       }
 
