@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
 
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
@@ -13,7 +12,6 @@ export class QuestionHeaderComponent implements OnInit {
   @Input() link: string;
 
   constructor(
-    private popoverController: PopoverController,
     private socialSharing: SocialSharing,
   ) { }
 
@@ -26,5 +24,9 @@ export class QuestionHeaderComponent implements OnInit {
       subject: `Check out this ${site} question`,
       url: this.link,
     });
+  }
+
+  public openInBrowser(): void {
+    window.open(this.link, '_system').focus();
   }
 }
