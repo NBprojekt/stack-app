@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 
-import { QuestionOptionsComponent } from '../question-options/question-options.component';
-
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
@@ -28,17 +26,5 @@ export class QuestionHeaderComponent implements OnInit {
       subject: `Check out this ${site} question`,
       url: this.link,
     });
-  }
-
-  public async showQuestionOptions(event: any): Promise<void> {
-    const popover = await this.popoverController.create({
-      component: QuestionOptionsComponent,
-      translucent: true,
-      event,
-      componentProps: {
-        link: this.link,
-      }
-    });
-    return await popover.present();
   }
 }

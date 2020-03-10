@@ -10,7 +10,6 @@ import { QuestionPage } from './question.page';
 import { QuestionHeaderComponent } from './question-header/question-header.component';
 import { QuestionSkeletonComponent } from './question-skeleton/question-skeleton.component';
 import { QuestionCardComponent } from './question-card/question-card.component';
-import { QuestionOptionsComponent } from './question-options/question-options.component';
 
 import { VotingModule } from 'src/app/components/voting/voting.module';
 import { UserCardModule } from 'src/app/components/user-card/user-card.module';
@@ -30,7 +29,6 @@ const routes: Routes = [
     QuestionSkeletonComponent,
     QuestionCardComponent,
     QuestionHeaderComponent,
-    QuestionOptionsComponent,
   ],
   imports: [
     CommonModule,
@@ -47,8 +45,5 @@ const routes: Routes = [
     QuestionCardComponent,
     QuestionSkeletonComponent,
   ],
-  entryComponents: [
-    QuestionOptionsComponent,
-  ]
 })
 export class QuestionPageModule {}
