@@ -1,4 +1,4 @@
-<ion-toolbar color="primary" mode="md">
+<ion-toolbar mode="md">
   <ion-buttons slot="start">
     <ion-menu-button></ion-menu-button>
   </ion-buttons>
@@ -25,14 +25,10 @@
       <ion-badge *ngIf="reviwQueues" color="danger" mode="ios" class="circle"> &nbsp;&nbsp; </ion-badge>
       <ion-icon name="ios-list-box"></ion-icon>
     </ion-button>
-
-    <ion-button icon-only (click)="showMore($event)">
-      <ion-icon name="md-more"></ion-icon>
-    </ion-button>
   </ion-buttons>
 
   <div slot="start">
-    <img [src]="icon" class="icon"> 
+    <img [src]="icon" class="icon">
   </div>
 
   <ion-title> {{ title }} </ion-title>
