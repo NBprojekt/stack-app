@@ -72,6 +72,7 @@ a, .link {
   }
 }
 
+/* Inserted posts */
 .post {
   pre {
     background: rgba($color: #000000, $alpha: .1);
@@ -89,17 +90,26 @@ a, .link {
     border-radius: 4px;
   }
   p {
-    text-align: justify;
     margin: 2px 0 5px;
     line-height: 1.2em;
   }
   blockquote {
     margin: 10px 0;
-    padding: 10px;
-    background-color: var(--ion-color-tertiary);
-    border-left: 2px solid var(--ion-color-tertiary-shade);
+    padding: 10px 10px 10px 20px;
+    position: relative;
     text-align: justify;
     line-height: 1.2em;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+      border-radius: 8px;
+      background: rgba($color: #000000, $alpha: .5);
+    }
   }
 }
 
