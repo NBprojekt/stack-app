@@ -8,16 +8,6 @@
 <h2 align="center"> <b> Stack App </b> </h2>
 <h4 align="center"> A lightweight frontend for all Stack Exchange sited for Android and iOS. </h4>
 
-[//]: # (Store links)
-<p align="center">
-  <a href="PLACEHOLDER">
-    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200">
-  </a>
-  <a href="PLACEHOLDER">
-    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200">
-  </a>
-</p> 
-
 [//]: # (Pipes)
 <p align="center">
   <a href="https://github.com/nbprojekt/stack-app/releases/latest" alt="App Version">
