@@ -20,7 +20,7 @@ import { NotificationComponent } from './notification/notification.component';
 export class HeaderComponent implements OnInit, OnDestroy {
   public title: string;
   public icon: string;
-  public reviwQueues: boolean;
+  public reviewQueues: boolean;
 
   public inbox: Array<any>;
   public achievements: Array<any>;
