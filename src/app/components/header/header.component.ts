@@ -2,8 +2,6 @@ import { SitesService } from './../../services/sites/sites.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PopoverController, ModalController } from '@ionic/angular';
 
-import { MoreComponent } from './more/more.component';
-
 import { Subscription, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
@@ -26,7 +24,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public inbox: Array<any>;
   public achievements: Array<any>;
-  
+
   private destroy = new Subject<any>();
 
   constructor(
@@ -76,15 +74,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.title = this.firstToUpper(url.split('/').pop()) || 'Undefined';
         this.icon = this.sitesService.getCurrentSite().high_resolution_icon_url;
       });
-  }
-
-  public async showMore(event: any): Promise<void> {
-    const popover = await this.popoverController.create({
-      component: MoreComponent,
-      translucent: true,
-      event,
-    });
-    return await popover.present();
   }
 
   public firstToUpper(s: string): string {
