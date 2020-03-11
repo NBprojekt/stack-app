@@ -2,8 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Router, NavigationEnd } from '@angular/router';
 
-import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
+
+import { UserService } from 'src/app/services/user/user.service';
+import { IUser } from 'src/app/interfaces/user';
+import { IResponse } from 'src/app/interfaces/response';
 
 @Component({
   selector: 'app-menu',
@@ -12,8 +16,9 @@ import { filter } from 'rxjs/operators';
 })
 export class MenuPage implements OnInit, OnDestroy {
   public selectedUrl: string;
+  public myProfile: IUser;
 
-  private routerSubscribtion$: Subscription;
+  private destroy = new Subject<any>();
 
   public pages = [
     {
@@ -55,20 +60,32 @@ export class MenuPage implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
+    private userService: UserService,
   ) {}
 
   ngOnInit(): void {
     this.selectedUrl = '';
 
-    this.routerSubscribtion$ = this.router.events
+    this.router.events
       .pipe(
         filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+        takeUntil(this.destroy),
       ).subscribe((event: NavigationEnd) => {
         this.selectedUrl = event.url;
       });
+
+    this.loadMyProfile();
   }
 
-  ngOnDestroy() {
-    this.routerSubscribtion$.unsubscribe();
+  ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
+  }
+
+  private loadMyProfile(): void {
+    this.userService.getMe().subscribe((response: IResponse) => {
+      this.myProfile = response.items[0] as IUser;
+      console.log(['My Userprofile', this.myProfile]);
+    });
   }
 }
