@@ -7,8 +7,33 @@
     </ion-header>
 
     <ion-content>
-
       <ion-list>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item lines="none">
+            <ion-avatar slot="start" class="big-avatar">
+              <img [src]="myProfile?.profile_image" default="./assets/images/placeholder/user.png">
+            </ion-avatar>
+            <ion-label>
+              <h2> {{myProfile?.display_name}} </h2>
+              <div class="reputation-wrapper">
+                <div class="reputation-count"> {{myProfile?.reputation}} </div>
+                <div class="reputation-label"> reputation </div>
+              </div>
+              <div class="achievements">
+                <div *ngIf="myProfile?.badge_counts?.gold" class="badge gold">
+                  <i class="fas fa-circle"></i> {{myProfile?.badge_counts.gold}}
+                </div>
+                <div *ngIf="myProfile?.badge_counts?.silver" class="badge silver">
+                  <i class="fas fa-circle"></i> {{myProfile?.badge_counts.silver}}
+                </div>
+                <div *ngIf="myProfile?.badge_counts?.bronze" class="badge bronze">
+                  <i class="fas fa-circle"></i> {{myProfile?.badge_counts.bronze}}
+                </div>
+              </div>
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
         <ion-menu-toggle *ngFor="let page of pages" auto-hide="false">
           <ion-item [routerLink]="page.url" [lines]="page.lines" [routerDirection]="page.routerDirection" [class.active]="selectedUrl.startsWith(page.url)">
             <ion-icon [name]="page.icon" slot="start"></ion-icon>
