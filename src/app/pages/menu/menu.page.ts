@@ -22,6 +22,27 @@ export class MenuPage implements OnInit, OnDestroy {
 
   public pages = [
     {
+        title: 'Profile',
+        url: 'null',
+        icon: 'person',
+        routerDirection: 'forward',
+        lines: 'none',
+    },
+    {
+        title: 'Stacks',
+        url: 'null',
+        icon: 'albums',
+        routerDirection: 'forward',
+        lines: 'none',
+    },
+    {
+        title: 'Display',
+        url: 'null',
+        icon: 'color-palette',
+        routerDirection: 'forward',
+        lines: 'full',
+    },
+    {
         title: 'Home',
         url: '/menu/pages/tabs/home',
         icon: 'home',
