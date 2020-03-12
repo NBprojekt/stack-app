@@ -29,8 +29,8 @@ export class MenuPage implements OnInit, OnDestroy {
         lines: 'none',
     },
     {
-        title: 'Stacks',
-        url: 'null',
+        title: 'Sites',
+        url: '/menu/sites',
         icon: 'albums',
         routerDirection: 'forward',
         lines: 'full',
