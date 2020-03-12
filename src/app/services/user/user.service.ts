@@ -36,4 +36,18 @@ export class UserService {
 
     return this.http.get<IResponse>(`${this.url}me`, {headers, params});
   }
+
+  public getMySites(options?: IRequestOptions): Observable<IResponse> {
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
+
+    const params = new HttpParams()
+      .set('key', environment.api.key)
+      .set('access_token', this.authService.getToken())
+      .set('order', options && options.order || 'desc')
+      .set('filter', options && options.filter || '!6OrRcRMB71Na9')
+      .set('sort', options && options.sort || 'reputation');
+
+    return this.http.get<IResponse>(`${this.url}me/associated`, {headers, params});
+  }
 }
