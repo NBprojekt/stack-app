@@ -8,6 +8,7 @@
 
     <ion-content>
       <ion-list>
+        <!-- Static user card -->
         <ion-menu-toggle auto-hide="false">
           <ion-item lines="none">
             <ion-avatar slot="start" class="big-avatar">
@@ -34,12 +35,30 @@
           </ion-item>
         </ion-menu-toggle>
 
+        <!-- Dynamic links -->
         <ion-menu-toggle *ngFor="let page of pages" auto-hide="false">
           <ion-item [routerLink]="page.url" [lines]="page.lines" [routerDirection]="page.routerDirection" [class.active]="selectedUrl.startsWith(page.url)">
             <ion-icon [name]="page.icon" slot="start"></ion-icon>
             <ion-label> {{page.title}} </ion-label>
           </ion-item>
         </ion-menu-toggle>
+
+        <!-- Static links -->
+        <ion-item lines="none" >
+          <ion-icon name="pie" slot="start"></ion-icon>
+          <ion-label> Datasaver </ion-label>
+          <ion-label slot="end" class="text-right">
+            <ion-toggle color="primary"></ion-toggle>
+          </ion-label>
+        </ion-item>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="null" lines="full" [routerDirection]="foreward" [class.active]="selectedUrl.startsWith(null)">
+            <ion-icon name="color-fill" slot="start"></ion-icon>
+            <ion-label> Display </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
       </ion-list>
     </ion-content>
   </ion-menu>

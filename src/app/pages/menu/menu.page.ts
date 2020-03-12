@@ -33,13 +33,6 @@ export class MenuPage implements OnInit, OnDestroy {
         url: 'null',
         icon: 'albums',
         routerDirection: 'forward',
-        lines: 'none',
-    },
-    {
-        title: 'Display',
-        url: 'null',
-        icon: 'color-palette',
-        routerDirection: 'forward',
         lines: 'full',
     },
     {
@@ -75,7 +68,7 @@ export class MenuPage implements OnInit, OnDestroy {
         url: '/menu/about',
         icon: 'information-circle',
         routerDirection: 'forward',
-        lines: 'none',
+        lines: 'full',
     },
   ];
 
@@ -106,7 +99,6 @@ export class MenuPage implements OnInit, OnDestroy {
   private loadMyProfile(): void {
     this.userService.getMe().subscribe((response: IResponse) => {
       this.myProfile = response.items[0] as IUser;
-      console.log(['My Userprofile', this.myProfile]);
     });
   }
 }
