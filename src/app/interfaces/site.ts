@@ -17,6 +17,7 @@ export interface ISite {
   site_url?: string;
   styling: ISiteStyling;
   twitter_account?: string;
+  reputation?: number;
 }
 
 export interface IRelatedSite {
