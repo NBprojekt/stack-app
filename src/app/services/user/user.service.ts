@@ -45,7 +45,7 @@ export class UserService {
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
       .set('order', options && options.order || 'desc')
-      .set('filter', options && options.filter || '!6OrRcRMB71Na9')
+      .set('filter', options && options.filter || '!6OrReGp1MYF)i')
       .set('sort', options && options.sort || 'reputation');
 
     return this.http.get<IResponse>(`${this.url}me/associated`, {headers, params});
