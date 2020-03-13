@@ -5,20 +5,23 @@
     </ion-buttons>
     <ion-title> Sites </ion-title>
   </ion-toolbar>
+
+  <ion-toolbar>
+    <form>
+      <ion-searchbar></ion-searchbar>
+    </form>
+  </ion-toolbar>
 </ion-header>
 <ion-content fullscreen class="ion-padding">
-  <ion-item>
-    <ion-label position="floating"> Search </ion-label>
-    <ion-input inputmode="search" clearInput></ion-input>
-  </ion-item>
-
-  <ion-menu-toggle *ngFor="let site of sites" auto-hide="false">
-    <ion-item >
+  <ion-list>
+    <ion-item *ngFor="let site of sites | slice:0:20;">
       <ion-avatar slot="start">
         <img [src]="site?.high_resolution_icon_url" />
       </ion-avatar>
       <ion-label> {{site.name}} </ion-label>
+      <ion-label slot="end">
+        {{site.reputation > 0 ? 'registered' : 'unregistered'}}
+      </ion-label>
     </ion-item>
-  </ion-menu-toggle>
-
+  </ion-list>
 </ion-content>
