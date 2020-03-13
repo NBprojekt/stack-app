@@ -46,7 +46,6 @@ export class SitesService {
       }
       resolve();
     });
-
   }
 
   public async ready(): Promise<void> {
@@ -100,7 +99,7 @@ export class SitesService {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('pagesize', '100')
-      .set('filter', '!2*nWMn6hVBih4WT7OAXU5');
+      .set('filter', '!2*nWMOEzJbe_s(Hp5O0va');
 
     this.http
       .get<IResponse>(`${this.url}sites`, {headers, params})
@@ -113,7 +112,6 @@ export class SitesService {
           this.saveSites(sites);
         }
       });
-
   }
 
   private async saveSites(sites: Array<ISite>): Promise<void> {
