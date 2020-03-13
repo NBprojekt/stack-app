@@ -32,3 +32,9 @@ export interface ISiteStyling {
   tag_background_color: string;
   tag_foreground_color: string;
 }
+
+export interface IMySite {
+  site_name: string;
+  site_url: string;
+  reputation: number;
+}
