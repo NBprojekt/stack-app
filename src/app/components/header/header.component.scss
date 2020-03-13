@@ -5,9 +5,10 @@ ion-button {
   ion-badge {
     position: absolute;
     top: 1px;
-    right: 5px;
+    left: 16px;
     z-index: 5;
 
+    border: solid 1.5px white;
     font-size: .7em;
     overflow: inherit;
 
@@ -23,14 +24,14 @@ ion-button {
       height: 20px;;
     }
 
-    span {
-      padding-left: 8px;
+    span.with-icon {
+      padding-left: 4px;
     }
 
     .fas, .far {
       position: absolute;
       left: 3px;
-      top: 5px;
+      top: 4px;
       font-size: .6em;
     }
 

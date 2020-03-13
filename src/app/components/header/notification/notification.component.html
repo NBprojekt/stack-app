@@ -26,7 +26,7 @@
 
 
           <div *ngIf="item?.achievement_type === 'reputation'" [className]="item?.reputation_change > 0 ? 'badge green' : 'badge red'">
-            {{item?.reputation_change > 0? '+' + item?.reputation_change : item?.reputation_change}}
+            {{item?.reputation_change > 0 ? '+' + item?.reputation_change : item?.reputation_change}}
           </div>
 
           <div  class="wrap-text" [innerHTML]="item.title"></div>

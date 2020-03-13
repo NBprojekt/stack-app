@@ -13,7 +13,7 @@
 
     <ion-button color="medium" icon-only (click)="showNotifications('Achievements', achievements)">
       <ion-badge [color]="countUnread(achievements) >= 0 ? 'success' : 'danger'">
-        <span *ngIf="countUnread(achievements) !== 0">
+        <span *ngIf="countUnread(achievements) !== 0" class="with-icon">
           <i [class]="countUnread(achievements) >= 0 ? 'fas fa-plus' : 'fas fa-minus'"></i>
           {{countUnread(achievements) | shortenNumber}}
         </span>
