@@ -75,6 +75,7 @@ export class AuthService {
       });
     });
   }
+
   public getToken(): string {
     return this.token;
   }
@@ -130,6 +131,7 @@ export class AuthService {
       resolve(!!token);
     });
   }
+
   private saveToken(token: string): void {
     this.storage.set('access_token', token);
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
 import { Router, NavigationEnd } from '@angular/router';
+
+import { AlertController } from '@ionic/angular';
 
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -8,6 +9,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user/user.service';
 import { IUser } from 'src/app/interfaces/user';
 import { IResponse } from 'src/app/interfaces/response';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -75,6 +77,8 @@ export class MenuPage implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private userService: UserService,
+    private authService: AuthService,
+    private alertController: AlertController,
   ) {}
 
   ngOnInit(): void {
@@ -94,6 +98,24 @@ export class MenuPage implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
+  }
+
+  public async logOut(): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Log out of Stack App?',
+      message: 'You can allwys log mack in any time.',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        }, {
+          text: 'Log out',
+          handler: () => this.authService.logOut(),
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   private loadMyProfile(): void {
