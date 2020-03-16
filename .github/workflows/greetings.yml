@@ -8,10 +8,11 @@ on:
 
 jobs:
   greeting:
+    name: Thank user for the first contribution 
     runs-on: ubuntu-latest
     steps:
     - uses: actions/first-interaction@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: 'Thank you for your first issue ❤. We appreciate your contribution and will do our best to solve it as soon as possible.'
-        pr-message: 'Thank you for your first pull request ❤. We thank you for your contribution and look forward to merge it as soon as possible.'
+        issue-message: 'Thank you for your first issue 🎂. We appreciate your contribution and will do our best to solve it as soon as possible.'
+        pr-message: 'Thank you for your first pull request 🎂. We thank you for your contribution and look forward to merge it as soon as possible.'
