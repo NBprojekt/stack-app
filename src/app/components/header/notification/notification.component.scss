@@ -46,5 +46,7 @@ ion-label h2 {
   }
 }
 
-
-
+.wrap-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

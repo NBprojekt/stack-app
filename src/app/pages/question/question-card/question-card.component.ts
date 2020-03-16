@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { IQuestion } from 'src/app/interfaces/question';
 
@@ -9,4 +9,6 @@ import { IQuestion } from 'src/app/interfaces/question';
 })
 export class QuestionCardComponent {
   @Input() question: IQuestion;
+  @Input() highlight: number;
+  @Input() type: string;
 }

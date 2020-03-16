@@ -11,4 +11,6 @@ import { IUser } from 'src/app/interfaces/user';
 export class CommentComponent  {
   @Input() comments: Array<IComment>;
   @Input() questionOwner: IUser;
+  @Input() highlight: number;
+  @Input() type: string;
 }

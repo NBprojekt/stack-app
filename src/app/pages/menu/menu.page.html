@@ -1,19 +1,64 @@
 <ion-split-pane contentId="menu-content">
   <ion-menu contentId="menu-content">
     <ion-header>
-      <ion-toolbar color="primary" mode="md">
-        <ion-title>Menu</ion-title>
+      <ion-toolbar mode="md">
+        <ion-title> Menu </ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
       <ion-list>
+        <!-- Static user card -->
+        <ion-menu-toggle auto-hide="false">
+          <ion-item lines="none">
+            <ion-avatar slot="start" class="big-avatar">
+              <img [src]="myProfile?.profile_image" default="./assets/images/placeholder/user.png">
+            </ion-avatar>
+            <ion-label>
+              <h2> {{myProfile?.display_name}} </h2>
+              <div class="reputation-wrapper">
+                <div class="reputation-count"> {{myProfile?.reputation}} </div>
+                <div class="reputation-label"> reputation </div>
+              </div>
+              <div class="achievements">
+                <div *ngIf="myProfile?.badge_counts?.gold" class="badge gold">
+                  <i class="fas fa-circle"></i> {{myProfile?.badge_counts.gold}}
+                </div>
+                <div *ngIf="myProfile?.badge_counts?.silver" class="badge silver">
+                  <i class="fas fa-circle"></i> {{myProfile?.badge_counts.silver}}
+                </div>
+                <div *ngIf="myProfile?.badge_counts?.bronze" class="badge bronze">
+                  <i class="fas fa-circle"></i> {{myProfile?.badge_counts.bronze}}
+                </div>
+              </div>
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <!-- Dynamic links -->
         <ion-menu-toggle *ngFor="let page of pages" auto-hide="false">
           <ion-item [routerLink]="page.url" [lines]="page.lines" [routerDirection]="page.routerDirection" [class.active]="selectedUrl.startsWith(page.url)">
             <ion-icon [name]="page.icon" slot="start"></ion-icon>
             <ion-label> {{page.title}} </ion-label>
           </ion-item>
         </ion-menu-toggle>
+
+        <!-- Static links -->
+        <ion-item lines="none" >
+          <ion-icon name="pie" slot="start"></ion-icon>
+          <ion-label> Datasaver </ion-label>
+          <ion-label slot="end" class="text-right">
+            <ion-toggle color="primary"></ion-toggle>
+          </ion-label>
+        </ion-item>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="null" lines="full" routerDirection="forward" [class.active]="selectedUrl.startsWith(null)">
+            <ion-icon name="color-fill" slot="start"></ion-icon>
+            <ion-label> Display </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
       </ion-list>
     </ion-content>
   </ion-menu>

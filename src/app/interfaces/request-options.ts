@@ -1,4 +1,4 @@
-export interface IQuestionOptions {
+export interface IRequestOptions {
   page?: number;
   pagesize?: number;
   site?: string;

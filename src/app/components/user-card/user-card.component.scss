@@ -34,10 +34,12 @@
     font-size: .75em;
     color: var(--ion-color-medium-shade);
   }
+
   .name {
     font-size: .85em;
     color: var(--ion-color-secondary);
   }
+
   .achievements {
     width: 100%;
     font-size: .7em;
@@ -51,8 +53,15 @@
       float: left;
 
       .fa-circle {
-        margin-left: 4px;
+        position: relative;
+        padding-left: 15px;
         font-size: .75em;
+
+        &::before {
+          position: absolute;
+          top: -8px;
+          left: 7px;
+        }
       }
 
       &.gold .fa-circle{

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { QuestionsService } from 'src/app/services/questions/questions.service';
@@ -6,6 +6,7 @@ import { IQuestion } from 'src/app/interfaces/question';
 import { IResponse } from 'src/app/interfaces/response';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IAnswer } from 'src/app/interfaces/answer';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-question',
@@ -14,22 +15,29 @@ import { IAnswer } from 'src/app/interfaces/answer';
 })
 export class QuestionPage implements OnInit {
   private id: number;
+
   public title: string;
   public question: IQuestion;
   public answers: Array<IAnswer>;
+
+  public highlight: number;
+  public type: string;
 
   constructor(
     private route: ActivatedRoute,
     private questionsService: QuestionsService,
     private sanitizer: DomSanitizer,
+    @Inject(DOCUMENT) document,
   ) { }
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.title = (this.route.snapshot.paramMap.get('title') || 'Question').split('-').join(' ') ;
+    this.title = (this.route.snapshot.paramMap.get('title') || 'Question').split('-').join(' ');
 
     this.getQuestion(this.id);
     this.getAnswers(this.id);
+    this.highlight = +this.route.snapshot.paramMap.get('highlight') ||  0;
+    this.type = this.route.snapshot.paramMap.get('type');
   }
 
   private getQuestion(id: number, event?: any): void {
@@ -41,6 +49,8 @@ export class QuestionPage implements OnInit {
       if (this.question.comments) {
         this.question.comments.map(comment => comment.body = this.sanitizer.bypassSecurityTrustHtml(comment.body as string));
       }
+
+      this.highLight();
     });
   }
 
@@ -54,6 +64,16 @@ export class QuestionPage implements OnInit {
           answer.comments.map(comment => comment.body = this.sanitizer.bypassSecurityTrustHtml(comment.body as string));
         }
       });
+
+      this.highLight();
     });
+  }
+  private highLight(): void {
+    setTimeout(() => {
+      const classElement = document.getElementsByClassName('highlighted-by-link');
+      if (classElement.length > 0) {
+        classElement[0].scrollIntoView();
+      }
+    }, 100);
   }
 }

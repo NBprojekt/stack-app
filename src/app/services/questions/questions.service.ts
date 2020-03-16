@@ -7,10 +7,11 @@ import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 
 import { IQuestion } from 'src/app/interfaces/question';
-import { IQuestionOptions } from 'src/app/interfaces/question-options';
+import { IRequestOptions } from 'src/app/interfaces/request-options';
 import { IResponse, IResponseError } from 'src/app/interfaces/response';
 
 import { AuthService } from '../auth/auth.service';
+import { SitesService } from '../sites/sites.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +23,11 @@ export class QuestionsService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
+    private siteService: SitesService,
   ) { }
 
   // Getter
-  public getQuestions(options?: IQuestionOptions): Observable<IResponse> {
+  public getQuestions(options?: IRequestOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
@@ -34,21 +36,21 @@ export class QuestionsService {
       .set('access_token', this.authService.getToken())
       .set('page', options && options.page ? options.page.toString() : '1')
       .set('pagesize', this.pagesize.toString())
-      .set('site', options && options.site || 'stackoverflow')
+      .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
       .set('order', options && options.order || 'desc')
       .set('filter', options && options.filter || '!-.3J6_-dxUCh')
       .set('sort', options && options.sort || 'activity');
 
     return this.http.get<IResponse>(`${this.url}questions${options && options.featured ? '/featured' : '/'}`, {headers, params});
   }
-  public getQuestion(id: number | Array<number>, options?: IQuestionOptions): Observable<IResponse> {
+  public getQuestion(id: number | Array<number>, options?: IRequestOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
     const params = new HttpParams()
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
+      .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
       .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
 
     if (Array.isArray(id)) {
@@ -59,14 +61,14 @@ export class QuestionsService {
 
     return this.http.get<IResponse>(`${this.url}questions/${id}`, {headers, params});
   }
-  public getAnswers(id: number | Array<number>, options?: IQuestionOptions): Observable<IResponse> {
+  public getAnswers(id: number | Array<number>, options?: IRequestOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
     const params = new HttpParams()
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
+      .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
       .set('order', options && options.order || 'desc')
       .set('sort', options && options.sort || 'votes')
       .set('filter', options && options.filter || '!)rFTNOmY7xxwmJcETs5e');
@@ -81,85 +83,121 @@ export class QuestionsService {
   }
 
   // Voting
-  public upvoteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
+  public upvoteQuestion(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
-      .set('Accept', '*/*');
+    .set('Accept', '*/*')
+      .set('Content-Type', 'application/x-www-form-urlencoded');
 
-    const params = new HttpParams()
-      .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
-      .set('preview', environment.production ? 'false' : 'true')
-      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+    const body = {
+      key: environment.api.key,
+      access_token: this.authService.getToken(),
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
+      preview: !environment.production,
+      filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
+    };
 
-    return this.http.get<IResponse | IResponseError>(`${this.url}questions/${id}/upvote`, {headers, params});
+    return this.http.post<IResponse | IResponseError>(
+      `${this.url}questions/${id}/upvote`,
+      this.bodyToFormBody(body),
+      { headers }
+    );
   }
-  public upvoteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
+  public upvoteQuestionUndo(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
-      .set('Accept', '*/*');
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/x-www-form-urlencoded');
 
-    const params = new HttpParams()
-      .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
-      .set('preview', environment.production ? 'false' : 'true')
-      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+    const body = {
+      key: environment.api.key,
+      access_token: this.authService.getToken(),
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
+      preview: !environment.production,
+      filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
+    };
 
-    return this.http.get<IResponse | IResponseError>(`${this.url}questions/${id}/upvote/undo`, {headers, params});
+    return this.http.post<IResponse | IResponseError>(
+      `${this.url}questions/${id}/upvote/undo`,
+      this.bodyToFormBody(body),
+      { headers }
+    );
   }
-  public downvoteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
+  public downvoteQuestion(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
-      .set('Accept', '*/*');
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/x-www-form-urlencoded');
 
-    const params = new HttpParams()
-      .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
-      .set('preview', environment.production ? 'false' : 'true')
-      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+    const body = {
+      key: environment.api.key,
+      access_token: this.authService.getToken(),
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
+      preview: !environment.production,
+      filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
+    };
 
-    return this.http.get<IResponse | IResponseError>(`${this.url}questions/${id}/downvote`, {headers, params});
+    return this.http.post<IResponse | IResponseError>(
+      `${this.url}questions/${id}/downvote`,
+      this.bodyToFormBody(body),
+      { headers }
+    );
   }
-  public downvoteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse | IResponseError> {
+  public downvoteQuestionUndo(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
-      .set('Accept', '*/*');
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/x-www-form-urlencoded');
 
-    const params = new HttpParams()
-      .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
-      .set('preview', environment.production ? 'false' : 'true')
-      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+    const body = {
+      key: environment.api.key,
+      access_token: this.authService.getToken(),
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
+      preview: !environment.production,
+      filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
+    };
 
-    return this.http.get<IResponse | IResponseError>(`${this.url}questions/${id}/downvote/undo`, {headers, params});
+    return this.http.post<IResponse | IResponseError>(
+      `${this.url}questions/${id}/downvote/undo`,
+      this.bodyToFormBody(body),
+      { headers }
+    );
   }
 
-  // Vavorites
-  public favoriteQuestion(id: number, options?: IQuestionOptions): Observable<IResponse> {
+  // Favorites
+  public favoriteQuestion(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
-      .set('Accept', '*/*');
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/x-www-form-urlencoded');
 
-    const params = new HttpParams()
-      .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
-      .set('preview', environment.production ? 'false' : 'true')
-      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+    const body = {
+      key: environment.api.key,
+      access_token: this.authService.getToken(),
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
+      preview: !environment.production,
+      filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
+    };
 
-    return this.http.get<IResponse>(`${this.url}questions/${id}/favorite`, {headers, params});
+    return this.http.post<IResponse | IResponseError>(
+      `${this.url}questions/${id}/favorite`,
+      this.bodyToFormBody(body),
+      { headers }
+    );
   }
-  public favoriteQuestionUndo(id: number, options?: IQuestionOptions): Observable<IResponse> {
+  public favoriteQuestionUndo(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
-      .set('Accept', '*/*');
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/x-www-form-urlencoded');
 
-    const params = new HttpParams()
-      .set('key', environment.api.key)
-      .set('access_token', this.authService.getToken())
-      .set('site', options && options.site || 'stackoverflow')
-      .set('preview', environment.production ? 'false' : 'true')
-      .set('filter', options && options.filter || '!LVBj2-meM(Hb3X0793bKrF');
+    const body = {
+      key: environment.api.key,
+      access_token: this.authService.getToken(),
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
+      preview: !environment.production,
+      filter: options && options.filter || '!LVBj2-meM(Hb3X0793bKrF',
+    };
 
-    return this.http.get<IResponse>(`${this.url}questions/${id}/favorite/undo`, {headers, params});
+    return this.http.post<IResponse | IResponseError>(
+      `${this.url}questions/${id}/favorite/undo`,
+      this.bodyToFormBody(body),
+      { headers }
+    );
   }
 
   // Helper
@@ -176,6 +214,17 @@ export class QuestionsService {
                      / 2))
                     , 1.5)
             ) > 0;
+  }
+  private bodyToFormBody(obj: any): string {
+    const formBody = [];
+    for (const property in obj) {
+      if (obj.hasOwnProperty(property)) {
+        const encodedKey = encodeURIComponent(property);
+        const encodedValue = encodeURIComponent(obj[property]);
+        formBody.push(`${encodedKey}=${encodedValue}`);
+      }
+    }
+    return formBody.join('&');
   }
   private unixTimestampToHours(unixTimestamp: number): number {
     const start = moment.unix(unixTimestamp);

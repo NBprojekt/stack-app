@@ -1,21 +1,36 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { IonicModule } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 import { VotingComponent } from './voting.component';
-import { CommonModule } from '@angular/common';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
-import { IonicModule } from '@ionic/angular';
 
 describe('VotingComponent', () => {
   let component: VotingComponent;
   let fixture: ComponentFixture<VotingComponent>;
+  let storageIonicMock;
 
   beforeEach(async(() => {
+    storageIonicMock = {
+      get: () => new Promise<any>((resolve, reject) => resolve('test')),
+    };
+
     TestBed.configureTestingModule({
       declarations: [ VotingComponent ],
       imports: [
         CommonPipesModule,
         IonicModule,
+        HttpClientTestingModule,
+        RouterTestingModule,
+      ],
+      providers: [
+        InAppBrowser,
+        { provide: Storage, useValue: storageIonicMock },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })

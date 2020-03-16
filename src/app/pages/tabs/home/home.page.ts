@@ -1,29 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { QuestionsService } from 'src/app/services/questions/questions.service';
 
 import { IQuestion } from 'src/app/interfaces/question';
-import { IQuestionOptions } from 'src/app/interfaces/question-options';
+import { IRequestOptions } from 'src/app/interfaces/request-options';
 import { IResponse } from 'src/app/interfaces/response';
+import { RouterEvent, NavigationEnd, Router } from '@angular/router';
+import { filter, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, OnDestroy {
+  private destroy = new Subject<any>();
+  private options: IRequestOptions;
+
   public backdrop = false;
   public questions: Array<IQuestion>;
 
-  private options: IQuestionOptions;
-
   constructor(
     private questionsService: QuestionsService,
+    private router: Router,
   ) { }
 
   public ngOnInit(): void {
     this.options = {};
-    this.doRefresh();
+
+    this.router.events
+      .pipe(
+        filter((event: RouterEvent) => event instanceof NavigationEnd),
+        takeUntil(this.destroy)
+      )
+      .subscribe(() => this.doRefresh());
+  }
+  public ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   public doRefresh(event?: any): void {
@@ -47,7 +62,7 @@ export class HomePage implements OnInit {
     });
   }
 
-  public updateFilter(options: IQuestionOptions): void {
+  public updateFilter(options: IRequestOptions): void {
     this.questions = null;
     this.options = options;
     this.doRefresh();

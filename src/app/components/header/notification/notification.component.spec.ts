@@ -1,19 +1,26 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { IonicModule, ModalController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 import { NotificationComponent } from './notification.component';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-import { RouterTestingModule } from '@angular/router/testing';
 
 describe('NotificationComponent', () => {
   let component: NotificationComponent;
   let fixture: ComponentFixture<NotificationComponent>;
+  let storageIonicMock;
 
   beforeEach(async(() => {
+    storageIonicMock = {
+      get: () => new Promise<any>(resolve => resolve('test')),
+    };
+
     TestBed.configureTestingModule({
       declarations: [ NotificationComponent ],
       imports: [
@@ -24,6 +31,7 @@ describe('NotificationComponent', () => {
       ],
       providers: [
         InAppBrowser,
+        { provide: Storage, useValue: storageIonicMock },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
@@ -36,7 +44,11 @@ describe('NotificationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('Should load more notifications', () => {
     expect(component).toBeTruthy();
   });
 });
