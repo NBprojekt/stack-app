@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { Subscription, Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { IResponse } from 'src/app/interfaces/response';
+import { AppComponent } from 'src/app/app.component';
 
 @Injectable({
   providedIn: 'root'
@@ -88,11 +89,23 @@ export class AuthService {
   }
 
   public async logOut(): Promise<void> {
+    AppComponent.loading.next(true);
+
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
+
+    const params = new HttpParams()
+      .set('key', environment.api.key);
+
     return new Promise(async (resolve) => {
       await this.storage.clear();
 
-      this.http.get<IResponse>(`${this.apiUrl}access-tokens/${this.token}/invalidate`)
-        .subscribe(() => resolve());
+      this.http.get<IResponse>(`${this.apiUrl}access-tokens/${this.token}/invalidate`, {headers, params})
+        .subscribe(() => {
+          AppComponent.loading.next(false);
+          this.router.navigateByUrl('/login');
+          resolve();
+        });
     });
   }
 
