@@ -103,7 +103,7 @@ export class MenuPage implements OnInit, OnDestroy {
   public async logOut(): Promise<void> {
     const alert = await this.alertController.create({
       header: 'Log out of Stack App?',
-      message: 'You can allwys log mack in any time.',
+      message: 'You can allways log back in any time.',
       buttons: [
         {
           text: 'Cancel',
