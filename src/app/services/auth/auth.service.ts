@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   public openLogin(): void {
-    const browser: InAppBrowserObject = this.inAppBrowser.create(this.oAuthUrl, '_blank', 'location=no,zoom=no');
+    const browser: InAppBrowserObject = this.inAppBrowser.create(this.oAuthUrl, '_blank', 'location=no,zoom=no,shouldPauseOnSuspend=yes,clearcache=yes,clearsessioncache=yes');
     this.allowBrowserClose = false;
 
     const loadSubscribtion$: Subscription = browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
