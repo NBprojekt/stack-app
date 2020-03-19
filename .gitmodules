@@ -1,3 +1,0 @@
-[submodule "Fastlane"]
-	path = fastlane
-	url = https://github.com/nbprojekt/stack-app-fastlane
