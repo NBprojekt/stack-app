@@ -13,7 +13,12 @@
     </form>
   </ion-toolbar>
 </ion-header>
+
 <ion-content fullscreen class="ion-padding">
+  <div *ngIf="loading" class="loader">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+
   <ion-list *ngIf="sites?.length; else notSitesFound">
     <ion-item *ngFor="let site of sites | slice:0:showItems;" 
               [class.unavailable]="!site?.reputation"
