@@ -68,6 +68,8 @@ Thanks for your interest in contributing! Read up on our guidelines for [contrib
 
 ## License
 
+Stack App is Free Software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the [MIT License][9].
+
 [//]: # (Links)
   [1]: https://github.com/nbprojekt/stack-app/issues
   [2]: https://github.com/NBprojekt/stack-app/issues/new?assignees=&labels=bug&template=bug-report.md&title=
@@ -77,3 +79,4 @@ Thanks for your interest in contributing! Read up on our guidelines for [contrib
   [6]: https://nodejs.org/en/
   [7]: https://gitforwindows.org/
   [8]: https://github.com/NBprojekt/stack-app/blob/Feature-create-readme/scripts/README.md
+  [9]: https://github.com/NBprojekt/stack-app/blob/master/LICENSE
