@@ -1,3 +1,5 @@
+import { IBadge } from './badge';
+
 export interface IUser {
   display_name: string;
   link: string;
@@ -13,11 +15,7 @@ export interface IUser {
   location?: string;
   website_url?: string;
   accept_rate?: number;
-  badge_counts?: {
-    bronze: number;
-    silver: number;
-    gold: number;
-  };
+  badge_counts?: IBadge;
   is_employee?: boolean;
   creation_date?: number;
   last_modified_date?: number;
