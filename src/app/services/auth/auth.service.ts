@@ -37,9 +37,9 @@ export class AuthService {
     this.allowBrowserClose = false;
 
     const loadSubscribtion$: Subscription = browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
-      const url = event.url.toLowerCase();
+      const url = event.url.split('//')[1];
 
-      if (url.startsWith(environment.oAuth.redirectUrl)) {
+      if (url.startsWith(environment.oAuth.redirectUrl.split('//')[1])) {
         this.allowBrowserClose = true;
         browser.close();
 
