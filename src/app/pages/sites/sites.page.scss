@@ -1,0 +1,87 @@
+.reputation-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 2px 0;
+
+  .reputation-count {
+    font-size: .95rem
+  }
+  .reputation-label {
+    padding-left: 10px;
+    font-size: .7rem;
+    opacity: .7;
+    text-transform: uppercase;
+  }
+}
+
+.achievements {
+  width: 100%;
+  font-size: .7em;
+  color: var(--ion-color-medium);
+  
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center!important;
+  
+  div {
+    float: left;
+
+    .fa-circle {
+        position: relative;
+        padding-left: 15px;
+        font-size: .75em;
+
+        &::before {
+            position: absolute;
+            top: -8px;
+            left: 7px;
+        }
+    }
+
+    &.gold .fa-circle{
+      color: rgb(255, 215, 0)
+    }
+    &.silver .fa-circle{
+      color: rgb(170, 165, 165)
+    }
+    &.bronze .fa-circle{
+      color: rgb(180, 106, 33);
+    }
+  }
+}
+
+.unavailable {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+    background-color: #000;
+    opacity: .1;
+  }
+
+  .unavailable-label {
+    font-size: .7rem;
+    opacity: .7;
+    text-transform: uppercase;
+  }
+}
+
+.no-sites-found {
+    position: absolute;
+    top: 50%;
+    left: 50%;    
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+
+    i {
+        margin-right: 10px;
+    }
+}

@@ -12,7 +12,10 @@ import { IResponse } from 'src/app/interfaces/response';
   styleUrls: ['./sites.page.scss'],
 })
 export class SitesPage implements OnInit {
+  public searchString: string;
+
   public sites: Array<ISite>;
+  private _sites: Array<ISite>;
 
   constructor(
     private siteService: SitesService,
@@ -32,10 +35,22 @@ export class SitesPage implements OnInit {
 
         if (matchingIndex >= 0) {
           this.sites[matchingIndex].reputation = mySite.reputation;
+          this.sites[matchingIndex].badge_counts = mySite.badge_counts;
         }
       });
 
       this.sites.sort((a, b) => (b.reputation || 0) - (a.reputation || 0));
+      this._sites = this.sites;
     });
+  }
+
+  public search(): void {
+    const searchString = this.searchString ? this.searchString.toLowerCase() : '';
+    this.sites = this._sites.filter((site: ISite) => site.name.toLocaleLowerCase().includes(searchString));
+  }
+
+  public resetFilter(): void {
+    this.searchString = '';
+    this.search();
   }
 }
