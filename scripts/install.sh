@@ -55,21 +55,23 @@ function configure() {
   printf "> Restoring resources"
   ionic cordova resources  >/dev/null 2>&1 & spinner
 
-  printf "> Do you want to add the android  platform? [Y/n]"
+  printf ">\n> Do you want to add the android  platform? [Y/n]"
   read -r -p " " response
   case "$response" in
       [nN]) ;;
       *)
-        ionic cordova platform add android
+        printf "> Adding android platform"
+        ionic cordova platform add android >/dev/null 2>&1 & spinner
         ;;
   esac
 
-  printf "> Do you want to add the ios platform? [Y/n]"
+  printf ">\n> Do you want to add the ios platform? [Y/n]"
   read -r -p " " response
   case "$response" in
       [nN]) ;;
       *)
-        ionic cordova platform add ios
+        printf "\n> Adding ios platform"
+        ionic cordova platform add ios >/dev/null 2>&1 & spinner
         ;;
   esac
 }
@@ -80,4 +82,4 @@ install
 configure
 
 
-printf "\n\n> Done.\n"
+printf ">\n>\n> Done.\n"
