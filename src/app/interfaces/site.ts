@@ -18,7 +18,7 @@ export interface ISite {
   site_url?: string;
   styling: ISiteStyling;
   twitter_account?: string;
-  badge_counts: IBadge;
+  badge_counts?: IBadge;
   reputation?: number;
 }
 
