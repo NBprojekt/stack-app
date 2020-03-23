@@ -70,7 +70,7 @@ export class SitesPage implements OnInit, OnDestroy {
 
   private openJoinSite(site): void {
     const browser: InAppBrowserObject = this.inAppBrowser.create(
-      `${site.url}/users/join?returnurl=${site.url}/return`, 
+      `${site.url}/users/join?returnurl=${site.url}/return`,
       '_blank', 'location=no,zoom=no,shouldPauseOnSuspend=yes,hidden=yes,beforeload=yes'
     );
 
@@ -108,7 +108,7 @@ export class SitesPage implements OnInit, OnDestroy {
       this.sites.sort((a, b) => (b.reputation || 0) - (a.reputation || 0));
       this._sites = this.sites;
 
-      this.loading = false; 
+      this.loading = false;
     });
   }
 
