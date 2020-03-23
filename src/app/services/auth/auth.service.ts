@@ -37,9 +37,9 @@ export class AuthService {
     this.allowBrowserClose = false;
 
     const loadSubscribtion$: Subscription = browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
-      const url = event.url.split('//')[1];
+      const url = event.url.toLowerCase();
 
-      if (url.startsWith('auth.stack.norbert-bartko.de')) {
+      if (url.startsWith(environment.oAuth.redirectUrl)) {
         this.allowBrowserClose = true;
         browser.close();
 
