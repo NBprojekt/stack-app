@@ -12,6 +12,8 @@ import { IResponse } from 'src/app/interfaces/response';
   styleUrls: ['./sites.page.scss'],
 })
 export class SitesPage implements OnInit {
+  public readonly maxItems = 20;
+  public showItems: number;
   public searchString: string;
 
   public sites: Array<ISite>;
@@ -23,7 +25,16 @@ export class SitesPage implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    this.showItems = this.maxItems;
     this.loadSites();
+  }
+
+  public openSite(site: ISite): void {
+
+  }
+
+  public joinSiteDialog(site: ISite): void {
+    
   }
 
   private async loadSites(): Promise<void> {
@@ -52,5 +63,12 @@ export class SitesPage implements OnInit {
   public resetFilter(): void {
     this.searchString = '';
     this.search();
+  }
+
+  public hasMore(): boolean {
+    return this.sites && this.sites.length > this.showItems;
+  }
+  public showMore(): void {
+    this.showItems += this.maxItems;
   }
 }
