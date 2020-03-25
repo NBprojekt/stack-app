@@ -42,7 +42,9 @@ export class SitesPage implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.browserSubscribtion$.unsubscribe();
+    if (this.browserSubscribtion$) {
+      this.browserSubscribtion$.unsubscribe();
+    }
   }
 
   public async openSite(site: ISite): Promise<void> {
