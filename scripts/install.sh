@@ -31,7 +31,6 @@ function welcome () {
 
   printf "✨ Welcome to the stack app installer ✨ \n\n"
   printf "  • Install all cli's needed and dependencies \n"
-  printf "  • Fix audits, when needed \n"
   printf "  • Restore mobile resources \n"
   printf "  • Add support for android and ios \n\n"
 
@@ -45,9 +44,6 @@ function install() {
 
   printf "> Installing dependencies"
   npm i >/dev/null 2>&1 & spinner
-
-  printf "> Fixing audits, when needed"
-  npm audit fix >/dev/null 2>&1 & spinner
 }
 
 function configure() {
