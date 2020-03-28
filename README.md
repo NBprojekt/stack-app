@@ -1,7 +1,7 @@
 
 <p align="center">
-  <a href="PLACEHOLDER">
-    <img src="https://via.placeholder.com/150x150" width="150">
+  <a href="https://github.com/nbprojekt/stack-app">
+    <img src="./resources/icon.png" width="150">
   </a>
 </p> 
 
