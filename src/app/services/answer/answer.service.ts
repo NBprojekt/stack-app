@@ -12,6 +12,7 @@ import { IRequestOptions } from 'src/app/interfaces/request-options';
 import { IResponse, IResponseError } from 'src/app/interfaces/response';
 
 import { AuthService } from '../auth/auth.service';
+import { SitesService } from '../sites/sites.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class AnswerService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
+    private siteService: SitesService,
   ) { }
 
   // Voting
@@ -34,7 +36,7 @@ export class AnswerService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || 'default',
     };
@@ -53,7 +55,7 @@ export class AnswerService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || 'default',
     };
@@ -72,7 +74,7 @@ export class AnswerService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || 'default',
     };
@@ -91,7 +93,7 @@ export class AnswerService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || 'default',
     };
@@ -112,7 +114,7 @@ export class AnswerService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || 'default',
     };
@@ -131,7 +133,7 @@ export class AnswerService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || 'default',
     };
