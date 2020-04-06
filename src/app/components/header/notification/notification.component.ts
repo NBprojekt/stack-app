@@ -61,7 +61,6 @@ export class NotificationComponent implements OnInit {
   }
 
   public async forwardInternally(item): Promise<void> {
-    console.log(['ITEM', item]);
     const path = this.location.path();
     await this.siteService.setCurrentSite(item.site || item.on_site);
 
@@ -69,6 +68,9 @@ export class NotificationComponent implements OnInit {
 
     switch (item.item_type || item.achievement_type) {
       case 'reputation':
+        if (this.specialReputation(item)) {
+          break;
+        }
         this.router.navigateByUrl(linkSplited[linkSplited.length - 1].includes('#') ?
           `/menu/pages/question/${linkSplited[4]}/${linkSplited[5]}/answer/${linkSplited[6]}` :
           `/menu/pages/question/${linkSplited[4]}/${linkSplited[5]}`);
@@ -94,5 +96,12 @@ export class NotificationComponent implements OnInit {
     }
 
     this.modalController.dismiss();
+  }
+
+  private specialReputation(item: any): boolean {
+    // TODO: Create pages to redirect when its a special reputation
+    return item.achievement_type === 'badge' ||
+      item.title.includes('bonus of 100 reputation because we trust you on other sites in the network') ||
+      item.title.includes('User was removed');
   }
 }
