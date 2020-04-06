@@ -9,6 +9,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { Router } from '@angular/router';
 import { SitesService } from 'src/app/services/sites/sites.service';
 import { Location } from '@angular/common';
+import { AnswerService } from 'src/app/services/answer/answer.service';
 
 @Component({
   selector: 'app-notification',
@@ -26,6 +27,7 @@ export class NotificationComponent implements OnInit {
     private modalController: ModalController,
     private router: Router,
     private siteService: SitesService,
+    private answerService: AnswerService,
     private location: Location,
   ) { }
 
@@ -59,6 +61,7 @@ export class NotificationComponent implements OnInit {
   }
 
   public async forwardInternally(item): Promise<void> {
+    console.log(['ITEM', item]);
     const path = this.location.path();
     await this.siteService.setCurrentSite(item.site || item.on_site);
 
@@ -74,7 +77,17 @@ export class NotificationComponent implements OnInit {
         this.router.navigateByUrl(`/menu/pages/question/${item.question_id}/${item.title}/answer/${item.answer_id}`);
         break;
       case 'comment':
-        this.router.navigateByUrl(`/menu/pages/question/${item.question_id}/${item.title}/comment/${item.comment_id}`);
+        // TODO: This is a temporary fix
+        // When its a comment on an answer it dont contains a question id which is required
+        // Currently as a workaround I obtain the id from the answer service
+        if (item.question_id) {
+          this.router.navigateByUrl(`/menu/pages/question/${item.question_id}/${item.title}/comment/${item.comment_id}`);
+        }
+        if (item.answer_id) {
+          this.answerService.getQuestions(item.answer_id).subscribe((response: IResponse) => {
+            this.router.navigateByUrl(`/menu/pages/question/${response.items[0].question_id}/${item.title}/comment/${item.comment_id}`);
+          });
+        }
         break;
       case 'help':
         break;
