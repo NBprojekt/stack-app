@@ -27,6 +27,23 @@ export class AnswerService {
     private siteService: SitesService,
   ) { }
 
+  // Getter
+  public getQuestions(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
+
+    const params = new HttpParams()
+      .set('key', environment.api.key)
+      .set('access_token', this.authService.getToken())
+      .set('page', options && options.page ? options.page.toString() : '1')
+      .set('pagesize', this.pagesize.toString())
+      .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
+      .set('filter', options && options.filter || '!--KJA8bUFl_y')
+      .set('sort', options && options.sort || 'activity');
+
+    return this.http.get<IResponse>(`${this.url}answers/${id}/questions`, {headers, params});
+  }
+
   // Voting
   public upvoteAnswer(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
