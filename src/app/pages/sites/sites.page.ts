@@ -111,11 +111,12 @@ export class SitesPage implements OnInit, OnDestroy {
       this._sites = this.sites;
 
       this.loading = false;
+      this.search();
     });
   }
 
   public search(): void {
-    const searchString = this.searchString ? this.searchString.toLowerCase() : '';
+    const searchString = this.searchString ? this.searchString.toLowerCase().trim() : '';
     this.sites = this._sites.filter((site: ISite) => site.name.toLocaleLowerCase().includes(searchString));
   }
 

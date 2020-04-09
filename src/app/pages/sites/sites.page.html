@@ -9,7 +9,8 @@
   <ion-toolbar>
     <form>
       <ion-searchbar [(ngModel)]="searchString" [ngModelOptions]="{standalone: true}"
-                     (ionInput)="search()" (ionClear)="resetFilter()"></ion-searchbar>
+                     (ionInput)="search()" (ionClear)="resetFilter()">
+      </ion-searchbar>
     </form>
   </ion-toolbar>
 </ion-header>
@@ -20,7 +21,7 @@
   </div>
 
   <ion-list *ngIf="sites?.length; else notSitesFound">
-    <ion-item *ngFor="let site of sites | slice:0:showItems;" 
+    <ion-item *ngFor="let site of sites | slice:0:showItems;"
               [class.unavailable]="!site?.reputation"
               (click)="site?.reputation ? openSite(site) : joinSiteDialog(site)">
       <ion-avatar slot="start">
@@ -67,12 +68,12 @@
       </ion-button>
     </div>
   </ng-template>
-  
+
   <div *ngIf="hasMore() > 0" class="load-more">
-    <small> {{hasMore()}} more items </small> 
+    <small> {{hasMore()}} more items </small>
     <br>
-    
-    <ion-button (click)="showMore()" fill="outline"> 
+
+    <ion-button (click)="showMore()" fill="outline">
       Load more
     </ion-button>
   </div>
