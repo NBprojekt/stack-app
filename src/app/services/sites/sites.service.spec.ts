@@ -1,12 +1,43 @@
-import { TestBed } from '@angular/core/testing';
+import { async, TestBed, getTestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
+import { IonicModule } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 import { SitesService } from './sites.service';
 
 describe('SitesService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let injector: TestBed;
+  let service: SitesService;
+  let httpMock: HttpTestingController;
 
-  it('should be created', () => {
-    const service: SitesService = TestBed.get(SitesService);
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+        IonicModule,
+        RouterTestingModule,
+      ],
+      providers: [
+        InAppBrowser,
+        {
+          provide: Storage, useValue: {
+            get: () => new Promise<any>((resolve, reject) => resolve('test')),
+          }
+        },
+      ]
+    });
+  }));
+
+  beforeEach(() => {
+    injector = getTestBed();
+    service = injector.get(SitesService);
+    httpMock = injector.get(HttpTestingController);
+  });
+
+  it('Should create', () => {
     expect(service).toBeTruthy();
   });
 });

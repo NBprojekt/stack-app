@@ -1,9 +1,12 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { IonicModule } from '@ionic/angular';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { IonicModule } from '@ionic/angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { Storage } from '@ionic/storage';
 
 import { AnswerCardComponent } from './answer-card.component';
 import { CommentModule } from '../comment/comment.module';
@@ -14,6 +17,7 @@ import { IAnswer } from 'src/app/interfaces/answer';
 describe('AnswerCardComponent', () => {
   let component: AnswerCardComponent;
   let fixture: ComponentFixture<AnswerCardComponent>;
+  let storageIonicMock: any;
 
   const testAnswer: IAnswer = {
     answer_id: 1,
@@ -36,6 +40,10 @@ describe('AnswerCardComponent', () => {
   };
 
   beforeEach(async(() => {
+    storageIonicMock = {
+      get: () => new Promise<any>((resolve, reject) => resolve('test')),
+    };
+
     TestBed.configureTestingModule({
       declarations: [ AnswerCardComponent, ],
       imports: [
@@ -43,6 +51,11 @@ describe('AnswerCardComponent', () => {
         IonicModule,
         CommentModule,
         VotingModule,
+        RouterTestingModule,
+      ],
+      providers: [
+        InAppBrowser,
+        { provide: Storage, useValue: storageIonicMock },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })

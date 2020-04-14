@@ -15,13 +15,13 @@ const routes: Routes = [
     component: MenuPage,
     children:  [
       { path: '', loadChildren: () => import('../tabs/tabs.module').then( m => m.TabsPageModule) },
-      { path: 'question/:id/:title/comment/:comment', loadChildren: () => import('../question/question.module').then( m => m.QuestionPageModule) },
-      { path: 'question/:id/:title/answer/:answer', loadChildren: () => import('../question/question.module').then( m => m.QuestionPageModule) },
+      { path: 'question/:id/:title/:type/:highlight', loadChildren: () => import('../question/question.module').then( m => m.QuestionPageModule) },
       { path: 'question/:id/:title', loadChildren: () => import('../question/question.module').then( m => m.QuestionPageModule) },
     ],
   },
   { path: 'settings', loadChildren: () => import('../settings/settings.module').then( m => m.SettingsPageModule) },
   { path: 'about', loadChildren: () => import('../about/about.module').then( m => m.AboutPageModule) },
+  { path: 'sites', loadChildren: () => import('../sites/sites.module').then( m => m.SitesPageModule) },
   { path: '', redirectTo: 'pages', pathMatch: 'full'}
 ];
 

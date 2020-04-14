@@ -4,6 +4,7 @@ export const environment = {
     url: 'https://api.stackexchange.com/',
     version: '2.2/',
     key: 'tY6t1JhOUblLZKK7kLe1cA((',
+    updateSitesIntervall: 3,
   },
   oAuth: {
     clientId: 16712,

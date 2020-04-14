@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title> Sites </ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <form>
+      <ion-searchbar [(ngModel)]="searchString" [ngModelOptions]="{standalone: true}"
+                     (ionInput)="search()" (ionClear)="resetFilter()"></ion-searchbar>
+    </form>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding">
+  <div *ngIf="loading" class="loader">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+
+  <ion-list *ngIf="sites?.length; else notSitesFound">
+    <ion-item *ngFor="let site of sites | slice:0:showItems;" 
+              [class.unavailable]="!site?.reputation"
+              (click)="site?.reputation ? openSite(site) : joinSiteDialog(site)">
+      <ion-avatar slot="start">
+        <img [src]="site?.high_resolution_icon_url" />
+      </ion-avatar>
+      <ion-label>
+        <h2 [innerHTML]="site.name"></h2>
+
+        <div class="reputation-wrapper" *ngIf="site?.reputation; else unavailable">
+          <div class="reputation-count"> {{site?.reputation}} </div>
+          <div class="reputation-label"> reputation </div>
+        </div>
+
+        <ng-template #unavailable>
+          <div class="unavailable-label">
+            You have not yet joined this community
+          </div>
+        </ng-template>
+
+        <div class="achievements">
+          <div *ngIf="site?.badge_counts?.gold > 0" class="badge gold">
+            <i class="fas fa-circle"></i> {{site?.badge_counts.gold}}
+          </div>
+          <div *ngIf="site?.badge_counts?.silver > 0" class="badge silver">
+            <i class="fas fa-circle"></i> {{site?.badge_counts.silver}}
+          </div>
+          <div *ngIf="site?.badge_counts?.bronze > 0" class="badge bronze">
+            <i class="fas fa-circle"></i> {{site?.badge_counts.bronze}}
+          </div>
+        </div>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #notSitesFound >
+    <div class="no-sites-found">
+      <p>
+        No Sites found
+      </p>
+
+      <ion-button color="primary" (click)="resetFilter()">
+        <i class="fas fa-undo-alt"></i>
+        Reset filter
+      </ion-button>
+    </div>
+  </ng-template>
+  
+  <div *ngIf="hasMore() > 0" class="load-more">
+    <small> {{hasMore()}} more items </small> 
+    <br>
+    
+    <ion-button (click)="showMore()" fill="outline"> 
+      Load more
+    </ion-button>
+  </div>
+</ion-content>

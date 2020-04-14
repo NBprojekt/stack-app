@@ -11,4 +11,6 @@ import { IUser } from 'src/app/interfaces/user';
 export class AnswerCardComponent {
   @Input() answer: IAnswer;
   @Input() questionOwner: IUser;
+  @Input() highlight: number;
+  @Input() type: string;
 }

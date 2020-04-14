@@ -1,3 +1,4 @@
+import { IBadge } from './badge';
 export interface ISite {
   aliases?: Array<string>;
   api_site_parameter: string;
@@ -17,6 +18,8 @@ export interface ISite {
   site_url?: string;
   styling: ISiteStyling;
   twitter_account?: string;
+  badge_counts?: IBadge;
+  reputation?: number;
 }
 
 export interface IRelatedSite {
@@ -30,4 +33,11 @@ export interface ISiteStyling {
   link_color: string;
   tag_background_color: string;
   tag_foreground_color: string;
+}
+
+export interface IMySite {
+  site_name: string;
+  site_url: string;
+  reputation: number;
+  badge_counts: IBadge;
 }

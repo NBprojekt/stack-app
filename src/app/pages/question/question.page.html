@@ -4,7 +4,7 @@
   <div class="vertical-spacer"></div>
 
   <div *ngIf="question; else questionSkeleton">
-    <question-card [question]="question"></question-card>
+    <question-card [question]="question" [type]="type" [highlight]="highlight"></question-card>
   </div>
 
   <ng-template #questionSkeleton>
@@ -18,7 +18,7 @@
       </ion-list-header>
 
       <div *ngFor="let answer of answers">
-        <answer-card [answer]="answer" [questionOwner]="question?.owner"></answer-card>
+        <answer-card [answer]="answer" [questionOwner]="question?.owner" [type]="type" [highlight]="highlight"></answer-card>
       </div>
     </ion-list>
   </div>

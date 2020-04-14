@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
 
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
@@ -8,10 +8,10 @@
 
     <ion-buttons slot="end">
       <ion-button icon-only (click)="shareQuestion()">
-        <ion-icon name="md-share"></ion-icon>
+        <ion-icon name="share"></ion-icon>
       </ion-button>
-      <ion-button icon-only (click)="showQuestionOptions($event)">
-        <ion-icon name="md-more"></ion-icon>
+      <ion-button icon-only (click)="openInBrowser()">
+        <ion-icon name="open"></ion-icon>
       </ion-button>
     </ion-buttons>
 

@@ -9,6 +9,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { Router } from '@angular/router';
 import { SitesService } from 'src/app/services/sites/sites.service';
 import { Location } from '@angular/common';
+import { AnswerService } from 'src/app/services/answer/answer.service';
 
 @Component({
   selector: 'app-notification',
@@ -26,6 +27,7 @@ export class NotificationComponent implements OnInit {
     private modalController: ModalController,
     private router: Router,
     private siteService: SitesService,
+    private answerService: AnswerService,
     private location: Location,
   ) { }
 
@@ -66,6 +68,9 @@ export class NotificationComponent implements OnInit {
 
     switch (item.item_type || item.achievement_type) {
       case 'reputation':
+        if (this.specialReputation(item)) {
+          break;
+        }
         this.router.navigateByUrl(linkSplited[linkSplited.length - 1].includes('#') ?
           `/menu/pages/question/${linkSplited[4]}/${linkSplited[5]}/answer/${linkSplited[6]}` :
           `/menu/pages/question/${linkSplited[4]}/${linkSplited[5]}`);
@@ -74,12 +79,29 @@ export class NotificationComponent implements OnInit {
         this.router.navigateByUrl(`/menu/pages/question/${item.question_id}/${item.title}/answer/${item.answer_id}`);
         break;
       case 'comment':
-        this.router.navigateByUrl(`/menu/pages/question/${item.question_id}/${item.title}/comment/${item.comment_id}`);
+        // TODO: This is a temporary fix
+        // When its a comment on an answer it dont contains a question id which is required
+        // Currently as a workaround I obtain the id from the answer service
+        if (item.question_id) {
+          this.router.navigateByUrl(`/menu/pages/question/${item.question_id}/${item.title}/comment/${item.comment_id}`);
+        }
+        if (item.answer_id) {
+          this.answerService.getQuestions(item.answer_id).subscribe((response: IResponse) => {
+            this.router.navigateByUrl(`/menu/pages/question/${response.items[0].question_id}/${item.title}/comment/${item.comment_id}`);
+          });
+        }
         break;
       case 'help':
         break;
     }
 
     this.modalController.dismiss();
+  }
+
+  private specialReputation(item: any): boolean {
+    // TODO: Create pages to redirect when its a special reputation
+    return item.achievement_type === 'badge' ||
+      item.title.includes('bonus of 100 reputation because we trust you on other sites in the network') ||
+      item.title.includes('User was removed');
   }
 }

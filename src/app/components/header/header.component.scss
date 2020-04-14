@@ -4,13 +4,13 @@ ion-button {
 
   ion-badge {
     position: absolute;
-    top: -2px;
-    right: 4px;
+    top: 1px;
+    right: 1px;
     z-index: 5;
 
+    border: solid 1.5px white;
+    font-size: .7em;
     overflow: inherit;
-    border: solid 1.5px var(--ion-color-primary);
-
 
     &.ios {
       padding: 2.5px 5.5px;
@@ -24,14 +24,14 @@ ion-button {
       height: 20px;;
     }
 
-    span {
-      padding-left: 8px;
+    span.with-icon {
+      padding-left: 4px;
     }
 
     .fas, .far {
       position: absolute;
       left: 3px;
-      top: 5px;
+      top: 4px;
       font-size: .6em;
     }
 
@@ -40,4 +40,9 @@ ion-button {
       margin-right: 16px;
     }
   }
+}
+
+.icon {
+  margin-top: 10px;
+  max-width: 40px;
 }

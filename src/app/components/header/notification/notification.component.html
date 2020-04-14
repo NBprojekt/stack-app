@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-title> {{title}} </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()"> Close </ion-button>
@@ -26,10 +26,10 @@
 
 
           <div *ngIf="item?.achievement_type === 'reputation'" [className]="item?.reputation_change > 0 ? 'badge green' : 'badge red'">
-            {{item?.reputation_change > 0? '+' + item?.reputation_change : item?.reputation_change}}
+            {{item?.reputation_change > 0 ? '+' + item?.reputation_change : item?.reputation_change}}
           </div>
 
-          <div [innerHTML]="item.title"></div>
+          <div  class="wrap-text" [innerHTML]="item.title"></div>
 
           <div *ngIf="item?.is_unread" class="new">
             <div class="badge"> new </div>

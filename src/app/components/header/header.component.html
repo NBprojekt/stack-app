@@ -1,18 +1,19 @@
-<ion-toolbar color="primary" mode="md">
+<ion-toolbar mode="md">
   <ion-buttons slot="start">
     <ion-menu-button></ion-menu-button>
   </ion-buttons>
+
   <ion-buttons slot="end" mode="ios">
-    <ion-button icon-only (click)="showNotifications('Inbox', inbox)">
+    <ion-button color="medium" icon-only (click)="showNotifications('Inbox', inbox)">
       <ion-badge color="danger">
         <span *ngIf="countUnread(inbox) !== 0"> {{countUnread(inbox) | shortenNumber}} </span>
       </ion-badge>
       <ion-icon name="md-chatbubbles"></ion-icon>
     </ion-button>
 
-    <ion-button icon-only (click)="showNotifications('Achievements', achievements)">
+    <ion-button color="medium" icon-only (click)="showNotifications('Achievements', achievements)">
       <ion-badge [color]="countUnread(achievements) >= 0 ? 'success' : 'danger'">
-        <span *ngIf="countUnread(achievements) !== 0">
+        <span *ngIf="countUnread(achievements) !== 0" class="with-icon">
           <i [class]="countUnread(achievements) >= 0 ? 'fas fa-plus' : 'fas fa-minus'"></i>
           {{countUnread(achievements) | shortenNumber}}
         </span>
@@ -20,15 +21,16 @@
       <ion-icon name="md-trophy"></ion-icon>
     </ion-button>
 
-    <ion-button>
-      <ion-badge *ngIf="reviwQueues" color="danger" mode="ios" class="circle"> &nbsp;&nbsp; </ion-badge>
+    <!-- TODO: Add review queue page -->
+    <ion-button hidden>
+      <ion-badge *ngIf="reviewQueues" color="danger" mode="ios" class="circle"> &nbsp;&nbsp; </ion-badge>
       <ion-icon name="ios-list-box"></ion-icon>
     </ion-button>
-
-    <ion-button icon-only (click)="showMore($event)">
-      <ion-icon name="md-more"></ion-icon>
-    </ion-button>
   </ion-buttons>
+
+  <div slot="start">
+    <img [src]="icon" class="icon">
+  </div>
 
   <ion-title> {{ title }} </ion-title>
 </ion-toolbar>

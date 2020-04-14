@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { Subscription, Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { IResponse } from 'src/app/interfaces/response';
+import { AppComponent } from 'src/app/app.component';
 
 @Injectable({
   providedIn: 'root'
@@ -32,13 +33,13 @@ export class AuthService {
   }
 
   public openLogin(): void {
-    const browser: InAppBrowserObject = this.inAppBrowser.create(this.oAuthUrl, '_blank', 'location=no,zoom=no');
+    const browser: InAppBrowserObject = this.inAppBrowser.create(this.oAuthUrl, '_blank', 'location=no,zoom=no,shouldPauseOnSuspend=yes,clearcache=yes,clearsessioncache=yes');
     this.allowBrowserClose = false;
 
     const loadSubscribtion$: Subscription = browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
       const url = event.url.split('//')[1];
 
-      if (url.startsWith('auth.stack.norbert-bartko.de')) {
+      if (url.startsWith(environment.oAuth.redirectUrl.split('//')[1])) {
         this.allowBrowserClose = true;
         browser.close();
 
@@ -75,6 +76,7 @@ export class AuthService {
       });
     });
   }
+
   public getToken(): string {
     return this.token;
   }
@@ -87,11 +89,23 @@ export class AuthService {
   }
 
   public async logOut(): Promise<void> {
+    AppComponent.loading.next(true);
+
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
+
+    const params = new HttpParams()
+      .set('key', environment.api.key);
+
     return new Promise(async (resolve) => {
       await this.storage.clear();
 
-      this.http.get<IResponse>(`${this.apiUrl}access-tokens/${this.token}/invalidate`)
-        .subscribe(() => resolve());
+      this.http.get<IResponse>(`${this.apiUrl}access-tokens/${this.token}/invalidate`, {headers, params})
+        .subscribe(() => {
+          AppComponent.loading.next(false);
+          this.router.navigateByUrl('/login');
+          resolve();
+        });
     });
   }
 
@@ -130,6 +144,7 @@ export class AuthService {
       resolve(!!token);
     });
   }
+
   private saveToken(token: string): void {
     this.storage.set('access_token', token);
   }

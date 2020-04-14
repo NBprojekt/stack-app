@@ -1,9 +1,10 @@
-<ion-card>
+<ion-card [class.highlighted-by-link]="question?.question_id == highlight && type == 'question'">
   <ion-card-header>
-    <voting [score]="question?.score" [id]="question?.question_id" mode="question"
+    <voting [score]="question?.score" mode="question"
             [upvoted]="question?.upvoted" [downvoted]="question?.downvoted"
             showFavorites="true" [isFavorite]="question?.favorited"
-            [countFavorites]="question?.favorite_count">
+            [countFavorites]="question?.favorite_count"
+            [id]="question?.question_id">
     </voting>
     <ion-card-subtitle>
       Asked <span> {{question?.creation_date | timePassed}} </span>
@@ -38,7 +39,7 @@
     </ion-col>
 
     <ion-col size="12">
-      <comments [comments]="question?.comments" [questionOwner]="question?.owner"></comments>
+      <comments [comments]="question?.comments" [questionOwner]="question?.owner" [type]="type" [highlight]="highlight"></comments>
     </ion-col>
   </ion-row>
 </ion-card>

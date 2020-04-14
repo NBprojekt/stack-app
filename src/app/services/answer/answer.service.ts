@@ -12,6 +12,7 @@ import { IRequestOptions } from 'src/app/interfaces/request-options';
 import { IResponse, IResponseError } from 'src/app/interfaces/response';
 
 import { AuthService } from '../auth/auth.service';
+import { SitesService } from '../sites/sites.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,25 @@ export class AnswerService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
+    private siteService: SitesService,
   ) { }
+
+  // Getter
+  public getQuestions(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
+
+    const params = new HttpParams()
+      .set('key', environment.api.key)
+      .set('access_token', this.authService.getToken())
+      .set('page', options && options.page ? options.page.toString() : '1')
+      .set('pagesize', this.pagesize.toString())
+      .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
+      .set('filter', options && options.filter || '!--KJA8bUFl_y')
+      .set('sort', options && options.sort || 'activity');
+
+    return this.http.get<IResponse>(`${this.url}answers/${id}/questions`, {headers, params});
+  }
 
   // Voting
   public upvoteAnswer(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
@@ -34,7 +53,7 @@ export class AnswerService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || 'default',
     };
@@ -53,7 +72,7 @@ export class AnswerService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || 'default',
     };
@@ -72,7 +91,7 @@ export class AnswerService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || 'default',
     };
@@ -91,7 +110,7 @@ export class AnswerService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || 'default',
     };
@@ -103,7 +122,7 @@ export class AnswerService {
     );
   }
 
-  // Vavorites
+  // Accept
   public acceptAnswer(id: number, options?: IRequestOptions): Observable<IResponse | IResponseError> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*')
@@ -112,7 +131,7 @@ export class AnswerService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || 'default',
     };
@@ -131,7 +150,7 @@ export class AnswerService {
     const body = {
       key: environment.api.key,
       access_token: this.authService.getToken(),
-      site: options && options.site || 'stackoverflow',
+      site: options && options.site || this.siteService.getCurrentSite().api_site_parameter,
       preview: !environment.production,
       filter: options && options.filter || 'default',
     };
