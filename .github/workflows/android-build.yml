@@ -3,6 +3,11 @@ on:
   push:
     branches:    
       - master
+  pull_request:
+    branches:    
+      - master
+    tags: 
+      - 'dependencies'
 
 jobs:
   generate-apk:
