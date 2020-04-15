@@ -6,6 +6,7 @@ on:
 
 jobs:
   generate-apk:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
     name: Generate APK
     runs-on: ubuntu-latest
     steps:
