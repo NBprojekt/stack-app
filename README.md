@@ -14,12 +14,16 @@
     <img src="https://img.shields.io/badge/dynamic/json?color=informational&label=version&query=tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fnbprojekt%2Fstackapp%2Freleases%2Flatest">
   </a>
   
-  <a href="https://github.com/NBprojekt/stack-app/actions?query=workflow%3A%22Github+CI%22" alt="Ionic CI Status">
-    <img src="https://github.com/nbprojekt/stack-app/workflows/Github%20CI/badge.svg">
+  <a src="https://dependabot.com">
+    <img src="https://api.dependabot.com/badges/status?host=github&repo=NBprojekt/stack-app&identifier=217569259" alt"Dependabot Status">
   </a>
   
-  <a href="https://github.com/NBprojekt/stack-app/actions?query=workflow%3A%22Android+Build%22" alt="Android Build Status">
-    <img src="https://github.com/nbprojekt/stack-app/workflows/Android%20Build/badge.svg">
+  <a href="https://github.com/NBprojekt/stack-app/actions?query=workflow%3A%22Github+CI%22">
+    <img src="https://github.com/nbprojekt/stack-app/workflows/Github%20CI/badge.svg" alt="Ionic CI Status">
+  </a>
+  
+  <a href="https://github.com/NBprojekt/stack-app/actions?query=workflow%3A%22Android+Build%22">
+    <img src="https://github.com/nbprojekt/stack-app/workflows/Android%20Build/badge.svg" alt="Android Build Status">
   </a>
 </p>
 
