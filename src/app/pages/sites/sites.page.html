@@ -69,12 +69,10 @@
     </div>
   </ng-template>
 
-  <div *ngIf="hasMore() > 0" class="load-more">
-    <small> {{hasMore()}} more items </small>
-    <br>
+  <!-- Infinite scoll -->
+  <ion-infinite-scroll threshold="10%" (ionInfinite)="loadMore($event)" [disabled]="!sites?.length">
+    <ion-infinite-scroll-content loadingSpinner="crescent">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
-    <ion-button (click)="showMore()" fill="outline">
-      Load more
-    </ion-button>
-  </div>
 </ion-content>

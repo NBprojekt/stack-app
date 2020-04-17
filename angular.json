@@ -39,6 +39,9 @@
                 "input": "src/theme/variables.scss"
               },
               {
+                "input": "src/material-elevation.scss"
+              },
+              {
                 "input": "src/global.scss"
               }
             ],

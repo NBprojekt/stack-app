@@ -128,7 +128,14 @@ export class SitesPage implements OnInit, OnDestroy {
   public hasMore(): number {
     return this.sites ? this.sites.length - this.showItems : -1;
   }
-  public showMore(): void {
+
+  public loadMore(event?: any): void {
+    console.log('Showm ore')
     this.showItems += this.maxItems;
+
+    if (event) {
+      event.target.complete();
+      if (this.hasMore() === -1) { event.target.disabled = true; }
+    }
   }
 }
