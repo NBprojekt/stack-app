@@ -25,7 +25,7 @@ export class MenuPage implements OnInit, OnDestroy {
   public pages = [
     {
         title: 'Profile',
-        url: 'null',
+        url: '/menu/user',
         icon: 'person',
         routerDirection: 'forward',
         lines: 'none',
