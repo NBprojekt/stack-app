@@ -9,7 +9,7 @@
   <ion-toolbar>
     <form>
       <ion-searchbar [(ngModel)]="searchString" [ngModelOptions]="{standalone: true}"
-                     (ionInput)="search()" (ionClear)="resetFilter()">
+                     (ionChange)="search()" (ionClear)="resetFilter()">
       </ion-searchbar>
     </form>
   </ion-toolbar>
