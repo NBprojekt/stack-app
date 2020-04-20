@@ -5,7 +5,23 @@
     </ion-buttons>
     <ion-title> User </ion-title>
   </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-segment value="profile">
+      <ion-segment-button value="profile">
+        <ion-label> Profile </ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="activity">
+        <ion-label> Activity </ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
+
 <ion-content fullscreen class="ion-padding">
   User workz
+
+  <pre>
+    {{ user | json}}
+  </pre>
 </ion-content>
