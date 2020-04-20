@@ -6,9 +6,8 @@ import { AlertController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { UserService } from 'src/app/services/user/user.service';
 import { IUser } from 'src/app/interfaces/user';
-import { IResponse } from 'src/app/interfaces/response';
+import { UserService } from 'src/app/services/user/user.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -22,6 +21,7 @@ export class MenuPage implements OnInit, OnDestroy {
 
   private destroy = new Subject<any>();
 
+  // TODO: Need to refactor the pages array
   public pages = [
     {
         title: 'Profile',
@@ -92,7 +92,12 @@ export class MenuPage implements OnInit, OnDestroy {
         this.selectedUrl = event.url;
       });
 
-    this.loadMyProfile();
+    this.userService.userChanged
+      .pipe(
+        takeUntil(this.destroy)
+      ).subscribe(() => {
+        this.getMe();
+      });
   }
 
   ngOnDestroy(): void {
@@ -118,9 +123,7 @@ export class MenuPage implements OnInit, OnDestroy {
     await alert.present();
   }
 
-  private loadMyProfile(): void {
-    this.userService.getMe().subscribe((response: IResponse) => {
-      this.myProfile = response.items[0] as IUser;
-    });
+  private async getMe(): Promise<void> {
+    this.myProfile = await this.userService.getMe();
   }
 }
