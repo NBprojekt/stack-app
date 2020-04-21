@@ -130,7 +130,6 @@ export class SitesPage implements OnInit, OnDestroy {
   }
 
   public loadMore(event?: any): void {
-    console.log('Showm ore')
     this.showItems += this.maxItems;
 
     if (event) {
