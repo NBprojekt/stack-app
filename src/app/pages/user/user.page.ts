@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./user.page.scss'],
 })
 export class UserPage implements OnInit, OnDestroy {
-  private user: IUser;
+  public user: IUser;
   private destroy = new Subject<any>();
 
   constructor(
