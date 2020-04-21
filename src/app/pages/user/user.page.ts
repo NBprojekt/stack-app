@@ -13,6 +13,8 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class UserPage implements OnInit, OnDestroy {
   public user: IUser;
+  public section: string;
+
   private destroy = new Subject<any>();
 
   constructor(
@@ -24,6 +26,8 @@ export class UserPage implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy)
       ).subscribe(() => this.getMe());
+
+      this.section = 'profile';
   }
 
   ngOnDestroy(): void {

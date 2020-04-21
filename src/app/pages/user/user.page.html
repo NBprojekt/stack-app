@@ -7,7 +7,7 @@
   </ion-toolbar>
 
   <ion-toolbar>
-    <ion-segment value="profile">
+    <ion-segment [(ngModel)]="section">
       <ion-segment-button value="profile">
         <ion-label> Profile </ion-label>
       </ion-segment-button>
@@ -19,9 +19,16 @@
 </ion-header>
 
 <ion-content fullscreen class="ion-padding">
-  User workz
+  <div [ngSwitch]="section">
+    <div *ngSwitchCase="'profile'">
+      User workz
+    </div>
 
-  <pre>
-    {{ user | json}}
-  </pre>
+    <div *ngSwitchCase="'activity'">
+
+      <pre>
+        {{ user | json}}
+      </pre>
+    </div>
+  </div>
 </ion-content>
