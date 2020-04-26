@@ -21,6 +21,8 @@ const routes: Routes = [
   },
   { path: 'settings', loadChildren: () => import('../settings/settings.module').then( m => m.SettingsPageModule) },
   { path: 'about', loadChildren: () => import('../about/about.module').then( m => m.AboutPageModule) },
+  { path: 'user', loadChildren: () => import('../user/user.module').then( m => m.UserPageModule) },
+  { path: 'theme', loadChildren: () => import('../theme/theme.module').then( m => m.ThemePageModule) },
   { path: 'sites', loadChildren: () => import('../sites/sites.module').then( m => m.SitesPageModule) },
   { path: '', redirectTo: 'pages', pathMatch: 'full'}
 ];

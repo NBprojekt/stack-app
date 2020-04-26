@@ -8,12 +8,15 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 import { SitesService } from './services/sites/sites.service';
 
+import { BehaviorSubject } from 'rxjs';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
+  public static loading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   public loading: boolean;
 
   constructor(
@@ -25,16 +28,16 @@ export class AppComponent implements AfterViewInit {
     private siteService: SitesService,
   ) {
     this.initializeApp();
-    this.loading = true;
+    AppComponent.loading.subscribe(loading => this.loading = loading);
   }
 
   ngAfterViewInit() {
     this.router.events
       .subscribe((event: RouterEvent) => {
         if (event instanceof GuardsCheckStart) {
-          this.loading = true;
+          AppComponent.loading.next(true);
         } else if ( event instanceof NavigationEnd || event instanceof NavigationCancel) {
-          this.loading = false;
+          AppComponent.loading.next(false);
         }
       });
   }

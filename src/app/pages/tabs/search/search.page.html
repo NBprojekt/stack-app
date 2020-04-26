@@ -1,3 +1,25 @@
 <ion-content>
-  <coming-soon></coming-soon>
+  <form>
+    <ion-searchbar [(ngModel)]="searchString" [ngModelOptions]="{standalone: true}"
+                    (ionInput)="search()" (ionClear)="resetFilter()" animated>
+    </ion-searchbar>
+  </form>
+
+
+  <div class="search-result">
+
+  </div>
+
+  <ng-template>
+    <div class="no-result">
+
+    </div>
+  </ng-template>
+
+  <!---->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <i class="fas fa-sliders-h"></i>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

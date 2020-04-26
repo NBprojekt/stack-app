@@ -1,22 +1,26 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { environment } from 'src/environments/environment';
-import { IResponse } from 'src/app/interfaces/response';
 
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
-import { AuthService } from '../auth/auth.service';
-
-import { ISite } from 'src/app/interfaces/site';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import * as moment from 'moment';
+
+import { BehaviorSubject } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
+import { IResponse } from 'src/app/interfaces/response';
+import { ISite } from 'src/app/interfaces/site';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SitesService {
+  private _siteChanged = new BehaviorSubject<void>(null);
+  public siteChanged = this._siteChanged.asObservable();
+
   private readonly url = environment.api.url + environment.api.version;
   private site: ISite;
 
@@ -43,6 +47,7 @@ export class SitesService {
         this.site = site;
         await this.storage.set('current_site', site);
         this.showSiteChanged(this.site);
+        this._siteChanged.next();
       }
       resolve();
     });

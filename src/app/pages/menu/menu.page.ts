@@ -1,13 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
 import { Router, NavigationEnd } from '@angular/router';
+
+import { AlertController } from '@ionic/angular';
 
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { UserService } from 'src/app/services/user/user.service';
 import { IUser } from 'src/app/interfaces/user';
-import { IResponse } from 'src/app/interfaces/response';
+import { UserService } from 'src/app/services/user/user.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -20,10 +21,11 @@ export class MenuPage implements OnInit, OnDestroy {
 
   private destroy = new Subject<any>();
 
+  // TODO: Need to refactor the pages array
   public pages = [
     {
         title: 'Profile',
-        url: 'null',
+        url: '/menu/user',
         icon: 'person',
         routerDirection: 'forward',
         lines: 'none',
@@ -75,6 +77,8 @@ export class MenuPage implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private userService: UserService,
+    private authService: AuthService,
+    private alertController: AlertController,
   ) {}
 
   ngOnInit(): void {
@@ -88,7 +92,12 @@ export class MenuPage implements OnInit, OnDestroy {
         this.selectedUrl = event.url;
       });
 
-    this.loadMyProfile();
+    this.userService.userChanged
+      .pipe(
+        takeUntil(this.destroy)
+      ).subscribe(() => {
+        this.getMe();
+      });
   }
 
   ngOnDestroy(): void {
@@ -96,9 +105,25 @@ export class MenuPage implements OnInit, OnDestroy {
     this.destroy.complete();
   }
 
-  private loadMyProfile(): void {
-    this.userService.getMe().subscribe((response: IResponse) => {
-      this.myProfile = response.items[0] as IUser;
+  public async logOut(): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Log out of Stack App?',
+      message: 'You can allways log back in any time.',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        }, {
+          text: 'Log out',
+          handler: () => this.authService.logOut(),
+        }
+      ]
     });
+
+    await alert.present();
+  }
+
+  private async getMe(): Promise<void> {
+    this.myProfile = await this.userService.getMe();
   }
 }

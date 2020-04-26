@@ -10,8 +10,8 @@
       <ion-list>
         <!-- Static user card -->
         <ion-menu-toggle auto-hide="false">
-          <ion-item lines="none">
-            <ion-avatar slot="start" class="big-avatar">
+          <ion-item routerLink="/menu/user" lines="none">
+            <ion-avatar slot="start" class="big-avatar mat-elevation-z4">
               <img [src]="myProfile?.profile_image" default="./assets/images/placeholder/user.png">
             </ion-avatar>
             <ion-label>
@@ -53,13 +53,15 @@
         </ion-item>
 
         <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="null" lines="full" routerDirection="forward" [class.active]="selectedUrl.startsWith(null)">
+          <ion-item routerLink="/menu/theme" lines="full" routerDirection="forward" [class.active]="selectedUrl.startsWith(null)">
             <ion-icon name="color-fill" slot="start"></ion-icon>
             <ion-label> Display </ion-label>
           </ion-item>
         </ion-menu-toggle>
 
       </ion-list>
+
+      <ion-button expand="block" color="light" class="ion-margin-horizontal" (click)="logOut()"> Log out </ion-button>
     </ion-content>
   </ion-menu>
 
