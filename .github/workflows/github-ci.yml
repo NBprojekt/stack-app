@@ -9,7 +9,7 @@ on:
 
 jobs:
   lint:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: "!(contains(github.event.head_commit.message, 'skip ci') || contains(github.event.pull_request.title, 'wip') || github.event.pull_request.draft)"
     name: Run typescript linter
     runs-on: ubuntu-latest
     steps:
@@ -23,7 +23,7 @@ jobs:
     - name: Lint
       run: npx ng lint
   build:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: "!(contains(github.event.head_commit.message, 'skip ci') || contains(github.event.pull_request.title, 'wip') || github.event.pull_request.draft)"
     name: Run ionic production build
     runs-on: ubuntu-latest
     steps:
@@ -37,7 +37,7 @@ jobs:
     - name: Build production
       run: npx ionic build --prod
   test:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: "!(contains(github.event.head_commit.message, 'skip ci') || contains(github.event.pull_request.title, 'wip') || github.event.pull_request.draft)"
     name: Run karma unit test
     runs-on: ubuntu-latest
     steps:
