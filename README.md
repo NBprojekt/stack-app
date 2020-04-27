@@ -13,8 +13,8 @@
     <img src="https://img.shields.io/badge/dynamic/json?color=informational&label=version&query=tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fnbprojekt%2Fstackapp%2Freleases%2Flatest">
   </a>
   
-  <a src="https://dependabot.com">
-    <img src="https://api.dependabot.com/badges/status?host=github&repo=NBprojekt/stack-app&identifier=217569259" alt"Dependabot Status">
+  <a href="https://dependabot.com">
+    <img src="https://api.dependabot.com/badges/status?host=github&repo=NBprojekt/stack-app&identifier=217569259"  alt"Dependabot Status">
   </a>
   
   <a href="https://github.com/NBprojekt/stack-app/actions?query=workflow%3A%22Github+CI%22">
