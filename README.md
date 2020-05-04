@@ -57,7 +57,7 @@ If not, use our templates for [bugs reports][2] and [feature requests][3]. <br>
 You will be asked some questions and requested to provide some information, please read them CAREFULLY and answer honestly.
 
 ## Development
-This project requires [NodeJs][6] to run.
+This project requires [NodeJs][6] (>= v10.x.x) to run.
 
 Now clone the project `https://github.com/NBprojekt/stack-app.git` and run `npm run installation`, the rest in done by the script.
 
