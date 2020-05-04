@@ -74,4 +74,19 @@ export class UserService {
 
     return this.http.get<IResponse>(`${this.url}me/associated`, {headers, params});
   }
+
+  public getMyFullReputationHistory(options?: IRequestOptions): Observable<IResponse> {
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
+
+    const params = new HttpParams()
+      .set('key', environment.api.key)
+      .set('access_token', this.authService.getToken())
+      .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
+      .set('page', options && options.page.toString() || '0')
+      .set('pagesize', '100')
+      .set('filter', options && options.filter || '!-.SpcxOQ2Squ');
+
+    return this.http.get<IResponse>(`${this.url}me/reputation-history/full`, {headers, params});
+  }
 }
