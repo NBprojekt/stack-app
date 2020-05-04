@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title> User </ion-title>
+    <ion-title> {{user?.display_name || 'User'}} </ion-title>
   </ion-toolbar>
 
   <ion-toolbar>
@@ -21,11 +21,24 @@
 <ion-content fullscreen class="ion-padding">
   <div [ngSwitch]="section">
     <div *ngSwitchCase="'profile'">
-      User workz
-    </div>
 
-    <div *ngSwitchCase="'activity'">
+      <div class="profile">
+        <div class="profile-img  mat-elevation-z4">
+          <img [src]="user?.profile_image" default="./assets/images/placeholder/user.png">
+        </div>
+        <div class="profile-name">
+          {{user?.display_name || 'User Name'}}
+        </div>
+        <div class="profile-reputation">
+          <span class="profile-reputation-value">
+            {{user?.reputation || 0}}
+          </span>
 
+          <span class="profile-reputation-label">
+            Reputation
+          </span>
+        </div>
+      </div>
       <pre>
         {{ user | json}}
       </pre>

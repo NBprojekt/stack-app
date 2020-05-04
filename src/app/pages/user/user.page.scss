@@ -1,0 +1,48 @@
+
+
+
+.profile {
+  .profile-img {
+    width: 120px;
+    height: 120px;
+    margin: auto;
+
+    overflow: hidden;
+    border-radius: 50%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .profile-name {
+    padding-top: 5px;
+
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bolder;
+  }
+
+  .profile-reputation {
+    align-items: centeR;
+    color: var(-ion-color-medium);
+    text-align: center;
+
+    .profile-reputation-value, .profile-reputation-label {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .profile-reputation-value {
+      padding-right: 5px;
+
+      font-size: .9rem;
+      font-weight: bolder;
+    }
+    .profile-reputation-label {
+      text-transform: uppercase;
+
+      font-size: .9rem;
+    }
+  }
+}
