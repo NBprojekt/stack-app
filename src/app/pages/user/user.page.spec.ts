@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserPage } from './user.page';
+import { ChartsModule } from 'ng2-charts';
 
 describe('UserPage', () => {
   let component: UserPage;
@@ -9,6 +10,9 @@ describe('UserPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        ChartsModule,
+      ],
       declarations: [ UserPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
