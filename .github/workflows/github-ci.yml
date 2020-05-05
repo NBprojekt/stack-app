@@ -62,3 +62,5 @@ jobs:
       - uses: carlesnunez/check-my-bundlephobia@v1.2.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+          strict: false
+          threshold: 50000
