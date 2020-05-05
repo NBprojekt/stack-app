@@ -1,7 +1,7 @@
 name: Github CI
-on: 
+on:
   push:
-    branches:    
+    branches:
       - master
   pull_request:
     branches:
@@ -52,4 +52,3 @@ jobs:
       run: npm ci
     - name: Unit tests
       run: npx ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
-      continue-on-error: true
