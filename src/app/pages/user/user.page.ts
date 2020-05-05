@@ -17,17 +17,6 @@ import { IReputation } from 'src/app/interfaces/reputation';
   styleUrls: ['./user.page.scss'],
 })
 export class UserPage implements OnInit, OnDestroy {
-  @ViewChild('reputationChartCanvas', {static: false}) set content(elementRef: ElementRef<HTMLCanvasElement>) {
-    if(elementRef) {
-      console.log(elementRef);
-      const context: CanvasRenderingContext2D = elementRef.nativeElement.getContext('2d');
-      this.gradient = context.createLinearGradient(0, 0, 0, 600);
-
-      this.gradient.addColorStop(0, 'green');
-      this.gradient.addColorStop(1, 'white');
-    }
-  }
-
   public user: IUser;
 
   public chartReady: boolean;
@@ -41,7 +30,6 @@ export class UserPage implements OnInit, OnDestroy {
   public section: string;
 
   private destroy = new Subject<any>();
-  private gradient: CanvasGradient;
 
   constructor(
     private userService: UserService,
