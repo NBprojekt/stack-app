@@ -22,6 +22,7 @@ jobs:
       run: npm ci
     - name: Lint
       run: npx ng lint
+
   build:
     if: "!(contains(github.event.head_commit.message, 'skip ci') || contains(github.event.pull_request.title, 'wip') || github.event.pull_request.draft)"
     name: Run ionic production build
@@ -36,6 +37,7 @@ jobs:
       run: npm ci
     - name: Build production
       run: npx ionic build --prod
+
   test:
     if: "!(contains(github.event.head_commit.message, 'skip ci') || contains(github.event.pull_request.title, 'wip') || github.event.pull_request.draft)"
     name: Run karma unit test
@@ -51,3 +53,14 @@ jobs:
     - name: Unit tests
       run: npx ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
       continue-on-error: true
+
+  bundlecheck:
+    if: "!(contains(github.event.head_commit.message, 'skip ci') || contains(github.event.pull_request.title, 'wip') || github.event.pull_request.draft) && github.event.pull_request"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: carlesnunez/check-my-bundlephobia@v1.2.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          strict: true
+          threshold: 500
