@@ -25,10 +25,12 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true,
       thresholds: {
         emitWarning: true,
-        statements: 60,
-        branches: 45,
-        functions: 60,
-        lines: 60,
+        global: {
+          statements: 60,
+          branches: 45,
+          functions: 60,
+          lines: 60,
+        }
       }
     },
     reporters: ['progress', 'kjhtml'],
