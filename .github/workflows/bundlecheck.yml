@@ -8,13 +8,12 @@ jobs:
   packageSize:
     if: |
       "!contains(github.event.head_commit.message, 'skip ci') && 
-      (contains(git ls-tree --no-commit-id --name-only -r ${{ github.event.pull_request.head.sha }}, 'package.json') || 
-      contains(git ls-tree --no-commit-id --name-only -r ${{ github.event.pull_request.head.sha }}, 'package-lock.json'))"
+      (contains(git diff-tree --name-only ${{ github.event.pull_request.head.sha }}, 'package.json') || 
+      contains(git diff-tree --name-only ${{ github.event.pull_request.head.sha }}, 'package-lock.json'))"
     name: Check package size
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: git ls-tree --no-commit-id --name-only -r ${{ github.event.pull_request.head.sha }}
       - uses: carlesnunez/check-my-bundlephobia@v1.2.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
