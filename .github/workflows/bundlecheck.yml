@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: echo git ls-tree --no-commit-id --name-only -r ${{ github.event.pull_request.head.sha }}
+      - run: git ls-tree --no-commit-id --name-only -r ${{ github.event.pull_request.head.sha }}
       - uses: carlesnunez/check-my-bundlephobia@v1.2.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
