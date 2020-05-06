@@ -6,14 +6,11 @@ on:
 
 jobs:
   packageSize:
-    if: "!contains(github.event.head_commit.message, 'skip ci')&&(contains(git diff-tree --name-only ${{github.event.pull_request.head.sha}}, 'package.json')||contains(git diff-tree --name-only ${{github.event.pull_request.head.sha}}, 'package-lock.json'))"
     name: Check package size
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: git diff-tree --name-only ${{github.event.pull_request.head.sha}}
-      - run: contains(git diff-tree --name-only ${{github.event.pull_request.head.sha}}, 'package.json')
-      - run: contains(git diff-tree --name-only ${{github.event.pull_request.head.sha}}, 'package-lock.json')
+      - run: for i in $(git diff-tree --name-only 7561db1db9aec1b9fd4259259f8e1abbad63b051); do if [[ "$i" != "package"*"json" ]]; then exit 0; fi; done;
       - uses: carlesnunez/check-my-bundlephobia@v1.2.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
