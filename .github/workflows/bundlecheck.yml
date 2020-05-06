@@ -6,10 +6,7 @@ on:
 
 jobs:
   packageSize:
-    if: |
-      "!contains(github.event.head_commit.message, 'skip ci') && 
-      (contains(git diff-tree --name-only ${{ github.event.pull_request.head.sha }}, 'package.json') || 
-      contains(git diff-tree --name-only ${{ github.event.pull_request.head.sha }}, 'package-lock.json'))"
+    if: "!contains(github.event.head_commit.message, 'skip ci')&&(contains(git diff-tree --name-only ${{github.event.pull_request.head.sha}}, 'package.json')||contains(git diff-tree --name-only ${{github.event.pull_request.head.sha}}, 'package-lock.json'))"
     name: Check package size
     runs-on: ubuntu-latest
     steps:
