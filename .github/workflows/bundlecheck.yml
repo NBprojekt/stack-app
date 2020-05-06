@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - run: git diff-tree --name-only ${{github.event.pull_request.head.sha}}
+      - run: contains(git diff-tree --name-only ${{github.event.pull_request.head.sha}}, 'package.json')
+      - run: contains(git diff-tree --name-only ${{github.event.pull_request.head.sha}}, 'package-lock.json')
       - uses: carlesnunez/check-my-bundlephobia@v1.2.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
