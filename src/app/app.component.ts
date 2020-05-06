@@ -44,14 +44,14 @@ export class AppComponent implements AfterViewInit {
 
   private async initializeApp() {
     await Promise.all([
-      this.platform.ready(),
-      this.store.ready(),
-      this.siteService.ready(),
-    ]).then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    }).catch(error => {
-      console.error('Cann not initialize the App', error);
-    });
+        this.platform.ready(),
+        this.store.ready(),
+        this.siteService.ready(),
+      ]).then(() => {
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+      }).catch(error => {
+        console.error('Cann not initialize the App', error);
+      });
   }
 }
