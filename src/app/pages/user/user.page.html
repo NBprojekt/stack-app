@@ -1,27 +1,7 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-    <ion-title> {{user?.display_name || 'User'}} </ion-title>
-  </ion-toolbar>
 
-  <ion-toolbar>
-    <ion-segment [(ngModel)]="section">
-      <ion-segment-button value="profile">
-        <ion-label> Profile </ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="activity">
-        <ion-label> Activity </ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content fullscreen class="ion-padding">
-  <div [ngSwitch]="section">
-    <div *ngSwitchCase="'profile'">
-
+  <ion-toolbar class="profile-wrapper">
+    <div>
       <div class="profile">
         <div class="profile-img  mat-elevation-z4">
           <img [src]="user?.profile_image" default="./assets/images/placeholder/user.png">
@@ -39,6 +19,31 @@
           </span>
         </div>
       </div>
+    </div>
+  </ion-toolbar>
+
+  <ion-toolbar class="transparent">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar class="profile-spacer">
+    <ion-segment [(ngModel)]="section">
+      <ion-segment-button value="profile">
+        <ion-label> Profile </ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="activity">
+        <ion-label> Activity </ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding">
+  <div [ngSwitch]="section">
+    <div *ngSwitchCase="'profile'">
+
       <pre>
         {{ user | json}}
       </pre>
