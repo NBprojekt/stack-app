@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 
 import { Subscription, Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
-import { IResponse } from 'src/app/interfaces/response';
+import { IResponse, IResponseError } from 'src/app/interfaces/response';
 import { AppComponent } from 'src/app/app.component';
 
 @Injectable({
@@ -59,21 +59,28 @@ export class AuthService {
   }
 
   public async isAuthenticated(): Promise<boolean> {
-    return new Promise(async (resolve) => {
+    return new Promise(async (resolve, reject) => {
       if (!this.token && !await this.loadToken()) {
         resolve(false);
         return;
       }
 
-      this.validateToken(this.getToken()).subscribe((response: IResponse) => {
-        const authenticated = response && response.items.length > 0;
+      this.validateToken(this.getToken()).subscribe(
+        (response: IResponse) => {
+          const authenticated = response && response.items.length > 0;
 
-        if (!authenticated) {
-          this.token = null;
+          console.log(response)
+
+          if (!authenticated) {
+            this.token = null;
+          }
+
+          resolve(authenticated);
+        },
+        (response: IResponseError) => {
+          reject()
         }
-
-        resolve(authenticated);
-      });
+      );
     });
   }
 
@@ -85,7 +92,10 @@ export class AuthService {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
-    return this.http.get<IResponse>(`${this.apiUrl}access-tokens/${token}`, {headers});
+    const params = new HttpParams()
+      .set('key', environment.api.key);
+
+    return this.http.get<IResponse>(`${this.apiUrl}access-tokens/${token}`, {headers, params});
   }
 
   public async logOut(): Promise<void> {
