@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { MapMarkerComponent } from './map-marker/map-marker.component';
 import { BrowserComponent } from './browser/browser.component';
+import { EyeComponent } from './eye/eye.component';
 
 @NgModule({
   declarations: [
     MapMarkerComponent,
     BrowserComponent,
+    EyeComponent,
   ],
   imports: [
     CommonModule,
@@ -15,6 +17,7 @@ import { BrowserComponent } from './browser/browser.component';
   exports: [
     MapMarkerComponent,
     BrowserComponent,
+    EyeComponent,
   ],
 })
 export class IconsModule { }
