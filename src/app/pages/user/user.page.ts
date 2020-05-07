@@ -3,13 +3,12 @@ import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/co
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { UserService } from 'src/app/services/user/user.service';
 
 import { IUser } from 'src/app/interfaces/user';
-import { UserService } from 'src/app/services/user/user.service';
 import { IResponse } from 'src/app/interfaces/response';
 import { IReputation } from 'src/app/interfaces/reputation';
+import { IChart } from 'src/app/interfaces/chart';
 
 @Component({
   selector: 'app-user',
@@ -20,12 +19,7 @@ export class UserPage implements OnInit, OnDestroy {
   public user: IUser;
 
   public chartReady: boolean;
-  public reputationChart: {
-    datasets: ChartDataSets[],
-    options: ChartOptions,
-    labels: Label[],
-    chartType: ChartType,
-  };
+  public reputationChart: IChart;
 
   public section: string;
 
@@ -84,6 +78,8 @@ export class UserPage implements OnInit, OnDestroy {
   }
 
   private showReputation(reputations: Array<IReputation>): void {
+    console.log(['REPUTATION', reputations]);
+
     this.reputationChart = {
       datasets: null,
       options: null,
@@ -95,11 +91,14 @@ export class UserPage implements OnInit, OnDestroy {
       data: [],
       label: 'Reputation',
       // TODO: Use Themeing service to tynamicly set the color
-      borderColor: '#fe7f2d', // PRimary
+      borderColor: '#fe7f2d', // Primary
       backgroundColor: '#f4f5f8', // Light
     }];
 
+    // Ensure the user always starts with 1 reputation
     let reputationSumm = 1;
+    this.reputationChart.datasets[0].data.push(reputationSumm);
+
     reputations.forEach((reputation: IReputation) => {
       reputationSumm += reputation.reputation_change;
       this.reputationChart.datasets[0].data.push(reputationSumm);
