@@ -13,6 +13,7 @@ import { CogsComponent } from './cogs/cogs.component';
 import { UserTieComponent } from './user-tie/user-tie.component';
 import { HouseDayComponent } from './house-day/house-day.component';
 import { HouseNightComponent } from './house-night/house-night.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HouseNightComponent } from './house-night/house-night.component';
     UserTieComponent,
     HouseDayComponent,
     HouseNightComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +47,7 @@ import { HouseNightComponent } from './house-night/house-night.component';
     UserTieComponent,
     HouseDayComponent,
     HouseNightComponent,
+    SearchComponent,
   ],
 })
 export class IconsModule { }
