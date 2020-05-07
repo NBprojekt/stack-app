@@ -24,5 +24,3 @@ import { ClockComponent } from './clock/clock.component';
   ],
 })
 export class IconsModule { }
-
-export const DEFAULT_ICON_SIZE = '25px';

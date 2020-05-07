@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { DEFAULT_ICON_SIZE } from '../icons.module';
+import { DEFAULT_ICON_SIZE, DEFAULT_ICON_COLOR_PRIMARY, DEFAULT_ICON_COLOR_SECONDARY } from '../icons.settings';
 
 @Component({
   selector: 'icon-browser',
@@ -10,6 +10,6 @@ export class BrowserComponent {
   @Input() width = DEFAULT_ICON_SIZE;
   @Input() height = DEFAULT_ICON_SIZE;
 
-  @Input() primary = 'var(--ion-color-secondary)';
-  @Input() secondary = 'var(--ion-color-secondary-tint)';
+  @Input() primary = DEFAULT_ICON_COLOR_PRIMARY;
+  @Input() secondary = DEFAULT_ICON_COLOR_SECONDARY;
 }
