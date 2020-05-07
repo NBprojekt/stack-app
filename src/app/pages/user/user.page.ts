@@ -16,6 +16,7 @@ import { IChart } from 'src/app/interfaces/chart';
   styleUrls: ['./user.page.scss'],
 })
 export class UserPage implements OnInit, OnDestroy {
+  public readonly iconSize: string = '30px';
   public user: IUser;
 
   public chartReady: boolean;
@@ -52,6 +53,7 @@ export class UserPage implements OnInit, OnDestroy {
   }
 
   private loadReputation(page?: number, reputations?: Array<IReputation>): void {
+    // TODO: Limit history to last 4 reputation pages
     this.chartReady = false;
 
     if (!page) {

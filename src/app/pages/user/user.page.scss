@@ -56,3 +56,14 @@ $profile-height: 190px;
 .profile-spacer {
   margin-top: calc(#{$profile-height} - var(--min-height));
 }
+
+.user-information {
+  display: flex;
+  align-items: center;
+
+  font-size: 1.05rem;
+
+  :first-child {
+    margin: 0 20px 0 10px;
+  }
+}
