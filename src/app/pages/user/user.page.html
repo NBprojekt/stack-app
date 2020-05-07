@@ -11,7 +11,7 @@
         </div>
         <div class="profile-reputation">
           <span class="profile-reputation-value">
-            {{user?.reputation || 0}}
+            {{user?.reputation || 0 | shortenNumber}}
           </span>
 
           <span class="profile-reputation-label">
@@ -43,6 +43,31 @@
 <ion-content fullscreen class="ion-padding">
   <div [ngSwitch]="section">
     <div *ngSwitchCase="'profile'">
+
+      <div class="user-information">
+        <icon-map-marker></icon-map-marker>
+        <span> {{user?.location}} </span>
+      </div>
+
+      <div class="user-information">
+        <icon-browser></icon-browser>
+        <span> {{user?.website_url}} </span>
+      </div>
+
+      <div class="user-information">
+        <icon-calendar-day></icon-calendar-day>
+        <span> Member for {{user?.creation_date | timePassed}} </span>
+      </div>
+
+      <div class="user-information">
+        <icon-eye></icon-eye>
+        <span> {{user?.view_count | shortenNumber}} profile views </span>
+      </div>
+
+      <div class="user-information">
+        <icon-clock></icon-clock>
+        <span> Last seen {{user?.last_access_date | timePassed}} </span>
+      </div>
 
       <pre>
         {{ user | json}}
