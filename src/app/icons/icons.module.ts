@@ -5,6 +5,7 @@ import { MapMarkerComponent } from './map-marker/map-marker.component';
 import { BrowserComponent } from './browser/browser.component';
 import { EyeComponent } from './eye/eye.component';
 import { ClockComponent } from './clock/clock.component';
+import { CalendarDayComponent } from './calendar-day/calendar-day.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { ClockComponent } from './clock/clock.component';
     BrowserComponent,
     EyeComponent,
     ClockComponent,
+    CalendarDayComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,7 @@ import { ClockComponent } from './clock/clock.component';
     BrowserComponent,
     EyeComponent,
     ClockComponent,
+    CalendarDayComponent,
   ],
 })
 export class IconsModule { }
