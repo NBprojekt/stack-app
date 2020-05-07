@@ -1,0 +1,35 @@
+.chart-wrapper {
+  position: relative;
+  padding: 30px 0px 10px;
+
+  .chart {
+    max-width: 666px;
+    margin: auto;
+
+    &.chart-skeleton {
+      &::before {
+        content: '';
+        width: 1px;
+        margin-left: -1px;
+        float: left;
+        height: 0;
+        padding-top: 591.44px / 1127.34px * 100%;
+      }
+      &::after {
+        content: '';
+        display: table;
+        clear: both;
+      }
+    }
+  }
+
+  .label {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+
+    font-size: 1.2rem;
+
+    transform: translateX(-50%);
+  }
+}
