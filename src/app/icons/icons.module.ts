@@ -9,6 +9,7 @@ import { CalendarDayComponent } from './calendar-day/calendar-day.component';
 import { PaintBrushComponent } from './paint-brush/paint-brush.component';
 import { ChartPieComponent } from './chart-pie/chart-pie.component';
 import { InfoCircleComponent } from './info-circle/info-circle.component';
+import { CogsComponent } from './cogs/cogs.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { InfoCircleComponent } from './info-circle/info-circle.component';
     PaintBrushComponent,
     ChartPieComponent,
     InfoCircleComponent,
+    CogsComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,7 @@ import { InfoCircleComponent } from './info-circle/info-circle.component';
     PaintBrushComponent,
     ChartPieComponent,
     InfoCircleComponent,
+    CogsComponent,
   ],
 })
 export class IconsModule { }
