@@ -26,10 +26,10 @@
   .label {
     position: absolute;
     top: 5px;
-    left: 50%;
+    left: 0;
 
+    width: 100%;
+    text-align: center;
     font-size: 1.2rem;
-
-    transform: translateX(-50%);
   }
 }
