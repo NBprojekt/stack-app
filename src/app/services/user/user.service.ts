@@ -39,7 +39,7 @@ export class UserService {
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
       .set('order', options && options.order || 'desc')
-      .set('filter', options && options.filter || '!9Z(-woBMT')
+      .set('filter', options && options.filter || '!-*jbN*IkLXFP')
       .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
       .set('sort', options && options.sort || 'reputation');
 

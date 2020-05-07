@@ -20,4 +20,5 @@ export interface IUser {
   creation_date?: number;
   last_modified_date?: number;
   last_access_date?: number;
+  view_count?: number;
 }
