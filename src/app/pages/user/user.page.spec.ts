@@ -10,6 +10,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { ChartsModule } from 'ng2-charts';
 
 import { UserPage } from './user.page';
+import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 
 describe('UserPage', () => {
   let component: UserPage;
@@ -21,6 +22,7 @@ describe('UserPage', () => {
         HttpClientTestingModule,
         IonicModule,
         RouterTestingModule,
+        CommonPipesModule,
       ],
       declarations: [ UserPage ],
       providers: [
