@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MenuPage } from './menu.page';
 import { CommonDirectivesModule } from 'src/app/directives/common-directives.module';
+import { IconsModule } from 'src/app/icons/icons.module';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     CommonDirectivesModule,
+    IconsModule,
   ],
   declarations: [
     MenuPage,

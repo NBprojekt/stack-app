@@ -35,32 +35,105 @@
           </ion-item>
         </ion-menu-toggle>
 
-        <!-- Dynamic links -->
-        <ion-menu-toggle *ngFor="let page of pages" auto-hide="false">
-          <ion-item [routerLink]="page.url" [lines]="page.lines" [routerDirection]="page.routerDirection" [class.active]="selectedUrl.startsWith(page.url)">
-            <ion-icon [name]="page.icon" slot="start"></ion-icon>
-            <ion-label> {{page.title}} </ion-label>
+        <!-- Profile -->
+        <ion-item routerLink="/menu/user" lines="none" routerDirection="forward">
+          <div class="icon-start">
+            <icon-user-card  width="30px" height="30px"
+                             primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)">
+            </icon-user-card>
+          </div>
+          <ion-label> Profile </ion-label>
+        </ion-item>
+
+        <!-- Sites -->
+        <ion-item routerLink="/menu/sites" lines="full" routerDirection="forward">
+          <div class="icon-start">
+            <icon-stack primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)"></icon-stack>
+          </div>
+          <ion-label> Sites </ion-label>
+        </ion-item>
+
+        <!-- Home -->
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/menu/pages/tabs/home" lines="none" routerDirection="root"
+                    [class.active]="selectedUrl.startsWith('/menu/pages/tabs/home')">
+            <div class="icon-start">
+              <icon-house-day width="30px" height="30px" *ngIf="day; else night"
+                              primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)">
+              </icon-house-day>
+              <ng-template #night>
+                <icon-house-night width="30px" height="30px"
+                                primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)">
+                </icon-house-night>
+              </ng-template>
+            </div>
+            <ion-label> Home </ion-label>
           </ion-item>
         </ion-menu-toggle>
 
-        <!-- Static links -->
-        <ion-item lines="none" >
-          <ion-icon name="pie" slot="start"></ion-icon>
+        <!-- Search -->
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/menu/pages/tabs/search" lines="none" routerDirection="root"
+                    [class.active]="selectedUrl.startsWith('/menu/pages/tabs/search')">
+            <div class="icon-start">
+              <icon-search primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)"></icon-search>
+            </div>
+            <ion-label> Search </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <!-- Jobs -->
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/menu/pages/tabs/jobs" lines="full" routerDirection="root"
+                    [class.active]="selectedUrl.startsWith('/menu/pages/tabs/jobs')">
+            <div class="icon-start">
+              <icon-user-tie primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)"></icon-user-tie>
+            </div>
+            <ion-label> Jobs </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <!-- Setting -->
+        <ion-item routerLink="/menu/settings" lines="none" routerDirection="forward">
+          <div class="icon-start">
+            <icon-cogs width="30px" height="30px"
+                       primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)">
+            </icon-cogs>
+          </div>
+          <ion-label> Setting </ion-label>
+        </ion-item>
+
+        <!-- About -->
+        <ion-item routerLink="/menu/about" lines="full" routerDirection="forward">
+          <div class="icon-start">
+            <icon-info-circle primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-light-shade)"></icon-info-circle>
+          </div>
+          <ion-label> About </ion-label>
+        </ion-item>
+
+        <!-- Datasaver -->
+        <ion-item lines="none">
+          <div class="icon-start">
+            <icon-chart-pie primary="var(--ion-color-medium-tint)" secondary="var(--ion-color-medium-shade)"></icon-chart-pie>
+          </div>
           <ion-label> Datasaver </ion-label>
-          <ion-label slot="end" class="text-right">
+          <ion-label class="text-right">
             <ion-toggle color="primary"></ion-toggle>
           </ion-label>
         </ion-item>
 
-        <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="/menu/theme" lines="full" routerDirection="forward" [class.active]="selectedUrl.startsWith(null)">
-            <ion-icon name="color-fill" slot="start"></ion-icon>
-            <ion-label> Display </ion-label>
-          </ion-item>
-        </ion-menu-toggle>
+        <!-- Theming -->
+        <ion-item routerLink="/menu/theme" lines="full" routerDirection="forward">
+          <div class="icon-start">
+            <icon-paint-brush primary="var(--ion-color-primary)" secondary="var(--ion-color-medium-shade)"></icon-paint-brush>
+          </div>
+          <ion-label> Display </ion-label>
+        </ion-item>
 
       </ion-list>
 
+
+      <!-- Log out -->
       <ion-button expand="block" color="light" class="ion-margin-horizontal" (click)="logOut()"> Log out </ion-button>
     </ion-content>
   </ion-menu>
