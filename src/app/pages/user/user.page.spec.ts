@@ -21,7 +21,6 @@ describe('UserPage', () => {
         HttpClientTestingModule,
         IonicModule,
         RouterTestingModule,
-        ChartsModule
       ],
       declarations: [ UserPage ],
       providers: [
