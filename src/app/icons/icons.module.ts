@@ -15,6 +15,7 @@ import { HouseDayComponent } from './house-day/house-day.component';
 import { HouseNightComponent } from './house-night/house-night.component';
 import { SearchComponent } from './search/search.component';
 import { StackComponent } from './stack/stack.component';
+import { UserCardComponent } from './user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { StackComponent } from './stack/stack.component';
     HouseNightComponent,
     SearchComponent,
     StackComponent,
+    UserCardComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +53,7 @@ import { StackComponent } from './stack/stack.component';
     HouseNightComponent,
     SearchComponent,
     StackComponent,
+    UserCardComponent,
   ],
 })
 export class IconsModule { }
