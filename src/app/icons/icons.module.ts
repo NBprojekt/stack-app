@@ -11,6 +11,7 @@ import { ChartPieComponent } from './chart-pie/chart-pie.component';
 import { InfoCircleComponent } from './info-circle/info-circle.component';
 import { CogsComponent } from './cogs/cogs.component';
 import { UserTieComponent } from './user-tie/user-tie.component';
+import { HouseDayComponent } from './house-day/house-day.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { UserTieComponent } from './user-tie/user-tie.component';
     InfoCircleComponent,
     CogsComponent,
     UserTieComponent,
+    HouseDayComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +41,7 @@ import { UserTieComponent } from './user-tie/user-tie.component';
     InfoCircleComponent,
     CogsComponent,
     UserTieComponent,
+    HouseDayComponent,
   ],
 })
 export class IconsModule { }
