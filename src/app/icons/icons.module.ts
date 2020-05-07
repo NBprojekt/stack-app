@@ -10,6 +10,7 @@ import { PaintBrushComponent } from './paint-brush/paint-brush.component';
 import { ChartPieComponent } from './chart-pie/chart-pie.component';
 import { InfoCircleComponent } from './info-circle/info-circle.component';
 import { CogsComponent } from './cogs/cogs.component';
+import { UserTieComponent } from './user-tie/user-tie.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CogsComponent } from './cogs/cogs.component';
     ChartPieComponent,
     InfoCircleComponent,
     CogsComponent,
+    UserTieComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { CogsComponent } from './cogs/cogs.component';
     ChartPieComponent,
     InfoCircleComponent,
     CogsComponent,
+    UserTieComponent,
   ],
 })
 export class IconsModule { }
