@@ -7,6 +7,7 @@ import { EyeComponent } from './eye/eye.component';
 import { ClockComponent } from './clock/clock.component';
 import { CalendarDayComponent } from './calendar-day/calendar-day.component';
 import { PaintBrushComponent } from './paint-brush/paint-brush.component';
+import { ChartPieComponent } from './chart-pie/chart-pie.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PaintBrushComponent } from './paint-brush/paint-brush.component';
     ClockComponent,
     CalendarDayComponent,
     PaintBrushComponent,
+    ChartPieComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,7 @@ import { PaintBrushComponent } from './paint-brush/paint-brush.component';
     ClockComponent,
     CalendarDayComponent,
     PaintBrushComponent,
+    ChartPieComponent,
   ],
 })
 export class IconsModule { }
