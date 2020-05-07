@@ -50,16 +50,7 @@
     </div>
 
     <div *ngSwitchCase="'activity'">
-
-      <div *ngIf="chartReady">
-        <canvas baseChart #reputationChartCanvas
-          [datasets]="reputationChart.datasets"
-          [options]="reputationChart.options"
-          [labels]="reputationChart.labels"
-          [chartType]="reputationChart.chartType">
-        </canvas>
-      </div>
-
+      <reputation-chart [show]="chartReady" [chart]="reputationChart"></reputation-chart>
     </div>
   </div>
 </ion-content>
