@@ -14,6 +14,7 @@ import { UserTieComponent } from './user-tie/user-tie.component';
 import { HouseDayComponent } from './house-day/house-day.component';
 import { HouseNightComponent } from './house-night/house-night.component';
 import { SearchComponent } from './search/search.component';
+import { StackComponent } from './stack/stack.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SearchComponent } from './search/search.component';
     HouseDayComponent,
     HouseNightComponent,
     SearchComponent,
+    StackComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +50,7 @@ import { SearchComponent } from './search/search.component';
     HouseDayComponent,
     HouseNightComponent,
     SearchComponent,
+    StackComponent,
   ],
 })
 export class IconsModule { }
