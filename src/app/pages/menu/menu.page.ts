@@ -16,7 +16,6 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit, OnDestroy {
-  public day: boolean;
   public selectedUrl: string;
   public myProfile: IUser;
 
@@ -30,7 +29,6 @@ export class MenuPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.day = true;
     this.selectedUrl = '';
 
     this.router.events
