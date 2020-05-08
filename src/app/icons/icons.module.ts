@@ -15,6 +15,7 @@ import { SearchComponent } from './search/search.component';
 import { StackComponent } from './stack/stack.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { HouseComponent } from './house/house.component';
+import { BellComponent } from './bell/bell.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HouseComponent } from './house/house.component';
     StackComponent,
     UserCardComponent,
     HouseComponent,
+    BellComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +53,7 @@ import { HouseComponent } from './house/house.component';
     StackComponent,
     UserCardComponent,
     HouseComponent,
+    BellComponent,
   ],
 })
 export class IconsModule { }
