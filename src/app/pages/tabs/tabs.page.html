@@ -5,18 +5,34 @@
 
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="home">
-      <ion-icon name="home"></ion-icon>
-      <ion-label> Home </ion-label>
+      <icon-house
+        width="30px" height="30px"
+        [primary]="'home' === this.currentUrl ? 'var(--ion-color-primary)' : 'var(--ion-color-medium-shade)'"
+        [secondary]="'home' === this.currentUrl ? 'var(--ion-color-primary-tint)' : 'var(--ion-color-medium-tint)'">
+      </icon-house>
     </ion-tab-button>
 
     <ion-tab-button tab="search">
-      <ion-icon name="search"></ion-icon>
-      <ion-label> Search </ion-label>
+      <icon-search
+        [primary]="'search' === this.currentUrl ? 'var(--ion-color-primary)' : 'var(--ion-color-medium-shade)'"
+        [secondary]="'search' === this.currentUrl ? 'var(--ion-color-primary-tint)' : 'var(--ion-color-medium-tint)'">
+      </icon-search>
+    </ion-tab-button>
+
+    <ion-tab-button tab="notification">
+      <icon-bell
+        width="28px" height="28px"
+        [ringing]="false"
+        [primary]="'notification' === this.currentUrl ? 'var(--ion-color-primary)' : 'var(--ion-color-medium-shade)'"
+        [secondary]="'notification' === this.currentUrl ? 'var(--ion-color-primary-tint)' : 'var(--ion-color-medium-tint)'">
+      </icon-bell>
     </ion-tab-button>
 
     <ion-tab-button tab="jobs">
-      <ion-icon name="business"></ion-icon>
-      <ion-label> Jobs </ion-label>
+      <icon-user-tie
+        [primary]="'jobs' === this.currentUrl ? 'var(--ion-color-primary)' : 'var(--ion-color-medium-shade)'"
+        [secondary]="'jobs' === this.currentUrl ? 'var(--ion-color-primary-tint)' : 'var(--ion-color-medium-tint)'">
+      </icon-user-tie>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

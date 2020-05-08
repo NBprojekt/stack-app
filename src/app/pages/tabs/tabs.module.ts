@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
 import { HeaderModule } from 'src/app/components/header/header.module';
+import { IconsModule } from 'src/app/icons/icons.module';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     HeaderModule,
+    IconsModule
   ],
   declarations: [
     TabsPage,
