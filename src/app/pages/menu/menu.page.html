@@ -58,14 +58,9 @@
           <ion-item routerLink="/menu/pages/tabs/home" lines="none" routerDirection="root"
                     [class.active]="selectedUrl.startsWith('/menu/pages/tabs/home')">
             <div class="icon-start">
-              <icon-house-day width="30px" height="30px" *ngIf="day; else night"
-                              primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)">
-              </icon-house-day>
-              <ng-template #night>
-                <icon-house-night width="30px" height="30px"
-                                primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)">
-                </icon-house-night>
-              </ng-template>
+              <icon-house width="30px" height="30px"
+                          primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)">
+              </icon-house>
             </div>
             <ion-label> Home </ion-label>
           </ion-item>

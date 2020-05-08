@@ -11,11 +11,10 @@ import { ChartPieComponent } from './chart-pie/chart-pie.component';
 import { InfoCircleComponent } from './info-circle/info-circle.component';
 import { CogsComponent } from './cogs/cogs.component';
 import { UserTieComponent } from './user-tie/user-tie.component';
-import { HouseDayComponent } from './house-day/house-day.component';
-import { HouseNightComponent } from './house-night/house-night.component';
 import { SearchComponent } from './search/search.component';
 import { StackComponent } from './stack/stack.component';
 import { UserCardComponent } from './user-card/user-card.component';
+import { HouseComponent } from './house/house.component';
 
 @NgModule({
   declarations: [
@@ -29,11 +28,10 @@ import { UserCardComponent } from './user-card/user-card.component';
     InfoCircleComponent,
     CogsComponent,
     UserTieComponent,
-    HouseDayComponent,
-    HouseNightComponent,
     SearchComponent,
     StackComponent,
     UserCardComponent,
+    HouseComponent,
   ],
   imports: [
     CommonModule,
@@ -49,11 +47,10 @@ import { UserCardComponent } from './user-card/user-card.component';
     InfoCircleComponent,
     CogsComponent,
     UserTieComponent,
-    HouseDayComponent,
-    HouseNightComponent,
     SearchComponent,
     StackComponent,
     UserCardComponent,
+    HouseComponent,
   ],
 })
 export class IconsModule { }
