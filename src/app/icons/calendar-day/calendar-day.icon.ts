@@ -3,12 +3,10 @@ import { Component, Input } from '@angular/core';
 import { DEFAULT_ICON_SIZE, DEFAULT_ICON_COLOR_PRIMARY, DEFAULT_ICON_COLOR_SECONDARY } from '../icons.settings';
 
 @Component({
-  selector: 'icon-bell',
-  templateUrl: './bell.component.html',
+  selector: 'icon-calendar-day',
+  templateUrl: './calendar-day.icon.html',
 })
-export class BellComponent {
-  @Input() ringing = false;
-
+export class CalendarDayIcon  {
   @Input() width = DEFAULT_ICON_SIZE;
   @Input() height = DEFAULT_ICON_SIZE;
 

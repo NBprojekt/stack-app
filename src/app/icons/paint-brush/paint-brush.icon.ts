@@ -3,10 +3,10 @@ import { Component, Input } from '@angular/core';
 import { DEFAULT_ICON_SIZE, DEFAULT_ICON_COLOR_PRIMARY, DEFAULT_ICON_COLOR_SECONDARY } from '../icons.settings';
 
 @Component({
-  selector: 'icon-browser',
-  templateUrl: './browser.component.html',
+  selector: 'icon-paint-brush',
+  templateUrl: './paint-brush.icon.html',
 })
-export class BrowserComponent {
+export class PaintBrushIcon {
   @Input() width = DEFAULT_ICON_SIZE;
   @Input() height = DEFAULT_ICON_SIZE;
 

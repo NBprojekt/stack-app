@@ -3,10 +3,10 @@ import { Component, Input } from '@angular/core';
 import { DEFAULT_ICON_SIZE, DEFAULT_ICON_COLOR_PRIMARY, DEFAULT_ICON_COLOR_SECONDARY } from '../icons.settings';
 
 @Component({
-  selector: 'icon-search',
-  templateUrl: './search.component.html',
+  selector: 'icon-eye',
+  templateUrl: './eye.icon.html',
 })
-export class SearchComponent {
+export class EyeIcon {
   @Input() width = DEFAULT_ICON_SIZE;
   @Input() height = DEFAULT_ICON_SIZE;
 
