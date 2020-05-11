@@ -3,10 +3,10 @@ import { Component, Input } from '@angular/core';
 import { DEFAULT_ICON_SIZE, DEFAULT_ICON_COLOR_PRIMARY, DEFAULT_ICON_COLOR_SECONDARY } from '../icons.settings';
 
 @Component({
-  selector: 'icon-chart-pie',
-  templateUrl: './chart-pie.component.html',
+  selector: 'icon-search',
+  templateUrl: './search.icon.html',
 })
-export class ChartPieComponent {
+export class SearchIcon {
   @Input() width = DEFAULT_ICON_SIZE;
   @Input() height = DEFAULT_ICON_SIZE;
 

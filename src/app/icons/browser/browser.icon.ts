@@ -3,10 +3,10 @@ import { Component, Input } from '@angular/core';
 import { DEFAULT_ICON_SIZE, DEFAULT_ICON_COLOR_PRIMARY, DEFAULT_ICON_COLOR_SECONDARY } from '../icons.settings';
 
 @Component({
-  selector: 'icon-eye',
-  templateUrl: './eye.component.html',
+  selector: 'icon-browser',
+  templateUrl: './browser.icon.html',
 })
-export class EyeComponent {
+export class BrowserIcon {
   @Input() width = DEFAULT_ICON_SIZE;
   @Input() height = DEFAULT_ICON_SIZE;
 

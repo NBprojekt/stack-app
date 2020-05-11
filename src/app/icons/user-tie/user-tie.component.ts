@@ -4,9 +4,9 @@ import { DEFAULT_ICON_SIZE, DEFAULT_ICON_COLOR_PRIMARY, DEFAULT_ICON_COLOR_SECON
 
 @Component({
   selector: 'icon-user-tie',
-  templateUrl: './user-tie.component.html',
+  templateUrl: './user-tie.icon.html',
 })
-export class UserTieComponent {
+export class UserTieIcon {
   @Input() width = DEFAULT_ICON_SIZE;
   @Input() height = DEFAULT_ICON_SIZE;
 

@@ -3,10 +3,10 @@ import { Component, Input } from '@angular/core';
 import { DEFAULT_ICON_SIZE, DEFAULT_ICON_COLOR_PRIMARY, DEFAULT_ICON_COLOR_SECONDARY } from '../icons.settings';
 
 @Component({
-  selector: 'icon-info-circle',
-  templateUrl: './info-circle.component.html',
+  selector: 'icon-stack',
+  templateUrl: './stack.icon.html',
 })
-export class InfoCircleComponent{
+export class StackIcon {
   @Input() width = DEFAULT_ICON_SIZE;
   @Input() height = DEFAULT_ICON_SIZE;
 

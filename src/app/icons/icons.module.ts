@@ -1,59 +1,59 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MapMarkerComponent } from './map-marker/map-marker.component';
-import { BrowserComponent } from './browser/browser.component';
-import { EyeComponent } from './eye/eye.component';
-import { ClockComponent } from './clock/clock.component';
-import { CalendarDayComponent } from './calendar-day/calendar-day.component';
-import { PaintBrushComponent } from './paint-brush/paint-brush.component';
-import { ChartPieComponent } from './chart-pie/chart-pie.component';
-import { InfoCircleComponent } from './info-circle/info-circle.component';
-import { CogsComponent } from './cogs/cogs.component';
-import { UserTieComponent } from './user-tie/user-tie.component';
-import { SearchComponent } from './search/search.component';
-import { StackComponent } from './stack/stack.component';
-import { UserCardComponent } from './user-card/user-card.component';
-import { HouseComponent } from './house/house.component';
-import { BellComponent } from './bell/bell.component';
+import { BellIcon } from './bell/bell.icon';
+import { ClockIcon } from './clock/clock.icon';
+import { CalendarDayIcon } from './calendar-day/calendar-day.icon';
+import { BrowserIcon } from './browser/browser.icon';
+import { ChartPieIcon } from './chart-pie/chart-pie.icon';
+import { CogsIcon } from './cogs/cogs.icon';
+import { EyeIcon } from './eye/eye.icon';
+import { HouseIcon } from './house/house.icon';
+import { InfoCircleIcon } from './info-circle/info-circle.icon';
+import { MapMarkerIcon } from './map-marker/map-marker.icon';
+import { PaintBrushIcon } from './paint-brush/paint-brush.icon';
+import { SearchIcon } from './search/search.icon';
+import { StackIcon } from './stack/stack.icon';
+import { UserCardIcon } from './user-card/user-card.icon';
+import { UserTieIcon } from './user-tie/user-tie.component';
 
 @NgModule({
   declarations: [
-    MapMarkerComponent,
-    BrowserComponent,
-    EyeComponent,
-    ClockComponent,
-    CalendarDayComponent,
-    PaintBrushComponent,
-    ChartPieComponent,
-    InfoCircleComponent,
-    CogsComponent,
-    UserTieComponent,
-    SearchComponent,
-    StackComponent,
-    UserCardComponent,
-    HouseComponent,
-    BellComponent,
+    BellIcon,
+    BrowserIcon,
+    CalendarDayIcon,
+    ChartPieIcon,
+    ClockIcon,
+    CogsIcon,
+    EyeIcon,
+    HouseIcon,
+    InfoCircleIcon,
+    MapMarkerIcon,
+    PaintBrushIcon,
+    SearchIcon,
+    StackIcon,
+    UserCardIcon,
+    UserTieIcon,
   ],
   imports: [
     CommonModule,
   ],
   exports: [
-    MapMarkerComponent,
-    BrowserComponent,
-    EyeComponent,
-    ClockComponent,
-    CalendarDayComponent,
-    PaintBrushComponent,
-    ChartPieComponent,
-    InfoCircleComponent,
-    CogsComponent,
-    UserTieComponent,
-    SearchComponent,
-    StackComponent,
-    UserCardComponent,
-    HouseComponent,
-    BellComponent,
+    BellIcon,
+    BrowserIcon,
+    CalendarDayIcon,
+    ChartPieIcon,
+    ClockIcon,
+    CogsIcon,
+    EyeIcon,
+    HouseIcon,
+    InfoCircleIcon,
+    MapMarkerIcon,
+    PaintBrushIcon,
+    SearchIcon,
+    StackIcon,
+    UserCardIcon,
+    UserTieIcon,
   ],
 })
 export class IconsModule { }

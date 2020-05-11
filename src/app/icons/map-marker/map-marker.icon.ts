@@ -4,9 +4,9 @@ import { DEFAULT_ICON_SIZE, DEFAULT_ICON_COLOR_PRIMARY, DEFAULT_ICON_COLOR_SECON
 
 @Component({
   selector: 'icon-map-marker',
-  templateUrl: './map-marker.component.html',
+  templateUrl: './map-marker.icon.html',
 })
-export class MapMarkerComponent {
+export class MapMarkerIcon {
   @Input() width = DEFAULT_ICON_SIZE;
   @Input() height = DEFAULT_ICON_SIZE;
 
