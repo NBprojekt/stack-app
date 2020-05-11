@@ -15,7 +15,7 @@ import { PaintBrushIcon } from './paint-brush/paint-brush.icon';
 import { SearchIcon } from './search/search.icon';
 import { StackIcon } from './stack/stack.icon';
 import { UserCardIcon } from './user-card/user-card.icon';
-import { UserTieIcon } from './user-tie/user-tie.component';
+import { UserTieIcon } from './user-tie/user-tie.icon';
 
 @NgModule({
   declarations: [
