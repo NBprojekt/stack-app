@@ -59,7 +59,15 @@ You will be asked some questions and requested to provide some information, plea
 ## Development
 This project requires [NodeJs][6] (>= v10.x.x) to run.
 
-Now clone the project `https://github.com/NBprojekt/stack-app.git` and run `npm run installation`, the rest in done by the script.
+Clone the project `https://github.com/NBprojekt/stack-app.git` and run `sudo npm run installation`.  
+Now you can launch the app by running `sudo npm start`.
+
+```
+git clone https://github.com/NBprojekt/stack-app.git
+cd stack-app
+sudo npm run installation
+sudo npm start
+```
 
 If you want to learn more about the scripts in this project check out the [script readme][8].
 > If you use windows make sure you are able to run bash scripts. You can simply install [gitbash][7].
