@@ -36,22 +36,26 @@
         </ion-menu-toggle>
 
         <!-- Profile -->
-        <ion-item routerLink="/menu/user" lines="none" routerDirection="forward">
-          <div class="icon-start">
-            <icon-user-card  width="30px" height="30px"
-                             primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)">
-            </icon-user-card>
-          </div>
-          <ion-label> Profile </ion-label>
-        </ion-item>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/menu/user" lines="none" routerDirection="forward">
+            <div class="icon-start">
+              <icon-user-card  width="30px" height="30px"
+                              primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)">
+              </icon-user-card>
+            </div>
+            <ion-label> Profile </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
 
         <!-- Sites -->
-        <ion-item routerLink="/menu/sites" lines="full" routerDirection="forward">
-          <div class="icon-start">
-            <icon-stack primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)"></icon-stack>
-          </div>
-          <ion-label> Sites </ion-label>
-        </ion-item>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/menu/sites" lines="full" routerDirection="forward">
+            <div class="icon-start">
+              <icon-stack primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)"></icon-stack>
+            </div>
+            <ion-label> Sites </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
 
         <!-- Home -->
         <ion-menu-toggle auto-hide="false">
@@ -89,22 +93,26 @@
         </ion-menu-toggle>
 
         <!-- Setting -->
-        <ion-item routerLink="/menu/settings" lines="none" routerDirection="forward">
-          <div class="icon-start">
-            <icon-cogs width="30px" height="30px"
-                       primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)">
-            </icon-cogs>
-          </div>
-          <ion-label> Setting </ion-label>
-        </ion-item>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/menu/settings" lines="none" routerDirection="forward">
+            <div class="icon-start">
+              <icon-cogs width="30px" height="30px"
+                        primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)">
+              </icon-cogs>
+            </div>
+            <ion-label> Setting </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
 
         <!-- About -->
-        <ion-item routerLink="/menu/about" lines="full" routerDirection="forward">
-          <div class="icon-start">
-            <icon-info-circle primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-light-shade)"></icon-info-circle>
-          </div>
-          <ion-label> About </ion-label>
-        </ion-item>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/menu/about" lines="full" routerDirection="forward">
+            <div class="icon-start">
+              <icon-info-circle primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-light-shade)"></icon-info-circle>
+            </div>
+            <ion-label> About </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
 
         <!-- Datasaver -->
         <ion-item lines="none">
@@ -118,12 +126,14 @@
         </ion-item>
 
         <!-- Theming -->
-        <ion-item routerLink="/menu/theme" lines="full" routerDirection="forward">
-          <div class="icon-start">
-            <icon-paint-brush primary="var(--ion-color-primary)" secondary="var(--ion-color-medium-shade)"></icon-paint-brush>
-          </div>
-          <ion-label> Display </ion-label>
-        </ion-item>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/menu/theme" lines="full" routerDirection="forward">
+            <div class="icon-start">
+              <icon-paint-brush primary="var(--ion-color-primary)" secondary="var(--ion-color-medium-shade)"></icon-paint-brush>
+            </div>
+            <ion-label> Display </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
 
       </ion-list>
 
