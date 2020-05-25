@@ -54,6 +54,9 @@ ion-slides {
 ion-toolbar.transparent {
   --opacity: 0;
 }
+ion-toolbar.absolute {
+  position: absolute;
+}
 
 // Inside of ion list show a bigger avatart img
 ion-avatar.big-avatar  {
