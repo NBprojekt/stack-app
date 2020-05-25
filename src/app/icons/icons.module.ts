@@ -16,6 +16,7 @@ import { SearchIcon } from './search/search.icon';
 import { StackIcon } from './stack/stack.icon';
 import { UserCardIcon } from './user-card/user-card.icon';
 import { UserTieIcon } from './user-tie/user-tie.icon';
+import { CaretIcon } from './caret/caret.icon';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { UserTieIcon } from './user-tie/user-tie.icon';
     StackIcon,
     UserCardIcon,
     UserTieIcon,
+    CaretIcon,
   ],
   imports: [
     CommonModule,
@@ -54,6 +56,7 @@ import { UserTieIcon } from './user-tie/user-tie.icon';
     StackIcon,
     UserCardIcon,
     UserTieIcon,
+    CaretIcon,
   ],
 })
 export class IconsModule { }
