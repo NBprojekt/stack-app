@@ -1,14 +1,23 @@
 <div class="voting">
+
   <div class="text-wrapper">
-    <i class="fas fa-caret-up" [class.voted]="upvoted" (click)="toggleUpvote()"></i>
+    <icon-caret direction="up" width="3rem"  height="3rem"
+                [primary]="upvoted ? 'var(--ion-color-primary)' : 'var(--ion-color-medium)'"
+                (click)="toggleUpvote()">
+    </icon-caret>
   </div>
+
   <div class="text-wrapper">
     <div class="counter">
       {{score | shortenNumber}}
     </div>
   </div>
+
   <div class="text-wrapper">
-    <i class="fas fa-caret-down" [class.voted]="downvoted" (click)="toggleDownvote()"></i>
+    <icon-caret direction="down" width="3rem"  height="3rem"
+                [primary]="downvoted ? 'var(--ion-color-primary)' : 'var(--ion-color-medium)'"
+                (click)="toggleDownvote()">
+    </icon-caret>
   </div>
 
   <div *ngIf="showFavorites" class="favorites" (click)="toggleFavorite()">
