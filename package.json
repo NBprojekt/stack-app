@@ -43,7 +43,7 @@
     "core-js": "^3.6.5",
     "es6-promise-plugin": "^4.2.2",
     "moment": "^2.25.3",
-    "ng2-charts": "^2.3.0",
+    "ng2-charts": "^2.3.2",
     "rxjs": "^6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "^0.10.3"
