@@ -92,9 +92,8 @@ export class UserPage implements OnInit, OnDestroy {
     this.reputationChart.datasets = [{
       data: [],
       label: 'Reputation',
-      // TODO: Use Themeing service to tynamicly set the color
-      borderColor: '#fe7f2d', // Primary
-      backgroundColor: '#f4f5f8', // Light
+      borderColor: getComputedStyle(document.documentElement).getPropertyValue('--ion-color-primary'),
+      backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--ion-color-light'),
     }];
 
     // Ensure the user always starts with 1 reputation
