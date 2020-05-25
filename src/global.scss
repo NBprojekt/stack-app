@@ -155,3 +155,17 @@ a, .link {
     color: var(--ion-color-secondary-shade);
   }
 }
+
+// Rotation
+.rotate-up {
+  transform: rotate(0deg);
+}
+.rotate-right {
+  transform: rotate(90deg);
+}
+.rotate-down {
+  transform: rotate(180deg);
+}
+.rotate-left {
+  transform: rotate(-90deg);
+}
