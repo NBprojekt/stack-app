@@ -18,6 +18,7 @@ import { UserCardIcon } from './user-card/user-card.icon';
 import { UserTieIcon } from './user-tie/user-tie.icon';
 import { CaretIcon } from './caret/caret.icon';
 import { CommentIcon } from './comment/comment.icon';
+import { FireIcon } from './fire/fire.icon';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CommentIcon } from './comment/comment.icon';
     UserTieIcon,
     CaretIcon,
     CommentIcon,
+    FireIcon,
   ],
   imports: [
     CommonModule,
@@ -60,6 +62,7 @@ import { CommentIcon } from './comment/comment.icon';
     UserTieIcon,
     CaretIcon,
     CommentIcon,
+    FireIcon,
   ],
 })
 export class IconsModule { }
