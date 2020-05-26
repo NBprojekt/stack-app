@@ -48,7 +48,7 @@ export class VotingComponent {
           this.score--;
           this.upvoted = false;
         },
-        (response: any) => this.errorHandler(response.error as IResponseError),
+        (response: any) => this.errorHandler(response.error as IResponseError, 'Can\'t cast this vote'),
       );
     } else {
       if (this.downvoted) {
@@ -68,10 +68,10 @@ export class VotingComponent {
                 this.upvoted = true;
                 this.downvoted = false;
               },
-              (response: any) => this.errorHandler(response.error as IResponseError),
+              (response: any) => this.errorHandler(response.error as IResponseError, 'Can\'t cast this vote'),
             );
           },
-          (response: any) => this.errorHandler(response.error as IResponseError),
+          (response: any) => this.errorHandler(response.error as IResponseError, 'Can\'t cast this vote'),
         );
       } else {
         (
@@ -83,7 +83,7 @@ export class VotingComponent {
             this.score++;
             this.upvoted = true;
           },
-          (response: any) => this.errorHandler(response.error as IResponseError),
+          (response: any) => this.errorHandler(response.error as IResponseError, 'Can\'t cast this vote'),
         );
       }
     }
@@ -99,7 +99,7 @@ export class VotingComponent {
           this.score++;
           this.downvoted = false;
         },
-        (response: any) => this.errorHandler(response.error as IResponseError),
+        (response: any) => this.errorHandler(response.error as IResponseError, 'Can\'t cast this vote'),
       );
     } else {
       if (this.upvoted) {
@@ -119,10 +119,10 @@ export class VotingComponent {
                 this.upvoted = false;
                 this.downvoted = true;
               },
-              (response: any) => this.errorHandler(response.error as IResponseError),
+              (response: any) => this.errorHandler(response.error as IResponseError, 'Can\'t cast this vote'),
             );
           },
-          (response: any) => this.errorHandler(response.error as IResponseError),
+          (response: any) => this.errorHandler(response.error as IResponseError, 'Can\'t cast this vote'),
         );
       } else {
         (
@@ -134,12 +134,11 @@ export class VotingComponent {
             this.score--;
             this.downvoted = true;
           },
-          (response: any) => this.errorHandler(response.error as IResponseError),
+          (response: any) => this.errorHandler(response.error as IResponseError, 'Can\'t cast this vote'),
         );
       }
     }
   }
-  // End of Refactor this shitty code
 
   public toggleFavorite(): void {
     if (this.isFavorite) {
@@ -148,14 +147,20 @@ export class VotingComponent {
 
       this.questionService
         .favoriteQuestionUndo(this.id)
-        .subscribe(() => {});
+        .subscribe(
+          () => {},
+          (response: any) => this.errorHandler(response.error as IResponseError),
+        );
     } else {
       this.isFavorite = true;
       this.countFavorites++;
 
       this.questionService
         .favoriteQuestion(this.id)
-        .subscribe(() => {});
+        .subscribe(
+          () => {},
+          (response: any) => this.errorHandler(response.error as IResponseError),
+        );
     }
   }
 
@@ -163,9 +168,9 @@ export class VotingComponent {
     this.isAccepted = !this.isAccepted;
   }
 
-  private async errorHandler(response: IResponseError): Promise<void> {
+  private async errorHandler(response: IResponseError, header?: string): Promise<void> {
     const alert = await this.alertController.create({
-      header: 'Can\'t cast this vote',
+      header: header || 'Something went wrong',
       message: response.error_message,
       buttons: ['OK']
     });
