@@ -9,6 +9,7 @@ import { HomePage } from './home.page';
 import { FeedComponent } from './feed/feed.component';
 
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
+import { IconsModule } from 'src/app/icons/icons.module';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    CommonPipesModule
+    CommonPipesModule,
+    IconsModule,
   ],
   declarations: [
     HomePage,
