@@ -25,29 +25,22 @@ ion-label h2 {
 
 .question-statistics {
   position: relative;
-  padding: 2px 3px 0 0 ;
-  width: 60px;
-  height: 60px;
+  padding: 2px 3px 0 0;
+
+  width: 65px;
+  height: 65px;
 
   &.anwsered {
     border: 1px solid var(--ion-color-success-shade);
     background: rgba($color: var(--ion-color-success-rgb), $alpha: .05);
     border-radius: 4px;
   }
-
-  .grey {
-    color: var(--ion-color-medium);
-  }
 }
+
 .hot {
   position: absolute;
-  top: 8px;
-  right: 0;
-
-  font-size: 1.2em;;
-  background-image: linear-gradient(18deg,red, orange);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  top: 3px;
+  right: -3px;
 }
 
 .skeleton-list {
