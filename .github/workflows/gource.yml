@@ -45,7 +45,7 @@ jobs:
                -crf 1 -threads 0 \
                -bf 0 stack-app.mp4
     - name: Upload gource pm4
-    - uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v2
       with:
         name: stack-app
         path: ./stack-app.mp4
