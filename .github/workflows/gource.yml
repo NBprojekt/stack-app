@@ -24,7 +24,7 @@ jobs:
       run: |
         gource -1280x720 --seconds-per-day .9 \
                --auto-skip-seconds .01 \
-               -multi-sampling \
+               --multi-sampling \
                --stop-at-end \
                --highlight-users \
                --camera-mode overview \
