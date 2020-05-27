@@ -22,19 +22,7 @@ jobs:
         sudo apt-get install -y gource ffmpeg
     - name: Create gource ppm
       run: |
-        gource -1280x720 --seconds-per-day .9 \
-               --auto-skip-seconds .01 \
-               --multi-sampling \
-               --stop-at-end \
-               --highlight-users \
-               --camera-mode overview \
-               --hide mouse,filenames \
-               --key --file-idle-time 0 \
-               --max-files 0 \
-               --background-colour 24292e \
-               --title "Stack App" \
-               -1280x720\
-               -o gource.ppm .
+        gource -o gource.ppm .
     - name: Minify gource ppm
       run: |
         ffmpeg -y -r 60 -f image2pipe \
