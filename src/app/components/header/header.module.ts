@@ -21,9 +21,6 @@ import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
   ],
   exports: [
     HeaderComponent,
-  ],
-  entryComponents: [
-    NotificationComponent,
   ]
 })
 export class HeaderModule { }
