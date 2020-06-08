@@ -139,9 +139,13 @@ export class AuthService {
       header: 'Authentication failed',
       message: 'You canceled the authentication please try again to gain access.',
       position: 'bottom',
-      showCloseButton: true,
-      closeButtonText: 'OK',
       duration: 5e3,
+      buttons: [
+        {
+          text: 'OK',
+          role: 'cancel',
+        }
+      ]
     });
 
     toast.present();
