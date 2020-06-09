@@ -10,7 +10,7 @@ import { IResponse } from 'src/app/interfaces/response';
 import { IRequestOptions } from 'src/app/interfaces/request-options';
 
 import { map, startWith, switchMap, takeUntil } from 'rxjs/operators';
-import { interval, forkJoin, Subject } from 'rxjs';
+import { interval, forkJoin, Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,15 +22,17 @@ export class NotificationService implements OnDestroy {
   private readonly pageSize: number = 30;
 
   private destroy: Subject<any>;
-  private _inbox: Subject<any>;
-  private _achievements: Subject<any>;
+  private _inbox: BehaviorSubject<any>;
+  private _achievements: BehaviorSubject<any>;
+  private _unreadItemsCount: BehaviorSubject<number>;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService,
   ) {
-    this._inbox = new Subject<any>();
-    this._achievements = new Subject<any>();
+    this._inbox = new BehaviorSubject<any>([]);
+    this._achievements = new BehaviorSubject<any>([]);
+    this._unreadItemsCount = new BehaviorSubject<number>(0);
     this.destroy = new Subject<any>();
 
     this.initNotificationSubscription();
@@ -57,15 +59,35 @@ export class NotificationService implements OnDestroy {
     ).subscribe(([inbox, achievements]) => {
       this._inbox.next(inbox.items);
       this._achievements.next(achievements.items);
+
+      const unreadItemsCount = this.countUnread(inbox.items) + this.countUnread(achievements.items);
+      this._unreadItemsCount.next(unreadItemsCount);
     });
   }
 
   public inbox(): Observable<any> {
+    // TODO: Fix inbox loading issues
+    // Currently the notification component displays nothing when called after the app
+    // was opened within NotificationService.updateIntervall.
+    // Values should be repushed after inbox was requested.
+    setTimeout(() => this._inbox.next(this._inbox.getValue()), 200);
     return this._inbox.asObservable();
   }
 
   public achievements(): Observable<any> {
+    // TODO: Fix achievements loading issues
+    // Currently the notification component displays nothing when called after the app
+    // was opened within NotificationService.updateIntervall.
+    // Values should be repushed after achievements was requested.
+    setTimeout(() => this._achievements.next(this._achievements.getValue()), 200);
     return this._achievements.asObservable();
+  }
+
+  public unreadItemsCount(): Observable<any> {
+    // TODO: Fix unreadItems loading issues
+    // Values should be repushed after unread Items Count was requested.
+    setTimeout(() => this._unreadItemsCount.next(this._unreadItemsCount.getValue()), 200);
+    return this._unreadItemsCount.asObservable();
   }
 
   public getInbox(options?: IRequestOptions): Observable<IResponse> {
@@ -108,5 +130,15 @@ export class NotificationService implements OnDestroy {
           return response;
         })
       );
+  }
+
+  public countUnread(items: any): number {
+    if (!items) {
+      return 0;
+    }
+
+    return items
+      .map(item => item.is_unread ? 1 : 0)
+      .reduce((accumulator, currentValue) => accumulator + currentValue);
   }
 }
