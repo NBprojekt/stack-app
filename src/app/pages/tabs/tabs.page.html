@@ -19,13 +19,14 @@
       </icon-search>
     </ion-tab-button>
 
-    <ion-tab-button tab="notification">
-      <icon-bell
+    <ion-tab-button tab="notification" (click)="muteNotifications = !muteNotifications">
+      <icon-notification-bell
         width="28px" height="28px"
-        [ringing]="false"
+        [unreadItems]="unreadNotifications"
+        [mute]="muteNotifications"
         [primary]="'notification' === this.currentUrl ? 'var(--ion-color-primary)' : 'var(--ion-color-medium-shade)'"
         [secondary]="'notification' === this.currentUrl ? 'var(--ion-color-primary-tint)' : 'var(--ion-color-medium-tint)'">
-      </icon-bell>
+      </icon-notification-bell>
     </ion-tab-button>
 
     <ion-tab-button tab="jobs">
