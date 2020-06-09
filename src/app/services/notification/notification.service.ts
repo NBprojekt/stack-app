@@ -16,7 +16,7 @@ import { interval, forkJoin, Subject, BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class NotificationService implements OnDestroy {
-  public static readonly updateIntervall = 3 * 60 * 1000;
+  public static readonly updateIntervall = environment.api.updateNotificationsIntervall * 60 * 1000;
 
   private readonly url = environment.api.url + environment.api.version;
   private readonly pageSize: number = 30;
