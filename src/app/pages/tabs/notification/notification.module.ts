@@ -6,7 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { NotificationPage } from './notification.page';
-import { ComingSoonModule } from 'src/app/components/coming-soon/coming-soon.module';
+import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
+import { IconsModule } from 'src/app/icons/icons.module';
 
 const routes: Routes = [
   {
@@ -21,6 +22,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
+    CommonPipesModule,
+    IconsModule,
   ],
   declarations: [NotificationPage]
 })
