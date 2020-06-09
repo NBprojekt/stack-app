@@ -1,0 +1,113 @@
+.notification-bell {
+  animation-timing-function: ease;
+  cursor: pointer;
+  transform-origin: 50% 0%;
+  position: relative;
+  transition: 200ms ease-in-out color;
+  user-select: none;
+
+  &:after {
+    content: attr(data-count);
+    position: absolute;
+    display: block;
+    top: -2px;
+    right: -2px;
+
+    background-color: var(--ion-color-secondary);
+    color: var(--ion-color-secondary-contrast);
+
+    border: 2px solid var(--ion-color-secondary-contrast);
+    border-radius: 11px;
+
+    font-size: 10px;
+    height: 9px;
+    line-height: 8px;
+    min-width: 9px;
+    padding: 4px;
+    text-align: center;
+    transition: 100ms ease-in-out all;
+  }
+
+  &.is-muted {
+    &:after {
+      content: '';
+      color: transparent;
+      height: 2px;
+      min-width: 0;
+      padding: 2px;
+      right: 4px;
+      top: 4px;
+      width: 2px;
+    }
+  }
+
+  &[data-count='0'] {
+    &:after {
+      display: none;
+    }
+  }
+
+  &.is-animating {
+    animation: ringing 2s infinite;
+
+    .notification-bell__clapper {
+      animation: clapp 2s infinite;
+    }
+  }
+
+  svg g {
+    transform: translate(2, 0);
+  }
+
+  svg {
+    overflow: visible!important; //override reset
+  }
+
+  .notification-bell__clapper {
+    animation-timing-function: inherit;
+    transform: translate(6px, 18px) rotate(0);
+    transform-origin: inherit;
+  }
+}
+
+@keyframes ringing {
+  0%, 50%, 100% {
+    transform: rotate(0)
+  }
+
+  10% {
+    transform: rotate(10deg)
+  }
+
+  20%, 40% {
+    transform: rotate(-6deg);
+  }
+
+  30% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes clapp {
+  $_x: 6px;
+
+  0%, 50%, 100% {
+    transform: translate($_x, 18px) rotate(0);
+  }
+
+  10% {
+    transform: translate($_x + 4px, 18px) rotate(-10deg);
+  }
+
+  20% {
+    transform: translate($_x - 4px, 18px) rotate(10deg);
+  }
+
+  30% {
+    transform: translate($_x + 3px, 18px) rotate(-8deg);
+  }
+
+  40% {
+    transform: translate($_x - 3px, 18px) rotate(8deg);
+  }
+}

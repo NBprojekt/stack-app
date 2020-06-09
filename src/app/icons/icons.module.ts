@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BellIcon } from './bell/bell.icon';
+import { NotificationBellIcon } from './notification-bell/notification-bell.icon';
 import { ClockIcon } from './clock/clock.icon';
 import { CalendarDayIcon } from './calendar-day/calendar-day.icon';
 import { BrowserIcon } from './browser/browser.icon';
@@ -22,7 +22,7 @@ import { FireIcon } from './fire/fire.icon';
 
 @NgModule({
   declarations: [
-    BellIcon,
+    NotificationBellIcon,
     BrowserIcon,
     CalendarDayIcon,
     ChartPieIcon,
@@ -45,7 +45,7 @@ import { FireIcon } from './fire/fire.icon';
     CommonModule,
   ],
   exports: [
-    BellIcon,
+    NotificationBellIcon,
     BrowserIcon,
     CalendarDayIcon,
     ChartPieIcon,
