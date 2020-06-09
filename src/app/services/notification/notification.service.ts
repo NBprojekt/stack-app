@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -9,21 +9,64 @@ import { Observable } from 'rxjs/internal/Observable';
 import { IResponse } from 'src/app/interfaces/response';
 import { IRequestOptions } from 'src/app/interfaces/request-options';
 
-import { map } from 'rxjs/operators';
+import { map, startWith, switchMap, takeUntil } from 'rxjs/operators';
+import { interval, forkJoin, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NotificationService {
+export class NotificationService implements OnDestroy {
   public static readonly updateIntervall = 3 * 60 * 1000;
 
   private readonly url = environment.api.url + environment.api.version;
   private readonly pageSize: number = 30;
 
+  private destroy: Subject<any>;
+  private _inbox: Subject<any>;
+  private _achievements: Subject<any>;
+
   constructor(
     private http: HttpClient,
     private authService: AuthService,
-  ) {}
+  ) {
+    this._inbox = new Subject<any>();
+    this._achievements = new Subject<any>();
+    this.destroy = new Subject<any>();
+
+    this.initNotificationSubscription();
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
+  }
+
+  private initNotificationSubscription(): void {
+    interval(NotificationService.updateIntervall).pipe(
+      startWith(() => forkJoin([
+          this.getInbox(),
+          this.getAchievements(),
+        ])
+      ),
+      switchMap(() => forkJoin([
+          this.getInbox(),
+          this.getAchievements(),
+        ])
+      ),
+      takeUntil(this.destroy),
+    ).subscribe(([inbox, achievements]) => {
+      this._inbox.next(inbox.items);
+      this._achievements.next(achievements.items);
+    });
+  }
+
+  public inbox(): Observable<any> {
+    return this._inbox.asObservable();
+  }
+
+  public achievements(): Observable<any> {
+    return this._achievements.asObservable();
+  }
 
   public getInbox(options?: IRequestOptions): Observable<IResponse> {
     const headers = new HttpHeaders()
