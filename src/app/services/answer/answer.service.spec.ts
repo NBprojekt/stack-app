@@ -35,8 +35,8 @@ describe('AnswerService', () => {
 
   beforeEach(() => {
     injector = getTestBed();
-    service = injector.get(AnswerService);
-    httpMock = injector.get(HttpTestingController);
+    service = injector.inject(AnswerService);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   it('Should create', () => {

@@ -33,8 +33,8 @@ describe('SitesService', () => {
 
   beforeEach(() => {
     injector = getTestBed();
-    service = injector.get(SitesService);
-    httpMock = injector.get(HttpTestingController);
+    service = injector.inject(SitesService);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   it('Should create', () => {

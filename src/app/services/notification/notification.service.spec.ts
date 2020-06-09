@@ -35,8 +35,8 @@ describe('NotificationService', () => {
 
   beforeEach(() => {
     injector = getTestBed();
-    service = injector.get(NotificationService);
-    httpMock = injector.get(HttpTestingController);
+    service = injector.inject(NotificationService);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   it('Should create', () => {
