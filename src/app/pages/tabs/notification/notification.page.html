@@ -1,5 +1,86 @@
 <ion-content>
+  <ion-segment [(ngModel)]="section">
+    <ion-segment-button value="inbox">
+      <ion-label> Inbox </ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="achievements">
+      <ion-label> Achievements </ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="section">
+    <div *ngSwitchCase="'inbox'">
+      <!-- Inbox list -->
+      <ion-list>
+        <ion-item *ngFor="let item of inbox" (click)="forwardInternally(item);">
+          <ion-avatar slot="start">
+            <img [src]="item?.site?.high_resolution_icon_url || item?.on_site?.high_resolution_icon_url">
+          </ion-avatar>
+
+          <ion-label>
+            <h3 color="medium">
+              {{item?.item_type || item?.achievement_type | snakeToHuman}}
+            </h3>
+
+            <h2 class="align-items-center">
+              <div  class="wrap-text" [innerHTML]="item.title"></div>
+
+              <div *ngIf="item?.is_unread" class="new">
+                <div class="badge"> new </div>
+              </div>
+            </h2>
+
+            <p [innerHTML]="item.body"></p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <!-- Infinite scoll -->
+      <ion-infinite-scroll threshold="10%" (ionInfinite)="loadMoreInboxItems($event)">
+        <ion-infinite-scroll-content loadingSpinner="crescent">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+    <div *ngSwitchCase="'achievements'">
+      <!-- Achievements list -->
+      <ion-list>
+        <ion-item *ngFor="let item of achievements" (click)="forwardInternally(item);">
+          <ion-avatar slot="start">
+            <img [src]="item?.site?.high_resolution_icon_url || item?.on_site?.high_resolution_icon_url">
+          </ion-avatar>
+
+          <ion-label>
+            <h3 color="medium">
+              {{item?.item_type || item?.achievement_type | snakeToHuman}}
+            </h3>
+
+            <h2 class="align-items-center">
+              <div *ngIf="item?.achievement_type === 'badge'" [class]="'rank ' + item?.badge_rank">
+                <i class="fas fa-circle"></i>
+              </div>
 
 
-  notification workz
+              <div *ngIf="item?.achievement_type === 'reputation'" [className]="item?.reputation_change > 0 ? 'badge green' : 'badge red'">
+                {{item?.reputation_change > 0 ? '+' + item?.reputation_change : item?.reputation_change}}
+              </div>
+
+              <div  class="wrap-text" [innerHTML]="item.title"></div>
+
+              <div *ngIf="item?.is_unread" class="new">
+                <div class="badge"> new </div>
+              </div>
+            </h2>
+
+            <p [innerHTML]="item.body"></p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <!-- Infinite scoll -->
+      <ion-infinite-scroll threshold="10%" (ionInfinite)="loadMoreAchievements($event)">
+        <ion-infinite-scroll-content loadingSpinner="crescent">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+  </div>
 </ion-content>
