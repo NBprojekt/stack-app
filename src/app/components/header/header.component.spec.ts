@@ -50,12 +50,4 @@ describe('HeaderComponent', () => {
   it('Should tranform first letter to uppercase', () => {
     expect(component.firstToUpper('test')).toBe('Test');
   });
-
-  it('Should count unread notifications', () => {
-    const items = [
-      {is_unread: true, reputation_change: 20},
-      {is_unread: true},
-    ];
-    expect(component.countUnread(items)).toEqual(21);
-  });
 });
