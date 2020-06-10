@@ -1,10 +1,10 @@
 <ion-content>
   <ion-segment [(ngModel)]="section">
     <ion-segment-button value="inbox">
-      <ion-label> Inbox </ion-label>
+      <ion-label [attr.data-count]="inboxUnreadCount" class="segment-label-badge"> Inbox </ion-label>
     </ion-segment-button>
     <ion-segment-button value="achievements">
-      <ion-label> Achievements </ion-label>
+      <ion-label [attr.data-count]="achievementsUnreadCount" class="segment-label-badge"> Achievements </ion-label>
     </ion-segment-button>
   </ion-segment>
 

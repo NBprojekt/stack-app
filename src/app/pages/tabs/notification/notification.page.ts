@@ -18,7 +18,9 @@ export class NotificationPage implements OnInit, OnDestroy {
   public section: 'inbox' | 'achievements';
 
   public inbox: Array<any>;
+  public inboxUnreadCount: number;
   public achievements: Array<any>;
+  public achievementsUnreadCount: number;
 
   private inboxPage: number;
   private achievementsPage: number;
@@ -41,12 +43,18 @@ export class NotificationPage implements OnInit, OnDestroy {
     this.notificationService
       .inbox()
       .pipe(takeUntil(this.destroy))
-      .subscribe(inbox => this.inbox = inbox);
+      .subscribe(inbox => {
+        this.inbox = inbox;
+        this.inboxUnreadCount = this.countUnread(inbox);
+      });
 
     this.notificationService
       .achievements()
       .pipe(takeUntil(this.destroy))
-      .subscribe(achievements => this.achievements = achievements);
+      .subscribe(achievements => {
+        this.achievements = achievements;
+        this.achievementsUnreadCount = this.countUnread(achievements);
+      });
   }
 
   ngOnDestroy(): void {
@@ -91,16 +99,12 @@ export class NotificationPage implements OnInit, OnDestroy {
   }
 
   public countUnread(items: any): number {
-    if (!items) {
+    if (!items || items.length === 0) {
       return 0;
     }
 
     return items
-      .map(item => item.is_unread ?
-        item.reputation_change ?
-          item.reputation_change
-          : 1
-        : 0)
+      .map(item => item.is_unread ? 1 : 0)
       .reduce((accumulator, currentValue) => accumulator + currentValue);
   }
 
