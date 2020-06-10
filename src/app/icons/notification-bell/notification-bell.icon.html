@@ -2,7 +2,7 @@
   class="notification-bell"
   [class.is-animating]="!this.mute && this.unreadItems > 0"
   [class.is-muted]="mute"
-  [attr.data-count]="unreadItems">
+  [attr.data-count]="unreadItems > 9 ? '9+' : unreadItems">
   <svg
     [attr.width]="width"
     [attr.height]="height"
