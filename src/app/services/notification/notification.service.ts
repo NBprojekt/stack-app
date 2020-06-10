@@ -133,7 +133,7 @@ export class NotificationService implements OnDestroy {
   }
 
   public countUnread(items: any): number {
-    if (!items) {
+    if (!items || items.length === 0) {
       return 0;
     }
 
