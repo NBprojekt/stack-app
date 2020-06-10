@@ -11,6 +11,7 @@ import { Subscription, Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { IResponse, IResponseError } from 'src/app/interfaces/response';
 import { AppComponent } from 'src/app/app.component';
+import { IAuthInfo } from 'src/app/interfaces/auth-info';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthService {
   private readonly oAuthUrl = `https://stackoverflow.com/oauth/dialog?client_id=${environment.oAuth.clientId}&redirect_uri=${environment.oAuth.redirectUrl}&scope=${environment.oAuth.scope}`;
   private readonly apiUrl = environment.api.url + environment.api.version;
   private token: string;
+  private authInfo: IAuthInfo;
   private allowBrowserClose: boolean;
 
   constructor(
@@ -69,7 +71,7 @@ export class AuthService {
         (response: IResponse) => {
           const authenticated = response && response.items.length > 0;
 
-          console.log(response)
+          this.authInfo = response.items[0];
 
           if (!authenticated) {
             this.token = null;
@@ -86,6 +88,10 @@ export class AuthService {
 
   public getToken(): string {
     return this.token;
+  }
+
+  public getAuthInfo(): IAuthInfo {
+    return this.authInfo;
   }
 
   public validateToken(token: string): Observable<IResponse> {
