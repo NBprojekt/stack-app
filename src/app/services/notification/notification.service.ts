@@ -1,16 +1,16 @@
 import { Injectable, OnDestroy } from '@angular/core';
-
-import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { AuthService } from '../auth/auth.service';
-
-import { Observable } from 'rxjs/internal/Observable';
-import { IResponse } from 'src/app/interfaces/response';
-import { IRequestOptions } from 'src/app/interfaces/request-options';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 import { map, startWith, switchMap, takeUntil } from 'rxjs/operators';
-import { interval, forkJoin, Subject, BehaviorSubject } from 'rxjs';
+import { interval, forkJoin, Subject, BehaviorSubject, Observable, Subscription } from 'rxjs';
+
+import { AuthService } from '../auth/auth.service';
+import { IResponse } from 'src/app/interfaces/response';
+import { IRequestOptions } from 'src/app/interfaces/request-options';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +26,13 @@ export class NotificationService implements OnDestroy {
   private _achievements: BehaviorSubject<any>;
   private _unreadItemsCount: BehaviorSubject<number>;
 
+  private notificationSubscription: Subscription;
+
   constructor(
     private http: HttpClient,
     private authService: AuthService,
+    private localNotifications: LocalNotifications,
+    private router: Router,
   ) {
     this._inbox = new BehaviorSubject<any>([]);
     this._achievements = new BehaviorSubject<any>([]);
@@ -41,9 +45,17 @@ export class NotificationService implements OnDestroy {
   public ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
+    this.notificationSubscription.unsubscribe();
   }
 
   private initNotificationSubscription(): void {
+    // On notification click navigate to notifications tab
+    this.localNotifications
+      .on('click')
+      .pipe(takeUntil(this.destroy))
+      .subscribe(() => this.router.navigateByUrl('/menu/pages/tabs/notification'));
+
+    // Rethreave new notifications every {{NotificationService.updateIntervall}} seconds
     interval(NotificationService.updateIntervall).pipe(
       startWith(() => forkJoin([
           this.getInbox(),
@@ -61,6 +73,7 @@ export class NotificationService implements OnDestroy {
       this._achievements.next(achievements.items);
 
       const unreadItemsCount = this.countUnread(inbox.items) + this.countUnread(achievements.items);
+      this.sendUnreadNotification(unreadItemsCount);
       this._unreadItemsCount.next(unreadItemsCount);
     });
   }
@@ -140,5 +153,21 @@ export class NotificationService implements OnDestroy {
     return items
       .map(item => item.is_unread ? 1 : 0)
       .reduce((accumulator, currentValue) => accumulator + currentValue);
+  }
+
+  private sendUnreadNotification(unreadItemsCount: number): void {
+    if(unreadItemsCount <= 0) {
+      return;
+    }
+
+    this.localNotifications.schedule({
+      id: 1,
+      title: 'Stack App',
+      text: `You have ${unreadItemsCount} unread notifications`,
+      foreground : true,
+      badge: unreadItemsCount,
+      launch: true,
+      lockscreen: true,
+    });
   }
 }
