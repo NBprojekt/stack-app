@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class NotificationService implements OnDestroy {
+export class NotificationService implements OnInit, OnDestroy {
   public static readonly updateIntervall = environment.api.updateNotificationsIntervall * 60 * 1000;
 
   private readonly url = environment.api.url + environment.api.version;
@@ -38,7 +38,9 @@ export class NotificationService implements OnDestroy {
     this._achievements = new BehaviorSubject<any>([]);
     this._unreadItemsCount = new BehaviorSubject<number>(0);
     this.destroy = new Subject<any>();
+  }
 
+  public ngOnInit(): void {
     this.initNotificationSubscription();
   }
 
