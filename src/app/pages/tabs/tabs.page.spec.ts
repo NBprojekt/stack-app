@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Storage } from '@ionic/storage';
 
 import { TabsPage } from './tabs.page';
@@ -21,6 +22,7 @@ describe('TabsPage', () => {
       declarations: [ TabsPage ],
       providers: [
         InAppBrowser,
+        LocalNotifications,
         {
           provide: Storage, useValue: {
             get: () => new Promise<any>((resolve, reject) => resolve('test')),
