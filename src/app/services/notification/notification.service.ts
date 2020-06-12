@@ -168,6 +168,7 @@ export class NotificationService implements OnDestroy {
       badge: unreadItemsCount,
       launch: true,
       lockscreen: true,
+      icon: './assets/icon/favicon.png',
     });
   }
 }
