@@ -42,14 +42,14 @@
         </ng-template>
 
         <div class="achievements">
-          <div *ngIf="site?.badge_counts?.gold > 0" class="badge gold">
-            <i class="fas fa-circle"></i> {{site?.badge_counts.gold}}
+          <div *ngIf="site?.badge_counts?.gold">
+            <icon-circle width="10px" height="10px" primary="rgb(255, 215, 0)"></icon-circle> {{site?.badge_counts.gold}}
           </div>
-          <div *ngIf="site?.badge_counts?.silver > 0" class="badge silver">
-            <i class="fas fa-circle"></i> {{site?.badge_counts.silver}}
+          <div *ngIf="site?.badge_counts?.silver">
+            <icon-circle width="10px" height="10px" primary="rgb(170, 165, 165)"></icon-circle> {{site?.badge_counts.silver}}
           </div>
-          <div *ngIf="site?.badge_counts?.bronze > 0" class="badge bronze">
-            <i class="fas fa-circle"></i> {{site?.badge_counts.bronze}}
+          <div *ngIf="site?.badge_counts?.bronze">
+            <icon-circle width="10px" height="10px" primary="rgb(180, 106, 33)"></icon-circle> {{site?.badge_counts.bronze}}
           </div>
         </div>
       </ion-label>
