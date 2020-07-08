@@ -168,17 +168,17 @@ ion-label.segment-label-badge {
 }
 
 .tag {
-  background: rgba($color: var(--ion-color-secondary-rgb), $alpha: .2);
-  color: var(--ion-color-secondary-shade);
-  padding: 2px 6px;
+  background: var(--ion-color-primary-tint);
+  color: #fff;
+  padding: 0 6px 0;
+  line-height: 20px;
+  height: 20px;
   margin-right: 3px;
   border-radius: 4px;
   transition: .4s;
-
-  &:hover {
-    background: rgba($color: var(--ion-color-secondary-rgb), $alpha: .3);
-  }
+  overflow: visible;
 }
+
 
 a, .link {
   color: var(--ion-color-secondary);
