@@ -7,6 +7,8 @@ import { IResponse } from 'src/app/interfaces/response';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IAnswer } from 'src/app/interfaces/answer';
 import { DOCUMENT } from '@angular/common';
+import { UserService } from 'src/app/services/user/user.service';
+import { IUser } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-question',
@@ -14,6 +16,7 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./question.page.scss']
 })
 export class QuestionPage implements OnInit {
+  private currentUser: IUser;
   private id: number;
 
   public title: string;
@@ -24,20 +27,27 @@ export class QuestionPage implements OnInit {
   public type: string;
 
   constructor(
+    @Inject(DOCUMENT) document,
     private route: ActivatedRoute,
     private questionsService: QuestionsService,
     private sanitizer: DomSanitizer,
-    @Inject(DOCUMENT) document,
+    private userService: UserService,
   ) { }
 
-  ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.id = +this.route.snapshot.paramMap.get('id');
     this.title = (this.route.snapshot.paramMap.get('title') || 'Question').split('-').join(' ');
+
+    this.currentUser = await this.userService.getMe();
 
     this.getQuestion(this.id);
     this.getAnswers(this.id);
     this.highlight = +this.route.snapshot.paramMap.get('highlight') ||  0;
     this.type = this.route.snapshot.paramMap.get('type');
+  }
+
+  public isOwner(questionOwner: IUser): boolean {
+    return questionOwner && questionOwner.user_id === this.currentUser.user_id;
   }
 
   private getQuestion(id: number, event?: any): void {
