@@ -1,0 +1,15 @@
+
+body.dark {
+  .user-card {
+    background: var(--ion-color-step-150);
+    ion-item {
+      --background: var(--ion-color-step-150)!important;
+    }
+    &.highlight {
+      background: rgba($color: var(--ion-color-secondary-rgb), $alpha: .25);
+      ion-item {
+        --background: rgba($color: var(--ion-color-secondary-rgb), $alpha: .25)!important;
+      }
+    }
+  }
+}
