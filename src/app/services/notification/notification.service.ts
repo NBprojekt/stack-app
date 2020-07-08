@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class NotificationService implements OnInit, OnDestroy {
+export class NotificationService implements OnDestroy {
   public static readonly updateIntervall = environment.api.updateNotificationsIntervall * 60 * 1000;
 
   private readonly url = environment.api.url + environment.api.version;
@@ -38,9 +38,6 @@ export class NotificationService implements OnInit, OnDestroy {
     this._achievements = new BehaviorSubject<any>([]);
     this._unreadItemsCount = new BehaviorSubject<number>(0);
     this.destroy = new Subject<any>();
-  }
-
-  public ngOnInit(): void {
     this.initNotificationSubscription();
   }
 
@@ -85,6 +82,7 @@ export class NotificationService implements OnInit, OnDestroy {
     // Currently the notification component displays nothing when called after the app
     // was opened within NotificationService.updateIntervall.
     // Values should be repushed after inbox was requested.
+    // > Current workaround `setTimeout()`
     setTimeout(() => this._inbox.next(this._inbox.getValue()), 200);
     return this._inbox.asObservable();
   }
@@ -94,6 +92,7 @@ export class NotificationService implements OnInit, OnDestroy {
     // Currently the notification component displays nothing when called after the app
     // was opened within NotificationService.updateIntervall.
     // Values should be repushed after achievements was requested.
+    // > Current workaround `setTimeout()`
     setTimeout(() => this._achievements.next(this._achievements.getValue()), 200);
     return this._achievements.asObservable();
   }
@@ -101,6 +100,7 @@ export class NotificationService implements OnInit, OnDestroy {
   public unreadItemsCount(): Observable<any> {
     // TODO: Fix unreadItems loading issues
     // Values should be repushed after unread Items Count was requested.
+    // > Current workaround `setTimeout()`
     setTimeout(() => this._unreadItemsCount.next(this._unreadItemsCount.getValue()), 200);
     return this._unreadItemsCount.asObservable();
   }
