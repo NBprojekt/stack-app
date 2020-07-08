@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
 
 import { environment } from 'src/environments/environment';
 
-import { IQuestion } from 'src/app/interfaces/question';
 import { IRequestOptions } from 'src/app/interfaces/request-options';
 import { IResponse, IResponseError } from 'src/app/interfaces/response';
 
