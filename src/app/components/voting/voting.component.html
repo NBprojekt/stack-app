@@ -29,9 +29,10 @@
     </div>
   </div>
 
-  <div *ngIf="showAccepted || isAccepted" class="accepted" [class.isAccepted]="isAccepted">
+  <div *ngIf="showAccepted || isAccepted" class="accepted"
+       (click)="toggleAccepted()" [class.isAccepted]="isAccepted">
     <div class="text-wrapper">
-      <i class="fas fa-check"></i>
+      <icon-check [primary]="isAccepted ? 'var(--ion-color-success-shade)' : 'var(--ion-color-medium-tint)'"></icon-check>
     </div>
   </div>
 </div>
