@@ -22,6 +22,7 @@ import { FireIcon } from './fire/fire.icon';
 import { CheckIcon } from './check/check';
 import { CircleIcon } from './circle/circle';
 import { ExternalLinkIcon } from './external-link/external-link.icon';
+import { ShareIcon } from './share/share.icon';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ExternalLinkIcon } from './external-link/external-link.icon';
     CheckIcon,
     CircleIcon,
     ExternalLinkIcon,
+    ShareIcon,
   ],
   imports: [
     CommonModule,
@@ -72,6 +74,7 @@ import { ExternalLinkIcon } from './external-link/external-link.icon';
     CheckIcon,
     CircleIcon,
     ExternalLinkIcon,
+    ShareIcon,
   ],
 })
 export class IconsModule { }
