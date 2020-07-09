@@ -1,5 +1,12 @@
 
 body.dim, body.lights-out {
+  .sc-ion-searchbar-md-h {
+    --background: var(--ion-item-background);
+  }
+  .sc-ion-searchbar-ios-h {
+    --background: rgba(var(--ion-text-color-rgb), .1);
+  }
+
   .user-card {
     background: var(--ion-color-step-150);
     ion-item {
