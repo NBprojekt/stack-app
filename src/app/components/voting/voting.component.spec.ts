@@ -52,10 +52,4 @@ describe('VotingComponent', () => {
     component.toggleFavorite();
     expect(component.isFavorite).toBeTruthy();
   });
-
-  it('Should toggle accepted', () => {
-    expect(component.isAccepted).toBeUndefined();
-    component.toggleAccepted();
-    expect(component.isAccepted).toBeTruthy();
-  });
 });
