@@ -1,5 +1,19 @@
 import { Injectable } from '@angular/core';
 
+export enum Modes {
+  DEFAULT = 'light',
+  LIGHT = 'light',
+  DIM = 'dim',
+  LOGHTS_OUT = 'lights-out'
+}
+
+export enum Themes {
+  DEFAULT = 'theme-orange-blue',
+  ORANGE_BLUE = 'theme-orange-blue',
+  PURPLE_GREEN = 'theme-purple-green',
+  BLUE_PINK = 'theme-blue-pink',
+}
+
 @Injectable({
   providedIn: 'root'
 })
