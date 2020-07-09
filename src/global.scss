@@ -43,6 +43,11 @@ ion-popover{
   }
 }
 
+ion-card.card-with-overflow {
+  overflow: visible;
+  margin-top: 50px;
+}
+
 // Set paginator to secondary color
 ion-slides {
   .swiper-pagination-bullet, .swiper-pagination-bullet-active {
