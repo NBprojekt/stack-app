@@ -15,6 +15,7 @@ import { VotingModule } from 'src/app/components/voting/voting.module';
 import { UserCardModule } from 'src/app/components/user-card/user-card.module';
 import { CommentModule } from 'src/app/components/comment/comment.module';
 import { AnswerCardModule } from 'src/app/components/answer-card/answer-card.module';
+import { IconsModule } from 'src/app/icons/icons.module';
 
 const routes: Routes = [
   {
@@ -40,6 +41,7 @@ const routes: Routes = [
     UserCardModule,
     AnswerCardModule,
     CommentModule,
+    IconsModule,
   ],
   exports: [
     QuestionCardComponent,
