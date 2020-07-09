@@ -3,28 +3,28 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title> ThemePage </ion-title>
+    <ion-title> Customize your view </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen class="ion-padding">
 
-  <div class="card-heading">
-    Background {{mode}}
-  </div>
-  <ion-card>
+  <ion-card class="card-with-overflow">
+    <div class="card-heading">
+      Background
+    </div>
     <ion-card-content>
       <ion-radio-group [(ngModel)]="mode" (ngModelChange)="changeTheme()">
-        <ion-item lines="none" class="theme-button light" [class.active]="mode === 'light'">
+        <ion-item lines="none" class="theme-button light-mode" [class.active]="mode === 'light'">
           <ion-label> Light </ion-label>
           <ion-radio slot="start" value="light"></ion-radio>
         </ion-item>
 
-        <ion-item lines="none" class="theme-button dim" [class.active]="mode === 'dim'">
+        <ion-item lines="none" class="theme-button dim-mode" [class.active]="mode === 'dim'">
           <ion-label> Dim </ion-label>
           <ion-radio slot="start" value="dim"></ion-radio>
         </ion-item>
 
-        <ion-item lines="none" class="theme-button lights-out" [class.active]="mode === 'lights-out'">
+        <ion-item lines="none" class="theme-button lights-out-mode" [class.active]="mode === 'lights-out'">
           <ion-label> Lights out </ion-label>
           <ion-radio slot="start" value="lights-out"></ion-radio>
         </ion-item>
