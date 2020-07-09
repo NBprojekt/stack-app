@@ -6,14 +6,22 @@ import { Injectable } from '@angular/core';
 export class ThemeService {
 
   constructor() {
-    document.body.classList.add(this.getMode());
+    this.setMode(this.getMode());
   }
 
-  public setMode(mode: 'dark' | 'light'): void {
+  public setMode(mode: 'light' | 'dim' | 'lights-out'): void {
     document.cookie = `mode=${mode}`;
+
+    // Remove old modes
+    document.body.classList.remove('light');
+    document.body.classList.remove('dim');
+    document.body.classList.remove('lights-out');
+
+    // Add new mode
+    document.body.classList.add(mode);
   }
-  public getMode(): string {
+  public getMode(): 'light' | 'dim' | 'lights-out' {
     const cookie = document.cookie.split(';').map(x => x.split('=')).find(x => x[0].trim() === 'mode');
-    return cookie ? cookie[1] : 'light';
+    return cookie ? cookie[1] as 'light' | 'dim' | 'lights-out' : 'light';
   }
 }
