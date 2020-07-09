@@ -1,0 +1,27 @@
+.card-heading {
+  padding-left: 10px;
+  font-size: .9rem;
+}
+.theme-button {
+  margin: 5px 0;
+  border: 2px solid transparent;
+  border-radius: 4px;
+
+  &.light {
+    --background: #ffff;
+    color: #000;
+  }
+
+  &.dim {
+    --background: #ffff;
+    color: #000;
+  }
+
+  &.lights-out {
+    --background: #ffff;
+    color: #000;
+  }
+  &.active {
+    border: 2px solid var(--ion-color-primary);
+  }
+}

@@ -7,5 +7,29 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen class="ion-padding">
-  ThemePage workz
+
+  <div class="card-heading">
+    Background {{mode}}
+  </div>
+  <ion-card>
+    <ion-card-content>
+      <ion-radio-group [(ngModel)]="mode" (ngModelChange)="changeTheme()">
+        <ion-item lines="none" class="theme-button light" [class.active]="mode === 'light'">
+          <ion-label> Light </ion-label>
+          <ion-radio slot="start" value="light"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none" class="theme-button dim" [class.active]="mode === 'dim'">
+          <ion-label> Dim </ion-label>
+          <ion-radio slot="start" value="dim"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none" class="theme-button lights-out" [class.active]="mode === 'lights-out'">
+          <ion-label> Lights out </ion-label>
+          <ion-radio slot="start" value="lights-out"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
