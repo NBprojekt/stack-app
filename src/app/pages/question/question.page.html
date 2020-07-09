@@ -12,17 +12,16 @@
   </ng-template>
 
   <div *ngIf="answers; else answerSkeleton">
-    <ion-list>
-      <ion-list-header>
-        {{answers?.length || 0}} Answers
-      </ion-list-header>
 
-      <div *ngFor="let answer of answers">
-        <answer-card [answer]="answer" [type]="type" [highlight]="highlight"
-                     [questionOwner]="question?.owner" [isOwner]="isOwner(question?.owner)">
-        </answer-card>
-      </div>
-    </ion-list>
+    <div class="answer-count">
+      {{answers?.length || 0}} Answers
+    </div>
+
+    <div *ngFor="let answer of answers">
+      <answer-card [answer]="answer" [type]="type" [highlight]="highlight"
+                   [questionOwner]="question?.owner" [isOwner]="isOwner(question?.owner)">
+      </answer-card>
+    </div>
   </div>
 
   <ng-template #answerSkeleton>
