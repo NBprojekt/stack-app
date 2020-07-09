@@ -7,6 +7,7 @@ import { CommonDirectivesModule } from 'src/app/directives/common-directives.mod
 
 import { UserCardComponent } from './user-card.component';
 import { UserCardSkeletonComponent } from './user-card-skeleton/user-card-skeleton.component';
+import { IconsModule } from 'src/app/icons/icons.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { UserCardSkeletonComponent } from './user-card-skeleton/user-card-skelet
     CommonPipesModule,
     CommonDirectivesModule,
     IonicModule,
+    IconsModule,
   ],
   exports: [
     UserCardComponent,
