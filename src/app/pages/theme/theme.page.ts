@@ -7,15 +7,20 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   styleUrls: ['./theme.page.scss'],
 })
 export class ThemePage {
-  public mode: 'light' | 'dim' | 'lights-out';
+  public theme: string;
+  public mode: string;
 
   constructor (
     private themeSerice: ThemeService,
   ) {
+    this.theme = themeSerice.getTheme();
     this.mode = themeSerice.getMode();
   }
 
   public changeTheme(): void {
-    this.themeSerice.setMode(this.mode)
+    this.themeSerice.setTheme(this.theme);
+  }
+  public changeMode(): void {
+    this.themeSerice.setMode(this.mode);
   }
 }

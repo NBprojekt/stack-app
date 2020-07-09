@@ -7,24 +7,47 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen class="ion-padding">
+  <ion-card class="card-with-overflow">
+    <div class="card-heading">
+      Colors
+    </div>
+    <ion-card-content>
+      <ion-radio-group [(ngModel)]="theme" (ngModelChange)="changeTheme()">
+        <ion-item lines="none" class="theme-button theme-orange-blue" [class.active]="mode === 'theme-orange-blue'">
+          <ion-label> Orange blue <small> (default) </small> </ion-label>
+          <ion-radio slot="start" value="theme-orange-blue"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none" class="theme-button theme-purple-green" [class.active]="mode === 'theme-purple-green'">
+          <ion-label> Purple green </ion-label>
+          <ion-radio slot="start" value="theme-purple-green"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none" class="theme-button theme-blue-pink" [class.active]="mode === 'theme-blue-pink'">
+          <ion-label> Blue pink </ion-label>
+          <ion-radio slot="start" value="theme-blue-pink"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-card-content>
+  </ion-card>
 
   <ion-card class="card-with-overflow">
     <div class="card-heading">
       Background
     </div>
     <ion-card-content>
-      <ion-radio-group [(ngModel)]="mode" (ngModelChange)="changeTheme()">
-        <ion-item lines="none" class="theme-button light-mode" [class.active]="mode === 'light'">
-          <ion-label> Light </ion-label>
+      <ion-radio-group [(ngModel)]="mode" (ngModelChange)="changeMode()">
+        <ion-item lines="none" class="mode-button light-mode" [class.active]="mode === 'light'">
+          <ion-label> Light <small> (default) </small>  </ion-label>
           <ion-radio slot="start" value="light"></ion-radio>
         </ion-item>
 
-        <ion-item lines="none" class="theme-button dim-mode" [class.active]="mode === 'dim'">
+        <ion-item lines="none" class="mode-button dim-mode" [class.active]="mode === 'dim'">
           <ion-label> Dim </ion-label>
           <ion-radio slot="start" value="dim"></ion-radio>
         </ion-item>
 
-        <ion-item lines="none" class="theme-button lights-out-mode" [class.active]="mode === 'lights-out'">
+        <ion-item lines="none" class="mode-button lights-out-mode" [class.active]="mode === 'lights-out'">
           <ion-label> Lights out </ion-label>
           <ion-radio slot="start" value="lights-out"></ion-radio>
         </ion-item>
