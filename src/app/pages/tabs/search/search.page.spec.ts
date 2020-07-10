@@ -1,7 +1,12 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { Storage } from '@ionic/storage';
 
 import { SearchPage } from './search.page';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SearchPage', () => {
   let component: SearchPage;
@@ -9,8 +14,20 @@ describe('SearchPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+      ],
       declarations: [ SearchPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [
+        InAppBrowser,
+        {
+          provide: Storage, useValue: {
+            get: () => new Promise<any>((resolve, reject) => resolve('test')),
+          }
+        },
+      ],
     })
     .compileComponents();
   }));
