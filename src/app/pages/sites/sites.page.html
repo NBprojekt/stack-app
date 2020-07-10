@@ -23,6 +23,7 @@
   <ion-list *ngIf="sites?.length; else notSitesFound">
     <ion-item *ngFor="let site of sites | slice:0:showItems;"
               [class.unavailable]="!site?.reputation"
+              [class.current]="site.name === currentSite.name"
               (click)="site?.reputation ? openSite(site) : joinSiteDialog(site)">
       <ion-avatar slot="start">
         <img [src]="site?.high_resolution_icon_url" />
@@ -81,7 +82,7 @@
       <p class="hint">
         Try different or less specific keywords.
       </p>
-      <ion-button color="primary" (click)="resetFilter()()"> Reset filter </ion-button>
+      <ion-button color="primary" (click)="resetFilter()"> Reset filter </ion-button>
     </div>
   </ng-template>
 
