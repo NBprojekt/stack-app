@@ -1,5 +1,9 @@
 .search-result {
   height: calc(100% - 60px);
+
+  .counter {
+    padding: 10px 25px;
+  }
 }
 
 .no-result {
@@ -16,6 +20,7 @@
 }
 
 
+// ######################################################
 ion-label h2 {
   align-items: center!important;
   display: flex;

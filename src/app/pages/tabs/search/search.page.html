@@ -7,8 +7,11 @@
   </form>
 
 
-  <div *ngIf="result && result.length > 0; else noResult" class="search-result">
+  <div *ngIf="total > 0; else noResult" class="search-result">
     <ion-list>
+      <div class="counter">
+        {{total.toLocaleString('en-US')}} result{{total == 1 ? '' : 's'}}
+      </div>
       <ion-item *ngFor="let question of result" button
                 [routerLink]="['/menu/pages/question', question?.question_id, formatUrl(question?.title)]"
                 routerDirection="forward">
@@ -82,6 +85,8 @@
       </p>
     </div>
   </ng-template>
+
+  <!-- TODO: Add infinite scroll -->
 
   <!---->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" hidden>
