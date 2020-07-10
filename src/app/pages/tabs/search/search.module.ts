@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { SearchPage } from './search.page';
 import { IconsModule } from 'src/app/icons/icons.module';
+import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     IconsModule,
+    CommonPipesModule,
   ],
   declarations: [SearchPage]
 })
