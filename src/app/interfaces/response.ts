@@ -5,6 +5,7 @@ export interface IResponse {
   items: Array<IQuestion | any>;
   quota_max: number;
   quota_remaining: number;
+  total?: number;
 }
 
 export interface IResponseError {
