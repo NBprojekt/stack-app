@@ -14,6 +14,7 @@
 
     <ion-tab-button tab="search">
       <icon-search
+        width="28px" height="28px"
         [primary]="'search' === this.currentUrl ? 'var(--ion-color-primary)' : 'var(--ion-color-medium-shade)'"
         [secondary]="'search' === this.currentUrl ? 'var(--ion-color-primary-tint)' : 'var(--ion-color-medium-tint)'">
       </icon-search>
@@ -29,7 +30,7 @@
       </icon-notification-bell>
     </ion-tab-button>
 
-    <ion-tab-button tab="jobs">
+    <ion-tab-button *ngIf="false" tab="jobs">
       <icon-user-tie
         [primary]="'jobs' === this.currentUrl ? 'var(--ion-color-primary)' : 'var(--ion-color-medium-shade)'"
         [secondary]="'jobs' === this.currentUrl ? 'var(--ion-color-primary-tint)' : 'var(--ion-color-medium-tint)'">
