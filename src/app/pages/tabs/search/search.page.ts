@@ -17,6 +17,7 @@ export class SearchPage {
   public loading: boolean;
 
   public result: Array<IQuestion>;
+  public total: number;
 
   private options: IRequestOptions;
 
@@ -37,7 +38,9 @@ export class SearchPage {
     this.loading = true;
 
     this.searchService.searchAdvanced(searchString, this.options).subscribe(response => {
+      console.log('Search result', response)
       this.result = response.items;
+      this.total = response.total;
     });
   }
 
