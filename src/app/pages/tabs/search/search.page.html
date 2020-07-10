@@ -1,18 +1,85 @@
 <ion-content>
   <form>
     <ion-searchbar [(ngModel)]="searchString" [ngModelOptions]="{standalone: true}"
-                    (ionInput)="search()" (ionClear)="resetFilter()" animated>
+                   (ionBlur)="search()" inputmode="search"
+                   (ionClear)="resetFilter()" animated>
     </ion-searchbar>
   </form>
 
 
-  <div class="search-result">
+  <div *ngIf="result && result.length > 0; else noResult" class="search-result">
+    <ion-list>
+      <ion-item *ngFor="let question of result" button
+                [routerLink]="['/menu/pages/question', question?.question_id, formatUrl(question?.title)]"
+                routerDirection="forward">
+        <ion-thumbnail class="question-statistics" [class.anwsered]="question?.is_answered" slot="start">
+        <div class="text-right">
+          {{question?.score | shortenNumber}}
+          <icon-caret width="15px"  height="20px"
+                      primary="var(--ion-color-medium)">
+          </icon-caret>
+        </div>
+        <div class="text-right">
+          {{question?.answer_count | shortenNumber}}
+          <icon-comment width="15px"  height="15px"
+                        primary="var(--ion-color-medium)">
+          </icon-comment>
+        </div>
+        <div class="text-right">
+          {{question?.view_count | shortenNumber}}
+          <icon-eye width="15px"  height="15px"
+                    primary="var(--ion-color-medium)"
+                    secondary="var(--ion-color-medium)">
+          </icon-eye>
+        </div>
+        </ion-thumbnail>
 
+        <ion-label>
+          <h2>
+            <div class="badge" *ngIf="question?.bounty_amount"> +{{question?.bounty_amount}} </div>
+
+            <div class="wrap-text" [innerHTML]="question?.title"></div>
+          </h2>
+          <div class="tag-wrapper">
+            <div *ngFor="let tag of question?.tags" class="tag"> {{tag}} </div>
+          </div>
+          <p>
+            asked {{question?.creation_date | timePassed}}
+
+            <span class="link" [innerHTML]="question?.owner?.display_name"></span>
+
+            {{question?.owner?.reputation | shortenNumber}}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 
-  <ng-template>
+  <ng-template #noResult>
     <div class="no-result">
-
+      <svg
+        width="120"
+        height="120"
+        aria-hidden="true"
+        focusable="false"
+        role="img"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 96 96"
+      >
+        <circle fill="var(--ion-color-medium)" opacity=".2"
+                cx="41.5" cy="43.5" r="35.5">
+        </circle>
+        <path fill="var(--ion-color-medium)"
+              d="M52.17 14.27a1.5 1.5 0 00-1.5 2.6A25.5 25.5 0 0163 33.97a1.5 1.5 0 102.94-.59 28.5 28.5 0 00-13.77-19.1zM36.64 12c0-.84.67-1.5 1.5-1.5 1.8 0 3.59.19 5.35.53a1.5 1.5 0 11-.58 2.95 25.5 25.5 0 00-4.78-.48 1.5 1.5 0 01-1.5-1.5zM38 2.5a36.5 36.5 0 1022.3 65.4 6.47 6.47 0 001.9 4.48l19.15 19.15a6.5 6.5 0 009.18-9.18L71.38 63.2a6.47 6.47 0 00-4.48-1.9A36.5 36.5 0 0038 2.5zM4.5 39a33.5 33.5 0 1167 0 33.5 33.5 0 01-67 0zm59.83 31.26a3.5 3.5 0 014.93-4.93l19.15 19.14a3.5 3.5 0 11-4.94 4.94L64.33 70.26z">
+        </path>
+      </svg>
+      <p class="message">
+        We couldn't find anything for
+        <strong> {{searchString}} </strong>
+      </p>
+      <p class="hint">
+        Try different or less specific keywords.
+      </p>
     </div>
   </ng-template>
 
