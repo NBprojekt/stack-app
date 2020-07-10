@@ -49,6 +49,7 @@ export class NotificationService implements OnDestroy {
 
   private initNotificationSubscription(): void {
     // On notification click navigate to notifications tab
+    if(window.hasOwnProperty('cordova'))
     this.localNotifications
       .on('click')
       .pipe(takeUntil(this.destroy))
@@ -158,7 +159,7 @@ export class NotificationService implements OnDestroy {
   }
 
   private sendUnreadNotification(unreadItemsCount: number): void {
-    if(unreadItemsCount <= 0) {
+    if(window.hasOwnProperty('cordova') && unreadItemsCount <= 0) {
       return;
     }
 
