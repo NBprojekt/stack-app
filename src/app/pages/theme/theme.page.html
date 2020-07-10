@@ -7,23 +7,70 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen class="ion-padding">
+  <div class="hint">
+    Display setting affect all of your Stack sites on this App.
+    These settings are only visible to you.
+  </div>
+
+  <ion-card class="question-mock">
+    <ion-item lines="none">
+      <ion-thumbnail class="question-statistics" [class.anwsered]="true" slot="start">
+        <div class="text-right">
+          {{37853 | shortenNumber}}
+          <icon-caret width="15px"  height="20px"
+                      primary="var(--ion-color-medium)">
+          </icon-caret>
+        </div>
+        <div class="text-right">
+          {{3 | shortenNumber}}
+          <icon-comment width="15px"  height="15px"
+                        primary="var(--ion-color-medium)">
+          </icon-comment>
+        </div>
+        <div class="text-right">
+          {{8735441 | shortenNumber}}
+          <icon-eye width="15px"  height="15px"
+                    primary="var(--ion-color-medium)"
+                    secondary="var(--ion-color-medium)">
+          </icon-eye>
+        </div>
+      </ion-thumbnail>
+
+      <ion-label>
+        <h2>
+          <div class="wrap-text" [innerHTML]="'Question title'"></div>
+        </h2>
+        <div class="tag-wrapper">
+          <div *ngFor="let tag of ['tags']" class="tag"> {{tag}} </div>
+        </div>
+        <p>
+          asked 2 days ago
+
+          <span class="link" [innerHTML]="'Username'"></span>
+
+          {{5000 | shortenNumber}}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
   <ion-card class="card-with-overflow">
     <div class="card-heading">
       Colors
     </div>
     <ion-card-content>
       <ion-radio-group [(ngModel)]="theme" (ngModelChange)="changeTheme()">
-        <ion-item lines="none" class="theme-button theme-orange-blue" [class.active]="mode === 'theme-orange-blue'">
+        <ion-item lines="none" class="theme-button theme-orange-blue" [class.active]="theme === 'theme-orange-blue'">
           <ion-label> Orange blue <small> (default) </small> </ion-label>
           <ion-radio slot="start" value="theme-orange-blue"></ion-radio>
         </ion-item>
 
-        <ion-item lines="none" class="theme-button theme-purple-green" [class.active]="mode === 'theme-purple-green'">
+        <ion-item lines="none" class="theme-button theme-purple-green" [class.active]="theme === 'theme-purple-green'">
           <ion-label> Purple green </ion-label>
           <ion-radio slot="start" value="theme-purple-green"></ion-radio>
         </ion-item>
 
-        <ion-item lines="none" class="theme-button theme-blue-pink" [class.active]="mode === 'theme-blue-pink'">
+        <ion-item lines="none" class="theme-button theme-blue-pink" [class.active]="theme === 'theme-blue-pink'">
           <ion-label> Blue pink </ion-label>
           <ion-radio slot="start" value="theme-blue-pink"></ion-radio>
         </ion-item>
@@ -55,4 +102,7 @@
     </ion-card-content>
   </ion-card>
 
+  <div class="done-button">
+    <ion-back-button color="primary" text="Done" icon="" defaultHref="/"> </ion-back-button>
+  </div>
 </ion-content>
