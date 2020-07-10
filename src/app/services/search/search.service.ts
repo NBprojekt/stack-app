@@ -32,7 +32,7 @@ export class SearchService {
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
       .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
-      .set('filter', options && options.filter || '!-.3J6_-dxUCh')
+      .set('filter', options && options.filter || '!9_bDE.BDp')
       .set('q', searchString);
 
     return this.http.get<IResponse>(`${this.url}search/advanced`, {headers, params});
