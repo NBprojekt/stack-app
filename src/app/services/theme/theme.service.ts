@@ -26,7 +26,7 @@ export class ThemeService {
 
   // Modes
   public setMode(mode: Modes | string): void {
-    document.cookie = `mode=${mode}`;
+    document.cookie = `mode=${mode}; path=/`;
 
     // Remove old modes
     Object.keys(Modes).map(key => document.body.classList.remove(Modes[key]));
@@ -41,7 +41,7 @@ export class ThemeService {
 
   // Themes
   public setTheme(theme: Themes | string): void {
-    document.cookie = `theme=${theme}`;
+    document.cookie = `theme=${theme}; path=/`;
 
     // Remove old themes
     Object.keys(Themes).map(key => document.body.classList.remove(Themes[key]));
