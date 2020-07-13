@@ -23,6 +23,7 @@ export class SitesPage implements OnInit, OnDestroy {
 
   public loading: boolean;
   public sites: Array<ISite>;
+  public currentSite: ISite;
   private _sites: Array<ISite>;
 
   private browserSubscribtion$: Subscription;
@@ -96,6 +97,7 @@ export class SitesPage implements OnInit, OnDestroy {
 
   private async loadSites(): Promise<void> {
     this.sites = await this.siteService.getAllSites();
+    this.currentSite = await this.siteService.getCurrentSite();
 
     this.userService.getMySites().subscribe((response: IResponse) => {
       response.items.forEach((mySite: IMySite) => {

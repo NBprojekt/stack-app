@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SitesPage } from '../sites/sites.page';
 import { CommonDirectivesModule } from 'src/app/directives/common-directives.module';
+import { IconsModule } from 'src/app/icons/icons.module';
 
 const routes: Routes = [
   { path: '', component: SitesPage },
@@ -20,6 +21,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     CommonDirectivesModule,
+    IconsModule,
   ],
   declarations: [
     SitesPage,

@@ -19,6 +19,12 @@ import { UserTieIcon } from './user-tie/user-tie.icon';
 import { CaretIcon } from './caret/caret.icon';
 import { CommentIcon } from './comment/comment.icon';
 import { FireIcon } from './fire/fire.icon';
+import { CheckIcon } from './check/check';
+import { CircleIcon } from './circle/circle';
+import { ExternalLinkIcon } from './external-link/external-link.icon';
+import { ShareIcon } from './share/share.icon';
+import { ArrowIcon } from './arrow/arrow.icon';
+import { MenuIcon } from './map/menu.icon';
 
 @NgModule({
   declarations: [
@@ -40,6 +46,12 @@ import { FireIcon } from './fire/fire.icon';
     CaretIcon,
     CommentIcon,
     FireIcon,
+    CheckIcon,
+    CircleIcon,
+    ExternalLinkIcon,
+    ShareIcon,
+    ArrowIcon,
+    MenuIcon,
   ],
   imports: [
     CommonModule,
@@ -63,6 +75,12 @@ import { FireIcon } from './fire/fire.icon';
     CaretIcon,
     CommentIcon,
     FireIcon,
+    CheckIcon,
+    CircleIcon,
+    ExternalLinkIcon,
+    ShareIcon,
+    ArrowIcon,
+    MenuIcon,
   ],
 })
 export class IconsModule { }

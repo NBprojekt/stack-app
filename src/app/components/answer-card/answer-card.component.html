@@ -1,7 +1,8 @@
 <ion-card [class.highlighted-by-link]="answer?.answer_id == highlight && type == 'answer'">
   <ion-card-content>
     <voting [id]="answer?.answer_id" mode="answer"
-            [score]="answer?.score" [isAccepted]="answer?.is_accepted">
+            [score]="answer?.score"
+            [isAccepted]="answer?.is_accepted" [showAccepted]="isOwner">
     </voting>
     <div class="post" [innerHTML]="answer?.body"></div>
   </ion-card-content>

@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
@@ -38,7 +38,6 @@ export class NotificationService implements OnDestroy {
     this._achievements = new BehaviorSubject<any>([]);
     this._unreadItemsCount = new BehaviorSubject<number>(0);
     this.destroy = new Subject<any>();
-
     this.initNotificationSubscription();
   }
 
@@ -50,6 +49,7 @@ export class NotificationService implements OnDestroy {
 
   private initNotificationSubscription(): void {
     // On notification click navigate to notifications tab
+    if(window.hasOwnProperty('cordova'))
     this.localNotifications
       .on('click')
       .pipe(takeUntil(this.destroy))
@@ -83,6 +83,7 @@ export class NotificationService implements OnDestroy {
     // Currently the notification component displays nothing when called after the app
     // was opened within NotificationService.updateIntervall.
     // Values should be repushed after inbox was requested.
+    // > Current workaround `setTimeout()`
     setTimeout(() => this._inbox.next(this._inbox.getValue()), 200);
     return this._inbox.asObservable();
   }
@@ -92,6 +93,7 @@ export class NotificationService implements OnDestroy {
     // Currently the notification component displays nothing when called after the app
     // was opened within NotificationService.updateIntervall.
     // Values should be repushed after achievements was requested.
+    // > Current workaround `setTimeout()`
     setTimeout(() => this._achievements.next(this._achievements.getValue()), 200);
     return this._achievements.asObservable();
   }
@@ -99,6 +101,7 @@ export class NotificationService implements OnDestroy {
   public unreadItemsCount(): Observable<any> {
     // TODO: Fix unreadItems loading issues
     // Values should be repushed after unread Items Count was requested.
+    // > Current workaround `setTimeout()`
     setTimeout(() => this._unreadItemsCount.next(this._unreadItemsCount.getValue()), 200);
     return this._unreadItemsCount.asObservable();
   }
@@ -156,7 +159,7 @@ export class NotificationService implements OnDestroy {
   }
 
   private sendUnreadNotification(unreadItemsCount: number): void {
-    if(unreadItemsCount <= 0) {
+    if(window.hasOwnProperty('cordova') && unreadItemsCount <= 0) {
       return;
     }
 
@@ -168,6 +171,7 @@ export class NotificationService implements OnDestroy {
       badge: unreadItemsCount,
       launch: true,
       lockscreen: true,
+      icon: './assets/icon/favicon.png',
     });
   }
 }

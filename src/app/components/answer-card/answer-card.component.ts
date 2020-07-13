@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { IAnswer } from 'src/app/interfaces/answer';
 import { IUser } from 'src/app/interfaces/user';
@@ -13,4 +13,5 @@ export class AnswerCardComponent {
   @Input() questionOwner: IUser;
   @Input() highlight: number;
   @Input() type: string;
+  @Input() isOwner: boolean;
 }

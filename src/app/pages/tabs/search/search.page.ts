@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { SearchService } from 'src/app/services/search/search.service';
+import { IQuestion } from 'src/app/interfaces/question';
+import { IRequestOptions } from 'src/app/interfaces/request-options';
 
 @Component({
   selector: 'app-search',
@@ -11,13 +14,39 @@ export class SearchPage {
   public showItems: number;
   public searchString: string;
 
+  public loading: boolean;
 
-  constructor() {}
+  public result: Array<IQuestion>;
+  public total: number;
+
+  private options: IRequestOptions;
+
+  constructor(
+    private searchService: SearchService,
+  ) {}
 
   public search(): void {
     const searchString = this.searchString ? this.searchString.toLowerCase().trim() : '';
 
     console.log(`Searching for ${searchString}`);
+
+    if(!searchString) {
+      this.result = null;
+      return;
+    }
+
+    this.loading = true;
+
+    this.searchService.searchAdvanced(searchString, this.options).subscribe(response => {
+      console.log('Search result', response)
+      this.result = response.items;
+      this.total = response.total;
+    });
+  }
+
+
+  public formatUrl(url: string): string {
+    return url.replace(/[^\w\s]/gi, '').split(' ').join('-');
   }
 
   public resetFilter(): void {

@@ -50,3 +50,13 @@ ion-label h2 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.missing-notification {
+  padding-top: 10%;
+  width: 100%;
+  text-align: center;
+
+  span {
+    color: var(--ion-color-medium);
+  }
+}

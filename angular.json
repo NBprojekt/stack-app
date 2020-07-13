@@ -34,7 +34,22 @@
             ],
             "styles": [
               {
-                "input": "src/theme/variables.scss"
+                "input": "src/theme/variables.default.scss"
+              },
+              {
+                "input": "src/theme/orange-blue.scss"
+              },
+              {
+                "input": "src/theme/purple-green.scss"
+              },
+              {
+                "input": "src/theme/blue-pink.scss"
+              },
+              {
+                "input": "src/theme/modes.scss"
+              },
+              {
+                "input": "src/theme/dark-theme.scss"
               },
               {
                 "input": "src/material-elevation.scss"
