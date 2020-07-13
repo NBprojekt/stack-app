@@ -8,7 +8,7 @@ ion-label h2 {
 
   .badge {
     background: var(--ion-color-secondary);
-    color: var(--ion-color-secondary-contrast);
+    color: #fff;
     font-size: .9em;
 
     border-radius: 4px;
@@ -32,9 +32,16 @@ ion-label h2 {
 
   &.anwsered {
     border: 1px solid var(--ion-color-success-shade);
-    background: rgba($color: var(--ion-color-success-rgb), $alpha: .05);
+    background: rgba($color: var(--ion-color-success-rgb), $alpha: .1);
     border-radius: 4px;
   }
+}
+
+.tag-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  overflow: hidden;
 }
 
 .hot {

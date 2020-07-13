@@ -1,3 +1,109 @@
 .search-result {
   height: calc(100% - 60px);
+
+  .counter {
+    padding: 10px 25px;
+  }
 }
+
+.no-result {
+  margin-top: 30px;
+  text-align: center;
+
+  .message {
+    font-size: 1.1rem;
+  }
+  .hint {
+    font-weight: lighter;
+    color: var(--ion-color-step-550);
+  }
+}
+
+
+// ######################################################
+ion-label h2 {
+  align-items: center!important;
+  display: flex;
+  margin-bottom: 5px;
+
+  .badge {
+    background: var(--ion-color-secondary);
+    color: #fff;
+    font-size: .9em;
+
+    border-radius: 4px;
+    display: block;
+    padding: 1px 5px;
+    margin-right: 5px;
+  }
+}
+
+.wrap-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.question-statistics {
+  position: relative;
+  padding: 2px 3px 0 0;
+
+  width: 65px;
+  height: 65px;
+
+  &.anwsered {
+    border: 1px solid var(--ion-color-success-shade);
+    background: rgba($color: var(--ion-color-success-rgb), $alpha: .1);
+    border-radius: 4px;
+  }
+}
+
+.tag-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hot {
+  position: absolute;
+  top: 3px;
+  right: -3px;
+}
+
+.skeleton-list {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+
+  ion-list-header  {
+    ion-skeleton-text {
+      height: 13px;
+    }
+    ion-label:nth-child(1) ion-skeleton-text{
+      width: 150px;
+    }
+    ion-label:nth-child(2) ion-skeleton-text{
+      width: 80px;
+    }
+  }
+
+  h2 ion-skeleton-text {
+    width: 85%;
+    height: 15px;
+  }
+  h3 ion-skeleton-text {
+    width: 20%;
+    height: 19px;
+    margin: 7px 10px 0 0;
+  }
+  p ion-skeleton-text {
+    width: 55%;
+    height: 11px;
+  }
+}
+
+.text-right {
+  text-align: right;
+  font-size: .95em;
+}
+

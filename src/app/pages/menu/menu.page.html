@@ -6,7 +6,7 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content>
+    <ion-content style="--background: var(--ion-item-background)">
       <ion-list>
         <!-- Static user card -->
         <ion-menu-toggle auto-hide="false">
@@ -21,14 +21,14 @@
                 <div class="reputation-label"> reputation </div>
               </div>
               <div class="achievements">
-                <div *ngIf="myProfile?.badge_counts?.gold" class="badge gold">
-                  <i class="fas fa-circle"></i> {{myProfile?.badge_counts.gold}}
+                <div *ngIf="myProfile?.badge_counts?.gold">
+                  <icon-circle width="10px" height="10px" primary="rgb(255, 215, 0)"></icon-circle> {{myProfile?.badge_counts.gold}}
                 </div>
-                <div *ngIf="myProfile?.badge_counts?.silver" class="badge silver">
-                  <i class="fas fa-circle"></i> {{myProfile?.badge_counts.silver}}
+                <div *ngIf="myProfile?.badge_counts?.silver">
+                  <icon-circle width="10px" height="10px" primary="rgb(170, 165, 165)"></icon-circle> {{myProfile?.badge_counts.silver}}
                 </div>
-                <div *ngIf="myProfile?.badge_counts?.bronze" class="badge bronze">
-                  <i class="fas fa-circle"></i> {{myProfile?.badge_counts.bronze}}
+                <div *ngIf="myProfile?.badge_counts?.bronze">
+                  <icon-circle width="10px" height="10px" primary="rgb(180, 106, 33)"></icon-circle> {{myProfile?.badge_counts.bronze}}
                 </div>
               </div>
             </ion-label>

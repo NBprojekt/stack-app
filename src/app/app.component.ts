@@ -9,6 +9,7 @@ import { Storage } from '@ionic/storage';
 import { SitesService } from './services/sites/sites.service';
 
 import { BehaviorSubject } from 'rxjs';
+import { ThemeService } from './services/theme/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ export class AppComponent implements AfterViewInit {
     private store: Storage,
     private router: Router,
     private siteService: SitesService,
+    private themeService: ThemeService,
   ) {
     this.initializeApp();
     AppComponent.loading.subscribe(loading => this.loading = loading);

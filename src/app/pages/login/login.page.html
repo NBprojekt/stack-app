@@ -2,7 +2,10 @@
   <div class="skip" *ngIf="!reachedEnd">
     <ion-button fill="clear" (click)="skip()">
       Skip
-      <ion-icon slot="end" name="ios-arrow-forward"></ion-icon>
+      <icon-arrow primary="var(--ion-color-primary)"
+                  width="25px" height="25px"
+                  direction="right">
+      </icon-arrow>
     </ion-button>
   </div>
 
@@ -54,7 +57,10 @@
       <h2> Are you ready to take off? </h2>
       <ion-button fill="clear" (click)="logIn()">
         Log in
-        <ion-icon slot="end" name="ios-arrow-forward"></ion-icon>
+        <icon-arrow primary="var(--ion-color-primary)"
+                    width="25px" height="25px"
+                    direction="right">
+        </icon-arrow>
       </ion-button>
     </ion-slide>
 

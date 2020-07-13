@@ -48,9 +48,9 @@
 
         <icon-fire *ngIf="questionIsHot(question)" class="hot"></icon-fire>
       </h2>
-      <h3>
-        <span *ngFor="let tag of question?.tags" class="tag"> {{tag}} </span>
-      </h3>
+      <div class="tag-wrapper">
+        <div *ngFor="let tag of question?.tags" class="tag"> {{tag}} </div>
+      </div>
       <p>
         asked {{question?.creation_date | timePassed}}
 

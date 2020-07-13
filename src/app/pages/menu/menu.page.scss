@@ -26,28 +26,7 @@
 
   div {
     float: left;
-
-    .fa-circle {
-      position: relative;
-      padding-left: 15px;
-      font-size: .75em;
-
-      &::before {
-        position: absolute;
-        top: -8px;
-        left: 7px;
-      }
-    }
-
-    &.gold .fa-circle{
-      color: rgb(255, 215, 0)
-    }
-    &.silver .fa-circle{
-      color: rgb(170, 165, 165)
-    }
-    &.bronze .fa-circle{
-      color: rgb(180, 106, 33);
-    }
+    margin-right: 10px;
   }
 }
 

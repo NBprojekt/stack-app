@@ -5,6 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { Storage } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 import { NotificationPage } from './notification.page';
 
@@ -21,6 +22,7 @@ describe('NotificationPage', () => {
       declarations: [ NotificationPage ],
       providers: [
         InAppBrowser,
+        LocalNotifications,
         {
           provide: Storage, useValue: {
             get: () => new Promise<any>((resolve, reject) => resolve('test')),

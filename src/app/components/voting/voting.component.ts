@@ -165,7 +165,21 @@ export class VotingComponent {
   }
 
   public toggleAccepted(): void {
-    this.isAccepted = !this.isAccepted;
+    if (this.isAccepted) {
+      this.answerService
+        .acceptAnswerUndo(this.id)
+        .subscribe(
+          () => this.isAccepted = false,
+          (response: any) => this.errorHandler(response.error as IResponseError),
+        );
+    } else {
+      this.answerService
+        .acceptAnswer(this.id)
+        .subscribe(
+          () => this.isAccepted = true,
+          (response: any) => this.errorHandler(response.error as IResponseError),
+        );
+    }
   }
 
   private async errorHandler(response: IResponseError, header?: string): Promise<void> {
