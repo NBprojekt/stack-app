@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -9,6 +10,8 @@ import { IUser } from 'src/app/interfaces/user';
 import { IResponse } from 'src/app/interfaces/response';
 import { IReputation } from 'src/app/interfaces/reputation';
 import { IChart } from 'src/app/interfaces/chart';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-user',
@@ -24,21 +27,32 @@ export class UserPage implements OnInit, OnDestroy {
 
   public section: string;
 
+  private readonly pageLimit: number = 1; // Page limit for reputation requests
   private destroy = new Subject<any>();
 
   constructor(
     private userService: UserService,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
-    this.userService.userChanged
-      .pipe(
-        takeUntil(this.destroy)
-      ).subscribe(
-        () => this.getMe()
-      );
+    const userId = this.activatedRoute.snapshot.paramMap.get('id');
 
-    this.loadReputation();
+    if (userId === 'me') {
+      this.userService.userChanged
+        .pipe(
+          takeUntil(this.destroy)
+        ).subscribe(
+          () => this.getMe()
+        );
+
+      this.getMe().then(() => this.loadReputation());
+    } else {
+      this.userService.getUser(+userId).subscribe((response) => {
+        this.user = response.items[0];
+        this.loadReputation(+userId);
+      });
+    }
 
     this.section = 'profile';
   }
@@ -52,8 +66,7 @@ export class UserPage implements OnInit, OnDestroy {
     this.user = await this.userService.getMe();
   }
 
-  private loadReputation(page?: number, reputations?: Array<IReputation>): void {
-    // TODO: Limit history to last 4 reputation pages
+  private loadReputation(userId?: number, page?: number, reputations?: Array<IReputation>): void {
     this.chartReady = false;
 
     if (!page) {
@@ -71,8 +84,7 @@ export class UserPage implements OnInit, OnDestroy {
       });
     }
 
-    this.userService
-      .getMyFullReputationHistory({page})
+    (userId ? this.userService.getUserReputationHistory(userId, {page}) : this.userService.getMyFullReputationHistory({page}))
       .pipe(takeUntil(this.destroy))
       .subscribe((response: IResponse) => {
         reputations.push(...response.items);
@@ -92,7 +104,6 @@ export class UserPage implements OnInit, OnDestroy {
   }
 
   private showReputation(reputations: Array<IReputation>): void {
-    console.log(['REPUTATION', reputations]);
     let reputationSumm = reputations[0].reputation_summ;
 
     // Map reputation change to summ reputation at the given time, not just the change
@@ -115,7 +126,6 @@ export class UserPage implements OnInit, OnDestroy {
       backgroundColor: `rgba(${getComputedStyle(document.body).getPropertyValue('--ion-color-primary-rgb')}, .2)`,
     }];
 
-    // Ensure the user always starts with 1 reputation
     reputations.reverse().forEach((reputation: IReputation) => {
       this.reputationChart.datasets[0].data.push(reputation.reputation_summ);
     });
@@ -133,13 +143,11 @@ export class UserPage implements OnInit, OnDestroy {
       scales: {
         xAxes: [{
           gridLines: {
-            display:false
             display: false,
           },
         }],
         yAxes: [{
           gridLines: {
-            display:false
             display: false,
           },
         }]
