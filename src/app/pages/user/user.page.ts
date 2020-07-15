@@ -12,6 +12,7 @@ import { IReputation } from 'src/app/interfaces/reputation';
 import { IChart } from 'src/app/interfaces/chart';
 
 import * as moment from 'moment';
+import { LinearTickOptions } from 'chart.js';
 
 @Component({
   selector: 'app-user',
@@ -93,10 +94,10 @@ export class UserPage implements OnInit, OnDestroy {
           this.loadReputation(userId, page, reputations);
         } else {
           reputations.push({
-            reputation_history_type: 'current_value',
+            reputation_history_type: 'start_value',
             creation_date: reputations[reputations.length-1].creation_date-1,
             reputation_change: 0,
-            reputation_summ: this.user.reputation
+            reputation_summ: 1
           });
           this.showReputation(reputations);
         }
@@ -104,6 +105,7 @@ export class UserPage implements OnInit, OnDestroy {
   }
 
   private showReputation(reputations: Array<IReputation>): void {
+    console.log('reputatinos', reputations)
     let reputationSumm = reputations[0].reputation_summ;
 
     // Map reputation change to summ reputation at the given time, not just the change
@@ -150,6 +152,9 @@ export class UserPage implements OnInit, OnDestroy {
           gridLines: {
             display: false,
           },
+          ticks: {
+            precision: 0, // Unknown in type TickOptions
+          }
         }]
       },
     };
