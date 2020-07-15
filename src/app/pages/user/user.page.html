@@ -44,12 +44,12 @@
   <div [ngSwitch]="section">
     <div *ngSwitchCase="'profile'">
 
-      <div class="user-information">
+      <div *ngIf="user?.location" class="user-information">
         <icon-map-marker></icon-map-marker>
         <span> {{user?.location}} </span>
       </div>
 
-      <div class="user-information">
+      <div *ngIf="user?.website_url" class="user-information">
         <icon-browser></icon-browser>
         <span> {{user?.website_url}} </span>
       </div>
