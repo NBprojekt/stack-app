@@ -10,6 +10,7 @@ import { CommonDirectivesModule } from 'src/app/directives/common-directives.mod
 import { ReputationChartModule } from 'src/app/components/reputation-chart/reputation-chart.module';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 import { IconsModule } from 'src/app/icons/icons.module';
+import { ShortenNumberPipe } from 'src/app/pipes/shorten-number/shorten-number.pipe';
 
 const routes: Routes = [
   { path: '', component: UserPage },
@@ -29,5 +30,8 @@ const routes: Routes = [
   declarations: [
     UserPage,
   ],
+  providers: [
+    ShortenNumberPipe,
+  ]
 })
 export class UserPageModule {}

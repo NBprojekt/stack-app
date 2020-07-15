@@ -14,6 +14,7 @@ import { IChart } from 'src/app/interfaces/chart';
 import * as moment from 'moment';
 import { LinearTickOptions } from 'chart.js';
 import { environment } from 'src/environments/environment';
+import { ShortenNumberPipe } from 'src/app/pipes/shorten-number/shorten-number.pipe';
 
 @Component({
   selector: 'app-user',
@@ -35,6 +36,7 @@ export class UserPage implements OnInit, OnDestroy {
   constructor(
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
+    private sortenNumberPipe: ShortenNumberPipe,
   ) {}
 
   ngOnInit(): void {
@@ -154,6 +156,9 @@ export class UserPage implements OnInit, OnDestroy {
           },
           ticks: {
             precision: 0, // Unknown in type TickOptions
+            callback: (value, index, values) => {
+              return this.sortenNumberPipe.transform(+value);
+            },
           }
         }]
       },
