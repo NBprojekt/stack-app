@@ -63,6 +63,12 @@ export class UserPage implements OnInit, OnDestroy {
 
     if (!reputations) {
       reputations = new Array<IReputation>();
+      reputations.push({
+        reputation_history_type: 'current_value',
+        creation_date: moment().unix(),
+        reputation_change: 0,
+        reputation_summ: this.user.reputation
+      });
     }
 
     this.userService
@@ -71,9 +77,15 @@ export class UserPage implements OnInit, OnDestroy {
       .subscribe((response: IResponse) => {
         reputations.push(...response.items);
 
-        if (response.has_more) {
-          this.loadReputation(page, reputations);
+        if (response.has_more && page < this.pageLimit) {
+          this.loadReputation(userId, page, reputations);
         } else {
+          reputations.push({
+            reputation_history_type: 'current_value',
+            creation_date: reputations[reputations.length-1].creation_date-1,
+            reputation_change: 0,
+            reputation_summ: this.user.reputation
+          });
           this.showReputation(reputations);
         }
       });
@@ -81,6 +93,13 @@ export class UserPage implements OnInit, OnDestroy {
 
   private showReputation(reputations: Array<IReputation>): void {
     console.log(['REPUTATION', reputations]);
+    let reputationSumm = reputations[0].reputation_summ;
+
+    // Map reputation change to summ reputation at the given time, not just the change
+    reputations.map((reputation: IReputation) => {
+      reputation.reputation_summ = reputationSumm;
+      reputationSumm -= reputation.reputation_change;
+    });
 
     this.reputationChart = {
       datasets: null,
@@ -97,12 +116,8 @@ export class UserPage implements OnInit, OnDestroy {
     }];
 
     // Ensure the user always starts with 1 reputation
-    let reputationSumm = 1;
-    this.reputationChart.datasets[0].data.push(reputationSumm);
-
-    reputations.forEach((reputation: IReputation) => {
-      reputationSumm += reputation.reputation_change;
-      this.reputationChart.datasets[0].data.push(reputationSumm);
+    reputations.reverse().forEach((reputation: IReputation) => {
+      this.reputationChart.datasets[0].data.push(reputation.reputation_summ);
     });
 
     this.reputationChart.options = {
@@ -119,11 +134,13 @@ export class UserPage implements OnInit, OnDestroy {
         xAxes: [{
           gridLines: {
             display:false
+            display: false,
           },
         }],
         yAxes: [{
           gridLines: {
             display:false
+            display: false,
           },
         }]
       },
