@@ -13,6 +13,7 @@ import { IChart } from 'src/app/interfaces/chart';
 
 import * as moment from 'moment';
 import { LinearTickOptions } from 'chart.js';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user',
@@ -105,7 +106,6 @@ export class UserPage implements OnInit, OnDestroy {
   }
 
   private showReputation(reputations: Array<IReputation>): void {
-    console.log('reputatinos', reputations)
     let reputationSumm = reputations[0].reputation_summ;
 
     // Map reputation change to summ reputation at the given time, not just the change
@@ -145,12 +145,12 @@ export class UserPage implements OnInit, OnDestroy {
       scales: {
         xAxes: [{
           gridLines: {
-            display: false,
+            display: !environment.production,
           },
         }],
         yAxes: [{
           gridLines: {
-            display: false,
+            display: !environment.production,
           },
           ticks: {
             precision: 0, // Unknown in type TickOptions
