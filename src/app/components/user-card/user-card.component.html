@@ -1,4 +1,4 @@
-<div class="user-card ion-activatable" [class.highlight]="highlight">
+<div class="user-card ion-activatable" [class.highlight]="highlight" (click)="openProfile()">
   <div *ngIf="timestamp && action" class="timestamp"> {{action}} {{timestamp | timePassed}} </div>
 
   <ion-item class="ion-no-margin ion-no-padding" lines="none">
