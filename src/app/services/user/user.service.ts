@@ -31,6 +31,7 @@ export class UserService {
     this.siteService.siteChanged.subscribe(() => this.updateMe());
   }
 
+  // Me
   public updateMe(options?: IRequestOptions): void {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
@@ -83,10 +84,41 @@ export class UserService {
       .set('key', environment.api.key)
       .set('access_token', this.authService.getToken())
       .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
-      .set('page', options && options.page.toString() || '0')
+      .set('page', options && options.page.toString() || '1')
       .set('pagesize', '100')
       .set('filter', options && options.filter || '!-.SpcxOQ2Squ');
 
     return this.http.get<IResponse>(`${this.url}me/reputation-history/full`, {headers, params});
+  }
+
+  // User
+  public getUser(id: number, options?: IRequestOptions): Observable<IResponse> {
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
+
+    const params = new HttpParams()
+      .set('key', environment.api.key)
+      .set('access_token', this.authService.getToken())
+      .set('order', options && options.order || 'desc')
+      .set('filter', options && options.filter || '!-*jbN*IkLXFP')
+      .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
+      .set('sort', options && options.sort || 'reputation');
+
+    return this.http.get<IResponse>(`${this.url}users/${id}`, {headers, params});
+  }
+
+  public getUserReputationHistory(id: number, options?: IRequestOptions): Observable<IResponse> {
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
+
+    const params = new HttpParams()
+      .set('key', environment.api.key)
+      .set('access_token', this.authService.getToken())
+      .set('site', options && options.site || this.siteService.getCurrentSite().api_site_parameter)
+      .set('page', options && options.page.toString() || '1')
+      .set('pagesize', '100')
+      .set('filter', options && options.filter || 'default');
+
+    return this.http.get<IResponse>(`${this.url}users/${id}/reputation-history`, {headers, params});
   }
 }
