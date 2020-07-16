@@ -30,18 +30,21 @@ export class SearchPage {
 
     console.log(`Searching for ${searchString}`);
 
-    if(!searchString) {
+    if(!searchString || searchString.length === 0) {
       this.result = null;
       return;
     }
-
-    this.loading = true;
 
     this.searchService.searchAdvanced(searchString, this.options).subscribe(response => {
       console.log('Search result', response)
       this.result = response.items;
       this.total = response.total;
+      this.loading = false;
     });
+  }
+
+  public loadingOnTyping(event: any): void {
+    this.loading = !!event.target.value && event.target.value.length > 0;
   }
 
 
