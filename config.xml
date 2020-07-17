@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="de.norbert.bartko.stack" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name> Stack App </name>
-    <description> Small and compact mobile app for the stack exchange sides </description>
+    <description> Small and compact mobile app the stack exchange sides </description>
     <author email="stack.app@norbert-bartko.de" href="http://stack.norbert-bartko.de/"> Norbert Bartko </author>
     <content src="index.html" />
     <access origin="*" />
