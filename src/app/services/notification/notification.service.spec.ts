@@ -5,12 +5,16 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { IonicModule } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 import { NotificationService } from './notification.service';
 import { environment } from 'src/environments/environment';
 import { IResponse } from 'src/app/interfaces/response';
 
 describe('NotificationService', () => {
+  const inboxUrl = `${environment.api.url + environment.api.version}inbox`;
+  const achievementsUrl =  `${environment.api.url}2.3/me/achievements`;
+
   let injector: TestBed;
   let service: NotificationService;
   let httpMock: HttpTestingController;
@@ -24,6 +28,7 @@ describe('NotificationService', () => {
       ],
       providers: [
         InAppBrowser,
+        LocalNotifications,
         {
           provide: Storage, useValue: {
             get: () => new Promise<any>((resolve, reject) => resolve('test')),
@@ -35,8 +40,8 @@ describe('NotificationService', () => {
 
   beforeEach(() => {
     injector = getTestBed();
-    service = injector.get(NotificationService);
-    httpMock = injector.get(HttpTestingController);
+    service = injector.inject(NotificationService);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   it('Should create', () => {
@@ -48,7 +53,6 @@ describe('NotificationService', () => {
   });
 
   it('Should get inbox', () => {
-    const url = `${environment.api.url + environment.api.version}inbox`;
     const expectedResponse: IResponse = {
       has_more: 0,
       items: [{
@@ -71,12 +75,11 @@ describe('NotificationService', () => {
       expect(response).toEqual(expectedResponse);
     });
 
-    const req = httpMock.expectOne(request => request.url === url);
+    const req = httpMock.expectOne(request => request.url === inboxUrl);
     req.flush(expectedResponse);
   });
 
   it('Should get achievements', () => {
-    const url = environment.api.url + '2.3/me/achievements';
     const expectedResponse: IResponse = {
       has_more: 0,
       items: [{
@@ -98,12 +101,12 @@ describe('NotificationService', () => {
       expect(response).toEqual(expectedResponse);
     });
 
-    const req = httpMock.expectOne(request => request.url === url);
+    const req = httpMock.expectOne(request => request.url === achievementsUrl);
     req.flush(expectedResponse);
   });
 
-  it('Should have an update interval of at least 3 min', () => {
-    const threeMinutes = 3 * 60 * 1000;
+  it('Should have an update interval of at least 1 min', () => {
+    const threeMinutes = 60 * 1000;
     expect(NotificationService.updateIntervall).toBeGreaterThanOrEqual(threeMinutes);
   });
 });

@@ -15,7 +15,6 @@
   }
 }
 
-
 .achievements {
   width: 100%;
   font-size: .7em;
@@ -27,31 +26,17 @@
 
   div {
     float: left;
-
-    .fa-circle {
-      position: relative;
-      padding-left: 15px;
-      font-size: .75em;
-
-      &::before {
-        position: absolute;
-        top: -8px;
-        left: 7px;
-      }
-    }
-
-    &.gold .fa-circle{
-      color: rgb(255, 215, 0)
-    }
-    &.silver .fa-circle{
-      color: rgb(170, 165, 165)
-    }
-    &.bronze .fa-circle{
-      color: rgb(180, 106, 33);
-    }
+    margin-right: 10px;
   }
 }
 
 .text-right {
   text-align: right;
+}
+
+.icon-start {
+  width: 40px;
+  margin-right: 20px;
+
+  text-align: center;
 }

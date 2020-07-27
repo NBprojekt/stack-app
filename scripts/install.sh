@@ -40,7 +40,7 @@ function welcome () {
 function install() {
   printf "\n\n\n> ✨ Starting installation ✨\n"
   printf "> Installing global cli's"
-  npm i -g @angular/cli@^8.0.0 ionic@^5.0.0 cordova@^9.0.0 >/dev/null 2>&1 & spinner
+  npm i -g @angular/cli@^9.0.0 ionic@^5.0.0 cordova@^9.0.0 >/dev/null 2>&1 & spinner
 
   printf "> Installing dependencies"
   npm i >/dev/null 2>&1 & spinner

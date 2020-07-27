@@ -1,0 +1,25 @@
+.theme-orange-blue {
+  /** primary **/
+  --ion-color-primary: #fe7f2d;
+  --ion-color-primary-rgb: 254, 127, 45;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #cb6624;
+  --ion-color-primary-tint: #fe9957;
+
+  /** secondary **/
+  --ion-color-secondary: #5887ff;
+  --ion-color-secondary-rgb: 88, 135, 255;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #3e5fb3;
+  --ion-color-secondary-tint: #8aabff;
+
+  /** tertiary **/
+  --ion-color-tertiary: #fff8dc;
+  --ion-color-tertiary-rgb: 255, 248, 220;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0, 0, 0;
+  --ion-color-tertiary-shade: #ffeb8e;
+  --ion-color-tertiary-tint: #fff8dc;
+}

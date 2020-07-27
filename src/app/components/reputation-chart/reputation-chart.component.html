@@ -1,0 +1,15 @@
+<div class="chart-wrapper">
+  <div class="label"> Reputation History </div>
+  <div *ngIf="show; else chartSkeleton">
+    <canvas baseChart  class="chart"
+      [datasets]="chart.datasets"
+      [options]="chart.options"
+      [labels]="chart.labels"
+      [chartType]="chart.chartType">
+    </canvas>
+  </div>
+
+  <ng-template #chartSkeleton>
+    <ion-skeleton-text animated class="chart chart-skeleton"></ion-skeleton-text>
+  </ng-template>
+</div>

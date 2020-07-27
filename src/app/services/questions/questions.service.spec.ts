@@ -37,8 +37,8 @@ describe('QuestionsService', () => {
 
   beforeEach(() => {
     injector = getTestBed();
-    service = injector.get(QuestionsService);
-    httpMock = injector.get(HttpTestingController);
+    service = injector.inject(QuestionsService);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   it('Should create', () => {
@@ -59,7 +59,7 @@ describe('QuestionsService', () => {
       last_activity_date: 1573838839,
     } as IQuestion;
 
-    expect(TestBed.get(QuestionsService).questionIsHot(hotQuestion)).toBeTruthy();
+    expect(TestBed.inject(QuestionsService).questionIsHot(hotQuestion)).toBeTruthy();
   });
 
   describe('Get', () => {

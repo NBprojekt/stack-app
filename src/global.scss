@@ -25,14 +25,17 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+// Add custom packdrop
 ion-popover{
   ion-backdrop{
     opacity: 0.5 !important;
   }
+
   .popover-wrapper{
     .popover-content{
-      width:80vw;
+      width: 80vw;
       max-width: 250px;
+
       * {
         background: #fff;
       }
@@ -40,39 +43,90 @@ ion-popover{
   }
 }
 
+ion-card.card-with-overflow {
+  overflow: visible;
+  margin-top: 50px;
+}
+
+// Set paginator to secondary color
 ion-slides {
   .swiper-pagination-bullet, .swiper-pagination-bullet-active {
     background: var(--ion-color-secondary);
   }
 }
 
-a, .link {
-  color: var(--ion-color-secondary);
-  text-decoration: none;
-  &:hover {
-    color: var(--ion-color-secondary-shade);
+// Transparent header
+ion-toolbar.transparent {
+  --opacity: 0;
+}
+ion-toolbar.absolute {
+  position: absolute;
+}
+
+// Inside of ion list show a bigger avatart img
+ion-avatar.big-avatar  {
+  width: 60px;
+  height: 60px;
+}
+
+.align-items-center {
+  display: flex;
+  align-items: center!important;
+}
+
+.highlighted-by-link {
+  transition: .3s;
+  animation-name: backgroudPulse;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+}
+
+@keyframes backgroudPulse {
+  0% {
+    background-color: var(--background);
+  }
+  75% {
+    background-color: rgba(var(--ion-color-primary-rgb), .2);
+  }
+  100% {
+    background-color: var(--background);
   }
 }
 
-.blur {
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
-}
+// Count badges for ion label in ion segment
+ion-label.segment-label-badge {
+  position: relative;
 
-.tag {
-  background: rgba($color: var(--ion-color-secondary-rgb), $alpha: .2);
-  color: var(--ion-color-secondary-shade);
-  padding: 2px 6px;
-  margin-right: 3px;
-  border-radius: 4px;
-  transition: .4s;
+  &:after {
+    content: attr(data-count);
+    position: absolute;
+    display: block;
+    top: -10px;
+    right: -30px;
 
-  &:hover {
-    background: rgba($color: var(--ion-color-secondary-rgb), $alpha: .3);
+    background-color: var(--ion-color-secondary);
+    color: var(--ion-color-secondary-contrast);
+
+    border: 2px solid var(--ion-color-secondary-contrast);
+    border-radius: 11px;
+
+    font-size: 10px;
+    height: 9px;
+    line-height: 8px;
+    min-width: 9px;
+    padding: 4px;
+    text-align: center;
+    transition: 100ms ease-in-out all;
+  }
+
+  &[data-count='0'] {
+    &:after {
+      display: none;
+    }
   }
 }
 
-/* Inserted posts */
+// Inserted posts
 .post {
   pre {
     background: rgba($color: #000000, $alpha: .1);
@@ -113,31 +167,44 @@ a, .link {
   }
 }
 
-/* In ion list show a bigger avatart img */
-ion-avatar.big-avatar  {
-  width: 60px;
-  height: 60px;
+// General
+.blur {
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
 }
 
-.align-items-center {
-  display: flex;
-  align-items: center!important;
+.tag {
+  background: var(--ion-color-primary-tint);
+  color: #fff;
+  padding: 0 6px 0;
+  line-height: 20px;
+  height: 20px;
+  margin-right: 3px;
+  border-radius: 4px;
+  transition: .4s;
+  overflow: visible;
 }
 
-.highlighted-by-link {
-  animation-name: backgroudPulse;
-  animation-duration: 2s;
-  animation-iteration-count: 1;
+
+a, .link {
+  color: var(--ion-color-secondary);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--ion-color-secondary-shade);
+  }
 }
 
-@keyframes backgroudPulse {
-  0% {
-    background-color: var(--ion-color-light);
-  }
-  50% {
-    background-color: rgba(var(--ion-color-primary-rgb), .2);
-  }
-  100% {
-    background-color: var(--ion-color-light);
-  }
+// Rotation
+.rotate-up {
+  transform: rotate(0deg);
+}
+.rotate-right {
+  transform: rotate(90deg);
+}
+.rotate-down {
+  transform: rotate(180deg);
+}
+.rotate-left {
+  transform: rotate(-90deg);
 }

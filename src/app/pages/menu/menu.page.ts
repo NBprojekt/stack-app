@@ -21,59 +21,6 @@ export class MenuPage implements OnInit, OnDestroy {
 
   private destroy = new Subject<any>();
 
-  // TODO: Need to refactor the pages array
-  public pages = [
-    {
-        title: 'Profile',
-        url: '/menu/user',
-        icon: 'person',
-        routerDirection: 'forward',
-        lines: 'none',
-    },
-    {
-        title: 'Sites',
-        url: '/menu/sites',
-        icon: 'albums',
-        routerDirection: 'forward',
-        lines: 'full',
-    },
-    {
-        title: 'Home',
-        url: '/menu/pages/tabs/home',
-        icon: 'home',
-        routerDirection: 'root',
-        lines: 'none',
-    },
-    {
-        title: 'Search',
-        url: '/menu/pages/tabs/search',
-        icon: 'search',
-        routerDirection: 'root',
-        lines: 'none',
-    },
-    {
-        title: 'Jobs',
-        url: '/menu/pages/tabs/jobs',
-        icon: 'business',
-        routerDirection: 'root',
-        lines: 'full',
-    },
-    {
-        title: 'Setting',
-        url: '/menu/settings',
-        icon: 'settings',
-        routerDirection: 'forward',
-        lines: 'none',
-    },
-    {
-        title: 'About',
-        url: '/menu/about',
-        icon: 'information-circle',
-        routerDirection: 'forward',
-        lines: 'full',
-    },
-  ];
-
   constructor(
     private router: Router,
     private userService: UserService,

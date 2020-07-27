@@ -1,7 +1,16 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, TestBed, ComponentFixture } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { IonicModule } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+
+import { ChartsModule } from 'ng2-charts';
 
 import { UserPage } from './user.page';
+import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 
 describe('UserPage', () => {
   let component: UserPage;
@@ -9,7 +18,21 @@ describe('UserPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+        IonicModule,
+        RouterTestingModule,
+        CommonPipesModule,
+      ],
       declarations: [ UserPage ],
+      providers: [
+        InAppBrowser,
+        {
+          provide: Storage, useValue: {
+            get: () => new Promise<any>((resolve, reject) => resolve('test')),
+          }
+        },
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();

@@ -9,8 +9,9 @@ import { environment } from 'src/environments/environment';
 
 import { Subscription, Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
-import { IResponse } from 'src/app/interfaces/response';
+import { IResponse, IResponseError } from 'src/app/interfaces/response';
 import { AppComponent } from 'src/app/app.component';
+import { IAuthInfo } from 'src/app/interfaces/auth-info';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthService {
   private readonly oAuthUrl = `https://stackoverflow.com/oauth/dialog?client_id=${environment.oAuth.clientId}&redirect_uri=${environment.oAuth.redirectUrl}&scope=${environment.oAuth.scope}`;
   private readonly apiUrl = environment.api.url + environment.api.version;
   private token: string;
+  private authInfo: IAuthInfo;
   private allowBrowserClose: boolean;
 
   constructor(
@@ -59,21 +61,28 @@ export class AuthService {
   }
 
   public async isAuthenticated(): Promise<boolean> {
-    return new Promise(async (resolve) => {
+    return new Promise(async (resolve, reject) => {
       if (!this.token && !await this.loadToken()) {
         resolve(false);
         return;
       }
 
-      this.validateToken(this.getToken()).subscribe((response: IResponse) => {
-        const authenticated = response && response.items.length > 0;
+      this.validateToken(this.getToken()).subscribe(
+        (response: IResponse) => {
+          const authenticated = response && response.items.length > 0;
 
-        if (!authenticated) {
-          this.token = null;
+          this.authInfo = response.items[0];
+
+          if (!authenticated) {
+            this.token = null;
+          }
+
+          resolve(authenticated);
+        },
+        (response: IResponseError) => {
+          reject()
         }
-
-        resolve(authenticated);
-      });
+      );
     });
   }
 
@@ -81,11 +90,18 @@ export class AuthService {
     return this.token;
   }
 
+  public getAuthInfo(): IAuthInfo {
+    return this.authInfo;
+  }
+
   public validateToken(token: string): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
-    return this.http.get<IResponse>(`${this.apiUrl}access-tokens/${token}`, {headers});
+    const params = new HttpParams()
+      .set('key', environment.api.key);
+
+    return this.http.get<IResponse>(`${this.apiUrl}access-tokens/${token}`, {headers, params});
   }
 
   public async logOut(): Promise<void> {
@@ -129,9 +145,13 @@ export class AuthService {
       header: 'Authentication failed',
       message: 'You canceled the authentication please try again to gain access.',
       position: 'bottom',
-      showCloseButton: true,
-      closeButtonText: 'OK',
       duration: 5e3,
+      buttons: [
+        {
+          text: 'OK',
+          role: 'cancel',
+        }
+      ]
     });
 
     toast.present();

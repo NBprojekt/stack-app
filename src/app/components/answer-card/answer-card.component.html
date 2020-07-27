@@ -1,7 +1,8 @@
 <ion-card [class.highlighted-by-link]="answer?.answer_id == highlight && type == 'answer'">
   <ion-card-content>
     <voting [id]="answer?.answer_id" mode="answer"
-            [score]="answer?.score" [isAccepted]="answer?.is_accepted">
+            [score]="answer?.score"
+            [isAccepted]="answer?.is_accepted" [showAccepted]="isOwner">
     </voting>
     <div class="post" [innerHTML]="answer?.body"></div>
   </ion-card-content>
@@ -9,7 +10,7 @@
   <ion-row class="card-footer">
     <ion-col size="6">
       <user-card [user]="answer?.owner" action="answered" [timestamp]="answer?.creation_date"
-                 [highlight]="answer?.owner?.display_name === questionOwner?.display_name">
+                 [highlight]="answer?.owner?.user_id === questionOwner?.user_id">
       </user-card>
     </ion-col>
     <ion-col size="6">

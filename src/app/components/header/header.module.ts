@@ -4,14 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { HeaderComponent } from './header.component';
-import { NotificationComponent } from './notification/notification.component';
 
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    NotificationComponent,
   ],
   imports: [
     CommonModule,
@@ -21,9 +19,6 @@ import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
   ],
   exports: [
     HeaderComponent,
-  ],
-  entryComponents: [
-    NotificationComponent,
   ]
 })
 export class HeaderModule { }
