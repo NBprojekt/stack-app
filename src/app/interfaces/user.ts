@@ -21,4 +21,5 @@ export interface IUser {
   last_modified_date?: number;
   last_access_date?: number;
   view_count?: number;
+  timed_penalty_date?: number;
 }
