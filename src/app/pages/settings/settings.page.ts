@@ -31,7 +31,7 @@ export class SettingsPage implements OnInit {
   public async openAccountInformation() {
     const actionSheet = await this.actionSheetController.create({
       header: 'Access token',
-      cssClass: 'disable-action-sheet-btns',
+      cssClass: 'disable-action-sheet-buttons',
       mode: 'md',
       buttons: [
         {
