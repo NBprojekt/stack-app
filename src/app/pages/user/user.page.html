@@ -18,6 +18,18 @@
             Reputation
           </span>
         </div>
+
+        <div class="profile-badges">
+          <div *ngIf="user?.badge_counts?.gold">
+            <icon-circle width="10px" height="10px" primary="rgb(255, 215, 0)"></icon-circle> {{user?.badge_counts.gold}}
+          </div>
+          <div *ngIf="user?.badge_counts?.silver">
+            <icon-circle width="10px" height="10px" primary="rgb(170, 165, 165)"></icon-circle> {{user?.badge_counts.silver}}
+          </div>
+          <div *ngIf="user?.badge_counts?.bronze">
+            <icon-circle width="10px" height="10px" primary="rgb(180, 106, 33)"></icon-circle> {{user?.badge_counts.bronze}}
+          </div>
+        </div>
       </div>
     </div>
   </ion-toolbar>
@@ -43,7 +55,6 @@
 <ion-content fullscreen class="ion-padding">
   <div [ngSwitch]="section">
     <div *ngSwitchCase="'profile'">
-
       <div *ngIf="user?.location" class="user-information">
         <icon-map-marker></icon-map-marker>
         <span> {{user?.location}} </span>

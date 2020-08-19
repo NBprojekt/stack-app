@@ -1,4 +1,4 @@
-$profile-height: 190px;
+$profile-height: 197px;
 $min-toolbar-height: var(--min-height);
 
 .profile-wrapper {
@@ -51,6 +51,18 @@ $min-toolbar-height: var(--min-height);
         font-size: .9rem;
       }
     }
+
+    .profile-badges {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+
+      :nth-child(n+2) {
+        margin-left: 5px;
+      }
+    }
   }
 }
 
@@ -67,4 +79,8 @@ $min-toolbar-height: var(--min-height);
   :first-child {
     margin: 0 20px 0 10px;
   }
+}
+
+.user-about-me {
+
 }
