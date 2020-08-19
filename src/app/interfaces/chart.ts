@@ -3,7 +3,7 @@ import { Label } from 'ng2-charts';
 
 export interface IChart {
   datasets: ChartDataSets[];
-  options: ChartOptions;
+  options: ChartOptions | any;
   labels: Label[];
   chartType: ChartType;
 }
