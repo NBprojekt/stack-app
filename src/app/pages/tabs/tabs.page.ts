@@ -24,7 +24,7 @@ export class TabsPage implements OnInit, OnDestroy{
   ) {}
 
   ngOnInit(): void {
-    this.currentUrl = '';
+    this.currentUrl = 'home';
     this.muteNotifications = false;
 
     this.router.events
@@ -32,7 +32,7 @@ export class TabsPage implements OnInit, OnDestroy{
         filter((event): event is NavigationEnd => event instanceof NavigationEnd),
         takeUntil(this.destroy),
       ).subscribe((event: NavigationEnd) => {
-        const url = event.url.split('/');
+        const url = event.urlAfterRedirects.split('/');
         this.currentUrl = url[url.length - 1];
       });
 
