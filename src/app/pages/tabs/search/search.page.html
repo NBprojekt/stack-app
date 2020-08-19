@@ -1,11 +1,15 @@
-<ion-content>
+<ion-content class="ion-padding">
   <!-- SEARCH -->
   <form>
     <ion-searchbar [(ngModel)]="searchString" [ngModelOptions]="{standalone: true}"
                    (ionClear)="resetFilter()" enterkeyhint="search"
                    (ionBlur)="search()" (search)="search()" inputmode="search"
-                   placeholder="Search ..." animated>
+                   placeholder="Search ..." animated
+                   style="padding: 8px 0">
     </ion-searchbar>
+    <p>
+      Start typing and hit enter to see results
+    </p>
   </form>
 
   <!-- LOADING MESSAGE -->
@@ -100,6 +104,7 @@
 
     <ng-template #searchHelp>
       <div class="search-help">
+        <h6> Search tips: </h6>
         <div (click)="searchFor('[tags]')"> [tag] <span> search within a tag </span> </div>
         <div (click)="searchFor('user:1234')"> user:1234 <span> search by author </span> </div>
         <div (click)='searchFor("\"words here\"")'> "words here" <span> exact phrase </span> </div>
@@ -111,12 +116,16 @@
     </ng-template>
   </ng-template>
 
-  <!-- TODO: Add infinite scroll -->
-
   <!-- SEARCH HELP FAB -->
   <ion-fab (click)="openSearchHelp()" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
-      <icon-question width="28px" height="28px" primary="#fff"></icon-question>
+      <ion-icon name="help-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+  <!-- INFINITE SCROLL -->
+  <ion-infinite-scroll threshold="10%" (ionInfinite)="loadMore($event)" [disabled]="!result?.length || !hasMore">
+    <ion-infinite-scroll-content loadingSpinner="crescent">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
