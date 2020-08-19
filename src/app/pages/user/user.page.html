@@ -80,9 +80,19 @@
         <span> Last seen {{user?.last_access_date | timePassed}} </span>
       </div>
 
-      <pre>
-        {{ user | json}}
-      </pre>
+      <div *ngIf="isDevelopment"> <!-- Temporary untill i finish the user page -->
+        <div class="user-about-me">
+          <span class="label">
+            About me
+          </span>
+          <div [class.show-more]="showMore" [innerHTML]="user?.about_me"></div>
+          <button mat-button> Show {{showMore ? 'less' : 'more'}} </button>
+        </div>
+
+        <pre>
+          {{ user | json}}
+        </pre>
+      </div>
     </div>
 
     <div *ngSwitchCase="'activity'">
