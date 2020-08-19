@@ -25,6 +25,7 @@ import { ExternalLinkIcon } from './external-link/external-link.icon';
 import { ShareIcon } from './share/share.icon';
 import { ArrowIcon } from './arrow/arrow.icon';
 import { MenuIcon } from './map/menu.icon';
+import { QuestionIcon } from './question/question.icon';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { MenuIcon } from './map/menu.icon';
     ShareIcon,
     ArrowIcon,
     MenuIcon,
+    QuestionIcon,
   ],
   imports: [
     CommonModule,
@@ -81,6 +83,7 @@ import { MenuIcon } from './map/menu.icon';
     ShareIcon,
     ArrowIcon,
     MenuIcon,
+    QuestionIcon,
   ],
 })
 export class IconsModule { }
