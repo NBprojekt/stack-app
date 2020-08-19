@@ -55,6 +55,21 @@ ion-slides {
   }
 }
 
+// Disable action sheet buttons
+.disable-action-sheet-buttons {
+  button:not(.action-sheet-cancel) {
+    --button-background-selected: var(--background);
+    --button-background-hover: var(--background);
+    --button-background-focused: var(--background);
+    cursor: default;
+    pointer-events: unset;
+
+    ion-ripple-effect {
+      display: none;
+    }
+  }
+}
+
 // Transparent header
 ion-toolbar.transparent {
   --opacity: 0;
