@@ -72,6 +72,7 @@ export class AuthService {
           const authenticated = response && response.items.length > 0;
 
           this.authInfo = response.items[0];
+          this.saveAuthInfo(this.authInfo);
 
           if (!authenticated) {
             this.token = null;
@@ -89,7 +90,6 @@ export class AuthService {
   public getToken(): string {
     return this.token;
   }
-
   public getAuthInfo(): IAuthInfo {
     return this.authInfo;
   }
@@ -167,18 +167,8 @@ export class AuthService {
 
   private saveToken(token: string): void {
     this.storage.set('access_token', token);
-    this.saveTokenInfo(token);
   }
-  private saveTokenInfo(token: string): void {
-    const headers = new HttpHeaders()
-      .set('Accept', '*/*');
-
-    const params = new HttpParams()
-      .set('key', environment.api.key);
-
-    this.http.get<IResponse>(`${this.apiUrl}access-tokens/${token}`, {headers, params})
-      .subscribe((response: IResponse) => {
-        this.storage.set('access_token_info', response.items[0]);
-      });
+  private saveAuthInfo(authInfo: IAuthInfo): void {
+    this.storage.set('access_token_info', authInfo);
   }
 }
