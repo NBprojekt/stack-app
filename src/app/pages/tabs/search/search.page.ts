@@ -56,7 +56,6 @@ export class SearchPage {
     this.searchString = '';
     this.result = null;
     this.total = null;
-    console.log(`Cleared Searchstring`);
   }
 
   public formatUrl(url: string): string {
