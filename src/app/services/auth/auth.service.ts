@@ -71,11 +71,12 @@ export class AuthService {
         (response: IResponse) => {
           const authenticated = response && response.items.length > 0;
 
-          this.authInfo = response.items[0];
-          this.saveAuthInfo(this.authInfo);
 
           if (!authenticated) {
             this.token = null;
+          } else {
+            this.authInfo = response.items[0];
+            this.saveAuthInfo(this.authInfo);
           }
 
           resolve(authenticated);
