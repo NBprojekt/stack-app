@@ -168,11 +168,17 @@ ion-label.segment-label-badge {
 }
 
 // General
+
+.text-right {
+  text-align: right;
+}
+
 .blur {
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
 }
 
+// Tags
 .tag {
   background: var(--ion-color-primary-tint);
   color: #fff;
@@ -185,7 +191,7 @@ ion-label.segment-label-badge {
   overflow: visible;
 }
 
-
+// Themed links
 a, .link {
   color: var(--ion-color-secondary);
   text-decoration: none;
