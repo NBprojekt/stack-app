@@ -24,6 +24,7 @@ import { ShortenNumberPipe } from 'src/app/pipes/shorten-number/shorten-number.p
 export class UserPage implements OnInit, OnDestroy {
   public readonly iconSize: string = '30px';
   public user: IUser;
+  public showMore: boolean;
 
   public chartReady: boolean;
   public reputationChart: IChart;
@@ -32,6 +33,8 @@ export class UserPage implements OnInit, OnDestroy {
 
   private readonly pageLimit: number = 1; // Page limit for reputation requests
   private destroy = new Subject<any>();
+
+  public isDevelopment = !environment.production;
 
   constructor(
     private userService: UserService,
