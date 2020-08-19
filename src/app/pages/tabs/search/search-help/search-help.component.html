@@ -1,3 +1,121 @@
-<p>
-  search-help works!
-</p>
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title> How do I search? </ion-title>
+    <ion-buttons slot="end">
+      <ion-button onclick="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="content">
+      <p>Enter search terms in the search box that appears on the center of the top bar on the search page, and press Enter.</p>
+
+      <p>If you need to refine and narrow your search, here are some basic tips:</p>
+
+      <ul>
+      <li>To search within specific tag(s), enter them in square brackets: <code>[maintenance] seat</code> searches for mentions of "seat" within the [maintenance] tag.
+      </li>
+      <li>To find a specific phrase, enter it in quotes: <code>"flat tire"</code>.</li>
+      <li>To limit your search to just the title of a question, use <code>title:</code> followed by the search term. Likewise, search the body only (exclude the title) with <code>body:"phrase here"</code>.</li>
+      <li>To search only within code blocks: <code>code:"new"</code> to search code within posts for the word "new".</li>
+      <li>To search <em>just your</em> posts: <code>user:me training</code> searches all of your posts for the word "training".</li>
+      <li>To <em>exclude</em> results from a tag, term or phrase, prefix it with <code>-</code> in your query: <code>waffles -unicorns</code> finds posts that mention tasty batter-based breakfasts without including mythical creatures, while <code>[laurel] -[hardy]</code> includes only posts pertaining to the first half of the classic comedy couple. </li>
+      <li>Use wildcard searches to broaden results; add an asterisk (<code>*</code>) anywhere in the word, like <code>encour*</code> or <code>Ex*nge</code>.</li>
+      </ul>
+
+      <h2> Advanced Search Options:</h2>
+
+      <p>We offer a number of advanced search operators to help you find very specific information.</p>
+
+      <h3>Range Operators</h3>
+
+      <p>To search for only questions that fall within a particular range for <strong>score</strong>, number of <strong>answers</strong>, or number of <strong>views</strong>, you can enter an upper or lower parameter, or a range.</p>
+
+      <ul>
+      <li><code>score:-1</code> or <code>score:-1..</code> will both return posts with a score greater than or equal to -1</li>
+      <li><code>views:500..1000</code> or <code>views:500-1000</code> will return posts with 500 to 1000 views </li>
+      <li><code>answers:..3</code> will return questions with 3 or fewer answers</li>
+      </ul>
+
+      <h3>Dates</h3>
+
+      <p>You can use specific dates or date ranges to narrow results down to posts created or active within a certain time period, using the following operators:</p>
+
+      <ul>
+      <li><code>created:</code> to specify when the posts were created</li>
+      <li><code>lastactive:</code> for posts active in a specified time period</li>
+      </ul>
+
+      <p>Dates can be entered in the following formats:</p>
+
+      <ul>
+      <li><p>Absolute dates:</p>
+
+      <ul>
+      <li><em>year only</em> – e.g., <code>created:2012..2013</code> searches posts created from January 1, 2012 through December 31, 2013; <code>created:2012</code> searches posts created from January 1, 2012 through December 31, 2012.</li>
+      <li><em>year and month</em> – e.g., <code>created:2012-04..2012-05</code> searches posts created between April 1, 2012 and May 31, 2012.</li>
+      <li><em>day, month, and year</em> – e.g., <code>lastactive:2012-04-03</code> searches posts who were last active between 12:00 AM on April 3, 2012 and 11:59 PM on April 3, 2012.</li>
+      </ul></li>
+      <li><p>Relative dates:</p>
+
+      <ul>
+      <li><p><code>1y</code>, <code>1m</code>, and <code>1d</code> are shorthand for "last year", "last month", and "yesterday" - e.g., if today is April 15, <code>created:1m</code> searches posts created between March 1 and March 31. (You can substitute any number for <code>1</code> to look back that many years, months, or days.)</p></li>
+      <li><p>Relative dates in a range (<code>1y..</code>) look back to the same date in the previous period - e.g., if you want to see all the posts active in the last three months, use <code>lastactive:3m..</code> On April 15, that will show posts from January 15 up to the most recently active. You can close the range as well: <code>lastactive:3m..1m</code>.</p></li>
+      </ul></li>
+      </ul>
+
+      <p><strong>Please note</strong> that all times are recorded in UTC; the results may not match your timezone.</p>
+
+      <h3>User Operators</h3>
+
+      <p>You can also limit searches to a specific user's content (your own or someone else's). You will need the user id to search another user's posts.</p>
+
+      <ul>
+      <li><code>user:mine</code> or <code>user:me</code> (or any user id) returns only your posts (or only the posts from whichever user whose id you entered)</li>
+      <li><code>inbookmarks:mine</code> (or any user id) returns only questions that you (or the user whose id you entered) have bookmarked.</li>
+      <li><code>intags:mine</code> returns only posts that appear in tags you have marked as favorite. (If you don't have any tags, this operator does nothing. For better results, update your preferences.)</li>
+      </ul>
+
+      <h3>Boolean Operators</h3>
+
+      <p>The following search operators can be used with values of yes/no, true/false, or 1/0 (each pair behaves the same):</p>
+
+      <ul>
+      <li><code>isaccepted:</code> yes/true/1 returns only <strong>answers</strong> that have been marked "accepted"; no/false/0 returns only answers that are not marked accepted.</li>
+      <li><code>hascode:</code> yes/true/1 returns only posts that contain code blocks; no/false/0 returns only posts that contain <em>no</em> code.</li>
+      <li><code>hasaccepted:</code> yes/true/1 returns only <strong>questions</strong> that have accepted answers; no/false/0 returns only questions with no accepted answers.</li>
+      <li><code>isanswered:</code> yes/true/1 returns only questions that have at least one positively-scored answer; no/false/0 returns only questions with no positively-scored answers.</li>
+      <li><code>closed:</code> yes/true/1 returns only questions that are closed; no/false/0 excludes closed questions from the search.</li>
+      <li><code>duplicate:</code> yes/true/1 returns questions that have been marked as a duplicate of another question; no/false/0 excludes duplicate questions from the search.</li>
+      <li><code>migrated:</code> yes/true/1 returns only questions that have been migrated to a different site; no/false/0 excludes migrated questions from the search.</li>
+      <li><code>locked:</code> yes/true/1 returns only locked posts (which have edits, votes, comments, and new answers disabled); no/false/0 returns only posts that are not locked.</li>
+      <li><code>hasnotice:</code> yes/true/1 returns only posts with a notice shown below them; no/false/0 returns only posts that do not have a notice applied.</li>
+      <li><code>wiki:</code> yes/true/1 returns only <a href="http://meta.stackexchange.com/questions/11740/what-are-community-wiki-posts">community wiki</a> posts; no/false/0 returns only non-community wiki posts.</li>
+      </ul>
+
+      <h3>OR operator</h3>
+
+      <p>To combine results from multiple tags, separate the tag names (enclosed in square brackets) with the word "or": <code>[widgets] or [geegaws]</code> returns questions tagged with <em>either</em> tag.</p>
+
+      <h3>Miscellaneous Operators</h3>
+
+      <ul>
+      <li><code>url:"example.com"</code> searches for posts containing the url "example.com"</li>
+      <li><code>is:question</code> narrows results down to just questions, and <code>is:answer</code> returns only answers</li>
+      <li><code>inquestion:50691</code> restricts the search to the question with id 50691. If you are searching using the search box on a question page, you can use <code>inquestion:this</code> to restrict results to the post you are already viewing.</li>
+      </ul>
+
+      <h3>Deleted Posts (requires 10,000 reputation)</h3>
+
+      <p>When you earn <a href="/help/privileges/moderator-tools">the Access to Moderator Tools</a> privilege, you may search your own deleted posts by using the <code>deleted:</code> operator.</p>
+
+      <ul>
+      <li><code>deleted:1</code> searches only your deleted posts</li>
+      <li><code>deleted:all</code> searches both deleted and not-deleted posts that you've authored</li>
+      <li><code>deleted:0</code> searches only not-deleted posts that you've authored (effectively the same as <code>user:me</code>)</li>
+      </ul>
+
+      <p><a href="/help/site-moderators">Site Moderators</a> may use this operator to search <em>all</em> posts on the site, including those owned by other users.</p>
+  </div>
+</ion-content>
