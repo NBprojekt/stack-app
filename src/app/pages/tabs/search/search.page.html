@@ -1,21 +1,28 @@
 <ion-content>
+  <!-- SEARCH -->
   <form>
     <ion-searchbar [(ngModel)]="searchString" [ngModelOptions]="{standalone: true}"
-                   (ionChange)="search()" (ionBlur)="search()"
-                   (ionInput)="loadingOnTyping($event)" inputmode="search"
-                   (ionClear)="resetFilter()" debounce="300" animated>
+                   (ionClear)="resetFilter()" enterkeyhint="search"
+                   (ionBlur)="search()" (search)="search()" inputmode="search"
+                   placeholder="Search ..." animated>
     </ion-searchbar>
   </form>
 
-  <div *ngIf="!loading" class="loading-wrapper">
-    x
+  <!-- LOADING MESSAGE -->
+  <div *ngIf="loading" class="loading-wrapper">
+    <div class="loading-message">
+      <ion-spinner color="primary"></ion-spinner>
+      <span> Please wait... </span>
+    </div>
   </div>
 
-  <div *ngIf="total > 0; else noResult" class="search-result">
+  <!-- RESULTS -->
+  <div *ngIf="result?.length > 0; else noResult" class="search-result">
     <ion-list>
       <div class="counter">
         {{total.toLocaleString('en-US')}} result{{total == 1 ? '' : 's'}}
       </div>
+
       <ion-item *ngFor="let question of result" button
                 [routerLink]="['/menu/pages/question', question?.question_id, formatUrl(question?.title)]"
                 routerDirection="forward">
@@ -62,8 +69,9 @@
     </ion-list>
   </div>
 
+  <!-- NO RESULT AND SHORT SEARCH HELP  -->
   <ng-template #noResult>
-    <div class="no-result">
+    <div *ngIf="result; else searchHelp" class="no-result">
       <svg
         width="120"
         height="120"
@@ -87,16 +95,28 @@
       <p class="hint">
         Try different or less specific keywords.
       </p>
-      <ion-button color="primary" (click)="searchString = ''"> Reset filter </ion-button>
+      <ion-button color="primary" (click)="resetFilter()"> Reset filter </ion-button>
     </div>
+
+    <ng-template #searchHelp>
+      <div class="search-help">
+        <div (click)="searchFor('[tags]')"> [tag] <span> search within a tag </span> </div>
+        <div (click)="searchFor('user:1234')"> user:1234 <span> search by author </span> </div>
+        <div (click)='searchFor("\"words here\"")'> "words here" <span> exact phrase </span> </div>
+        <div (click)="searchFor('answers:0')"> answers:0 <span> unanswered questions </span> </div>
+        <div (click)="searchFor('score:3')"> score:3 <span> posts with a 3+ score </span> </div>
+        <div (click)="searchFor('isaccepted:yes')"> isaccepted:yes <span> search within status </span> </div>
+        <div (click)="searchFor('user:me angular')"> user:me angular <span> all of your posts for the word "angular" </span> </div>
+      </div>
+    </ng-template>
   </ng-template>
 
   <!-- TODO: Add infinite scroll -->
 
-  <!---->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" hidden>
+  <!-- SEARCH HELP FAB -->
+  <ion-fab (click)="openSearchHelp()" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
-      <i class="fas fa-sliders-h"></i>
+      <icon-question width="28px" height="28px" primary="#fff"></icon-question>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
