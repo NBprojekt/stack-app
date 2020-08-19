@@ -1,11 +1,15 @@
 <ion-content>
   <form>
     <ion-searchbar [(ngModel)]="searchString" [ngModelOptions]="{standalone: true}"
-                   (ionBlur)="search()" inputmode="search"
-                   (ionClear)="resetFilter()" animated>
+                   (ionChange)="search()" (ionBlur)="search()"
+                   (ionInput)="loadingOnTyping($event)" inputmode="search"
+                   (ionClear)="resetFilter()" debounce="300" animated>
     </ion-searchbar>
   </form>
 
+  <div *ngIf="!loading" class="loading-wrapper">
+    x
+  </div>
 
   <div *ngIf="total > 0; else noResult" class="search-result">
     <ion-list>

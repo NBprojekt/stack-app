@@ -165,6 +165,8 @@ export class VotingComponent {
   }
 
   public toggleAccepted(): void {
+    if (!this.showAccepted) return;
+
     if (this.isAccepted) {
       this.answerService
         .acceptAnswerUndo(this.id)

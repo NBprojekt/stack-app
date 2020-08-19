@@ -10,7 +10,7 @@
   <ion-row class="card-footer">
     <ion-col size="6">
       <user-card [user]="answer?.owner" action="answered" [timestamp]="answer?.creation_date"
-                 [highlight]="answer?.owner?.display_name === questionOwner?.display_name">
+                 [highlight]="answer?.owner?.user_id === questionOwner?.user_id">
       </user-card>
     </ion-col>
     <ion-col size="6">

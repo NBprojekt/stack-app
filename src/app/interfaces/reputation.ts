@@ -4,4 +4,5 @@ export interface IReputation {
   creation_date: number;
   post_id?: number;
   user_id?: number;
+  reputation_summ?: number;
 }

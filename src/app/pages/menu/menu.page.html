@@ -10,7 +10,7 @@
       <ion-list>
         <!-- Static user card -->
         <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="/menu/user" lines="none">
+          <ion-item routerLink="/menu/user/me" lines="none">
             <ion-avatar slot="start" class="big-avatar mat-elevation-z4">
               <img [src]="myProfile?.profile_image" default="./assets/images/placeholder/user.png">
             </ion-avatar>
@@ -37,7 +37,7 @@
 
         <!-- Profile -->
         <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="/menu/user" lines="none" routerDirection="forward">
+          <ion-item routerLink="/menu/user/me" lines="none" routerDirection="forward">
             <div class="icon-start">
               <icon-user-card  width="30px" height="30px"
                               primary="var(--ion-color-medium-shade)" secondary="var(--ion-color-medium-tint)">
