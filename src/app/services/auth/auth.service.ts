@@ -167,5 +167,18 @@ export class AuthService {
 
   private saveToken(token: string): void {
     this.storage.set('access_token', token);
+    this.saveTokenInfo(token);
+  }
+  private saveTokenInfo(token: string): void {
+    const headers = new HttpHeaders()
+      .set('Accept', '*/*');
+
+    const params = new HttpParams()
+      .set('key', environment.api.key);
+
+    this.http.get<IResponse>(`${this.apiUrl}access-tokens/${token}`, {headers, params})
+      .subscribe((response: IResponse) => {
+        this.storage.set('access_token_info', response.items[0]);
+      });
   }
 }
