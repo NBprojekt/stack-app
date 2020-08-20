@@ -115,7 +115,10 @@ export class AuthService {
       .set('key', environment.api.key);
 
     return new Promise(async (resolve) => {
-      await this.storage.clear();
+      // Should delete all user data but keep sites
+      await this.storage.remove('access_token');
+      await this.storage.remove('access_token_info');
+      await this.storage.remove('current_user');
 
       this.http.get<IResponse>(`${this.apiUrl}access-tokens/${this.token}/invalidate`, {headers, params})
         .subscribe(() => {
