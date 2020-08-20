@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 
 import { SearchPage } from './search.page';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ModalController, IonicModule } from '@ionic/angular';
 
 describe('SearchPage', () => {
   let component: SearchPage;
@@ -17,11 +18,13 @@ describe('SearchPage', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
+        IonicModule,
       ],
       declarations: [ SearchPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         InAppBrowser,
+        ModalController,
         {
           provide: Storage, useValue: {
             get: () => new Promise<any>((resolve, reject) => resolve('test')),
