@@ -66,7 +66,7 @@ describe('QuestionsService', () => {
     it('Should return questions', () => {
       const url = `${environment.api.url + environment.api.version}questions/`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [{
           view_count: 5,
           answer_count: 0,
@@ -92,7 +92,7 @@ describe('QuestionsService', () => {
       const url = `${environment.api.url + environment.api.version}questions/1234`;
 
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [{
           view_count: 5,
           answer_count: 0,
@@ -117,7 +117,7 @@ describe('QuestionsService', () => {
     it('Should return answers', () => {
       const url = `${environment.api.url + environment.api.version}questions/1234/answers`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [{
           view_count: 5,
           answer_count: 0,
@@ -144,7 +144,7 @@ describe('QuestionsService', () => {
     it('Should upvote a question', () => {
       const url = `${environment.api.url + environment.api.version}questions/1234/upvote`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [],
         quota_remaining: 999,
         quota_max: 1000,
@@ -161,7 +161,7 @@ describe('QuestionsService', () => {
     it('Should undo upvote on question', () => {
       const url = `${environment.api.url + environment.api.version}questions/1234/upvote/undo`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [],
         quota_remaining: 999,
         quota_max: 1000,
@@ -178,7 +178,7 @@ describe('QuestionsService', () => {
     it('Should downvote a question', () => {
       const url = `${environment.api.url + environment.api.version}questions/1234/downvote`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [],
         quota_remaining: 999,
         quota_max: 1000,
@@ -195,7 +195,7 @@ describe('QuestionsService', () => {
     it('Should undo downvote on question', () => {
       const url = `${environment.api.url + environment.api.version}questions/1234/downvote/undo`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [],
         quota_remaining: 999,
         quota_max: 1000,
@@ -214,7 +214,7 @@ describe('QuestionsService', () => {
     it('Should upvote a question', () => {
       const url = `${environment.api.url + environment.api.version}questions/1234/favorite`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [],
         quota_remaining: 999,
         quota_max: 1000,
@@ -231,7 +231,7 @@ describe('QuestionsService', () => {
     it('Should undo upvote on question', () => {
       const url = `${environment.api.url + environment.api.version}questions/1234/favorite/undo`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [],
         quota_remaining: 999,
         quota_max: 1000,
