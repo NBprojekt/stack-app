@@ -11,6 +11,7 @@ import { ChartsModule } from 'ng2-charts';
 
 import { UserPage } from './user.page';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
+import { ShortenNumberPipe } from 'src/app/pipes/shorten-number/shorten-number.pipe';
 
 describe('UserPage', () => {
   let component: UserPage;
@@ -18,15 +19,16 @@ describe('UserPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      declarations: [ UserPage ],
       imports: [
         HttpClientTestingModule,
-        IonicModule,
         RouterTestingModule,
+        IonicModule,
         CommonPipesModule,
       ],
-      declarations: [ UserPage ],
       providers: [
         InAppBrowser,
+        ShortenNumberPipe, // Why do i need this line? I don't know, but without it does not work ¯\_(ツ)_/¯
         {
           provide: Storage, useValue: {
             get: () => new Promise<any>((resolve, reject) => resolve('test')),

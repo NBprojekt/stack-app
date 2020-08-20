@@ -6,6 +6,7 @@ import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 import { By } from '@angular/platform-browser';
 import { IComment } from 'src/app/interfaces/comment';
 import { IUser } from 'src/app/interfaces/user';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CommentComponent', () => {
   let component: CommentComponent;
@@ -36,7 +37,7 @@ describe('CommentComponent', () => {
       declarations: [ CommentComponent ],
       imports: [
         CommonPipesModule,
-
+        RouterTestingModule,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
