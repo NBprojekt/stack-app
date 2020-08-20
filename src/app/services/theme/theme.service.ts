@@ -7,7 +7,7 @@ import { Theme } from 'src/app/enums/theme.enum';
   providedIn: 'root'
 })
 export class ThemeService {
-  // TODO: Store mode and theme information using Storage 
+  // TODO: Store mode and theme information using Storage
 
   constructor() {
     this.setMode(this.getMode());

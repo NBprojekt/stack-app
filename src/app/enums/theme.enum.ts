@@ -4,4 +4,3 @@ export enum Theme {
   PURPLE_GREEN = 'theme-purple-green',
   BLUE_PINK = 'theme-blue-pink',
 }
-  
