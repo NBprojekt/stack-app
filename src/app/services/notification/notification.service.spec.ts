@@ -54,7 +54,7 @@ describe('NotificationService', () => {
 
   it('Should get inbox', () => {
     const expectedResponse: IResponse = {
-      has_more: 0,
+      has_more: false,
       items: [{
         site: null,
         is_unread: false,
@@ -81,7 +81,7 @@ describe('NotificationService', () => {
 
   it('Should get achievements', () => {
     const expectedResponse: IResponse = {
-      has_more: 0,
+      has_more: false,
       items: [{
         on_site: null,
         is_unread: false,
