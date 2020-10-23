@@ -5,7 +5,7 @@ on:
     branches:
       - master
       
-todo-to-issue:
+jobs:
   todo-to-issue:
     name: TODO to Issue
     runs-on: ubuntu-latest
