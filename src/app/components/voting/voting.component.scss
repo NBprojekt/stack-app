@@ -2,7 +2,7 @@
   position: relative;
   float: left;
   left: -10px;
-  width: 40px;
+  width: 3rem;
   min-height: 100px;
   top: -15px;
   z-index: 2;
@@ -13,22 +13,15 @@
     text-align: center;
   }
 
-  .fa-caret-up, .fa-caret-down {
-    font-size: 3.5em;
-  }
   .counter {
-    margin-top: -10px;
-    font-size: 1.3em;;
-  }
-  .fa-caret-down {
-    margin-top: -14px;
+    font-size: 1.5em;
   }
 
-  .fa-star, .fa-check, .fa-caret-up, .fa-caret-down {
-    color: #a3a3a3;
+  .default-color {
+    fill: #a3a3a3;
   }
-  .voted {
-    color: var(--ion-color-primary);
+  .voted-color {
+    fill: var(--ion-color-primary);
   }
 
   .fa-check {
@@ -47,10 +40,10 @@
     }
 
     .heart {
-      height: 60px;
-      width: 60px;
-      margin-top: -20px;
-      margin-left: -10px;
+      height: 78px;
+      width: 78px;
+      margin-top: -30px;
+      margin-left: -15px;
       overflow: visible;
       z-index: 3;
 

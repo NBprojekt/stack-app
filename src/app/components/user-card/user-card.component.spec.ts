@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserCardComponent } from './user-card.component';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('UserCardComponent', () => {
   let component: UserCardComponent;
@@ -14,6 +15,7 @@ describe('UserCardComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
         CommonPipesModule,
+        RouterTestingModule,
       ]
     })
     .compileComponents();

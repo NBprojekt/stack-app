@@ -3,7 +3,8 @@
     <span class="post" [innerHTML]="comment?.body"></span>
     -
     <span class="color-blue username" [innerHTML]="comment?.owner?.display_name"
-          [class.highlight]="comment?.owner?.display_name == questionOwner?.display_name">
+          [class.highlight]="comment?.owner?.display_name == questionOwner?.display_name"
+          (click)="openProfile(comment.owner.user_id)">
     </span>
     <span class="color-blue">
       {{comment?.creation_date | timePassed}}

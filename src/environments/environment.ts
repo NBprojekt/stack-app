@@ -9,6 +9,7 @@ export const environment = {
     version: '2.2/',
     key: 'tY6t1JhOUblLZKK7kLe1cA((',
     updateSitesIntervall: 1,
+    updateNotificationsIntervall: 1,
   },
   oAuth: {
     clientId: 16712,

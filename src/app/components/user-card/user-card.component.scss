@@ -1,6 +1,6 @@
 .user-card {
   position: relative;
-  max-width: 190px;
+  max-width: 210px;
   max-height: 73px;
   overflow: hidden;
 
@@ -8,7 +8,7 @@
   background: var(--ion-color-light);
 
   ion-item {
-    --ion-background-color: var(--ion-color-light);
+    --background: var(--ion-color-light);
   }
 
   .item-label {
@@ -22,7 +22,7 @@
   &.highlight {
     background: #d2e0f6;
     ion-item {
-      --ion-background-color: #d2e0f6;
+      --background: #d2e0f6;
     }
     .name {
       color: var(--ion-color-secondary-shade);
@@ -51,27 +51,8 @@
 
     div {
       float: left;
-
-      .fa-circle {
-        position: relative;
-        padding-left: 15px;
-        font-size: .75em;
-
-        &::before {
-          position: absolute;
-          top: -8px;
-          left: 7px;
-        }
-      }
-
-      &.gold .fa-circle{
-        color: rgb(255, 215, 0)
-      }
-      &.silver .fa-circle{
-        color: rgb(170, 165, 165)
-      }
-      &.bronze .fa-circle{
-        color: rgb(180, 106, 33);
+      &:nth-child(n+2) {
+        margin-left: 5px;
       }
     }
   }

@@ -6,7 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { SearchPage } from './search.page';
-import { ComingSoonModule } from 'src/app/components/coming-soon/coming-soon.module';
+import { IconsModule } from 'src/app/icons/icons.module';
+import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
+import { SearchHelpComponent } from './search-help/search-help.component';
 
 const routes: Routes = [
   {
@@ -21,8 +23,12 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComingSoonModule
+    IconsModule,
+    CommonPipesModule,
   ],
-  declarations: [SearchPage]
+  declarations: [
+    SearchPage,
+    SearchHelpComponent,
+  ]
 })
 export class SearchPageModule {}

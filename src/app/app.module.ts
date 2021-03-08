@@ -14,6 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 // Custom
 import { AppComponent } from './app.component';
@@ -23,7 +24,6 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [
     AppComponent,
   ],
-  entryComponents: [],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -38,6 +38,7 @@ import { AppRoutingModule } from './app-routing.module';
     SplashScreen,
     InAppBrowser,
     SocialSharing,
+    LocalNotifications,
   ],
   bootstrap: [AppComponent]
 })

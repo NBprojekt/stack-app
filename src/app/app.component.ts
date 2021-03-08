@@ -9,6 +9,7 @@ import { Storage } from '@ionic/storage';
 import { SitesService } from './services/sites/sites.service';
 
 import { BehaviorSubject } from 'rxjs';
+import { ThemeService } from './services/theme/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ export class AppComponent implements AfterViewInit {
     private store: Storage,
     private router: Router,
     private siteService: SitesService,
+    private themeService: ThemeService,
   ) {
     this.initializeApp();
     AppComponent.loading.subscribe(loading => this.loading = loading);
@@ -44,14 +46,14 @@ export class AppComponent implements AfterViewInit {
 
   private async initializeApp() {
     await Promise.all([
-      this.platform.ready(),
-      this.store.ready(),
-      this.siteService.ready(),
-    ]).then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    }).catch(error => {
-      console.error('Cann not initialize the App', error);
-    });
+        this.platform.ready(),
+        this.store.ready(),
+        this.siteService.ready(),
+      ]).then(() => {
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+      }).catch(error => {
+        console.error('Cann not initialize the App', error);
+      });
   }
 }

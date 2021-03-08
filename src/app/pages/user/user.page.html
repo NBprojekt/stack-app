@@ -1,12 +1,46 @@
 <ion-header>
-  <ion-toolbar>
+
+  <ion-toolbar class="profile-wrapper">
+    <div>
+      <div class="profile">
+        <div class="profile-img  mat-elevation-z4">
+          <img [src]="user?.profile_image" default="./assets/images/placeholder/user.png">
+        </div>
+        <div class="profile-name">
+          {{user?.display_name || 'User Name'}}
+        </div>
+        <div class="profile-reputation">
+          <span class="profile-reputation-value">
+            {{user?.reputation || 0 | shortenNumber}}
+          </span>
+
+          <span class="profile-reputation-label">
+            Reputation
+          </span>
+        </div>
+
+        <div class="profile-badges">
+          <div *ngIf="user?.badge_counts?.gold">
+            <icon-circle width="10px" height="10px" primary="rgb(255, 215, 0)"></icon-circle> {{user?.badge_counts.gold}}
+          </div>
+          <div *ngIf="user?.badge_counts?.silver">
+            <icon-circle width="10px" height="10px" primary="rgb(170, 165, 165)"></icon-circle> {{user?.badge_counts.silver}}
+          </div>
+          <div *ngIf="user?.badge_counts?.bronze">
+            <icon-circle width="10px" height="10px" primary="rgb(180, 106, 33)"></icon-circle> {{user?.badge_counts.bronze}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-toolbar>
+
+  <ion-toolbar class="transparent absolute">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title> User </ion-title>
   </ion-toolbar>
 
-  <ion-toolbar>
+  <ion-toolbar class="profile-spacer">
     <ion-segment [(ngModel)]="section">
       <ion-segment-button value="profile">
         <ion-label> Profile </ion-label>
@@ -21,14 +55,41 @@
 <ion-content fullscreen class="ion-padding">
   <div [ngSwitch]="section">
     <div *ngSwitchCase="'profile'">
-      User workz
+      <div *ngIf="user?.location" class="user-information">
+        <icon-map-marker></icon-map-marker>
+        <span> {{user?.location}} </span>
+      </div>
+
+      <div *ngIf="user?.website_url" class="user-information">
+        <icon-browser></icon-browser>
+        <span> {{user?.website_url}} </span>
+      </div>
+
+      <div class="user-information">
+        <icon-calendar-day></icon-calendar-day>
+        <span> Member for {{user?.creation_date | timePassed}} </span>
+      </div>
+
+      <div class="user-information">
+        <icon-eye></icon-eye>
+        <span> {{user?.view_count | shortenNumber}} profile views </span>
+      </div>
+
+      <div class="user-information">
+        <icon-clock></icon-clock>
+        <span> Last seen {{user?.last_access_date | timePassed}} </span>
+      </div>
+
+      <!-- // TODO: About me -->
+
+      <!-- Temporary untill i finish the user page -->
+      <pre *ngIf="isDevelopment">
+        {{ user | json}}
+      </pre>
     </div>
 
     <div *ngSwitchCase="'activity'">
-
-      <pre>
-        {{ user | json}}
-      </pre>
+      <reputation-chart [show]="chartReady" [chart]="reputationChart"></reputation-chart>
     </div>
   </div>
 </ion-content>
