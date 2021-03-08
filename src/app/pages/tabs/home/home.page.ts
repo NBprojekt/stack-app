@@ -17,6 +17,7 @@ import { Subject } from 'rxjs';
 export class HomePage implements OnInit, OnDestroy {
   private destroy = new Subject<any>();
   private options: IRequestOptions;
+  public hasMore: boolean;
 
   public backdrop = false;
   public questions: Array<IQuestion>;
@@ -54,10 +55,10 @@ export class HomePage implements OnInit, OnDestroy {
 
     this.questionsService.getQuestions(this.options).subscribe((response: IResponse) => {
       this.questions = this.questions.concat(response.items as Array<IQuestion>);
+      this.hasMore = response.has_more;
 
       if (event) {
         event.target.complete();
-        if (!response.has_more) { event.target.disabled = true; }
       }
     });
   }

@@ -14,6 +14,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "www",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -33,10 +34,22 @@
             ],
             "styles": [
               {
-                "input": "./node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+                "input": "src/theme/variables.default.scss"
               },
               {
-                "input": "src/theme/variables.scss"
+                "input": "src/theme/orange-blue.scss"
+              },
+              {
+                "input": "src/theme/purple-green.scss"
+              },
+              {
+                "input": "src/theme/blue-pink.scss"
+              },
+              {
+                "input": "src/theme/modes.scss"
+              },
+              {
+                "input": "src/theme/dark-theme.scss"
               },
               {
                 "input": "src/material-elevation.scss"
@@ -69,10 +82,20 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             },
             "ci": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "progress": false
             }
           }

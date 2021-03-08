@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MenuPage } from './menu.page';
 import { CommonDirectivesModule } from 'src/app/directives/common-directives.module';
+import { IconsModule } from 'src/app/icons/icons.module';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
   },
   { path: 'settings', loadChildren: () => import('../settings/settings.module').then( m => m.SettingsPageModule) },
   { path: 'about', loadChildren: () => import('../about/about.module').then( m => m.AboutPageModule) },
-  { path: 'user', loadChildren: () => import('../user/user.module').then( m => m.UserPageModule) },
+  { path: 'user/:id', loadChildren: () => import('../user/user.module').then( m => m.UserPageModule) },
   { path: 'theme', loadChildren: () => import('../theme/theme.module').then( m => m.ThemePageModule) },
   { path: 'sites', loadChildren: () => import('../sites/sites.module').then( m => m.SitesPageModule) },
   { path: '', redirectTo: 'pages', pathMatch: 'full'}
@@ -34,6 +35,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     CommonDirectivesModule,
+    IconsModule,
   ],
   declarations: [
     MenuPage,

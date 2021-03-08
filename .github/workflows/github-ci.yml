@@ -1,7 +1,7 @@
 name: Github CI
-on: 
+on:
   push:
-    branches:    
+    branches:
       - master
   pull_request:
     branches:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   lint:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: "!(contains(github.event.head_commit.message, 'skip ci') || contains(github.event.pull_request.title, 'wip') || github.event.pull_request.draft)"
     name: Run typescript linter
     runs-on: ubuntu-latest
     steps:
@@ -22,8 +22,25 @@ jobs:
       run: npm ci
     - name: Lint
       run: npx ng lint
+
+  test:
+    if: "!(contains(github.event.head_commit.message, 'skip ci') || contains(github.event.pull_request.title, 'wip') || github.event.pull_request.draft)"
+    name: Run karma unit test
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Install dependencies
+      run: npm ci
+    - name: Unit tests
+      run: npx ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
+
   build:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: "!(contains(github.event.head_commit.message, 'skip ci') || contains(github.event.pull_request.title, 'wip') || github.event.pull_request.draft)"
     name: Run ionic production build
     runs-on: ubuntu-latest
     steps:
@@ -36,18 +53,3 @@ jobs:
       run: npm ci
     - name: Build production
       run: npx ionic build --prod
-  test:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
-    name: Run karma unit test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-    - name: Install dependencies
-      run: npm ci
-    - name: Unit tests
-      run: npx ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
-      continue-on-error: true

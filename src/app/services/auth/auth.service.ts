@@ -9,8 +9,9 @@ import { environment } from 'src/environments/environment';
 
 import { Subscription, Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
-import { IResponse } from 'src/app/interfaces/response';
+import { IResponse, IResponseError } from 'src/app/interfaces/response';
 import { AppComponent } from 'src/app/app.component';
+import { IAuthInfo } from 'src/app/interfaces/auth-info';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthService {
   private readonly oAuthUrl = `https://stackoverflow.com/oauth/dialog?client_id=${environment.oAuth.clientId}&redirect_uri=${environment.oAuth.redirectUrl}&scope=${environment.oAuth.scope}`;
   private readonly apiUrl = environment.api.url + environment.api.version;
   private token: string;
+  private authInfo: IAuthInfo;
   private allowBrowserClose: boolean;
 
   constructor(
@@ -59,33 +61,48 @@ export class AuthService {
   }
 
   public async isAuthenticated(): Promise<boolean> {
-    return new Promise(async (resolve) => {
+    return new Promise(async (resolve, reject) => {
       if (!this.token && !await this.loadToken()) {
         resolve(false);
         return;
       }
 
-      this.validateToken(this.getToken()).subscribe((response: IResponse) => {
-        const authenticated = response && response.items.length > 0;
+      this.validateToken(this.getToken()).subscribe(
+        (response: IResponse) => {
+          const authenticated = response && response.items.length > 0;
 
-        if (!authenticated) {
-          this.token = null;
+
+          if (!authenticated) {
+            this.token = null;
+          } else {
+            this.authInfo = response.items[0];
+            this.saveAuthInfo(this.authInfo);
+          }
+
+          resolve(authenticated);
+        },
+        (response: IResponseError) => {
+          reject()
         }
-
-        resolve(authenticated);
-      });
+      );
     });
   }
 
   public getToken(): string {
     return this.token;
   }
+  public getAuthInfo(): IAuthInfo {
+    return this.authInfo;
+  }
 
   public validateToken(token: string): Observable<IResponse> {
     const headers = new HttpHeaders()
       .set('Accept', '*/*');
 
-    return this.http.get<IResponse>(`${this.apiUrl}access-tokens/${token}`, {headers});
+    const params = new HttpParams()
+      .set('key', environment.api.key);
+
+    return this.http.get<IResponse>(`${this.apiUrl}access-tokens/${token}`, {headers, params});
   }
 
   public async logOut(): Promise<void> {
@@ -98,7 +115,10 @@ export class AuthService {
       .set('key', environment.api.key);
 
     return new Promise(async (resolve) => {
-      await this.storage.clear();
+      // Should delete all user data but keep sites
+      await this.storage.remove('access_token');
+      await this.storage.remove('access_token_info');
+      await this.storage.remove('current_user');
 
       this.http.get<IResponse>(`${this.apiUrl}access-tokens/${this.token}/invalidate`, {headers, params})
         .subscribe(() => {
@@ -129,9 +149,13 @@ export class AuthService {
       header: 'Authentication failed',
       message: 'You canceled the authentication please try again to gain access.',
       position: 'bottom',
-      showCloseButton: true,
-      closeButtonText: 'OK',
       duration: 5e3,
+      buttons: [
+        {
+          text: 'OK',
+          role: 'cancel',
+        }
+      ]
     });
 
     toast.present();
@@ -147,5 +171,8 @@ export class AuthService {
 
   private saveToken(token: string): void {
     this.storage.set('access_token', token);
+  }
+  private saveAuthInfo(authInfo: IAuthInfo): void {
+    this.storage.set('access_token_info', authInfo);
   }
 }

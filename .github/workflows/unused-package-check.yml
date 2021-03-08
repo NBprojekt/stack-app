@@ -1,0 +1,14 @@
+name: Code quality
+on:
+  schedule:
+    - cron:  '0 0 * * 1'
+
+jobs:
+  unusedPackages:
+    name: Check for unused packages
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Check for unused packages
+      uses: Amr-Reda/npm-unused-packages-checker@v1
+      

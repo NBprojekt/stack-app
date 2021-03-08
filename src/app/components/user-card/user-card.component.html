@@ -1,4 +1,4 @@
-<div class="user-card ion-activatable" [class.highlight]="highlight">
+<div class="user-card ion-activatable" [class.highlight]="highlight" (click)="openProfile()">
   <div *ngIf="timestamp && action" class="timestamp"> {{action}} {{timestamp | timePassed}} </div>
 
   <ion-item class="ion-no-margin ion-no-padding" lines="none">
@@ -9,18 +9,18 @@
       <div class="name" [innerHTML]="user?.display_name"></div>
       <div class="achievements">
         <div> {{user?.reputation | shortenNumber}} </div>
-        <div *ngIf="user?.badge_counts?.gold" class="badge gold">
-            <i class="fas fa-circle"></i> {{user.badge_counts.gold}}
+
+        <div *ngIf="user?.badge_counts?.gold">
+          <icon-circle width="10px" height="10px" primary="rgb(255, 215, 0)"></icon-circle> {{user?.badge_counts.gold}}
         </div>
-        <div *ngIf="user?.badge_counts?.silver" class="badge silver">
-          <i class="fas fa-circle"></i> {{user.badge_counts.silver}}
+        <div *ngIf="user?.badge_counts?.silver">
+          <icon-circle width="10px" height="10px" primary="rgb(170, 165, 165)"></icon-circle> {{user?.badge_counts.silver}}
         </div>
-        <div *ngIf="user?.badge_counts?.bronze" class="badge bronze">
-          <i class="fas fa-circle"></i> {{user.badge_counts.bronze}}
+        <div *ngIf="user?.badge_counts?.bronze">
+          <icon-circle width="10px" height="10px" primary="rgb(180, 106, 33)"></icon-circle> {{user?.badge_counts.bronze}}
         </div>
       </div>
     </ion-label>
   </ion-item>
 
-  <ion-ripple-effect></ion-ripple-effect>
 </div>

@@ -35,8 +35,8 @@ describe('AnswerService', () => {
 
   beforeEach(() => {
     injector = getTestBed();
-    service = injector.get(AnswerService);
-    httpMock = injector.get(HttpTestingController);
+    service = injector.inject(AnswerService);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   it('Should create', () => {
@@ -51,7 +51,7 @@ describe('AnswerService', () => {
     it('Should upvote a answer', () => {
       const url = `${environment.api.url + environment.api.version}answers/1234/upvote`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [],
         quota_remaining: 999,
         quota_max: 1000,
@@ -68,7 +68,7 @@ describe('AnswerService', () => {
     it('Should undo upvote on answer', () => {
       const url = `${environment.api.url + environment.api.version}answers/1234/upvote/undo`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [],
         quota_remaining: 999,
         quota_max: 1000,
@@ -85,7 +85,7 @@ describe('AnswerService', () => {
     it('Should downvote a answer', () => {
       const url = `${environment.api.url + environment.api.version}answers/1234/downvote`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [],
         quota_remaining: 999,
         quota_max: 1000,
@@ -102,7 +102,7 @@ describe('AnswerService', () => {
     it('Should undo downvote on answer', () => {
       const url = `${environment.api.url + environment.api.version}answers/1234/downvote/undo`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [],
         quota_remaining: 999,
         quota_max: 1000,
@@ -121,7 +121,7 @@ describe('AnswerService', () => {
     it('Should accept a answer', () => {
       const url = `${environment.api.url + environment.api.version}answers/1234/accept`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [],
         quota_remaining: 999,
         quota_max: 1000,
@@ -138,7 +138,7 @@ describe('AnswerService', () => {
     it('Should undo accept on answer', () => {
       const url = `${environment.api.url + environment.api.version}answers/1234/accept/undo`;
       const expectedResponse: IResponse = {
-        has_more: 0,
+        has_more: false,
         items: [],
         quota_remaining: 999,
         quota_max: 1000,

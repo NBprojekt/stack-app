@@ -1,0 +1,22 @@
+
+body.dim, body.lights-out {
+  .sc-ion-searchbar-md-h {
+    --background: var(--ion-item-background);
+  }
+  .sc-ion-searchbar-ios-h {
+    --background: rgba(var(--ion-text-color-rgb), .1);
+  }
+
+  .user-card {
+    background: var(--ion-color-step-150);
+    ion-item {
+      --background: var(--ion-color-step-150)!important;
+    }
+    &.highlight {
+      background: rgba($color: var(--ion-color-secondary-rgb), $alpha: .25);
+      ion-item {
+        --background: rgba($color: var(--ion-color-secondary-rgb), $alpha: .25)!important;
+      }
+    }
+  }
+}

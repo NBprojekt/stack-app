@@ -1,0 +1,86 @@
+$profile-height: 197px;
+$min-toolbar-height: var(--min-height);
+
+.profile-wrapper {
+  position: absolute;
+  height: $profile-height!important;
+
+  .profile {
+    padding-top: 15px;
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      margin: auto;
+
+      overflow: hidden;
+      border-radius: 50%;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .profile-name {
+      padding-top: 5px;
+
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bolder;
+    }
+
+    .profile-reputation {
+      align-items: centeR;
+      color: var(-ion-color-medium);
+      text-align: center;
+
+      .profile-reputation-value, .profile-reputation-label {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .profile-reputation-value {
+        padding-right: 5px;
+
+        font-size: .9rem;
+        font-weight: bolder;
+      }
+      .profile-reputation-label {
+        text-transform: uppercase;
+
+        font-size: .9rem;
+      }
+    }
+
+    .profile-badges {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+
+      :nth-child(n+2) {
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+.profile-spacer {
+  margin-top: $profile-height;
+}
+
+.user-information {
+  display: flex;
+  align-items: center;
+
+  font-size: 1.05rem;
+
+  :first-child {
+    margin: 0 20px 0 10px;
+  }
+}
+
+.user-about-me {
+
+}
