@@ -7,30 +7,22 @@ jobs:
   Gource:
     name: Create and uplaod gource video
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Check out full history on master
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - name: Install dependencies
-      run: |
-        sudo apt-get update -y
-        sudo apt-get install -y gource ffmpeg
-    - name: Create gource ppm
-      run: |
-        gource -o gource.ppm .
-    - name: Minify gource ppm
-      run: |
-        ffmpeg -y -r 60 -f image2pipe \
-               -vcodec ppm -i gource.ppm \
-               -vcodec libx264  \
-               -preset medium \
-               -pix_fmt yuv420p \
-               -crf 1 -threads 0 \
-               -bf 0 stack-app.mp4
-    - name: Upload gource pm4
-      uses: actions/upload-artifact@v2
-      with:
-        name: stack-app
-        path: ./stack-app.mp4
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: 'Gource Action'
+        uses: nbprojekt/gource-action@v1
+        with:
+          gource_title: 'Stack App'
+          logo_url: 'https://raw.githubusercontent.com/NBprojekt/stack-app/master/src/assets/icon/favicon.png'
+
+
+      - name: 'Upload gource video'
+        uses: actions/upload-artifact@v2
+        with:
+          name: Gource
+          path: ./gource/gource.mp4
