@@ -95,5 +95,5 @@ Stack App is Free Software: You can use, study share and improve it at your will
   [5]: https://github.com/NBprojekt/stack-app/labels/help%20wanted
   [6]: https://nodejs.org/en/
   [7]: https://gitforwindows.org/
-  [8]: https://github.com/NBprojekt/stack-app/blob/Feature-create-readme/scripts/README.md
+  [8]: https://github.com/NBprojekt/stack-app/blob/master/scripts/README.md
   [9]: https://github.com/NBprojekt/stack-app/blob/master/LICENSE
