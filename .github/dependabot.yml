@@ -5,7 +5,7 @@ updates:
   schedule:
     interval: daily
     time: "04:00"
-  open-pull-requests-limit: 3
+  open-pull-requests-limit: 0
   reviewers:
   - nbprojekt
   assignees:
@@ -13,10 +13,3 @@ updates:
   labels:
   - Dependencies
   - Bot
-  ignore:
-  - dependency-name: "@angular-devkit/architect"
-    versions:
-    - "> 0.801.3, < 1"
-  - dependency-name: "@angular-devkit/architect"
-    versions:
-    - ">= 0.901.a, < 0.902"
