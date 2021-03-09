@@ -10,7 +10,7 @@
 [//]: # (Pipes)
 <p align="center">
   <a href="https://github.com/nbprojekt/stack-app/releases/latest" alt="App Version">
-    <img src="https://img.shields.io/badge/dynamic/json?color=informational&label=version&query=tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fnbprojekt%2Fstackapp%2Freleases%2Flatest">
+    <img src="https://img.shields.io/badge/dynamic/json?color=informational&label=version&query=tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fnbprojekt%2Fstack-app%2Freleases%2Flatest">
   </a>
   
   <a href="https://github.com/NBprojekt/stack-app/actions?query=workflow%3A%22Github+CI%22">
