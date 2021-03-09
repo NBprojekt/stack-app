@@ -46,6 +46,12 @@
 ## Description
 
 ## Screenshots
+<div align="center" width="100%">
+  <img width="32%" src="https://user-images.githubusercontent.com/24683383/110446790-d8d6d980-80bf-11eb-83d3-ad24c9abf452.png">
+  <img width="32%" src="https://user-images.githubusercontent.com/24683383/110446810-de342400-80bf-11eb-8e1b-4d63fdccb135.png">
+  <img width="32%" src="https://user-images.githubusercontent.com/24683383/110446802-dc6a6080-80bf-11eb-8f19-084097a1a962.png">
+</div>
+
  
 ## Bugs and features 
 Found a bug? Explosions (that would be cool)? Do you want a new feature? Use the [issue tracker][1] here on GitHub to report issues and submit feature requests. 
