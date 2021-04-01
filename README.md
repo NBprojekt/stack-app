@@ -43,9 +43,9 @@
 
 > WARNING: THIS IS A BETA VERSION, THEREFORE YOU MAY ENCOUNTER BUGS. IF YOU DO, OPEN AN ISSUE VIA OUR GITHUB REPOSITORY.
 
-## Description
+## ❓ Description
 
-## Screenshots
+## 📱 Screenshots
 <div align="center" width="100%">
   <img width="32%" src="https://user-images.githubusercontent.com/24683383/110446790-d8d6d980-80bf-11eb-83d3-ad24c9abf452.png">
   <img width="32%" src="https://user-images.githubusercontent.com/24683383/110446810-de342400-80bf-11eb-8e1b-4d63fdccb135.png">
@@ -53,7 +53,7 @@
 </div>
 
  
-## Bugs and features 
+## 🐞 Bugs and features 
 Found a bug? Explosions (that would be cool)? Do you want a new feature? Use the [issue tracker][1] here on GitHub to report issues and submit feature requests. 
 
 Search for your problem in the [issue section][1] before opening a new ticket. It might be already answered and save us time.<br>
@@ -62,7 +62,7 @@ Before sumbitting a ticket read the [contribution guidelines][4]
 If not, use our templates for [bugs reports][2] and [feature requests][3]. <br>
 You will be asked some questions and requested to provide some information, please read them CAREFULLY and answer honestly.
 
-## Development
+## 💻 Development
 This project requires [NodeJs][6] (>= v10.x.x) to run.
 
 Clone the project `https://github.com/NBprojekt/stack-app.git` and run `sudo npm run installation`.  
@@ -78,12 +78,12 @@ sudo npm start
 If you want to learn more about the scripts in this project check out the [script readme][8].
 > If you use windows make sure you are able to run bash scripts. You can simply install [gitbash][7].
 
-## Contributing
+## 🖊 Contributing
 Thanks for your interest in contributing! Read up on our guidelines for [contributing][4] and then look through our issues with a [help wanted][5] label.
 
-## Donate
+## 💶 Donate
 
-## License
+## 📃 License
 
 Stack App is Free Software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the [MIT License][9].
 
